@@ -290,6 +290,7 @@ public class TextParser {
      * @param wineType type of wine, e.g. red or white
      */
     private void createModels(WineType wineType) {
+        // TODO: Create Author models as well!
         // Haven't parsed all lines yet, keep parsing.
         if (ratingMika == -1 && ratingSalla == -1) {
             return;

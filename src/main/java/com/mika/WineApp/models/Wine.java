@@ -3,14 +3,17 @@ package com.mika.WineApp.models;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
-/**
- * Model for wine.
- */
 @Data
 @Entity
 public class Wine {
+    @Id
+    @GeneratedValue
+    private long id;
+
     private final String name;
     private final WineType type;
     private final String country;
