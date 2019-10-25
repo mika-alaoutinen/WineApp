@@ -26,7 +26,6 @@ public class TextParser {
 
     // Review attributes:
     private LocalDate date;
-    private String author;
     private String reviewTextMika;
     private String reviewTextSalla;
     private double ratingMika;
