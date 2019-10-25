@@ -23,6 +23,8 @@ public class Wine {
     private List<String> foodPairings;
     private String url;
 
+    public Wine() {}
+
     public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
         this.name = name;
         this.type = type;

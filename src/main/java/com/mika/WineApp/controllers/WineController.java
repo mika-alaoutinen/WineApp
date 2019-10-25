@@ -6,7 +6,6 @@ import com.mika.WineApp.services.WineService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class WineController {
@@ -23,9 +22,8 @@ public class WineController {
 
     @GetMapping("wines/{id}")
     Wine find(@PathVariable Long id) {
-        Optional<Wine> opt = service.find(id);
-        // TODO: Handle optionals!
-        return opt.get();
+        // TODO: replace with orElseThrow()!
+        return service.find(id).orElse(null);
     }
 
     @PostMapping("/wines")

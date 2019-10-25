@@ -25,10 +25,19 @@ public class WineService {
         return repository.save(newWine);
     }
 
-    public Wine edit(Wine wine, Long id) {
-        // TODO: Optionals
-        Optional<Wine> oldWine = repository.findById(id);
-        return wine;
+    public Wine edit(Wine editedWine, Long id) {
+        repository.findById(id).ifPresent(wine -> {
+                wine.setName(editedWine.getName());
+                wine.setType(editedWine.getType());
+                wine.setCountry(editedWine.getCountry());
+                wine.setPrice(editedWine.getPrice());
+                wine.setQuantity(editedWine.getQuantity());
+                wine.setDescription(editedWine.getDescription());
+                wine.setFoodPairings(editedWine.getFoodPairings());
+                wine.setUrl(editedWine.getUrl());
+        });
+
+        return editedWine;
     }
 
     public void delete(Long id) {

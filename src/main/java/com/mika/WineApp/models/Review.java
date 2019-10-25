@@ -17,6 +17,8 @@ public class Review {
     private String reviewText;
     private double rating;
 
+    public Review() {}
+
     public Review(String author, LocalDate date, Wine wine, String reviewText, double rating) {
         this.author = author;
         this.date = date;
