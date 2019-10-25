@@ -1,4 +1,4 @@
-package com.mika.WineApp;
+package com.mika.WineApp.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
