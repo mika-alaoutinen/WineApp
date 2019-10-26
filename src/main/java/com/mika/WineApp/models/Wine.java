@@ -14,14 +14,16 @@ public class Wine {
     @GeneratedValue
     private long id;
 
-    private final String name;
-    private final WineType type;
-    private final String country;
-    private final double price;
-    private final double quantity;
-    private final List<String> description;
-    private final List<String> foodPairings;
+    private String name;
+    private WineType type;
+    private String country;
+    private double price;
+    private double quantity;
+    private List<String> description;
+    private List<String> foodPairings;
     private String url;
+
+    public Wine() {}
 
     public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
         this.name = name;

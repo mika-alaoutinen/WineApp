@@ -9,6 +9,8 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "wines", path = "wines")
 public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
+    List<Wine> findAll();
+
     List<Wine> findByName(String name);
     List<Wine> findByType(WineType type);
     List<Wine> findByCountry(String country);

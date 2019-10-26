@@ -11,11 +11,13 @@ import java.time.LocalDate;
 @Data
 @Entity
 public class Review {
-    private final String author;
-    private final LocalDate date;
-    private final Wine wine;
-    private final String reviewText;
-    private final double rating;
+    private String author;
+    private LocalDate date;
+    private Wine wine;
+    private String reviewText;
+    private double rating;
+
+    public Review() {}
 
     public Review(String author, LocalDate date, Wine wine, String reviewText, double rating) {
         this.author = author;
