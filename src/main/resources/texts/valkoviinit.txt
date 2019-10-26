@@ -38,7 +38,7 @@ ArvosteluSalla: Viinin tuoksussa tuntuu makea hedelmäisyys. Maultaan viini on h
 Arvosana: 2 M 3.5 S
 
 
-VIINI: Bienbebido Verdejo 2016 hanapakkaus
+VIINI: Bienbebido Verdejo 2016
 Päivämäärä: 18.8.2017
 Maa: Espanja
 Hinta: 29.88 € (3 l)
@@ -65,28 +65,28 @@ ArvosteluSalla: Tuoksu on trooppisen hedelmäinen ja makea mutta hieman mineraal
 Arvosana: 3.5 M 1.5 S
 
 
-VIINI: Black Tower Riesling Gewürztraminer 2017, hanapakkaus
-Päivämäärä: 11.8.2018 ->
+VIINI: Black Tower Riesling Gewürztraminer 2017
+Päivämäärä: 11.8.2018
 Maa: Saksa
 Hinta: 35.60 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen
 Puolikuiva, hapokas, kypsän sitruksinen, kevyen päärynäinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, itämainen ruoka, rasvainen kala, salaatit ja kasvisruoka
-www.alko.fi/tuotteet/904978 
+url:
 ArvosteluMika: Viinin tuoksu on voimakkaan hedelmäinen ja täyteläinen. Myös ensimaku on poikkeuksellisen vahva, jopa imelän makea ja simainen. Päällekäyvän ensimaun jälkeen viinissä erottuu kirpeää sitruunaa ja päärynäisyyttä. Viini oikeastaan maistuu vahvalta päärynäsiideriltä. Kokonaisuutena erittäin vahvan, päällekäyvän ja täyteläisen makuinen, ja näin ollen hyvin raskas valkoviiniksi. Mielestäni tämä on liian raskas viini seurustelujuomaksi, eikä tämä todennäköisesti käy myöskään useimpien ruokien kanssa; viini voisi kuitenkin sopia tulisen ruuan kumppaniksi.
 ArvosteluSalla: Viinin tuoksu on raikas, kypsän hedelmäinen ja makeahko. Etenkin ensimaussa tuntuu sitruksista kirpeyttä, joka pehmenee kuitenkin pian. Viini on myös melko hapokas, ja hapokkuuden ja sitruksisuuden yhdistelmän takia viini tuntuu paikoitellen aika kuivalta. Uskon viinin toimivan paremmin ruoka- kuin seurustelujuomana.
 Arvosana: 3.5 S 1.25 M
 
 
 VIINI: Blitz Riesling 2017
-Päivämäärä: 8.9.2018 Huom: ensimmäinen viini Jyväskylässä
+Päivämäärä: 8.9.2018
 Maa: Saksa
 Hinta: 9.98 € (0.75 l)
 Kuvaus: Pirteä ja hedelmäinen
 Puolikuiva, hapokas, kypsän sitruksinen, viheromenainen, persikkainen, hunajameloninen, kevyen kukkainen, mausteinen
 SopiiNautittavaksi: sushi, rasvainen kala, aperitiivi, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet24667/
-ArvosteluMika: Viinin tuoksu on kirpakan sitruksinen ja raikas, minkä lisäksi siinä on myös hiven hedelmäistä makeutta. Ensimaku on erittäin raikas, kirpakka ja miellyttävä. Hetken päästä maku muuttuu hiukan happamammaksi, mikä antaa viinille syvyyttä. Pienen maistelun jälkeen olen tunnistavani viinissä myös kukkaisuutta. Viinissä on hedelmäistä makeutta pehmentämässä sen makua, mutta kokonaisuutena sen maku on kuitenkin kirpakka, puolikuiva ja hiukan hapan. Kuivailisin viiniä vivahteikkaaksi mutta myös tasapainoiseksi, sillä mielestäni sen eri maut täydentävät hyvin toisiaan. Viini toimii erinomaisesti paljaaltaan, mutta olisi todennäköisesti hyvä kumppani myös ainakin kalalle. Poikkeuksellisen hyvä viini.
+ArvosteluMika: Huom: ensimmäinen viini Jyväskylässä! Viinin tuoksu on kirpakan sitruksinen ja raikas, minkä lisäksi siinä on myös hiven hedelmäistä makeutta. Ensimaku on erittäin raikas, kirpakka ja miellyttävä. Hetken päästä maku muuttuu hiukan happamammaksi, mikä antaa viinille syvyyttä. Pienen maistelun jälkeen olen tunnistavani viinissä myös kukkaisuutta. Viinissä on hedelmäistä makeutta pehmentämässä sen makua, mutta kokonaisuutena sen maku on kuitenkin kirpakka, puolikuiva ja hiukan hapan. Kuivailisin viiniä vivahteikkaaksi mutta myös tasapainoiseksi, sillä mielestäni sen eri maut täydentävät hyvin toisiaan. Viini toimii erinomaisesti paljaaltaan, mutta olisi todennäköisesti hyvä kumppani myös ainakin kalalle. Poikkeuksellisen hyvä viini.
 ArvosteluSalla: Viinin tuoksu on raikkaan hedelmäinen ja hennon kukkainen, ja samat aromit esiintyvät myös viinin maussa. Alkumaussa on selvää hedelmäistä makeutta, mutta sen jälkeen viiniin kehittyy sitruunan happamuutta. Kokonaisuus on raikas, pehmeä ja erittäin miellyttävä, ja viini toimii oikein hyvin myös seurustelumielessä.
 Arvosana: 5 M 4.75 S
 
@@ -484,7 +484,7 @@ Kuvaus: Pirteä ja hedelmäinen
 	Puolikuiva, hapokas, kypsän sitruksinen, päärynäinen, kevyen kukkainen, hennon
 	mausteinen
 SopiiNautittavaksi: itämainen ruoka, kana ja kalkkuna, salaatit ja kasvisruoka sekä vähärasvainen kala.
-url: http://www.alko.fi/tuotteet16277/ 
+url:
 ArvosteluMika: Ensivaikutelmana maistui lähinnä happamuus kielen kärjellä, mutta kokonaisvaikutelma ensimaun jälkeen oli itse asiassa varsin mieto, kenties kukkainen ja miedon mineraalinen. Happamuus tulee uudestaan esiin jälkimakuna. Maultaan melko hienovarainen mutta myös varsin erikoinen. En välttämättä ostaisi tätä ruuan kanssa, sen sijaan seurustelujuomana toimii erinomaisesti.
 ArvosteluSalla: Erikoinen mutta hento tuoksu, joka on kenties kukkainen. Maku on mielenkiintoinen, ja siinä toistuu sama kukkaisuus. Oikein miellyttävä ja maukas.
 Arvosana: 4.75 M S
@@ -492,8 +492,14 @@ Arvosana: 4.75 M S
 
 VIINI: Kungfu Girl Riesling 2015
 Päivämäärä: 12.8.2017
-ArvosteluMika: Tuoksu on melko mieto. Päällimmäisenä esiin nousee kirpakoita omenoita ja mietoa kukkaisuutta. Ensimaku on melko mieto, hieman hapan ja kukkainen. Hetken kuluttua maku kuitenkin syvenee ja siihen tulee lisää happamuutta, mutta myös makeaa hedelmäisyyttä. Toisella siemauksella kukkaisuus nousee vähemmän esiin, ja jälkimaussa esiintyy kirpakkaa omenaa. Jälkimaku on hapan ja jopa mineraalinen. Muutaman maistelukerran jälkeen viini vaikuttaa selvästi kuivalta, eikä siinä ole juurikaan makeutta. Kokonaisuutena tämä on mielestäni kohtuullisen vivahteikas viini, sillä siirtymä alun kukkaisuudesta jälkimaun happamaan omenaisuuteen on varsin mielenkiintoinen. Viini voisi sopia hyvin kalan kumppaniksi. Nyt muutaman vuoden maistelun jälkeen viini ei enää yllä vitosen sarjaan, mutta on tämä edelleen miellyttävä viini; ei kuitenkaan ehkä 15 euron arvoinen.
-Lisäys: Kun viinin antoi seisoa lasissa ja se lämpeni huoneenlämpöiseksi, viiniin kehittyi hieman lisää makeutta ja happamuus väheni aavistuksen. Lisäksi ensimaun kukkaisuus maistui mielestäni hieman vahvemmin. Annoin alun perin arvosanaksi 4.5, mutta korotin arvosanan 5-:een maistettuani viiniä huoneenlämpöisenä.
+Maa: Yhdysvallat
+Hinta: 14.99 € (0.75 l)
+Kuvaus: Pirteä ja hedelmäinen
+	Puolikuiva, hapokas, kypsän sitruksinen, päärynäinen, kevyen kukkainen, hennon
+	mausteinen
+SopiiNautittavaksi: itämainen ruoka, kana ja kalkkuna, salaatit ja kasvisruoka sekä vähärasvainen kala.
+url:
+ArvosteluMika: Tuoksu on melko mieto. Päällimmäisenä esiin nousee kirpakoita omenoita ja mietoa kukkaisuutta. Ensimaku on melko mieto, hieman hapan ja kukkainen. Hetken kuluttua maku kuitenkin syvenee ja siihen tulee lisää happamuutta, mutta myös makeaa hedelmäisyyttä. Toisella siemauksella kukkaisuus nousee vähemmän esiin, ja jälkimaussa esiintyy kirpakkaa omenaa. Jälkimaku on hapan ja jopa mineraalinen. Muutaman maistelukerran jälkeen viini vaikuttaa selvästi kuivalta, eikä siinä ole juurikaan makeutta. Kokonaisuutena tämä on mielestäni kohtuullisen vivahteikas viini, sillä siirtymä alun kukkaisuudesta jälkimaun happamaan omenaisuuteen on varsin mielenkiintoinen. Viini voisi sopia hyvin kalan kumppaniksi. Nyt muutaman vuoden maistelun jälkeen viini ei enää yllä vitosen sarjaan, mutta on tämä edelleen miellyttävä viini; ei kuitenkaan ehkä 15 euron arvoinen. Lisäys: Kun viinin antoi seisoa lasissa ja se lämpeni huoneenlämpöiseksi, viiniin kehittyi hieman lisää makeutta ja happamuus väheni aavistuksen. Lisäksi ensimaun kukkaisuus maistui mielestäni hieman vahvemmin. Annoin alun perin arvosanaksi 4.5, mutta korotin arvosanan 5-:een maistettuani viiniä huoneenlämpöisenä.
 ArvosteluSalla: Mieto ja raikas tuoksu. Ensimaussa tuntuu vahvasti kukkaisuus, ja jälkimakua kohden maku muuttuu enemmän happaman omenaiseksi. Kokonaisuutena viini on melko erikoinen ja hieman vaikea; en osaisi yhdistää sitä minkään ruoan kanssa, ja happaman jälkimakunsa johdosta se ei ole myöskään paras seurustelujuoma. Viini on kuitenkin kieltämättä mielenkiintoinen ja monivivahteinen. Alkaa maistua koko ajan paremmalta.
 Arvosana: 4.75 M 4 S
 
@@ -543,6 +549,7 @@ Hinta: -1  € (3 l)
 Kuvaus: Pirteä ja hedelmäinen
 Hedelmäinen, kirpakka, trooppisen hedelmäinen, ananaksinen, meloninen
 SopiiNautittavaksi: kana, salaatit, merenelävät
+url:
 ArvosteluMika: Viinin tuoksu on makean omenainen, raikas ja sitruksinen. Ensivaikutelma viinin mausta on suorastaan omenamehumainen, melko kevyt ja hieman vetinen. Viini on vähähappoinen, puolimakea ja kepeä. Viinin maku on tasainen, joskin jälkimakua kohden siirryttäessä siihen kehittyy hiukan lisää happamuutta, mikä on ehdottomasti viinin eduksi. Viini vaikuttaa tavallista köykäisemmältä alkoholin osalta, mutta emme pystyneet varmistamaan epäilyksiämme, sillä viinin laatikossa ei ole merkitty sen alkoholipitoisuutta. IMPOSSIBRU! Kokonaisuutena ihan kohtuullinen seurustelu/kaatoviini, mutta ei tämä mitään kauhean suuria tunteita herätä.
 ArvosteluSalla: Viinin tuoksu on raikas, makeahko ja hieman mehumainen. Maku on mieto ja kepeä, eikä siitä oikein erotu mitään kummempia aromeja tai vivahteita, vaan viini on hyvin tasainen ja tasapaksu. Viini on ihan hyvänmakuinen muttei herätä suuria tunteita suuntaan tai toiseen. Viini on varsin helposti juotava sekä mutkaton.
 Arvosana: 2.75 S 1.75 M

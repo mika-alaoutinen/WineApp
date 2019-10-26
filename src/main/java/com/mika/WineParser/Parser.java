@@ -14,11 +14,8 @@ public class Parser {
     private List<Review> reviews;
 
     public Parser() {
-        try {
-            parse();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        try { parse(); }
+        catch (IOException e) { e.printStackTrace(); }
     }
 
     private void parse() throws IOException {
