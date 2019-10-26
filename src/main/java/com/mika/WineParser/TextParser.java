@@ -5,6 +5,10 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -142,10 +146,8 @@ public class TextParser {
 
             // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                url = parseStringContent(line);
-                if (url.isBlank()) {
-                    url = "null";
-                }
+                String urlStr = parseStringContent(line);
+                url = validateUrl(urlStr);
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -221,6 +223,38 @@ public class TextParser {
             localDate = LocalDate.parse(date, formatter2);
         }
         return localDate;
+    }
+
+    /**
+     * Validates a given URL address.
+     * @param url as a String.
+     * @return URL as a String if URL is valid, else returns "null".
+     * @throws IOException exception.
+     */
+    private String validateUrl(String url) throws IOException {
+        if (url.isBlank()) {
+            return "null";
+        }
+        if (isUrlValid(url)) {
+            return "null";
+        }
+        return url;
+    }
+
+    /**
+     * Checks if a website returns a 200 OK response.
+     * @param urlStr URL address as a String.
+     * @return true if response from site is 200, else return false.
+     * @throws IOException exception.
+     */
+    private boolean isUrlValid(String urlStr) throws IOException {
+        URL url = new URL(urlStr);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("GET");
+        connection.connect();
+
+        return connection.getResponseCode() == 200;
     }
 
     /**
