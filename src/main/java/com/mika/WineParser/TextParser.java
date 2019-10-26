@@ -235,10 +235,10 @@ public class TextParser {
      */
     private String validateUrl(String url) throws IOException {
         if (url.isBlank()) {
-            return "null";
+            return "blank";
         }
         if (!isUrlValid(url)) {
-            return "null";
+            return "invalid";
         }
         return url;
     }

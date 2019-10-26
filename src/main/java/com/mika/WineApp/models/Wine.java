@@ -12,7 +12,7 @@ import java.util.List;
 public class Wine {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private String name;
     private WineType type;

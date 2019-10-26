@@ -1,4 +1,4 @@
-package com.mika.WineApp.persistence;
+package com.mika.WineApp.main;
 
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
