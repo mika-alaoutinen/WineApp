@@ -146,8 +146,10 @@ public class TextParser {
 
             // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                String urlStr = parseStringContent(line);
-                url = validateUrl(urlStr);
+                // TODO: delete line 150 and uncomment following two lines.
+                url = parseStringContent(line);
+//                String urlStr = parseStringContent(line);
+//                url = validateUrl(urlStr);
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -235,7 +237,7 @@ public class TextParser {
         if (url.isBlank()) {
             return "null";
         }
-        if (isUrlValid(url)) {
+        if (!isUrlValid(url)) {
             return "null";
         }
         return url;
