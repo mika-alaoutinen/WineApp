@@ -140,9 +140,12 @@ public class TextParser {
             } else if (line.contains("SopiiNautittavaksi:")) {
                 foodPairings = parseKeywords(line);
 
-            // Parse URL for wine:
+            // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
                 url = parseStringContent(line);
+                if (url.isBlank()) {
+                    url = "null";
+                }
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -289,7 +292,6 @@ public class TextParser {
      * @param wineType type of wine, e.g. red or white
      */
     private void createModels(WineType wineType) {
-        // TODO: Create Author models as well!
         // Haven't parsed all lines yet, keep parsing.
         if (ratingMika == -1 && ratingSalla == -1) {
             return;
