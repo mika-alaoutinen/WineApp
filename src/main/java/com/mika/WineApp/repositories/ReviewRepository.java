@@ -11,7 +11,8 @@ import java.util.List;
 // Consider JpaRepository if more advanced functionality is needed!
 //@RepositoryRestResource(collectionResourceRel = "reviews", path = "reviews")
 @Repository
-public interface ReviewRepository extends CrudRepository {
+public interface ReviewRepository extends CrudRepository<Review, Long> {
+    List<Review> findAll();
 //    List<Review> findByMinRating(double minRating);
 //    List<Review> findByMaxRating(double maxRating);
 //    List<Review> findByDate(LocalDate date);
