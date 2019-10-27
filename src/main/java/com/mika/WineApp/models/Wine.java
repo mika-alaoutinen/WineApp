@@ -10,7 +10,8 @@ import java.util.List;
 @Table(name = "wines")
 public class Wine {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "name")
@@ -24,17 +25,19 @@ public class Wine {
     private String country;
 
     @Column(name = "price")
-    private double price;
+    private double price; // add precision
 
     @Column(name = "quantity")
-    private double quantity;
+    private double quantity; // add precision
 
+    @ElementCollection
+    @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "description")
-    @ElementCollection(targetClass = String.class)
     private List<String> description;
 
+    @ElementCollection
+    @CollectionTable(name = "wine_food_pairings", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "food_pairings")
-    @ElementCollection(targetClass = String.class)
     private List<String> foodPairings;
 
     @Column(name = "url")

@@ -4,7 +4,6 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import org.springframework.util.ResourceUtils;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 

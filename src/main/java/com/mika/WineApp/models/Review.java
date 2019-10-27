@@ -5,13 +5,13 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-/** Model for wine review. */
 @Data
 @Entity
 @Table(name = "reviews")
 public class Review {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
     @Column(name = "author")
@@ -20,17 +20,14 @@ public class Review {
     @Column(name = "date")
     private LocalDate date;
 
-    @Column(name = "review_text")
+    @Column(name = "review_text", columnDefinition = "TEXT")
     private String reviewText;
 
     @Column(name = "rating")
-    private double rating;
+    private double rating; // add precision
 
-    // one Review can have on Wine. One wine can have many Reviews.
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @MapsId
-//    @JoinColumn(name = "wine_id", referencedColumnName = "id")
-    private Wine wine;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Wine wine; //    @JoinColumn(name = "wine_id")
 
     public Review() {}
 
