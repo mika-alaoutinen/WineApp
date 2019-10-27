@@ -17,7 +17,7 @@ public class WineService {
         return repository.findAll();
     }
 
-    public Optional<Wine> find(long id) {
+    public Optional<Wine> find(Long id) {
         return repository.findById(id);
     }
 
