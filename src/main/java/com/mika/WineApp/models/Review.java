@@ -8,6 +8,7 @@ import java.time.LocalDate;
 /** Model for wine review. */
 @Data
 @Entity
+@Table(name = "reviews")
 public class Review {
     @Id
     @GeneratedValue

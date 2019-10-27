@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "wines")
 public class Wine {
     @Id
     @GeneratedValue
@@ -29,11 +30,11 @@ public class Wine {
     private double quantity;
 
     @Column(name = "description")
-    @ElementCollection
+    @ElementCollection(targetClass = String.class)
     private List<String> description;
 
     @Column(name = "food_pairings")
-    @ElementCollection
+    @ElementCollection(targetClass = String.class)
     private List<String> foodPairings;
 
     @Column(name = "url")
