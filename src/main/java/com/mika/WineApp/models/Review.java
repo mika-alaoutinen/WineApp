@@ -7,28 +7,26 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "reviews")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "author")
     private String author;
 
-    @Column(name = "date")
     private LocalDate date;
 
     @Column(name = "review_text", columnDefinition = "TEXT")
     private String reviewText;
 
-    @Column(name = "rating")
-    private double rating; // add precision
+    @Column(precision = 3, scale = 2)
+    private double rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Wine wine; //    @JoinColumn(name = "wine_id")
+    private Wine wine;
 
+    // Constructors:
     public Review() {}
 
     public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {

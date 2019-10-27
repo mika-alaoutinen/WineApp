@@ -7,32 +7,28 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "wines")
 public class Wine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", length = 10)
+    @Column(length = 10)
     private WineType type;
 
-    @Column(name = "country")
     private String country;
 
-    @Column(name = "price")
-    private double price; // add precision
+    @Column(precision = 10, scale = 2)
+    private double price;
 
-    @Column(name = "quantity")
-    private double quantity; // add precision
+    @Column(precision = 10, scale = 2)
+    private double quantity;
 
     @ElementCollection
     @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
-    @Column(name = "description")
     private List<String> description;
 
     @ElementCollection
@@ -40,9 +36,9 @@ public class Wine {
     @Column(name = "food_pairings")
     private List<String> foodPairings;
 
-    @Column(name = "url")
     private String url;
 
+    // Constructors:
     public Wine() {}
 
     public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
