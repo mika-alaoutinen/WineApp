@@ -23,7 +23,7 @@ public class Review {
     @Column(precision = 3, scale = 2)
     private double rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne // (fetch = FetchType.LAZY) causes a JSON error!
     private Wine wine;
 
     // Constructors:
