@@ -2,26 +2,44 @@ package com.mika.WineApp.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
 public class Wine {
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(updatable = false, nullable = false)
+    private Long id;
 
-    private final String name;
-    private final WineType type;
-    private final String country;
-    private final double price;
-    private final double quantity;
-    private final List<String> description;
-    private final List<String> foodPairings;
+    private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private WineType type;
+
+    private String country;
+
+    @Column(precision = 10, scale = 2)
+    private double price;
+
+    @Column(precision = 10, scale = 2)
+    private double quantity;
+
+    @ElementCollection
+    @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
+    private List<String> description;
+
+    @ElementCollection
+    @CollectionTable(name = "wine_food_pairings", joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "food_pairings")
+    private List<String> foodPairings;
+
     private String url;
+
+    // Constructors:
+    public Wine() {}
 
     public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
         this.name = name;

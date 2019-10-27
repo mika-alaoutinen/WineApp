@@ -2,26 +2,38 @@ package com.mika.WineApp.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 
-/**
- * Model for wine review.
- */
 @Data
 @Entity
 public class Review {
-    private final String author;
-    private final LocalDate date;
-    private final Wine wine;
-    private final String reviewText;
-    private final double rating;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(updatable = false, nullable = false)
+    private Long id;
 
-    public Review(String author, LocalDate date, Wine wine, String reviewText, double rating) {
+    private String author;
+
+    private LocalDate date;
+
+    @Column(name = "review_text", columnDefinition = "TEXT")
+    private String reviewText;
+
+    @Column(precision = 3, scale = 2)
+    private double rating;
+
+    @ManyToOne // (fetch = FetchType.LAZY) causes a JSON error!
+    private Wine wine;
+
+    // Constructors:
+    public Review() {}
+
+    public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
         this.author = author;
         this.date = date;
-        this.wine = wine;
         this.reviewText = reviewText;
         this.rating = rating;
+        this.wine = wine;
     }
 }
