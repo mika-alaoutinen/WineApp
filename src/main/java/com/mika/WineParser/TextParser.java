@@ -339,11 +339,11 @@ public class TextParser {
 
         // Create new Reviews:
         if (!reviewTextMika.isEmpty()) {
-            reviews.add(new Review("Mika", date, newWine, reviewTextMika, ratingMika));
+            reviews.add(new Review("Mika", date, reviewTextMika, ratingMika, newWine));
         }
 
         if (!reviewTextSalla.isEmpty()) {
-            reviews.add(new Review("Salla", date, newWine, reviewTextSalla, ratingSalla));
+            reviews.add(new Review("Salla", date, reviewTextSalla, ratingSalla, newWine));
         }
 
         // Initiate attribute values again for next entry in file:

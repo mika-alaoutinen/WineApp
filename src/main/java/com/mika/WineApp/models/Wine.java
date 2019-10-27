@@ -2,9 +2,7 @@ package com.mika.WineApp.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -14,13 +12,31 @@ public class Wine {
     @GeneratedValue
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", length = 10)
     private WineType type;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "price")
     private double price;
+
+    @Column(name = "quantity")
     private double quantity;
+
+    @Column(name = "description")
+    @ElementCollection
     private List<String> description;
+
+    @Column(name = "food_pairings")
+    @ElementCollection
     private List<String> foodPairings;
+
+    @Column(name = "url")
     private String url;
 
     public Wine() {}
