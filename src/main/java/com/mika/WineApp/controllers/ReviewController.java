@@ -1,5 +1,6 @@
 package com.mika.WineApp.controllers;
 
+import com.mika.WineApp.errors.ReviewNotFoundException;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.services.ReviewService;
@@ -22,8 +23,8 @@ public class ReviewController {
 
     @GetMapping("reviews/{id}")
     Review find(@PathVariable Long id) {
-        // TODO: replace with orElseThrow()!
-        return service.find(id).orElse(null);
+        return service.find(id)
+                      .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
     @PostMapping("/reviews")
