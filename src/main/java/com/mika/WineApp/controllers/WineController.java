@@ -2,6 +2,7 @@ package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,24 @@ public class WineController {
     }
 
     @GetMapping("wines/{id}")
-    Wine find(@PathVariable Long id) {
-        return service.find(id)
+    Wine findById(@PathVariable Long id) {
+        return service.findById(id)
                       .orElseThrow(() -> new WineNotFoundException(id));
+    }
+
+    @GetMapping("wines/{name}")
+    List<Wine> findByName(@PathVariable String name) {
+        return service.findByName(name);
+    }
+
+    @GetMapping("wines/{type}")
+    List<Wine> findByType(@PathVariable WineType type) {
+        return service.findByType(type);
+    }
+
+    @GetMapping("wines/{country}")
+    List<Wine> findByCountry(@PathVariable String country) {
+        return service.findByCountry(country);
     }
 
     @PostMapping("/wines")
