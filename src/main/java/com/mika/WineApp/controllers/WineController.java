@@ -8,6 +8,7 @@ import com.mika.WineApp.services.WineService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.OptionalDouble;
 
 @RestController
 public class WineController {
@@ -18,14 +19,10 @@ public class WineController {
     }
 
     @GetMapping("/wines")
-    List<Wine> findAll() {
-        return service.findAll();
-    }
+    List<Wine> findAll(@RequestParam(name = "minPrice") OptionalDouble minPrice,
+                       @RequestParam(name = "maxPrice") OptionalDouble maxPrice) {
 
-    @GetMapping("wines/{id}")
-    Wine findById(@PathVariable Long id) {
-        return service.findById(id)
-                      .orElseThrow(() -> new WineNotFoundException(id));
+        return service.findAll(minPrice, maxPrice);
     }
 
     @GetMapping("wines/{name}")
@@ -41,6 +38,22 @@ public class WineController {
     @GetMapping("wines/{country}")
     List<Wine> findByCountry(@PathVariable String country) {
         return service.findByCountry(country);
+    }
+
+    @GetMapping("wines/{quantity}")
+    List<Wine> findByQuantity(@PathVariable Double quantity) {
+        return service.findByQuantity(quantity);
+    }
+
+    @GetMapping("wines/{foodPairings}")
+    List<Wine> findByFoodPairings(@RequestParam List<String> foodPairings) {
+        return service.findByFoodPairings(foodPairings);
+    }
+
+    @GetMapping("wines/{id}")
+    Wine findById(@PathVariable Long id) {
+        return service.findById(id)
+                .orElseThrow(() -> new WineNotFoundException(id));
     }
 
     @PostMapping("/wines")

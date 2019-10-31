@@ -24,7 +24,7 @@ public class ReviewController {
     @GetMapping("reviews/{id}")
     Review find(@PathVariable Long id) {
         return service.find(id)
-                      .orElseThrow(() -> new ReviewNotFoundException(id));
+                .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
     @PostMapping("/reviews")

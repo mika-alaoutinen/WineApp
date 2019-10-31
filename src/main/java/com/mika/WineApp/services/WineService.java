@@ -6,6 +6,7 @@ import com.mika.WineApp.repositories.WineRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 public class WineService {
     private final WineRepository repository;
@@ -15,12 +16,14 @@ public class WineService {
     }
 
 // Find wines:
-    public List<Wine> findAll() {
-        return repository.findAll();
-    }
+//    public List<Wine> findAll() {
+//        return repository.findAll();
+//    }
 
-    public Optional<Wine> findById(Long id) {
-        return repository.findById(id);
+    public List<Wine> findAll(OptionalDouble minPrice, OptionalDouble maxPrice) {
+        double min = minPrice.orElse(0);
+        double max = maxPrice.orElse(9999);
+        return repository.findByPriceBetween(min, max);
     }
 
     public List<Wine> findByName(String name) {
@@ -33,6 +36,18 @@ public class WineService {
 
     public List<Wine> findByCountry(String country) {
         return repository.findByCountry(country);
+    }
+
+    public List<Wine> findByQuantity(double quantity) {
+        return repository.findByQuantity(quantity);
+    }
+
+    public Optional<Wine> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    public List<Wine> findByFoodPairings(List<String> foodPairings) {
+        return repository.findByFoodPairings(foodPairings);
     }
 
 // Add, edit and delete:
@@ -51,7 +66,6 @@ public class WineService {
                 wine.setFoodPairings(editedWine.getFoodPairings());
                 wine.setUrl(editedWine.getUrl());
         });
-
         return editedWine;
     }
 
