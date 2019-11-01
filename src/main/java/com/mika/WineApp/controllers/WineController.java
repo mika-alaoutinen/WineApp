@@ -5,12 +5,14 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 @RestController
 public class WineController {
@@ -21,8 +23,13 @@ public class WineController {
     }
 
     @GetMapping("/wines")
-    List<Wine> findAll() {
-        return service.findAll();
+    CollectionModel<EntityModel<Wine>> findAll() {
+        var wineModels = service.findAll().stream()
+                .map(wine -> buildEntityModel(wine, wine.getId()))
+                .collect(Collectors.toList());
+
+        return new CollectionModel<>(wineModels,
+                linkTo(methodOn(WineController.class).findAll()).withSelfRel());
     }
 
     @GetMapping("wines/name/{name}")
@@ -64,9 +71,7 @@ public class WineController {
         Wine wine = service.findById(id)
                 .orElseThrow(() -> new WineNotFoundException(id));
 
-        return new EntityModel<>(wine,
-                linkTo(methodOn(WineController.class).findById(id)).withSelfRel(),
-                linkTo(methodOn(WineController.class).findAll()).withRel("wines"));
+        return buildEntityModel(wine, id);
     }
 
     @PostMapping("/wines")
@@ -82,5 +87,17 @@ public class WineController {
     @DeleteMapping("wines/{id}")
     void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    /**
+     * Builds a HATEOAS compliant resource.
+     * @param wine
+     * @param id of wine
+     * @return EntityModel with links to self and all wines.
+     */
+    private EntityModel<Wine> buildEntityModel(Wine wine, Long id) {
+        return new EntityModel<>(wine,
+                linkTo(methodOn(WineController.class).findById(id)).withSelfRel(),
+                linkTo(methodOn(WineController.class).findAll()).withRel("wines"));
     }
 }
