@@ -8,12 +8,10 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.OptionalDouble;
-import java.util.stream.Collectors;
 
 @RestController
 public class WineController {
@@ -27,46 +25,51 @@ public class WineController {
 
     @GetMapping("/wines")
     public CollectionModel<EntityModel<Wine>> findAll() {
-        var wineModels = service.findAll().stream()
-                .map(assembler::toModel)
-                .collect(Collectors.toList());
-
-        return new CollectionModel<>(wineModels,
-                linkTo(methodOn(WineController.class).findAll()).withSelfRel());
+        var wines = service.findAll();
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/name/{name}")
-    public List<Wine> findByName(@PathVariable String name) {
-        return service.findByName(name);
+    public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
+        var wines = service.findByName(name);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/type/{type}")
-    public List<Wine> findByType(@PathVariable WineType type) {
-        return service.findByType(type);
+    public CollectionModel<EntityModel<Wine>> findByType(@PathVariable WineType type) {
+        var wines = service.findByType(type);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/country/{country}")
-    public List<Wine> findByCountry(@PathVariable String country) {
-        return service.findByCountry(country);
+    public CollectionModel<EntityModel<Wine>> findByCountry(@PathVariable String country) {
+        var wines = service.findByCountry(country);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/quantity/{quantity}")
-    public List<Wine> findByQuantity(@PathVariable Double quantity) {
-        return service.findByQuantity(quantity);
+    public CollectionModel<EntityModel<Wine>> findByQuantity(@PathVariable Double quantity) {
+        var wines = service.findByQuantity(quantity);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("/wines/price")
-    public List<Wine> findByPrice(@RequestParam(name = "minPrice") OptionalDouble minPrice,
-                           @RequestParam(name = "maxPrice") OptionalDouble maxPrice) {
+    public CollectionModel<EntityModel<Wine>> findByPrice(
+            @RequestParam(name = "minPrice") OptionalDouble minPrice,
+            @RequestParam(name = "maxPrice") OptionalDouble maxPrice) {
 
-        return service.findByPrice(minPrice, maxPrice);
+        var wines = service.findByPrice(minPrice, maxPrice);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/pairings/{foodPairings}")
-    public List<Wine> findByFoodPairings(@RequestParam List<String> foodPairings) {
+    public CollectionModel<EntityModel<Wine>> findByFoodPairings(
+            @RequestParam List<String> foodPairings) {
         // Note: HTTP request has to be in the following format:
         // ?id=1,2,3 and NOT like this ?id=1&id=2&id=3
-        return service.findByFoodPairings(foodPairings);
+
+        var wines = service.findByFoodPairings(foodPairings);
+        return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/{id}")
@@ -78,13 +81,15 @@ public class WineController {
     }
 
     @PostMapping("/wines")
-    public Wine add(@RequestBody Wine newWine) {
-        return service.add(newWine);
+    public EntityModel<Wine> add(@RequestBody Wine newWine) {
+        Wine wine = service.add(newWine);
+        return assembler.toModel(wine);
     }
 
     @PutMapping("wines/{id}")
-    public Wine edit(@RequestBody Wine editedWine, @PathVariable Long id) {
-        return service.edit(editedWine, id);
+    public EntityModel<Wine> edit(@RequestBody Wine editedWine, @PathVariable Long id) {
+        Wine wine = service.edit(editedWine, id);
+        return assembler.toModel(wine);
     }
 
     @DeleteMapping("wines/{id}")
