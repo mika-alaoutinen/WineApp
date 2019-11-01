@@ -20,5 +20,5 @@ public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
     List<Wine> findByCountry(String country);
     List<Wine> findByPriceBetween(double minPrice, double maxPrice);
     List<Wine> findByQuantity(double quantity);
-    List<Wine> findByFoodPairings(List<String> food);
+    List<Wine> findByFoodPairingsIn(List<String> food);
 }

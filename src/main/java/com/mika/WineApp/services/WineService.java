@@ -16,14 +16,8 @@ public class WineService {
     }
 
 // Find wines:
-//    public List<Wine> findAll() {
-//        return repository.findAll();
-//    }
-
-    public List<Wine> findAll(OptionalDouble minPrice, OptionalDouble maxPrice) {
-        double min = minPrice.orElse(0);
-        double max = maxPrice.orElse(9999);
-        return repository.findByPriceBetween(min, max);
+    public List<Wine> findAll() {
+        return repository.findAll();
     }
 
     public List<Wine> findByName(String name) {
@@ -42,12 +36,18 @@ public class WineService {
         return repository.findByQuantity(quantity);
     }
 
-    public Optional<Wine> findById(Long id) {
-        return repository.findById(id);
+    public List<Wine> findByPrice(OptionalDouble minPrice, OptionalDouble maxPrice) {
+        double min = minPrice.orElse(0);
+        double max = maxPrice.orElse(9999);
+        return repository.findByPriceBetween(min, max);
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
-        return repository.findByFoodPairings(foodPairings);
+        return repository.findByFoodPairingsIn(foodPairings);
+    }
+
+    public Optional<Wine> findById(Long id) {
+        return repository.findById(id);
     }
 
 // Add, edit and delete:
