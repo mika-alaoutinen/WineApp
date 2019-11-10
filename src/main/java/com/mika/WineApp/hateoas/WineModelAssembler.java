@@ -5,9 +5,6 @@ import com.mika.WineApp.models.Wine;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -43,14 +40,5 @@ public class WineModelAssembler implements RepresentationModelAssembler<Wine, En
 
         return new CollectionModel<>(models,
                 linkTo(methodOn(WineController.class).findAll()).withSelfRel());
-    }
-
-    public ResponseEntity<?> addLinks(EntityModel<Wine> wineModel) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(linkTo(WineController.class)
-                .slash(wineModel.getContent())
-                .toUri());
-
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 }

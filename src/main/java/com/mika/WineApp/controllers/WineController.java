@@ -8,7 +8,7 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,6 +33,10 @@ public class WineController {
     @GetMapping("wines/name/{name}")
     public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
         var wines = service.findByName(name);
+        if (wines.isEmpty()) {
+            throw new WineNotFoundException(name);
+        }
+
         return assembler.buildResponse(wines);
     }
 
@@ -82,11 +86,10 @@ public class WineController {
     }
 
     @PostMapping("/wines")
-    public ResponseEntity<?> add(@RequestBody Wine newWine) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public EntityModel<Wine> add(@RequestBody Wine newWine) {
         Wine wine = service.add(newWine);
-        var model = assembler.toModel(wine);
-
-        return assembler.addLinks(model);
+        return assembler.toModel(wine);
     }
 
     @PutMapping("wines/{id}")
@@ -96,6 +99,7 @@ public class WineController {
     }
 
     @DeleteMapping("wines/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
