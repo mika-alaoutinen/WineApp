@@ -5,6 +5,7 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalDouble;
@@ -22,15 +23,22 @@ public class WineService {
     }
 
     public List<Wine> findByName(String name) {
-        return repository.findByNameContaining(name);
+        return repository.findByNameContainingIgnoreCase(name);
     }
 
-    public List<Wine> findByType(WineType type) {
-        return repository.findByType(type);
+    public List<Wine> findByType(String type) {
+        try {
+            WineType wineType = WineType.valueOf(type.toUpperCase());
+            return repository.findByType(wineType);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return new ArrayList<>();
     }
 
     public List<Wine> findByCountry(String country) {
-        return repository.findByCountry(country);
+        return repository.findByCountryIgnoreCase(country);
     }
 
     public List<Wine> findByQuantity(double quantity) {
@@ -44,7 +52,7 @@ public class WineService {
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
-        return repository.findByFoodPairingsIn(foodPairings);
+        return repository.findByFoodPairingsInIgnoreCase(foodPairings);
     }
 
     public Optional<Wine> findById(Long id) {

@@ -15,10 +15,10 @@ public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
     List<Wine> findAll();
     Wine save(Wine wine);
 
-    List<Wine> findByNameContaining(String name);
+    List<Wine> findByNameContainingIgnoreCase(String name);
     List<Wine> findByType(WineType type);
-    List<Wine> findByCountry(String country);
+    List<Wine> findByCountryIgnoreCase(String country);
     List<Wine> findByPriceBetween(double minPrice, double maxPrice);
     List<Wine> findByQuantity(double quantity);
-    List<Wine> findByFoodPairingsIn(List<String> food);
+    List<Wine> findByFoodPairingsInIgnoreCase(List<String> food);
 }

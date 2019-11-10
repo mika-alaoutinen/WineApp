@@ -3,7 +3,6 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.hateoas.WineModelAssembler;
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.hateoas.CollectionModel;
@@ -41,7 +40,7 @@ public class WineController {
     }
 
     @GetMapping("wines/type/{type}")
-    public CollectionModel<EntityModel<Wine>> findByType(@PathVariable WineType type) {
+    public CollectionModel<EntityModel<Wine>> findByType(@PathVariable String type) {
         var wines = service.findByType(type);
         return assembler.buildResponse(wines);
     }
