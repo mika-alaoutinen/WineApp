@@ -8,7 +8,7 @@ import com.mika.WineApp.repositories.WineRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.stream.Collectors;
 
 public class WineService {
     private final WineRepository repository;
@@ -23,13 +23,13 @@ public class WineService {
     }
 
     public List<Wine> findByName(String name) {
-        return repository.findByNameContainingIgnoreCase(name);
+        return repository.findDistinctByNameContainingIgnoreCase(name);
     }
 
     public List<Wine> findByType(String type) {
         try {
             WineType wineType = WineType.valueOf(type.toUpperCase());
-            return repository.findByType(wineType);
+            return repository.findDistinctByType(wineType);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -38,21 +38,39 @@ public class WineService {
     }
 
     public List<Wine> findByCountry(String country) {
-        return repository.findByCountryIgnoreCase(country);
+        return repository.findDistinctByCountryIgnoreCase(country);
     }
 
     public List<Wine> findByQuantity(double quantity) {
-        return repository.findByQuantity(quantity);
+        return repository.findDistinctByQuantity(quantity);
     }
 
-    public List<Wine> findByPrice(OptionalDouble minPrice, OptionalDouble maxPrice) {
-        double min = minPrice.orElse(0);
-        double max = maxPrice.orElse(9999);
-        return repository.findByPriceBetween(min, max);
+    public List<Wine> findByPrice(double minPrice, double maxPrice) {
+        return repository.findDistinctByPriceBetween(minPrice, maxPrice);
+    }
+
+    public List<Wine> findByDescription(List<String> description) {
+        var wines = repository.findDistinctByDescriptionInIgnoreCase(description);
+
+        return wines.stream()
+                .filter(wine -> {
+                    var desc = wine.getDescription();
+                    desc.replaceAll(String::toLowerCase);
+                    return desc.containsAll(description);
+                })
+                .collect(Collectors.toList());
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
-        return repository.findByFoodPairingsInIgnoreCase(foodPairings);
+        var wines = repository.findDistinctByFoodPairingsInIgnoreCase(foodPairings);
+
+        return wines.stream()
+                .filter(wine -> {
+                    var pairings = wine.getFoodPairings();
+                    pairings.replaceAll(String::toLowerCase);
+                    return pairings.containsAll(foodPairings);
+                })
+                .collect(Collectors.toList());
     }
 
     public Optional<Wine> findById(Long id) {
