@@ -3,15 +3,14 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.hateoas.WineModelAssembler;
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.OptionalDouble;
 
 @RestController
 public class WineController {
@@ -32,11 +31,15 @@ public class WineController {
     @GetMapping("wines/name/{name}")
     public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
         var wines = service.findByName(name);
+        if (wines.isEmpty()) {
+            throw new WineNotFoundException(name);
+        }
+
         return assembler.buildResponse(wines);
     }
 
     @GetMapping("wines/type/{type}")
-    public CollectionModel<EntityModel<Wine>> findByType(@PathVariable WineType type) {
+    public CollectionModel<EntityModel<Wine>> findByType(@PathVariable String type) {
         var wines = service.findByType(type);
         return assembler.buildResponse(wines);
     }
@@ -55,18 +58,24 @@ public class WineController {
 
     @GetMapping("/wines/price")
     public CollectionModel<EntityModel<Wine>> findByPrice(
-            @RequestParam(name = "minPrice") OptionalDouble minPrice,
-            @RequestParam(name = "maxPrice") OptionalDouble maxPrice) {
+            @RequestParam(name = "minPrice", defaultValue = "0") double minPrice,
+            @RequestParam(name = "maxPrice", defaultValue = "9999") double maxPrice) {
 
         var wines = service.findByPrice(minPrice, maxPrice);
         return assembler.buildResponse(wines);
     }
 
-    @GetMapping("wines/pairings/{foodPairings}")
+    @GetMapping("wines/description")
+    public CollectionModel<EntityModel<Wine>> findByDescription(
+            @RequestParam(name = "desc") List<String> description) {
+
+        var wines = service.findByDescription(description);
+        return assembler.buildResponse(wines);
+    }
+
+    @GetMapping("wines/pairing")
     public CollectionModel<EntityModel<Wine>> findByFoodPairings(
-            @RequestParam List<String> foodPairings) {
-        // Note: HTTP request has to be in the following format:
-        // ?id=1,2,3 and NOT like this ?id=1&id=2&id=3
+            @RequestParam(name = "pair") List<String> foodPairings) {
 
         var wines = service.findByFoodPairings(foodPairings);
         return assembler.buildResponse(wines);
@@ -81,6 +90,7 @@ public class WineController {
     }
 
     @PostMapping("/wines")
+    @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<Wine> add(@RequestBody Wine newWine) {
         Wine wine = service.add(newWine);
         return assembler.toModel(wine);
@@ -93,6 +103,7 @@ public class WineController {
     }
 
     @DeleteMapping("wines/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

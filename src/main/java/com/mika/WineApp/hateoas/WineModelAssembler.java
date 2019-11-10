@@ -29,7 +29,7 @@ public class WineModelAssembler implements RepresentationModelAssembler<Wine, En
     }
 
     /**
-     * Builds a HTTP response.
+     * Builds a HATEOAS compliant collection of wine entity models.
      * @param wines as a list.
      * @return CollectionModel of Wine entity models.
      */
@@ -38,16 +38,7 @@ public class WineModelAssembler implements RepresentationModelAssembler<Wine, En
                 .map(this::toModel)
                 .collect(Collectors.toList());
 
-        return toCollectionModel(models);
-    }
-
-    /**
-     * Builds a HATEOAS compliant collection of wine entity models.
-     * @param wineModels list of Wine EntityModels.
-     * @return CollectionModel of Wine EntityModels
-     */
-    private CollectionModel<EntityModel<Wine>> toCollectionModel(List<EntityModel<Wine>> wineModels) {
-        return new CollectionModel<>(wineModels,
+        return new CollectionModel<>(models,
                 linkTo(methodOn(WineController.class).findAll()).withSelfRel());
     }
 }
