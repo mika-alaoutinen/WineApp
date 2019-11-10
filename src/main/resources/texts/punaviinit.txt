@@ -153,7 +153,7 @@ ArvosteluSalla: Viinin tuoksu on täyteläisen hilloinen ja kirsikkainen. Maku p
 Arvosana: 4 M 3.5 S
 
 
-VIINI: Earth Balance Merlot Cabernet Sauvignon 2014 viinipussi
+VIINI: Earth Balance Merlot Cabernet Sauvignon 2014
 Päivämäärä: 24.9.2016
 Maa: Chile
 Hinta: 15.79 € (1.5 l)
@@ -179,14 +179,14 @@ ArvosteluMika: Viini on väriltään melko tumma ja sen tuoksu on vahvan mustahe
 ArvosteluSalla: Tuoksussa tuntuu syvä ja täyteläinen marjaisuus. Marjaisuus syvenee maussa, joka on miellyttävän pehmeä ja tasainen. Maussa on hieman myös hilloisuutta. Viini jättää suuhun samettisen pehmeän tunteen. Viini toimii mielestäni myös seurustelujuomana, vaikka Alkon kuvaukset ovatkin eri mieltä asiasta; se oli myös hyvä ruokajuoma.
 Arvosana: 4 M S
 
-VIINI: Expresso Mokka Pinotage 2016, viinipussi
+VIINI: Expresso Mokka Pinotage 2016
 Päivämäärä: 19.5.2017
 Maa: Etelä-Afrikka
 Hinta: 16.99 € (1.5 l)
 Kuvaus: Mehevä ja hilloinen
 Keskitäyteläinen, keskitanniininen, kypsän kirsikkainen, kevyen luumuinen, mustikkahilloinen, maitokahvinen, mokkainen
 SopiiNautittavaksi: grilliruoka, mausteiset makkarat, porsas, seurustelujuoma
-url: https://www.alko.fi/tuotteet/442588/Expresso-Mokka-Pinotage-2016-viinipussi 
+url: https://www.alko.fi/tuotteet/442588/
 ArvosteluMika: Viinissä on hapan, kirsikkainen ja melko vahvasti tanniininen tuoksu. Viini on väriltään syvän punainen. Viinin ensimaku on hapan ja tanniininen. Nielaistessa maistuu raikas kirsikka, ja jälkimaku on mokkainen. Viini jättää vahvasti tanniinisen ja melko happaman jälkimaun. Viini kaipaa ehdottomasti kumppanikseen ruokaa, sillä paljaaltaan nautittuna se on turhan hapan ja tanniininen. Söisin tämän kanssa ehkä jotain mausteisia makkaroita tai grillattua punaista lihaa.
 ArvosteluSalla: Voimakkaassa tuoksussa tuntuu selvästi kirsikka, ja tuoksu saa syvyyttä mokkaisuudesta. Viinin maku on syvä ja todella täyteläinen – kirsikka, mokka ja pehmeät mausteet muodostavat samettisen pehmeän ja tasapainoisen kokonaisuuden. Maun keskivaiheilla tuntuu hapanta kirpakkuutta, mutta maku pehmenee loppua kohden.
 Arvosana: 3 M 4.5 S

@@ -105,7 +105,7 @@ ArvosteluSalla: Viinin tuoksu on raikas, makeahko ja hedelmäinen. Samat ominais
 Arvosana: 4 M 3.75 S
 
 
-VIINI: Calitopia Shardonnay 2014, viinipussi
+VIINI: Calitopia Shardonnay 2014
 Päivämäärä: 19.11.2016
 Maa: Yhdysvallat
 Hinta: 16.90 € (1.5 l)
@@ -723,14 +723,14 @@ ArvosteluSalla: Tuoksu on mineraalinen ja melko raikas. Mineraalisuus tuntuu my�
 Arvosana: 3.5 M S
 
 
-VIINI: Palesa Chenin Blanc 2016, viinipussi
+VIINI: Palesa Chenin Blanc 2016
 Päivämäärä: 7.5.2017
 Maa: Etelä-Afrikka
 Hinta: 16.99 € (1.5 l)
 Kuvaus: Pirteä ja hedelmäinen
 Kuiva, hapokas, herukkainen, meloninen, runsaan yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, pikkusuolaiset, seurustelujuoma, kana ja kalkkuna
-url: https://www.alko.fi/tuotteet97918/Palesa-Chenin-Blanc-2016-viinipussi 
+url: https://www.alko.fi/tuotteet/97918/
 ArvosteluMika: Tuoksu on makean meloninen ja keskihapan. Ensimaku on melko makea, pehmeähkö ja hiukan hapan. Toisella siemauksella viinin happamuus nousee enemmän esiin, ja lisäksi viinissä maistuu mineraalisuutta. Viini ei ole niin hedelmäinen kuin tuoksun perusteella olisi voinut arvata. Jälkimaku on selkeästi hapan. Kielen kärjellä maistuu yrttisyyttä. Viini sopii ehkä paremmin ruoan kanssa nautittavaksi kuin seurustelujuomaksi. Viini voisi sopia vaikkapa broilerin tai pizzan kumppaniksi.
 ArvosteluSalla: Tuoksu on makean hedelmäinen ja etenkin kypsän hunajameloninen. Siinä tuntuu myös kesäistä raikkautta. Maku ei ole yhtä meloninen kuin tuoksu, mutta siinäkin on makeaa hedelmäisyyttä. Viinin maussa on myös mietoa happamuutta. Itse asiassa viini tuoksui paremmalta kuin maistui, mikä on mielestäni poikkeuksellista, mutta ei makukaan toki huono ole.
 Arvosana: 2.75 M 3 S

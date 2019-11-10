@@ -57,8 +57,7 @@ public class WineService {
                     var desc = wine.getDescription();
                     desc.replaceAll(String::toLowerCase);
                     return desc.containsAll(description);
-                })
-                .collect(Collectors.toList());
+                }).collect(Collectors.toList());
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
@@ -69,8 +68,7 @@ public class WineService {
                     var pairings = wine.getFoodPairings();
                     pairings.replaceAll(String::toLowerCase);
                     return pairings.containsAll(foodPairings);
-                })
-                .collect(Collectors.toList());
+                }).collect(Collectors.toList());
     }
 
     public Optional<Wine> findById(Long id) {
