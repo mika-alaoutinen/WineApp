@@ -6,17 +6,20 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
+import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "wines", path = "wines")
 public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
+
+    Optional<Wine> findById(Long id);
     List<Wine> findAll();
     Wine save(Wine wine);
 
-//    List<Wine> findByName(String name);
-//    List<Wine> findByType(WineType type);
-//    List<Wine> findByCountry(String country);
-//    List<Wine> findByMinPrice(double minPrice); // Wines that are more expensive than minPrice
-//    List<Wine> findByMaxPrice(double maxPrice); // Wines that are cheaper than maxPrice
-//    List<Wine> findByQuantity(double quantity);
-//    List<Wine> findByFoodPairings(List<String> food);
+    List<Wine> findDistinctByNameContainingIgnoreCase(String name);
+    List<Wine> findDistinctByType(WineType type);
+    List<Wine> findDistinctByCountryIgnoreCase(String country);
+    List<Wine> findDistinctByPriceBetween(double minPrice, double maxPrice);
+    List<Wine> findDistinctByQuantity(double quantity);
+    List<Wine> findDistinctByDescriptionInIgnoreCase(List<String> descriptions);
+    List<Wine> findDistinctByFoodPairingsInIgnoreCase(List<String> food);
 }
