@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.OptionalDouble;
 
 @RestController
 public class WineController {
@@ -59,18 +58,24 @@ public class WineController {
 
     @GetMapping("/wines/price")
     public CollectionModel<EntityModel<Wine>> findByPrice(
-            @RequestParam(name = "minPrice") OptionalDouble minPrice,
-            @RequestParam(name = "maxPrice") OptionalDouble maxPrice) {
+            @RequestParam(name = "minPrice", defaultValue = "0") double minPrice,
+            @RequestParam(name = "maxPrice", defaultValue = "9999") double maxPrice) {
 
         var wines = service.findByPrice(minPrice, maxPrice);
         return assembler.buildResponse(wines);
     }
 
-    @GetMapping("wines/pairings/{foodPairings}")
+    @GetMapping("wines/description")
+    public CollectionModel<EntityModel<Wine>> findByDescription(
+            @RequestParam(name = "desc") List<String> description) {
+
+        var wines = service.findByDescription(description);
+        return assembler.buildResponse(wines);
+    }
+
+    @GetMapping("wines/pairing")
     public CollectionModel<EntityModel<Wine>> findByFoodPairings(
-            @RequestParam List<String> foodPairings) {
-        // Note: HTTP request has to be in the following format:
-        // ?id=1,2,3 and NOT like this ?id=1&id=2&id=3
+            @RequestParam(name = "pair") List<String> foodPairings) {
 
         var wines = service.findByFoodPairings(foodPairings);
         return assembler.buildResponse(wines);
