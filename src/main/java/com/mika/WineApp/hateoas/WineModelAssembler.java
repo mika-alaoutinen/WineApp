@@ -5,6 +5,9 @@ import com.mika.WineApp.models.Wine;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,7 +32,7 @@ public class WineModelAssembler implements RepresentationModelAssembler<Wine, En
     }
 
     /**
-     * Builds a HTTP response.
+     * Builds a HATEOAS compliant collection of wine entity models.
      * @param wines as a list.
      * @return CollectionModel of Wine entity models.
      */
@@ -38,16 +41,16 @@ public class WineModelAssembler implements RepresentationModelAssembler<Wine, En
                 .map(this::toModel)
                 .collect(Collectors.toList());
 
-        return toCollectionModel(models);
+        return new CollectionModel<>(models,
+                linkTo(methodOn(WineController.class).findAll()).withSelfRel());
     }
 
-    /**
-     * Builds a HATEOAS compliant collection of wine entity models.
-     * @param wineModels list of Wine EntityModels.
-     * @return CollectionModel of Wine EntityModels
-     */
-    private CollectionModel<EntityModel<Wine>> toCollectionModel(List<EntityModel<Wine>> wineModels) {
-        return new CollectionModel<>(wineModels,
-                linkTo(methodOn(WineController.class).findAll()).withSelfRel());
+    public ResponseEntity<?> addLinks(EntityModel<Wine> wineModel) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(linkTo(WineController.class)
+                .slash(wineModel.getContent())
+                .toUri());
+
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
 }

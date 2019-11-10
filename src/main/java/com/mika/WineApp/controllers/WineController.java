@@ -8,6 +8,7 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -81,9 +82,11 @@ public class WineController {
     }
 
     @PostMapping("/wines")
-    public EntityModel<Wine> add(@RequestBody Wine newWine) {
+    public ResponseEntity<?> add(@RequestBody Wine newWine) {
         Wine wine = service.add(newWine);
-        return assembler.toModel(wine);
+        var model = assembler.toModel(wine);
+
+        return assembler.addLinks(model);
     }
 
     @PutMapping("wines/{id}")
