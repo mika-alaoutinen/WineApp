@@ -15,7 +15,7 @@ public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
     List<Wine> findAll();
     Wine save(Wine wine);
 
-    List<Wine> findByName(String name);
+    List<Wine> findByNameContaining(String name);
     List<Wine> findByType(WineType type);
     List<Wine> findByCountry(String country);
     List<Wine> findByPriceBetween(double minPrice, double maxPrice);

@@ -1,5 +1,6 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
@@ -21,7 +22,7 @@ public class WineService {
     }
 
     public List<Wine> findByName(String name) {
-        return repository.findByName(name);
+        return repository.findByNameContaining(name);
     }
 
     public List<Wine> findByType(WineType type) {
@@ -56,17 +57,17 @@ public class WineService {
     }
 
     public Wine edit(Wine editedWine, Long id) {
-        repository.findById(id).ifPresent(wine -> {
-                wine.setName(editedWine.getName());
-                wine.setType(editedWine.getType());
-                wine.setCountry(editedWine.getCountry());
-                wine.setPrice(editedWine.getPrice());
-                wine.setQuantity(editedWine.getQuantity());
-                wine.setDescription(editedWine.getDescription());
-                wine.setFoodPairings(editedWine.getFoodPairings());
-                wine.setUrl(editedWine.getUrl());
-        });
-        return editedWine;
+        return repository.findById(id).map(wine -> {
+            wine.setName(editedWine.getName());
+            wine.setType(editedWine.getType());
+            wine.setCountry(editedWine.getCountry());
+            wine.setPrice(editedWine.getPrice());
+            wine.setQuantity(editedWine.getQuantity());
+            wine.setDescription(editedWine.getDescription());
+            wine.setFoodPairings(editedWine.getFoodPairings());
+            wine.setUrl(editedWine.getUrl());
+            return repository.save(wine);
+        }).orElseThrow(() -> new WineNotFoundException(id));
     }
 
     public void delete(Long id) {
