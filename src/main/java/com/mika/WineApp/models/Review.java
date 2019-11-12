@@ -1,6 +1,6 @@
 package com.mika.WineApp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,11 +24,12 @@ public class Review {
     @Column(precision = 3, scale = 2)
     private double rating;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
+    @JoinColumn(name = "wine_id")
     private Wine wine;
 
-    // Constructors:
+    // Constructors:<
     public Review() {}
 
     public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {

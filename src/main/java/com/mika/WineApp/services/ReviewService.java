@@ -21,7 +21,7 @@ public class ReviewService {
         return repository.findByWineId(wineId);
     }
 
-    public List<Review> findAllByWineName(String wineName) {
+    public List<Review> findByWineName(String wineName) {
         return repository.findByWineNameContainingIgnoreCase(wineName);
     }
 
