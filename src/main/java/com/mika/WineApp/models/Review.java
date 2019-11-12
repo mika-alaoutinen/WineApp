@@ -1,6 +1,5 @@
 package com.mika.WineApp.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,7 +23,6 @@ public class Review {
     @Column(precision = 3, scale = 2)
     private double rating;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "wine_id")
     private Wine wine;
