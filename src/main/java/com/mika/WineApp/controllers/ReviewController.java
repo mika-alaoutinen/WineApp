@@ -27,6 +27,20 @@ public class ReviewController {
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
+// Find based on wine
+
+    @GetMapping("/reviews/wineId/{wineId}")
+    List<Review> findByWineId(@PathVariable Long wineId) {
+        return service.findByWineId(wineId);
+    }
+
+    @GetMapping("/reviews/wineName/{wineName}")
+    List<Review> findByWineId(@PathVariable String wineName) {
+        return service.findByWineName(wineName);
+    }
+
+// Add, edit and delete
+
     @PostMapping("/reviews")
     Review add(@RequestBody Review newReview) {
         return service.add(newReview);

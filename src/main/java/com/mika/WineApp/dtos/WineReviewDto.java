@@ -9,11 +9,11 @@ import java.util.List;
  * A DTO that packages all information regarding a wine review.
  */
 public class WineReviewDto {
-    private Wine wine;
-    private List<Review> reviews;
+    private final List<Review> reviews;
+    private final Wine wine;
 
-    public WineReviewDto(Wine wine, List<Review> reviews) {
-        this.wine = wine;
+    public WineReviewDto(List<Review> reviews, Wine wine) {
         this.reviews = reviews;
+        this.wine = wine;
     }
 }
