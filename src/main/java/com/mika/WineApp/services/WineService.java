@@ -1,11 +1,11 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.InvalidWineTypeException;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,10 +31,8 @@ public class WineService {
             WineType wineType = WineType.valueOf(type.toUpperCase());
             return repository.findDistinctByType(wineType);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            throw new InvalidWineTypeException(type);
         }
-
-        return new ArrayList<>();
     }
 
     public List<Wine> findByCountry(String country) {
@@ -53,22 +51,16 @@ public class WineService {
         var wines = repository.findDistinctByDescriptionInIgnoreCase(description);
 
         return wines.stream()
-                .filter(wine -> {
-                    var desc = wine.getDescription();
-                    desc.replaceAll(String::toLowerCase);
-                    return desc.containsAll(description);
-                }).collect(Collectors.toList());
+                .filter(wine -> wine.getDescription().containsAll(description))
+                .collect(Collectors.toList());
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
         var wines = repository.findDistinctByFoodPairingsInIgnoreCase(foodPairings);
 
         return wines.stream()
-                .filter(wine -> {
-                    var pairings = wine.getFoodPairings();
-                    pairings.replaceAll(String::toLowerCase);
-                    return pairings.containsAll(foodPairings);
-                }).collect(Collectors.toList());
+                .filter(wine -> wine.getFoodPairings().containsAll(foodPairings))
+                .collect(Collectors.toList());
     }
 
     public Optional<Wine> findById(Long id) {
