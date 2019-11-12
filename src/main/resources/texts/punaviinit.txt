@@ -18,7 +18,7 @@ Hinta: 32.99 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen
 Täyteläinen, keskitanniininen, makean luumuinen, kirsikkahilloinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, pikkusuolaiset, miedot juustot, pasta ja pizza
-url: https://www.alko.fi/tuotteet/466488/Barone-Montalto-Nero-d-Avola-Collezione-di-Famiglia-Passivento-hanapakkaus
+url: https://www.alko.fi/tuotteet/466488
 ArvosteluMika: Viinissä on pehmeä kirsikkainen ja ehkä aavistuksen mausteinen tuoksu. Viini on väriltään täyteläisen punainen. Ensimaku on tasainen, happaman kirsikkainen mutta kumminkin pehmeä ja keskitanniininen. Toisella siemauksella esiin nousee enemmän makeutta, mutta tanniinisuus on edelleen vahvasti läsnä. Toisella kertaa jälkimaussa maistuu mausteisuutta. Kokonaisuutena viinin maussa on selkeästi happamuutta kirsikasta, makeutta, kohtalaisesti tanniinisuutta sekä ripaus mausteisuutta. Näin ollen viinin kokonaisvaikutelma on täyteläinen, muttei kuitenkaan liian raskas, ja tasapainoinen. Tämä on mielestäni erinomainen punaviini, joka sopii varmasti monenlaisen ruuan kumppaniksi, mutta ei myöskään ole liian raskas nautittavaksi paljaaltaan.
 ArvosteluSalla: Pehmeä, hieman herukkainen tuoksu, jossa tuntuu myös kirsikka. Ensimaussa pintaan nousee kypsä luumu. Viinin maku on tasainen ja samettisen pehmeä. Etenkin jälkimaussa esiintyy makeutta. Kokonaisuutena viini on pehmeä, täyteläinen ja erinomaisen miellyttävä.
 Arvosana: 4.75 M S
@@ -50,14 +50,14 @@ ArvosteluSalla: Viinin tuoksu on miellyttävä ja täyteläisen marjainen. Maku 
 Arvosana: 3.75 S 4 M
 
 
-VIINI: Blue Nun Merlot, hanapakkaus
+VIINI: Blue Nun Merlot
 Päivämäärä: 22.10.2017
 Maa: Ranska
 Hinta: 19.98 € (2 l)
 Kuvaus: Marjaisa ja raikas
 Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, mustikkainen, kevyen vaniljainen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pikkusuolaiset, porsas
-url: https://www.alko.fi/tuotteet/451158/Blue-Nun-Merlot-hanapakkaus
+url: https://www.alko.fi/tuotteet/451158/
 ArvosteluMika: Viinissä on syvä, kirsikkainen ja hieman hapan tuoksu. Viinin ensimaussa ensimmäisenä esiin nousevat tanniinit, jotka kuorruttavat suun välittömästi. Maun puolesta viini on jonkin verran hapan, jopa hiukan karvas, ja karpaloinen. Viinin maku on varsin tasainen, joskin jälkimaussa viinin happamuus nousee ensimakua selvemmin esiin. Kokonaisuutena viini on kohtalaisen roteva ja täyteläinen, muttei kuitenkaan liian raskas nautittavaksi paljaaltaan. Mielestäni viini toimii kuitenkin paremmin ruuan kanssa kuin yksinään, ja se voisikin olla melko monipuolinen punaviini.
 ArvosteluSalla: Viinin tuoksu on syvän metsämarjainen ja täyteläinen. Täyteläisyys ja metsämarjaisuus tuntuvat myös viinin maussa. Maussa on samanaikaisesti sekä pehmeyttä että happamuutta, mutta pehmeys vie voiton. Alkon kuvauksen perusteella viinin luokka on ”marjaisa ja raikas”, mutten itse kuvailisi sitä varsinaisesti raikkaaksi. Päällimmäisenä vaikutelmana on täyteläisyys ja metsämarjaisuus. Kokonaisuus on tasainen ja tasapainoinen, ja viini sopii mielestäni mainiosti sekä seurustelu- että ruokajuomaksi.
 Arvosana: 3.25 M 4 S
@@ -101,14 +101,14 @@ ArvosteluSalla: Pehmeänmakuinen, mehumainen viini. Jälkimaku on hieman katkera
 Arvosana: 3 M S
 
 
-VIINI: Chill Out Smooth & Soft Cabernet Sauvignon 2016, hanapakkaus 
+VIINI: Chill Out Smooth & Soft Cabernet Sauvignon 2016
 Päivämäärä: 14.4.2017
 Maa: Australia
 Hinta: 27.95 € (3 l)
 Kuvaus:	Mehevä ja hilloinen
 Keskitäyteläinen, keskitanniininen, kirsikkainen, puolukkainen, yrttinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, porsas, grilliruoka, mausteiset ja lihaisat makkarat
-url: https://www.alko.fi/tuotteet/435748/Chill-Out-Smooth-Soft-Cabernet-Sauvignon-2016-hanapakkaus 
+url: https://www.alko.fi/tuotteet/435748
 ArvosteluMika: Ensivaikutelma tuoksusta oli syvän mustaherukkainen. Viinin ensimaku on mustaherukkainen, kohtuullisen tanniininen, syvä muttei kovinkaan kitkerä. Ensimaku on melko pehmeä, mutta viinin maku voimistuu jälkimakua kohden. Viini jättää suuhun tanniinisen ja happaman marjaisen jälkimaun. Viini on sen verran tanniininen, että se vaatii kumppanikseen ehkä mieluiten punaista lihaa. Voisi sopia myös tuhtien juustojen kanssa.
 ArvosteluSalla: Ensituoksu oli syvän ja mehevän kirsikkainen. Kirsikkaisuus tuntuu vahvasti myös maussa, joka on syvä ja täyteläinen. Jälkimaussa on hieman happamuutta, mutta muutoin maku on pehmeä ja miellyttävän täyteläinen. Luulen, että viini sopii monipuolisesti yhteen erilaisten ruokien kanssa, ja se toimii myös paljaaltaan.
 Arvosana: 3.25 M 4 S
@@ -140,14 +140,14 @@ ArvosteluSalla: Viinin tuoksussa tuntuvat vahvasti tummat marjat sekä tanniinis
 Arvosana: 4.25 M 3.75 S
 
 
-VIINI: Doppio Passo Primitivo 2016, hanapakkaus
+VIINI: Doppio Passo Primitivo 2016
 Päivämäärä: 6.10.2017
 Maa: Italia
 Hinta: 29.99 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen
 Keskitäyteläinen, keskitanniininen, puolikuiva, makean kirsikkainen, marjahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, seurustelujuoma, pikkusuolaiset, noutopöytä
-url: https://www.alko.fi/tuotteet/432548/Doppio-Passo-Primitivo-2016-hanapakkaus
+url: https://www.alko.fi/tuotteet/432548
 ArvosteluMika: Viinin tuoksu on kirsikkainen, makean paprikainen ja hennon savuinen. Ensimaku on pehmeä, vähätanniininen ja melko mieto. Hetken kuluttua makuun kehittyy selvästi lisää happamuutta, mikä antaa viinille kaivattua ryhtiä. Jälkimaku on happamahko ja jopa aavistuksen kitkerä. Toisella siemauksella viinin happamuus ja kitkeryys korostuvat ensimaistelua enemmän, mutta kokonaisvaikutelma on siltä kepeä. Viini on ehkä liian mieto liharuuan kumppaniksi, mutta uskon, että se voi sopia hyvin kasvisruuan kanssa. Se toimii myös hyvin paljaaltaan ja on poikkeuksellisen vähätanniininen ja helposti juotava punaviini. Viinin happamuus ja kuivuus pitää kuitenkin huolen siitä, ettei viini maistu mehumaiselta.
 ArvosteluSalla: Viinin tuoksu on täyteläisen hilloinen ja kirsikkainen. Maku puolestaan on pehmeä, mieto ja melko tasainen, ja se viipyy suussa vain hetken verran. Viini on mielestäni poikkeuksellisen kevyt ja vaivaton punaviiniksi. Viini on hyvä seurustelujuoma muttei ehkä niinkään varsinainen nautiskelujuoma.
 Arvosana: 4 M 3.5 S
@@ -167,14 +167,14 @@ Arvosana: 4 M S
 
 
 
-VIINI: Evergreen Organic Merlot 2015, hanapakkaus
+VIINI: Evergreen Organic Merlot 2015
 Päivämäärä: 24.3.2017
 Maa: Ranska
 Hinta: 29.94 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen
 Keskitäyteläinen, keskitanniininen, puolikuiva, kirsikkahilloinen, metsämarjainen, mausteinen, kevyen vaniljainen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, salaatit ja kasvisruoat, noutopöytä
-url: https://www.alko.fi/tuotteet/463308/Evergreen-Organic-Merlot-2015-hanapakkaus 
+url: https://www.alko.fi/tuotteet/463308
 ArvosteluMika: Viini on väriltään melko tumma ja sen tuoksu on vahvan mustaherukkainen. Tuoksu on syvä ja melko makea. Ensivaikutelma mausta on varsin kepeä ja hiukan hapan sekä marjainen. Maussa keskivaiheilla viinin tanniinit nousevat selkeämmin esiin; arvioisin viiniä keskitanniiniseksi. Jälkimaussa voimakkaimmin esiin nousee mustaherukkaisuus. Tanniinisuudesta huolimatta viini on varsin kepeä. Huomionarvoista on se, kuinka viinin maku kehittyy melko kevyestä ja hiukan happamasta ensimausta kohtuullisen syvään, mustaherukkaiseen jälkimakuun. Viini jättää suuhun miedon mustaherukkaisen jälkimaun, joskin viinin tanniinit maistuvat pitkään senkin jälkeen, kun juoma on kulautettu kurkkutorvesta alas kohti mahalaukkua. Viini toimii luultavasti monenlaisien ruokien kumppanina, pois lukien ehkä hyvin tuhdit liharuoat. Itse kokeilisin tätä broilerin kanssa.
 ArvosteluSalla: Tuoksussa tuntuu syvä ja täyteläinen marjaisuus. Marjaisuus syvenee maussa, joka on miellyttävän pehmeä ja tasainen. Maussa on hieman myös hilloisuutta. Viini jättää suuhun samettisen pehmeän tunteen. Viini toimii mielestäni myös seurustelujuomana, vaikka Alkon kuvaukset ovatkin eri mieltä asiasta; se oli myös hyvä ruokajuoma.
 Arvosana: 4 M S
@@ -238,7 +238,7 @@ Hinta: 35.99 € (3 l)
 Kuvaus: Marjaisa ja raikas
 Keskitäyteläinen, keskitanniininen, vadelmainen, mesimarjainen, kirsikkainen, mokkainen, mausteinen
 SopiiNautittavaksi: grilliruoka, kana ja kalkkuna, seurustelujuoma, salaatit ja kasvisruuat
-url: https://www.alko.fi/tuotteet/448098/Gnarly-Head-Pinot-Noir-2017-hanapakkaus/
+url: https://www.alko.fi/tuotteet/448098
 ArvosteluMika: Viinin tuoksusta ei irtoa oikein mitään, kenties hiven kirsikkaa. Ensivaikutelma mausta on pehmeä, melko makea ja tasainen. Jälkimaussa nousee kuitenkin esiin myös happamuutta ja aavistus kitkeryyttä. Viinistä on kuitenkin vaikea saada irti mitään kauhean erityistä, ja kokonaisvaikutelma on tasapaksu ja mitäänsanomaton. Viini ei ole huono, muttei myöskään erotu mitenkään edukseen.
 ArvosteluSalla: Mehevän marjainen, hivenen kirsikkainen tuoksu. Maku on todella lempeä ja samettisen pehmeä, mutta siinä tuntuu kuitenkin myös kirsikan happamuutta. Viini on syvän ja täyteläisen marjainen, mutta kokonaisvaikutelma jää mukavan kepeähköksi. Mielestäni viini on erinomainen yhdistelmä pehmeyttä ja mehevyyttä. Se toimii myös hyvin niin paljaaltaan kuin juustojen ja liharuoankin kanssa. Ei ehkä mikään maailmoja mullistava viini, mutta kaiken kaikkiaan varsin mainio kokonaisuus.
 Arvosana: 2.5 M 4 S
@@ -257,7 +257,7 @@ ArvosteluSalla: Tuoksussa on ehkä aavistus karpaloa. Viinin maku on todella peh
 Arvosana: 4.25 M 4.5 S
 
 
-VIINI: Icono Selección Special, hanapakkaus
+VIINI: Icono Selección Special
 Päivämäärä: 6.10.2019
 Maa: Espanja
 Hinta: 20.98 € (2 l)
@@ -272,7 +272,7 @@ ArvosteluSalla: Tuoksu on täyteläinen ja mehevän kirsikkainen. Ensimaussa tun
 Arvosana: 3.25 M S
 
 
-VIINI: Inception Deep Layered Red 2014 -hanapakkaus
+VIINI: Inception Deep Layered Red 2014
 Päivämäärä: 17.2.2017
 Maa: Etelä-Afrikka
 Hinta: 22.89 € (2 l)
@@ -280,7 +280,7 @@ Kuvaus: Pehmeä ja hedelmäinen
 Keskitäyteläinen, vähätanniininen, puolimakea, kirsikkahilloinen, mustikkainen, vaniljainen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuoma, grilliruoka, porsas, itämainen ruoka
 Oliko helposti juotavaa: 
-url: https://www.alko.fi/tuotteet/903468/Inception-Deep-Layered-Red-2014-hanapakkaus 
+url: https://www.alko.fi/tuotteet/903468
 ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, ja päällimmäisenä siinä nousee esiin luumu. Lisäksi siinä on jonkin verran makeutta, melko vahvaa mausteisuutta ja kenties tammea. Viinin ensimaku on melko makea ja mokkainen sekä hennon marjainen. Ensimaun jälkeen viiniin kehittyy selkeästi happamuutta, syvää luumuisuutta ja jonkin verran kitkeryyttä. Ensimaku oli varsin kepeä ja makeahko, mutta jälkimaku on selvästi hapan ja puolikuiva. Kokonaisuutena viini on varsin täyteläinen ja kohtuullisen tanniininen. Viini voisi sopia hyvin esimerkiksi mausteisen broileriruoan kanssa. Kokonaisuutena mielenkiintoinen ja varsin vivahteikas viini, joka sopii myös seurustelujuomaksi.
 ArvosteluSalla: Väri on erittäin tumma kirsikanpunainen. Tuoksun suhteen olen samaa mieltä edellisen kanssa. Maku on täyteläinen ja samettisen pehmeä. Siinä tuntuu mokkaisuus sekä tummat marjat. Viinin maku kehittyy suussa tasaisesti – siirtymä ensimausta jälkimaun viimeiseen häivähdykseen on sulava ja saumaton. Viinipaketin kyljessä suositellaan viiniä esimerkiksi tumman suklaan kaveriksi, ja uskon, että ne muodostaisivatkin hyvän parivaljakon. Viinin maut pääsevät kuitenkin niin hyvin esiin seurustelujuomana, etten välttämättä yhdistäisi sitä minkään ruoan kanssa.
 Arvosana: 3.75 M 4.25 S
@@ -298,7 +298,7 @@ ArvosteluMika: Viinissä on miellyttävän kirsikkainen ja mehevä tuoksu, mutta
 ArvosteluSalla: Tuoksu on mehevä ja syvän marjainen; siinä tuntuu ainakin mustaherukkaisuutta. Maultaan viini on täyteläinen, pehmeä ja erittäin miellyttävä. Hieman hapan marjaisuus nousee esiin etenkin jälkimaussa. Se sopii myös monipuolisesti sekä eri ruokien kumppaniksi että seurustelujuomaksi, eikä se olisi varmasti hullumpi myöskään juustojen kanssa. Moneen tilanteeseen sopiva, melko turvallinen valinta.
 Arvosana: 4 M 4.5 S
 
-VIINI: Juno Shiraz 2016, kartonkitölkki
+VIINI: Juno Shiraz 2016
 Päivämäärä: 6.4.2018
 Maa: Etelä-Afrikka
 Hinta: 9.98 € (1 l)
@@ -311,12 +311,12 @@ ArvosteluSalla: Tuoksu on täyteläinen, makeahko ja kirsikkainen. Viinin maku o
 Arvosana: 4.25 S 4 M
 
 
-VIINI: Luna Negra Merlot -hanapakkaus
+VIINI: Luna Negra Merlot
 Päivämäärä: 8.7.2015
 Maa: Chile
 Hinta: 18.99 € / 2 l
 Kuvaus: Marjaisa ja raikas
-	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon 	vaniljainen
+	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
 SopiiNautittavaksi: pikkusuolaiset, kana ja kalkkuna, porsas sekä pasta ja pizza.
 url: http://www.alko.fi/tuotteet/005386/ 
 ArvosteluMika: Ensimaku on hieman pistävä, minkä jälkeen viinissä tulee esille karpalon maku. Yhdyn myös siihen, että viinissä on savun makua. Karpalo tuo viiniin melko hapanta ja jopa pistävää makua. Toisaalta viini ei ole kovin vahvasti tanniininen, ja näin ollen se on kokonaisuutena melko kepeä. Saatan vain kuvitella, mutta olen maistavinani jälkimaussa aavistuksen luvattua vaniljaa. Kokonaisuutena kuvailisin viiniä marjaisaksi ja hieman happamaksi. Melko kepeä punaviiniksi, ja soveltunee kohtalaisen hyvin nautittavaksi myös sinällään.
@@ -337,7 +337,7 @@ ArvosteluSalla: Viinin väri on tumma, kirsikanpunainen. Tuoksussa on täyteläi
 Arvosana: 2.5 M 3 S
 
 
-VIINI: Maestro Italiano Nero d’Avola Syrah -hanapakkaus
+VIINI: Maestro Italiano Nero d’Avola Syrah
 Päivämäärä: 11.5.2018
 Maa: Italia
 Hinta: 31.99 € (3 l)
@@ -350,7 +350,7 @@ ArvosteluSalla: Tuoksu on syvä, täyteläinen ja karpaloinen. Samat elementit t
 Arvosana: 3.5 S 3.75 M
 
 
-VIINI: Mayu Reserva Syrah Appassimento -hanapakkaus
+VIINI: Mayu Reserva Syrah Appassimento
 Päivämäärä: 18.1.2019
 Maa: Chile
 Hinta: 35.99 € (3 l)
@@ -444,7 +444,7 @@ ArvosteluSalla: Tuoksu on täyteläinen ja happamahko, ja maku on huomattavasti 
 Arvosana: 3.5 M 3.75 S
 
 
-VIINI: Rain Dance Shiraz Ruby Cabernet, hanapakkaus
+VIINI: Rain Dance Shiraz Ruby Cabernet
 Päivämäärä: 13.10.2018
 Maa: Etelä-Afrikka
 Hinta: 27.95 € (3 l)
@@ -559,14 +559,14 @@ ArvosteluSalla: Tuoksussa tuntuu vahvasti kirsikkaisuus sekä myös mustaherukka
 Arvosana: 4 M 3.75 S
 
 
-VIINI: The Wanted Zin 2016, hanapakkaus
+VIINI: The Wanted Zin 2016
 Päivämäärä: 27.8.2017
 Maa: Italia
 Hinta: 33.99 € (3 l)
 Kuvaus: Mehevä ja hilloinen
 Täyteläinen, keskitanniininen, marjahilloinen, tumman kirsikkainen, mausteinen, vaniljainen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, mausteiset makkarat ja nauta.
-url: https://www.alko.fi/tuotteet/460478/The-Wanted-Zin-2016-hanapakkaus 
+url: https://www.alko.fi/tuotteet/460478
 ArvosteluMika: Viini on väriltään syvänpunainen. Viinissä on täyteläinen, pehmeä, savuinen ja paprikainen tai mahdollisesti kirsikkainen tuoksu. Viinin suutuntuma on varsin tanniininen. Ensimaku on pehmeä, täyteläinen ja happaman kirsikkainen. Jälkimaussa nousee esiin kenties hieman mausteisuutta. Viinistä jää suuhun tanniininen kuorrutus ja kirsikoiden maku viipyilee pitkään suussa. Tämä on ehkä hiukan liian tanniininen ja raskas seurustelujuomaksi, mutta sopii varmasti erinomaisesti punaisen lihan kumppaniksi. Toisaalta viini on täyteläisyydestään huolimatta kokonaisuutena melko pehmeän makuinen, joten kyllä tätä juo myös paljaaltaan.
 ArvosteluSalla: Tuoksu on täyteläinen ja kirsikkainen, ja siinä tuntuu myös marjaisuutta. Myös maku on täyteläinen, ja se pehmenee etenkin jälkimakua kohden; ensimaku on hieman hapan. Varsin mainio viini ja miellyttävä kokonaisuus.
 Arvosana: 4.25 M S
@@ -638,7 +638,7 @@ ArvosteluSalla: Viinin tuoksu on kirsikkainen ja happamahko. Ensimaku on syvä j
 Arvosana: 1.25 M 2.75 S
 
 
-VIINI: Zensa Rosso Organico 2016 -hanapakkaus
+VIINI: Zensa Rosso Organico 2016
 Päivämäärä: 8.6.2018
 Maa: Italia
 Hinta: 34.99 € (3 l)
