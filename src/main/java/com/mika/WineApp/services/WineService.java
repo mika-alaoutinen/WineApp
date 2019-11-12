@@ -51,22 +51,16 @@ public class WineService {
         var wines = repository.findDistinctByDescriptionInIgnoreCase(description);
 
         return wines.stream()
-                .filter(wine -> {
-                    var desc = wine.getDescription();
-                    desc.replaceAll(String::toLowerCase);
-                    return desc.containsAll(description);
-                }).collect(Collectors.toList());
+                .filter(wine -> wine.getDescription().containsAll(description))
+                .collect(Collectors.toList());
     }
 
     public List<Wine> findByFoodPairings(List<String> foodPairings) {
         var wines = repository.findDistinctByFoodPairingsInIgnoreCase(foodPairings);
 
         return wines.stream()
-                .filter(wine -> {
-                    var pairings = wine.getFoodPairings();
-                    pairings.replaceAll(String::toLowerCase);
-                    return pairings.containsAll(foodPairings);
-                }).collect(Collectors.toList());
+                .filter(wine -> wine.getFoodPairings().containsAll(foodPairings))
+                .collect(Collectors.toList());
     }
 
     public Optional<Wine> findById(Long id) {
