@@ -1,5 +1,6 @@
 package com.mika.WineApp.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -39,6 +40,7 @@ public class Wine {
 
     private String url;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "wine")
     private List<Review> reviews;
 
