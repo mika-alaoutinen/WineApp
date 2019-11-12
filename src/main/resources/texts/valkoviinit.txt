@@ -336,7 +336,7 @@ Maa: Chile
 Hinta: 15.49 € (1.5 l)
 Kuvaus: lempeä ja makeahko
            puolikuiva, keskihapokas, hedelmäinen, hennon sitruksinen, kevyen kukkainen
-SopiiNautittavaksi seurustelu, salaatit ja kasvisruoka, aperitiivi, pizzat ja pikkulämpimät
+SopiiNautittavaksi: seurustelu, salaatit ja kasvisruoka, aperitiivi, pizzat ja pikkulämpimät
 url: http://www.alko.fi/tuotteet52988/
 ArvosteluMika: Tuoksu on hennon miellyttävän makean hedelmäinen, ensimaku on epämääräisen hedelmäinen ja hieman hapan, tasainen; hento happamahko (?) jälkimaku. Kaiken kaikkiaan perushyvä, joskin toisaalta myös helposti unohdettava kokemus. Sopii hyvin seurustelujuomaksi, mutta ei ole kovinkaan jännittävä tai vivahteikas viini.
 ArvosteluSalla: Kesäinen, voisi juoda jossain kesällä kukkaniityllä, tasainen; ei omituisia sivumakuja, maku on miellyttävä ja kevyt, monenlaisiin tilanteisiin (niin seurustelu- kuin ruokajuomaksikin, mahdollisesti myös esim. piknikille) sopiva perusviini, viinipussissa hauska kantotekniikka
@@ -427,8 +427,7 @@ VIINI: Huttunen hedelmäviini
 Päivämäärä: 23.4.2016
 Maa: Suomi
 Hinta: 8.39 € (1 l)
-Kuvaus: ?
-puolimakea, vähän hapokas, valkoherukkainen
+Kuvaus: puolimakea, vähän hapokas, valkoherukkainen
 SopiiNautittavaksi: seurustelujuomana
 url: http://www.alko.fi/tuotteet/003732/
 ArvosteluMika: Ensituntumalta viinissä oli melko voimakas, jopa hieman pistävä hedelmäinen tuoksu. Hetken kuluttua tuoksu kuitenkin katosi. Ensivaikutelma viinistä on voimakkaan hedelmäinen ja todella vähähappoinen; ensimmäisenä mieleen tuli käynyt mehu. Maku on tasainen eikä järin mielenkiintoinen tai yllättävä. Loppuvaikutelma vastasi pitkälti ennakko-odotuksia: simppeli ja kohtuullisen alkoholivoittoinen viini. Hyvä valinta sukujuhliin. Ei sovellu ruuan kanssa. Ei mielestäni hintansa väärti, vaikka onkin ”halpa".

@@ -6,15 +6,16 @@ import com.mika.WineApp.models.WineType;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -136,9 +137,19 @@ public class TextParser {
                 String quantityStr = content[2].substring(1);
                 quantity = parseDouble(quantityStr);
 
-            // Parse wine's description:
+            // Parse wine's description. Note that description can contain multiple lines!
             } else if (line.contains("Kuvaus:")) {
                 description = parseKeywords(line);
+
+                // If next word is not "SopiiNautittavaksi:", keep parsing description:
+                while (!scanner.hasNext("SopiiNautittavaksi:")) {
+                    line = scanner.nextLine();
+                    if (line.toLowerCase().contains("huom:")) {
+                        break;
+                    }
+
+                    description.addAll(parseKeywords(line));
+                }
 
             // Parse recommended food pairings for the wine:
             } else if (line.contains("SopiiNautittavaksi:")) {
@@ -191,16 +202,17 @@ public class TextParser {
     }
 
     /**
-     * Parses a list of keywords.
+     * Parses a list of keywords. Keywords are scrubbed of extra white space and converted into lowercase.
      * @param line parsed line.
      * @return keywords as List<String>.
      */
     private List<String> parseKeywords(String line) {
         String[] keywords = parseStringContent(line).split(",");
 
-        // Return a list of keywords that have been stripped of extra white space:
         return Arrays.stream(keywords)
                 .map(String::strip)
+                .map(String::toLowerCase)
+                .filter(word -> !word.isBlank())
                 .collect(Collectors.toList());
     }
 
