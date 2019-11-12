@@ -17,6 +17,14 @@ public class ReviewService {
         return repository.findAll();
     }
 
+    public List<Review> findByWineId(Long wineId) {
+        return repository.findByWineId(wineId);
+    }
+
+    public List<Review> findAllByWineName(String wineName) {
+        return repository.findByWineNameContainingIgnoreCase(wineName);
+    }
+
     public Optional<Review> find(Long id) {
         return repository.findById(id);
     }

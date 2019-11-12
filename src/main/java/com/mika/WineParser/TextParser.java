@@ -157,8 +157,10 @@ public class TextParser {
 
             // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                String urlStr = parseStringContent(line);
-                url = validateUrl(urlStr);
+                // TODO: validate URL
+//                String urlStr = parseStringContent(line);
+//                url = validateUrl(urlStr);
+                url = parseStringContent(line);
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
