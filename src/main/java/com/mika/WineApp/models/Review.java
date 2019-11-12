@@ -1,5 +1,6 @@
 package com.mika.WineApp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,7 +24,9 @@ public class Review {
     @Column(precision = 3, scale = 2)
     private double rating;
 
-    @ManyToOne // (fetch = FetchType.LAZY) causes a JSON error!
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "wine_id")
     private Wine wine;
 
     // Constructors:
@@ -35,5 +38,16 @@ public class Review {
         this.reviewText = reviewText;
         this.rating = rating;
         this.wine = wine;
+    }
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", date=" + date +
+                ", reviewText='" + reviewText + '\'' +
+                ", rating=" + rating +
+                '}';
     }
 }

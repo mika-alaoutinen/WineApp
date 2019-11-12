@@ -3,6 +3,7 @@ package com.mika.WineApp.models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -38,10 +39,23 @@ public class Wine {
 
     private String url;
 
-    // Constructors:
-    public Wine() {}
+    @OneToMany(mappedBy = "wine")
+    private List<Review> reviews;
 
-    public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
+    // Constructors:
+    public Wine() {
+        this.reviews = new ArrayList<>();
+    }
+
+    public Wine(String name,
+                WineType type,
+                String country,
+                double price,
+                double quantity,
+                List<String> description,
+                List<String>foodPairings,
+                String url) {
+
         this.name = name;
         this.type = type;
         this.country = country;
@@ -50,5 +64,12 @@ public class Wine {
         this.description = description;
         this.foodPairings = foodPairings;
         this.url = url;
+        this.reviews = new ArrayList<>();
+    }
+
+    public void addReview(Review review) {
+        if (!reviews.contains(review)) {
+            reviews.add(review);
+        }
     }
 }

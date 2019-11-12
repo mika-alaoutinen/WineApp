@@ -157,8 +157,10 @@ public class TextParser {
 
             // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                String urlStr = parseStringContent(line);
-                url = validateUrl(urlStr);
+                // TODO: validate URL
+//                String urlStr = parseStringContent(line);
+//                url = validateUrl(urlStr);
+                url = parseStringContent(line);
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -184,10 +186,7 @@ public class TextParser {
      * @return parsed content as a String[].
      */
     private String[] removeIdentifierWord(String line) {
-        String[] words = line
-                .strip()
-                .split(" ");
-
+        String[] words = line.strip().split(" ");
         return Arrays.copyOfRange(words, 1, words.length);
     }
 
@@ -347,13 +346,17 @@ public class TextParser {
         Wine newWine = new Wine(name, wineType, country, price, quantity, description, foodPairings, url);
         wines.add(newWine);
 
-        // Create new Reviews:
+        // Create new Reviews and add them to Wine model:
         if (!reviewTextMika.isEmpty()) {
-            reviews.add(new Review("Mika", date, reviewTextMika, ratingMika, newWine));
+            Review reviewMika = new Review("Mika", date, reviewTextMika, ratingMika, newWine);
+            newWine.addReview(reviewMika);
+//            reviews.add(reviewMika);
         }
 
         if (!reviewTextSalla.isEmpty()) {
-            reviews.add(new Review("Salla", date, reviewTextSalla, ratingSalla, newWine));
+            Review reviewSalla = new Review("Salla", date, reviewTextSalla, ratingSalla, newWine);
+            newWine.addReview(reviewSalla);
+//            reviews.add(reviewSalla);
         }
 
         // Initiate attribute values again for next entry in file:
