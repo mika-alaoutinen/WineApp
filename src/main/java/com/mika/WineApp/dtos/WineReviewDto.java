@@ -12,29 +12,8 @@ public class WineReviewDto {
     private final List<Review> reviews;
     private final Wine wine;
 
-    public WineReviewDto(List<Review> reviews) {
+    public WineReviewDto(List<Review> reviews, Wine wine) {
         this.reviews = reviews;
-        this.wine = initWine();
+        this.wine = wine;
     }
-
-    /**
-     * Validates that all reviews are about the same wine.
-     * If validation is OK, returns Wine from one of the reviews.
-     * @return Wine
-     */
-    private Wine initWine() {
-        long numberOfWines = reviews.stream()
-                .map(Review::getWine)
-                .distinct()
-                .count();
-
-        if (numberOfWines != 1) {
-            System.out.println("What is this?");
-            return new Wine();
-        }
-
-        return reviews.get(0).getWine();
-    }
-
-
 }

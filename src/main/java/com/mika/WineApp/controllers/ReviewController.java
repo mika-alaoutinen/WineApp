@@ -29,14 +29,14 @@ public class ReviewController {
 
 // Find based on wine
 
-    @GetMapping("/reviews/wine/{wineId}")
-    List<Review> findByWineName(@PathVariable Long wineId) {
+    @GetMapping("/reviews/wineId/{wineId}")
+    List<Review> findByWineId(@PathVariable Long wineId) {
         return service.findByWineId(wineId);
     }
 
-    @GetMapping("/reviews/wine/{wineName}")
-    List<Review> findByWineName(@PathVariable String wineName) {
-        return service.findAllByWineName(wineName);
+    @GetMapping("/reviews/wineName/{wineName}")
+    List<Review> findByWineId(@PathVariable String wineName) {
+        return service.findByWineName(wineName);
     }
 
 // Add, edit and delete
