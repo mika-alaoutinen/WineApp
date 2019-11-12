@@ -30,7 +30,7 @@ public class WineReviewController {
 
     private List<WineReviewDto> mapToDto(List<Wine> wines) {
         return wines.stream()
-                .map(wine -> new WineReviewDto(wine.getReviews(), wine))
+                .map(wine -> new WineReviewDto(wine, wine.getReviews()))
                 .collect(Collectors.toList());
     }
 }
