@@ -22,6 +22,7 @@ public class ReviewService {
         this.wineRepository = wineRepository;
     }
 
+// --- Find reviews ---
     public List<Review> findAll() {
         return repository.findAll();
     }
@@ -52,27 +53,7 @@ public class ReviewService {
         return repository.findById(id);
     }
 
-// Add, edit and delete:
-    public Review add(Review newReview) {
-        return repository.save(newReview);
-    }
-
-    public Review edit(Review editedReview, Long id) {
-        return repository.findById(id).map(review -> {
-            review.setAuthor(editedReview.getAuthor());
-            review.setDate(editedReview.getDate());
-            review.setReviewText(editedReview.getReviewText());
-            review.setRating(editedReview.getRating());
-            review.setWine(editedReview.getWine());
-            return repository.save(review);
-        }).orElseThrow(() -> new ReviewNotFoundException(id));
-    }
-
-    public void delete(Long id) {
-        repository.deleteById(id);
-    }
-
-// CRUD operations based on wines:
+// --- Find  operations based on wines ---
     public List<Review> findByWineId(Long wineId) {
         return repository.findByWineId(wineId);
     }
@@ -81,20 +62,37 @@ public class ReviewService {
         return repository.findByWineNameContainingIgnoreCase(wineName);
     }
 
+// --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
-        // TODO: Does this work?
         Wine wine = wineRepository.findById(wineId)
                 .orElseThrow(() -> new WineNotFoundException(wineId));
 
-        wine.addReview(newReview);
-        wineRepository.save(wine);
-
-        return newReview;
+        newReview.setWine(wine);
+        return repository.save(newReview);
     }
 
-    // edit and delete
+    public Review edit(Review editedReview, Long id) {
+        Review review = repository.findById(id)
+                .orElseThrow(() -> new ReviewNotFoundException(id));
 
-// Utility methods
+        // If wine info has been edited, save changes. Don't save null wines.
+        if (editedReview.getWine() != null) {
+            review.setWine(editedReview.getWine());
+        }
+
+        review.setAuthor(editedReview.getAuthor());
+        review.setDate(editedReview.getDate());
+        review.setReviewText(editedReview.getReviewText());
+        review.setRating(editedReview.getRating());
+
+        return repository.save(review);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
+
+// --- Utility methods ---
     private LocalDate parseDateString(String dateString) {
         try {
             return LocalDate.parse(dateString);

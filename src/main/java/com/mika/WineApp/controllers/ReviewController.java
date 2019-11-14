@@ -61,22 +61,17 @@ public class ReviewController {
     }
 
 // --- Add, edit and delete ---
-    @PostMapping(baseUrl)
-    public Review add(@RequestBody Review newReview) {
-        return service.add(newReview);
-    }
-
     @PostMapping(baseUrl + "/{wineId}")
     public Review add(@PathVariable Long wineId, @RequestBody Review newReview) {
         return service.add(wineId, newReview);
     }
 
-    @PutMapping(baseUrl + "/{wineId}")
+    @PutMapping(baseUrl + "/{id}")
     public Review edit(@RequestBody Review editedReview, @PathVariable Long id) {
         return service.edit(editedReview, id);
     }
 
-    @DeleteMapping(baseUrl + "/{wineId}")
+    @DeleteMapping(baseUrl + "/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }

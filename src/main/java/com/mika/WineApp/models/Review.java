@@ -23,7 +23,7 @@ public class Review {
     @Column(precision = 3, scale = 2)
     private double rating;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "wine_id")
     private Wine wine;
 

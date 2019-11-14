@@ -17,7 +17,7 @@ public class WineService {
         this.repository = repository;
     }
 
-// Find wines:
+// --- Find wines ---
     public List<Wine> findAll() {
         return repository.findAll();
     }
@@ -67,7 +67,7 @@ public class WineService {
         return repository.findById(id);
     }
 
-// Add, edit and delete:
+// --- Add, edit and delete ---
     public Optional<Wine> find(Long id) {
         return repository.findById(id);
     }
