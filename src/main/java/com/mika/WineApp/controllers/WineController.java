@@ -23,6 +23,7 @@ public class WineController {
         this.assembler = assembler;
     }
 
+// --- Find wines ---
     @GetMapping(baseUrl)
     public CollectionModel<EntityModel<Wine>> findAll() {
         var wines = service.findAll();

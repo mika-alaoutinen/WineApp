@@ -1,6 +1,7 @@
 package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.errors.ReviewNotFoundException;
+import com.mika.WineApp.hateoas.ReviewModelAssembler;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
@@ -12,10 +13,12 @@ import java.util.List;
 @RestController
 public class ReviewController {
     private final ReviewService service;
+    private final ReviewModelAssembler assembler;
     private static final String baseUrl = "/reviews";
 
-    public ReviewController(ReviewRepository repository, WineRepository wineRepository) {
+    public ReviewController(ReviewRepository repository, WineRepository wineRepository, ReviewModelAssembler assembler) {
         this.service = new ReviewService(repository, wineRepository);
+        this.assembler = assembler;
     }
 
 // --- Find based on review ---
@@ -25,7 +28,7 @@ public class ReviewController {
     }
 
     @GetMapping(baseUrl + "/{id}")
-    public Review find(@PathVariable Long id) {
+    public Review findById(@PathVariable Long id) {
         return service.find(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
