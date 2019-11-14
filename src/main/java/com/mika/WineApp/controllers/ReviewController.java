@@ -36,7 +36,7 @@ public class ReviewController {
     }
 
     @GetMapping(baseUrl + "/date")
-    public List<Review> findByDate(@RequestParam(name = "start", defaultValue = "01-01-2010") String start,
+    public List<Review> findByDate(@RequestParam(name = "start", defaultValue = "2010-01-01") String start,
                                    @RequestParam(name = "end", defaultValue = "today") String end) {
 
         return service.findByDate(start, end);

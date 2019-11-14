@@ -27,7 +27,7 @@ public class ReviewService {
     }
 
     public List<Review> findByAuthor(String author) {
-        return repository.findByAuthor(author);
+        return repository.findByAuthorIgnoreCase(author);
     }
 
     public List<Review> findByDate(String startDate, String endDate) {
