@@ -18,14 +18,14 @@ public class ReviewController {
         this.service = new ReviewService(repository, wineRepository);
     }
 
-// Find based on review
+// --- Find based on review ---
     @GetMapping(baseUrl)
-    List<Review> findAll() {
+    public List<Review> findAll() {
         return service.findAll();
     }
 
     @GetMapping(baseUrl + "/{id}")
-    Review find(@PathVariable Long id) {
+    public Review find(@PathVariable Long id) {
         return service.find(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
@@ -49,35 +49,35 @@ public class ReviewController {
         return service.findByRating(minRating, maxRating);
     }
 
-// Find based on wine
-    @GetMapping("/reviews/wineId/{wineId}")
-    List<Review> findByWineId(@PathVariable Long wineId) {
+// --- Find based on wine ---
+    @GetMapping(baseUrl + "/wineId/{wineId}")
+    public List<Review> findByWineId(@PathVariable Long wineId) {
         return service.findByWineId(wineId);
     }
 
-    @GetMapping("/reviews/wineName/{wineName}")
-    List<Review> findByWineId(@PathVariable String wineName) {
+    @GetMapping(baseUrl + "/wineName/{wineName}")
+    public List<Review> findByWineId(@PathVariable String wineName) {
         return service.findByWineName(wineName);
     }
 
-// Add, edit and delete
+// --- Add, edit and delete ---
     @PostMapping(baseUrl)
     public Review add(@RequestBody Review newReview) {
         return service.add(newReview);
     }
 
-    @PostMapping("/reviews/{wineId}")
-    Review add(@PathVariable Long wineId, @RequestBody Review newReview) {
+    @PostMapping(baseUrl + "/{wineId}")
+    public Review add(@PathVariable Long wineId, @RequestBody Review newReview) {
         return service.add(wineId, newReview);
     }
 
-    @PutMapping("reviews/{wineId}")
-    Review edit(@RequestBody Review editedReview, @PathVariable Long id) {
+    @PutMapping(baseUrl + "/{wineId}")
+    public Review edit(@RequestBody Review editedReview, @PathVariable Long id) {
         return service.edit(editedReview, id);
     }
 
-    @DeleteMapping("reviews/{wineId}")
-    void delete(@PathVariable Long id) {
+    @DeleteMapping(baseUrl + "/{wineId}")
+    public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 }

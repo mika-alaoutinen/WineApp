@@ -29,7 +29,6 @@ public class WineController {
         return assembler.buildResponse(wines);
     }
 
-//    @GetMapping("wines/name/{name}")
     @GetMapping(baseUrl + "/name/{name}")
     public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
         var wines = service.findByName(name);
@@ -91,6 +90,7 @@ public class WineController {
         return assembler.toModel(wine);
     }
 
+// --- Add, edit and delete ---
     @PostMapping(baseUrl)
     @ResponseStatus(HttpStatus.CREATED)
     public EntityModel<Wine> add(@RequestBody Wine newWine) {
