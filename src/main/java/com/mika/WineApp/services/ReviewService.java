@@ -1,5 +1,7 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.InvalidDateException;
+import com.mika.WineApp.errors.ReviewNotFoundException;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
@@ -7,6 +9,7 @@ import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,40 +26,46 @@ public class ReviewService {
         return repository.findAll();
     }
 
-    public List<Review> findByAuthor(String name) {
-        // TODO: implement
-        return null;
+    public List<Review> findByAuthor(String author) {
+        return repository.findByAuthor(author);
     }
 
-    public List<Review> findByDate(LocalDate start, LocalDate end) {
-        // TODO: implement
-        return null;
+    public List<Review> findByDate(String startDate, String endDate) {
+        LocalDate start = parseDateString(startDate);
+        LocalDate end;
+
+        // If no end date is given with request, use current date:
+        if (endDate.equals("today")) {
+            end = LocalDate.now();
+        } else {
+            end = parseDateString(endDate);
+        }
+
+        return repository.findDistinctByDateBetweenOrderByDateDesc(start, end);
     }
 
     public List<Review> findByRating(double minRating, double maxRating) {
-        // TODO: implement
-        return null;
+        return repository.findDistinctByRatingBetweenOrderByRatingDesc(minRating, maxRating);
     }
 
     public Optional<Review> find(Long id) {
         return repository.findById(id);
     }
 
+// Add, edit and delete:
     public Review add(Review newReview) {
         return repository.save(newReview);
     }
 
     public Review edit(Review editedReview, Long id) {
-        // TODO: fix
-        repository.findById(id).ifPresent(review -> {
+        return repository.findById(id).map(review -> {
             review.setAuthor(editedReview.getAuthor());
             review.setDate(editedReview.getDate());
             review.setReviewText(editedReview.getReviewText());
             review.setRating(editedReview.getRating());
             review.setWine(editedReview.getWine());
-        });
-
-        return editedReview;
+            return repository.save(review);
+        }).orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
     public void delete(Long id) {
@@ -84,4 +93,13 @@ public class ReviewService {
     }
 
     // edit and delete
+
+// Utility methods
+    private LocalDate parseDateString(String dateString) {
+        try {
+            return LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
+    }
 }

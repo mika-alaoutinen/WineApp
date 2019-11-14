@@ -18,6 +18,7 @@ public class ReviewController {
         this.service = new ReviewService(repository, wineRepository);
     }
 
+// Find based on review
     @GetMapping(baseUrl)
     List<Review> findAll() {
         return service.findAll();
@@ -27,6 +28,25 @@ public class ReviewController {
     Review find(@PathVariable Long id) {
         return service.find(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
+    }
+
+    @GetMapping(baseUrl + "/author/{author}")
+    public List<Review> findByAuthor(@PathVariable String author) {
+        return service.findByAuthor(author);
+    }
+
+    @GetMapping(baseUrl + "/date")
+    public List<Review> findByDate(@RequestParam(name = "start", defaultValue = "01-01-2010") String start,
+                                   @RequestParam(name = "end", defaultValue = "today") String end) {
+
+        return service.findByDate(start, end);
+    }
+
+    @GetMapping(baseUrl + "/rating")
+    public List<Review> findByRating(@RequestParam(name = "minRating", defaultValue = "0") double minRating,
+                                     @RequestParam(name = "maxRating", defaultValue = "5.0") double maxRating) {
+
+        return service.findByRating(minRating, maxRating);
     }
 
 // Find based on wine

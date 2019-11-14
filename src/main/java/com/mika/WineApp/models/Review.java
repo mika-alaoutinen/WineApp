@@ -27,7 +27,7 @@ public class Review {
     @JoinColumn(name = "wine_id")
     private Wine wine;
 
-    // Constructors:<
+    // Constructors:
     public Review() {}
 
     public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
