@@ -16,7 +16,7 @@ import java.util.List;
 public class WineController {
     private final WineService service;
     private final WineModelAssembler assembler;
-    private static final String baseUrl = "wines/";
+    private static final String baseUrl = "/wines";
 
     public WineController(WineRepository repository, WineModelAssembler assembler) {
         this.service = new WineService(repository);
