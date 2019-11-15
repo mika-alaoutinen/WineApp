@@ -33,10 +33,6 @@ public class WineController {
     @GetMapping(baseUrl + "/name/{name}")
     public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
         var wines = service.findByName(name);
-        if (wines.isEmpty()) {
-            throw new WineNotFoundException(name);
-        }
-
         return assembler.buildResponse(wines);
     }
 
