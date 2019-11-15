@@ -1,8 +1,10 @@
 package com.mika.WineApp.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -38,10 +40,24 @@ public class Wine {
 
     private String url;
 
-    // Constructors:
-    public Wine() {}
+    @JsonIgnore
+    @OneToMany(mappedBy = "wine", cascade = CascadeType.MERGE)
+    private List<Review> reviews;
 
-    public Wine(String name, WineType type, String country, double price, double quantity, List<String> description, List<String>foodPairings, String url) {
+    // Constructors:
+    public Wine() {
+        this.reviews = new ArrayList<>();
+    }
+
+    public Wine(String name,
+                WineType type,
+                String country,
+                double price,
+                double quantity,
+                List<String> description,
+                List<String>foodPairings,
+                String url) {
+
         this.name = name;
         this.type = type;
         this.country = country;
@@ -50,5 +66,6 @@ public class Wine {
         this.description = description;
         this.foodPairings = foodPairings;
         this.url = url;
+        this.reviews = new ArrayList<>();
     }
 }
