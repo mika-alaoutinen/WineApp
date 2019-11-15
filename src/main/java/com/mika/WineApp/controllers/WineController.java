@@ -16,13 +16,14 @@ import java.util.List;
 public class WineController {
     private final WineService service;
     private final WineModelAssembler assembler;
-    private static final String baseUrl = "wines/";
+    private static final String baseUrl = "/wines";
 
     public WineController(WineRepository repository, WineModelAssembler assembler) {
         this.service = new WineService(repository);
         this.assembler = assembler;
     }
 
+// --- Find wines ---
     @GetMapping(baseUrl)
     public CollectionModel<EntityModel<Wine>> findAll() {
         var wines = service.findAll();
@@ -32,10 +33,6 @@ public class WineController {
     @GetMapping(baseUrl + "/name/{name}")
     public CollectionModel<EntityModel<Wine>> findByName(@PathVariable String name) {
         var wines = service.findByName(name);
-        if (wines.isEmpty()) {
-            throw new WineNotFoundException(name);
-        }
-
         return assembler.buildResponse(wines);
     }
 

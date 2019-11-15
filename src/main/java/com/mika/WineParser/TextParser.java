@@ -348,15 +348,11 @@ public class TextParser {
 
         // Create new Reviews and add them to Wine model:
         if (!reviewTextMika.isEmpty()) {
-            Review reviewMika = new Review("Mika", date, reviewTextMika, ratingMika, newWine);
-            newWine.addReview(reviewMika);
-            reviews.add(reviewMika);
+            reviews.add(new Review("Mika", date, reviewTextMika, ratingMika, newWine));
         }
 
         if (!reviewTextSalla.isEmpty()) {
-            Review reviewSalla = new Review("Salla", date, reviewTextSalla, ratingSalla, newWine);
-            newWine.addReview(reviewSalla);
-            reviews.add(reviewSalla);
+            reviews.add(new Review("Salla", date, reviewTextSalla, ratingSalla, newWine));
         }
 
         // Initiate attribute values again for next entry in file:

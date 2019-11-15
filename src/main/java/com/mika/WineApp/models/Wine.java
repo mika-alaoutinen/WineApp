@@ -41,7 +41,7 @@ public class Wine {
     private String url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "wine", cascade = CascadeType.MERGE)
     private List<Review> reviews;
 
     // Constructors:
@@ -67,11 +67,5 @@ public class Wine {
         this.foodPairings = foodPairings;
         this.url = url;
         this.reviews = new ArrayList<>();
-    }
-
-    public void addReview(Review review) {
-        if (!reviews.contains(review)) {
-            reviews.add(review);
-        }
     }
 }
