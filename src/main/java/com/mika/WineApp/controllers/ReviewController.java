@@ -16,7 +16,10 @@ public class ReviewController {
     private final ReviewModelAssembler assembler;
     private static final String baseUrl = "/reviews";
 
-    public ReviewController(ReviewRepository repository, WineRepository wineRepository, ReviewModelAssembler assembler) {
+    public ReviewController(ReviewRepository repository,
+                            WineRepository wineRepository,
+                            ReviewModelAssembler assembler) {
+
         this.service = new ReviewService(repository, wineRepository);
         this.assembler = assembler;
     }
