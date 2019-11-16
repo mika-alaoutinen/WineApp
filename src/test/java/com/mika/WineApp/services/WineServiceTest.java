@@ -21,8 +21,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(MockitoExtension.class)
 class WineServiceTest {
 
-    @Mock private WineRepository repository;
-    @InjectMocks private WineService service;
+    @Mock
+    private WineRepository repository;
+
+    @InjectMocks
+    private WineService service;
 
     private List<Wine> wineList;
 
