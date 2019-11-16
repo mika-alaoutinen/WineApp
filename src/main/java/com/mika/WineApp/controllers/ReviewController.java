@@ -72,7 +72,7 @@ public class ReviewController {
     }
 
     @GetMapping(baseUrl + "/wineName/{wineName}")
-    public CollectionModel<EntityModel<Review>> findByWineId(@PathVariable String wineName) {
+    public CollectionModel<EntityModel<Review>> findByWineName(@PathVariable String wineName) {
         var reviews = service.findByWineName(wineName);
         return assembler.buildResponse(reviews);
     }
