@@ -18,6 +18,7 @@ class LoadDataBase {
 
     @Bean
     CommandLineRunner initDatabase(WineRepository wineRepository, ReviewRepository reviewRepository) {
+
         if (!wineRepository.findAll().isEmpty() && !reviewRepository.findAll().isEmpty()) {
             log.info("Repositories are already initiated, skipping database preloading!");
             return args -> {};

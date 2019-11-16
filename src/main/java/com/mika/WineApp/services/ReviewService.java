@@ -7,20 +7,17 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository repository;
     private final WineRepository wineRepository;
-
-    public ReviewService(ReviewRepository repository, WineRepository wineRepository) {
-        this.repository = repository;
-        this.wineRepository = wineRepository;
-    }
 
 // --- Find reviews ---
     public List<Review> findAll() {
@@ -49,7 +46,7 @@ public class ReviewService {
         return repository.findDistinctByRatingBetweenOrderByRatingDesc(minRating, maxRating);
     }
 
-    public Optional<Review> find(Long id) {
+    public Optional<Review> findById(Long id) {
         return repository.findById(id);
     }
 

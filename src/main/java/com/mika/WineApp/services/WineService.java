@@ -5,17 +5,15 @@ import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class WineService {
     private final WineRepository repository;
-
-    public WineService(WineRepository repository) {
-        this.repository = repository;
-    }
 
 // --- Find wines ---
     public List<Wine> findAll() {
