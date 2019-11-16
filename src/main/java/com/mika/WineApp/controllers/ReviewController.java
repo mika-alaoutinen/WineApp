@@ -34,7 +34,7 @@ public class ReviewController {
 
     @GetMapping(baseUrl + "/{id}")
     public EntityModel<Review> findById(@PathVariable Long id) {
-        Review review = service.find(id)
+        Review review = service.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
 
         return assembler.toModel(review);

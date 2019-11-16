@@ -49,7 +49,7 @@ public class ReviewService {
         return repository.findDistinctByRatingBetweenOrderByRatingDesc(minRating, maxRating);
     }
 
-    public Optional<Review> find(Long id) {
+    public Optional<Review> findById(Long id) {
         return repository.findById(id);
     }
 
