@@ -1,94 +1,80 @@
 package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.errors.ReviewNotFoundException;
-import com.mika.WineApp.hateoas.ReviewModelAssembler;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewService;
-import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class ReviewController {
     private final ReviewService service;
-    private final ReviewModelAssembler assembler;
     private static final String baseUrl = "/reviews";
 
     public ReviewController(ReviewRepository repository,
-                            WineRepository wineRepository,
-                            ReviewModelAssembler assembler) {
+                            WineRepository wineRepository) {
 
         this.service = new ReviewService(repository, wineRepository);
-        this.assembler = assembler;
     }
 
 // --- Find based on review ---
     @GetMapping(baseUrl)
-    public CollectionModel<EntityModel<Review>> findAll() {
-        var reviews = service.findAll();
-        return assembler.buildResponse(reviews);
+    public List<Review> findAll() {
+        return service.findAll();
     }
 
     @GetMapping(baseUrl + "/{id}")
-    public EntityModel<Review> findById(@PathVariable Long id) {
-        Review review = service.findById(id)
+    public Review findById(@PathVariable Long id) {
+        return service.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
-
-        return assembler.toModel(review);
     }
 
     @GetMapping(baseUrl + "/author/{author}")
-    public CollectionModel<EntityModel<Review>> findByAuthor(@PathVariable String author) {
-        var reviews = service.findByAuthor(author);
-        return assembler.buildResponse(reviews);
+    public List<Review> findByAuthor(@PathVariable String author) {
+        return service.findByAuthor(author);
     }
 
     @GetMapping(baseUrl + "/date")
-    public CollectionModel<EntityModel<Review>> findByDate(
+    public List<Review> findByDate(
             @RequestParam(name = "start", defaultValue = "2010-01-01") String start,
             @RequestParam(name = "end", defaultValue = "today") String end) {
 
-        var reviews = service.findByDate(start, end);
-        return assembler.buildResponse(reviews);
+        return service.findByDate(start, end);
     }
 
     @GetMapping(baseUrl + "/rating")
-    public CollectionModel<EntityModel<Review>> findByRating(
+    public List<Review> findByRating(
             @RequestParam(name = "minRating", defaultValue = "0") double minRating,
             @RequestParam(name = "maxRating", defaultValue = "5.0") double maxRating) {
 
-        var reviews = service.findByRating(minRating, maxRating);
-        return assembler.buildResponse(reviews);
+        return service.findByRating(minRating, maxRating);
     }
 
 // --- Find based on wine ---
     @GetMapping(baseUrl + "/wineId/{wineId}")
-    public CollectionModel<EntityModel<Review>> findByWineId(@PathVariable Long wineId) {
-        var reviews = service.findByWineId(wineId);
-        return assembler.buildResponse(reviews);
+    public List<Review> findByWineId(@PathVariable Long wineId) {
+        return service.findByWineId(wineId);
     }
 
     @GetMapping(baseUrl + "/wineName/{wineName}")
-    public CollectionModel<EntityModel<Review>> findByWineName(@PathVariable String wineName) {
-        var reviews = service.findByWineName(wineName);
-        return assembler.buildResponse(reviews);
+    public List<Review> findByWineName(@PathVariable String wineName) {
+        return service.findByWineName(wineName);
     }
 
 // --- Add, edit and delete ---
     @PostMapping(baseUrl + "/{wineId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public EntityModel<Review> add(@PathVariable Long wineId, @RequestBody Review newReview) {
-        Review review = service.add(wineId, newReview);
-        return assembler.toModel(review);
+    public Review add(@PathVariable Long wineId, @RequestBody Review newReview) {
+        return service.add(wineId, newReview);
     }
 
     @PutMapping(baseUrl + "/{id}")
-    public EntityModel<Review> edit(@RequestBody Review editedReview, @PathVariable Long id) {
-        Review review = service.edit(editedReview, id);
-        return assembler.toModel(review);
+    public Review edit(@RequestBody Review editedReview, @PathVariable Long id) {
+        return service.edit(editedReview, id);
     }
 
     @DeleteMapping(baseUrl + "/{id}")
