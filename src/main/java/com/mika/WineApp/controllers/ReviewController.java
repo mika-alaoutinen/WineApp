@@ -27,12 +27,6 @@ public class ReviewController {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/{id}")
-    public Review findById(@PathVariable Long id) {
-        return service.findById(id)
-                .orElseThrow(() -> new ReviewNotFoundException(id));
-    }
-
     @GetMapping(baseUrl + "/author/{author}")
     public List<Review> findByAuthor(@PathVariable String author) {
         return service.findByAuthor(author);
@@ -52,6 +46,12 @@ public class ReviewController {
             @RequestParam(name = "maxRating", defaultValue = "5.0") double maxRating) {
 
         return service.findByRating(minRating, maxRating);
+    }
+
+    @GetMapping(baseUrl + "/{id}")
+    public Review findById(@PathVariable Long id) {
+        return service.findById(id)
+                .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
 // --- Find based on wine ---
