@@ -1,6 +1,5 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.hateoas.ReviewModelAssembler;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewService;
@@ -30,9 +29,6 @@ class ReviewControllerTest {
 
     @MockBean
     WineRepository wineRepository;
-
-    @MockBean
-    private ReviewModelAssembler assembler;
 
     private static final String url = "/reviews";
 

@@ -1,6 +1,5 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.hateoas.WineModelAssembler;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
@@ -32,9 +31,6 @@ class WineControllerTest {
 
     @MockBean
     private WineRepository repository;
-
-    @MockBean
-    private WineModelAssembler assembler;
 
     private static final String url = "/wines";
     private List<Wine> wineList;
