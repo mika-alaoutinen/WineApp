@@ -41,7 +41,7 @@ public class Wine {
     private String url;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "wine", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
     // Constructors:
