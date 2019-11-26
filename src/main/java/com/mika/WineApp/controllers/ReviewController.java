@@ -48,6 +48,11 @@ public class ReviewController {
         return service.findByRating(minRating, maxRating);
     }
 
+    @GetMapping(baseUrl + "/newest")
+    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "25") int limit) {
+        return service.findNewest(limit);
+    }
+
     @GetMapping(baseUrl + "/{id}")
     public Review findById(@PathVariable Long id) {
         return service.findById(id)

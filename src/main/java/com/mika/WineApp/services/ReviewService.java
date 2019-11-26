@@ -59,6 +59,10 @@ public class ReviewService {
         return repository.findByWineNameContainingIgnoreCase(wineName);
     }
 
+    public List<Review> findNewest(int limit) {
+        return repository.findTopByOrderByDateDesc(limit);
+    }
+
 // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
         Wine wine = wineRepository.findById(wineId)

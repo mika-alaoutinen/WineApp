@@ -19,6 +19,7 @@ public interface ReviewRepository extends CrudRepository<Review, Long> {
     List<Review> findByAuthorIgnoreCase(String author);
     List<Review> findDistinctByDateBetweenOrderByDateDesc(LocalDate start, LocalDate end);
     List<Review> findDistinctByRatingBetweenOrderByRatingDesc(double minRating, double maxRating);
+    List<Review> findTopByOrderByDateDesc(int limit);
 
     // Find by Wine attributes:
     List<Review> findByWineId(Long wineId);
