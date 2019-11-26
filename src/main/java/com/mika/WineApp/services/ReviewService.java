@@ -8,6 +8,7 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -25,7 +26,7 @@ public class ReviewService {
     }
 
     public List<Review> findByAuthor(String author) {
-        return repository.findByAuthorIgnoreCase(author);
+        return repository.findDistinctByAuthorIgnoreCase(author);
     }
 
     public List<Review> findByDate(String startDate, String endDate) {
@@ -60,7 +61,8 @@ public class ReviewService {
     }
 
     public List<Review> findNewest(int limit) {
-        return repository.findTopByOrderByDateDesc(limit);
+        return repository.findAllByOrderByDateDesc(PageRequest.of(0, limit))
+                .getContent();
     }
 
 // --- Add, edit and delete ---

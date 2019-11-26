@@ -49,7 +49,7 @@ public class ReviewController {
     }
 
     @GetMapping(baseUrl + "/newest")
-    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "25") int limit) {
+    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
         return service.findNewest(limit);
     }
 
