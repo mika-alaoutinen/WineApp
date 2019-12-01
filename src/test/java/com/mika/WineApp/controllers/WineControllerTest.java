@@ -3,7 +3,7 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.services.WineService;
+import com.mika.WineApp.services.WineServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +27,7 @@ class WineControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private WineService service;
+    private WineServiceImpl service;
 
     @MockBean
     private WineRepository repository;

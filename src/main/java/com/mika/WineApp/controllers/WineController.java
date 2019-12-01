@@ -4,6 +4,7 @@ import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
+import com.mika.WineApp.services.WineServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class WineController {
     private static final String baseUrl = "/wines";
 
     public WineController(WineRepository repository) {
-        this.service = new WineService(repository);
+        this.service = new WineServiceImpl(repository);
     }
 
 // --- Find wines ---
@@ -80,13 +81,19 @@ public class WineController {
     }
 
     @PutMapping(baseUrl + "/{id}")
-    public Wine edit(@RequestBody Wine editedWine, @PathVariable Long id) {
-        return service.edit(editedWine, id);
+    public Wine edit(@PathVariable Long id, @RequestBody Wine editedWine) {
+        return service.edit(id, editedWine);
     }
 
     @DeleteMapping(baseUrl + "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+// --- Additional functionality ---
+    @GetMapping(baseUrl + "/count")
+    public long count() {
+        return service.count();
     }
 }

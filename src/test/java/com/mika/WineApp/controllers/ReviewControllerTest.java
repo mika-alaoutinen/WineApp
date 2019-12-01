@@ -2,7 +2,7 @@ package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.services.ReviewService;
+import com.mika.WineApp.services.ReviewServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ class ReviewControllerTest {
     private MockMvc mvc;
 
     @MockBean
-    private ReviewService service;
+    private ReviewServiceImpl service;
 
     @MockBean private ReviewRepository repository;
 
