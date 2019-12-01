@@ -2,17 +2,15 @@ package com.mika.WineApp.models;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 @Data
 @Entity
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(updatable = false, nullable = false)
-    private Long id;
-
+public class Review extends EntityModel {
     private String author;
 
     private LocalDate date;
@@ -28,9 +26,12 @@ public class Review {
     private Wine wine;
 
     // Constructors:
-    public Review() {}
+    public Review() {
+        super();
+    }
 
     public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
+        super();
         this.author = author;
         this.date = date;
         this.reviewText = reviewText;
