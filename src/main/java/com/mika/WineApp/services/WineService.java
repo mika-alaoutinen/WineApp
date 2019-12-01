@@ -91,4 +91,9 @@ public class WineService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+// --- Additional functionality ---
+    public long count() {
+        return repository.count();
+    }
 }

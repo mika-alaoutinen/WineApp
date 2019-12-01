@@ -33,7 +33,7 @@ public class ReviewService {
         LocalDate start = parseDateString(startDate);
         LocalDate end;
 
-        // If no end date is given with request, use current date:
+        // If no end date parameter is given, use current date:
         if (endDate.equals("today")) {
             end = LocalDate.now();
         } else {
@@ -93,6 +93,11 @@ public class ReviewService {
 
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+// --- Additional functionality ---
+    public long count() {
+        return repository.count();
     }
 
 // --- Utility methods ---

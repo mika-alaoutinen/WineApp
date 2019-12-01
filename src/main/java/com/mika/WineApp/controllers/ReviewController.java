@@ -87,4 +87,10 @@ public class ReviewController {
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
+
+// --- Additional functionality ---
+    @GetMapping(baseUrl + "/count")
+    public long count() {
+        return service.count();
+    }
 }
