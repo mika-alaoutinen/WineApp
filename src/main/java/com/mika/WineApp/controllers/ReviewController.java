@@ -5,6 +5,7 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewService;
+import com.mika.WineApp.services.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class ReviewController {
     public ReviewController(ReviewRepository repository,
                             WineRepository wineRepository) {
 
-        this.service = new ReviewService(repository, wineRepository);
+        this.service = new ReviewServiceImpl(repository, wineRepository);
     }
 
 // --- Find based on review ---
@@ -78,8 +79,8 @@ public class ReviewController {
     }
 
     @PutMapping(baseUrl + "/{id}")
-    public Review edit(@RequestBody Review editedReview, @PathVariable Long id) {
-        return service.edit(editedReview, id);
+    public Review edit(@PathVariable Long id, @RequestBody Review editedReview) {
+        return service.edit(id, editedReview);
     }
 
     @DeleteMapping(baseUrl + "/{id}")
