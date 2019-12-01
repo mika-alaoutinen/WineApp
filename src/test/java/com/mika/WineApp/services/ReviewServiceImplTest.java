@@ -21,7 +21,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class ReviewServiceTest {
+class ReviewServiceImplTest {
 
     @Mock
     private ReviewRepository repository;
@@ -30,7 +30,7 @@ class ReviewServiceTest {
     private WineRepository wineRepository;
 
     @InjectMocks
-    private ReviewService service;
+    private ReviewServiceImpl service;
 
     private List<Review> reviewList;
     private Wine wine;
