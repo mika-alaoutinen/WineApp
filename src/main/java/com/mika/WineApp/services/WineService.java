@@ -66,10 +66,6 @@ public class WineService {
     }
 
 // --- Add, edit and delete ---
-    public Optional<Wine> find(Long id) {
-        return repository.findById(id);
-    }
-
     public Wine add(Wine newWine) {
         return repository.save(newWine);
     }
