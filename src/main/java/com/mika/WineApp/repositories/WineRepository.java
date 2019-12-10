@@ -3,13 +3,15 @@ package com.mika.WineApp.repositories;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "wines", path = "wines")
-public interface WineRepository extends PagingAndSortingRepository<Wine, Long> {
+public interface WineRepository extends PagingAndSortingRepository<Wine, Long>,
+                                        QueryByExampleExecutor<Wine> {
 
     Optional<Wine> findById(Long id);
     List<Wine> findAll();

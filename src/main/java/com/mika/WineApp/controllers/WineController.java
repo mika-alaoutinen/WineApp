@@ -95,4 +95,12 @@ public class WineController {
     public long count() {
         return service.count();
     }
+
+    // TODO: Request params as MultiValueMap?
+    @GetMapping(baseUrl + "/search")
+    public List<Wine> search(@RequestParam(name = "country") String country,
+                             @RequestParam(name = "type") String type) {
+
+        return List.of();
+    }
 }

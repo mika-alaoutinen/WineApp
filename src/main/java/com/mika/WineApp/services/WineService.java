@@ -6,6 +6,7 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,12 +26,7 @@ public class WineService {
     }
 
     public List<Wine> findByType(String type) {
-        try {
-            WineType wineType = WineType.valueOf(type.toUpperCase());
-            return repository.findDistinctByType(wineType);
-        } catch (IllegalArgumentException e) {
-            throw new InvalidWineTypeException(type);
-        }
+        return repository.findDistinctByType(parseWineType(type));
     }
 
     public List<Wine> findByCountry(String country) {
@@ -91,5 +87,26 @@ public class WineService {
 // --- Additional functionality ---
     public long count() {
         return repository.count();
+    }
+
+    // TODO: MultiValueMap?
+    public List<Wine> search(String country, String type) {
+        Wine wine = new Wine();
+        wine.setCountry(country);
+        wine.setType(parseWineType(type));
+
+        Example<Wine> example = Example.of(wine);
+
+        return List.of();
+    }
+
+// --- Utility methods ---
+    private WineType parseWineType(String type) {
+        try {
+            return WineType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error in parsing wine type: " + e.getMessage());
+            throw new InvalidWineTypeException(type);
+        }
     }
 }
