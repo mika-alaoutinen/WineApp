@@ -223,7 +223,7 @@ Päivämäärä: 27.10.2015
 Maa: Chile
 Hinta: 8.98 € (1 l)
 Kuvaus: Mehevä ja hilloinen
-	Keskitäyteläinen, keskitanniininen, mustaherukkainen, mustikkainen, kevyen 	tamminen
+	Keskitäyteläinen, keskitanniininen, mustaherukkainen, mustikkainen, kevyen tamminen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, miedot makkarat
 url: http://www.alko.fi/tuotteet/405698
 ArvosteluMika: Viini on melko tuhti mutta varsin miellyttävän makuinen. Maku on tasainen ja paksu, jälkimaku on siirappisen tanniininen; kuorruttaa kielen tehokkaasti. Minun makuuni liian raskas seurustelujuomaksi, mutta sen sijaan sopi hyvin tuhdin liharuuan pariksi.

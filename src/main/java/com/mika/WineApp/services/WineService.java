@@ -7,10 +7,12 @@ import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 public class WineService {
@@ -89,15 +91,19 @@ public class WineService {
         return repository.count();
     }
 
-    // TODO: MultiValueMap?
-    public List<Wine> search(String country, String type) {
-        Wine wine = new Wine();
-        wine.setCountry(country);
-        wine.setType(parseWineType(type));
+    public List<Wine> search(String name, String type, String country, Double price, Double quantity) {
+        WineType wineType = null;
+        if (type != null) {
+            wineType = parseWineType(type);
+        }
 
-        Example<Wine> example = Example.of(wine);
+        Wine exampleWine = new Wine(name, wineType, country, price, quantity, null, null, null);
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
 
-        return List.of();
+        var results = repository.findAll(Example.of(exampleWine, matcher));
+
+        return StreamSupport.stream(results.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
 // --- Utility methods ---
