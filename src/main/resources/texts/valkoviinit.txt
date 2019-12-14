@@ -438,7 +438,7 @@ Arvosana: 2 M 2.5 S
 VIINI: Jacob’s Creek Earth Vine Grape Chardonnay 2017
 Päivämäärä: 3.11.2018
 Maa: Australia
-Hinta: 34.90 € / 3 l
+Hinta: 34.90 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen
 Kuiva, keskihapokas, kypsän sitruksinen, keltaluumuinen, yrttinen, kevyen paahteinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, kana ja kalkkuna, rasvainen kala
@@ -451,7 +451,7 @@ Arvosana: 3.25 M 3.75 S
 VIINI: J.P. Chenet Columbard Chardonnay 2015
 Päivämäärä: 1.1.2017
 Maa: Ranska
-Hinta: [lahja – Alkossa 22.70 € / 2 l]
+Hinta: 22.70 € (2 l)
 Kuvaus: Pirteä ja hedelmäinen
 	Kuiva, hapokas, sitruksinen, päärynäinen, kevyen persikkainen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
@@ -830,7 +830,7 @@ Arvosana: 4.25 M 4.5 S
 VIINI: Settesoli Pinot Grigio Organic 2017
 Päivämäärä: 28.7.2018
 Maa: Italia, Sisilia
-Hinta: 31.90 (3 l)
+Hinta: 31.90 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen
 Kuiva, hapokas, kypsän aprikoosinen, päärynäinen, sitruksinen, kukkainen, hennon mausteinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, seurustelujuoma, kana ja kalkkuna, noutopöytä
@@ -843,7 +843,7 @@ Arvosana: 2 M S
 VIINI: Showdown Calamity Jane 2018
 Päivämäärä: 20.6.2019
 Maa: Yhdysvallat
-Hinta: 34.48 (3 l)
+Hinta: 34.48 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen
 Kuiva, hapokas, viheromenainen, valkoherukkainen, kevyen sitruksinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pikkusuolaiset, pasta ja pitsa

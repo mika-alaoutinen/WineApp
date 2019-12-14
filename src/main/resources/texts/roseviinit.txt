@@ -49,7 +49,7 @@ Arvosana: 3.5 M 4 S
 VIINI: Capricorn Estates Caberner Sauvignon Rosé 2015
 Päivämäärä: 12.2.2016
 Maa: Chile
-Hinta: 34.90€ (3 l)
+Hinta: 34.90 € (3 l)
 Kuvaus: Kuiva, hapokas, kevyen herukkainen, metsämansikkainen, sitruksinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, rasvainen kala, kana ja kalkkuna,
 url: http://www.alko.fi/tuotteet/444358/
@@ -61,7 +61,7 @@ Arvosana: 3.25 M 3.75 S
 VIINI: DNA Murviedro Fashion Rosa Fashion
 Päivämäärä: 23.9.2017
 Maa: Espanja
-Hinta: ? (1.5 l)
+Hinta: -1 (1.5 l)
 Kuvaus: raikas, pirteä, hedelmäinen, kypsän punamarjainen, hennon viheromenainen
 SopiiNautittavaksi: aperitiivina, valkea liha, pasta ja riisi
 url: https://murviedro.es/en/lista-vinos/dna-murviedro-fashion-rosa-fashion-eng

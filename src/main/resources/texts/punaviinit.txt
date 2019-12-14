@@ -78,7 +78,7 @@ Arvosana: 3.25 M 3.5 S
 
 VIINI: Cape Zebra Cabernet Sauvignon Merlot 2014
 Päivämäärä: 8.6.2015
-Maa: Etelä-Afrikka, Coastal Region
+Maa: Etelä-Afrikka
 Hinta: 8.29 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen
 Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, kevyen luumuinen, herukkainen, mausteinen
@@ -91,7 +91,7 @@ Arvosana: 3.25 M S
 
 VIINI: Carlo Rossi California Red
 Päivämäärä: 24.12.2014
-Maa: Yhdysvallat, Kalifornia
+Maa: Yhdysvallat
 Hinta: 7.77 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen
 	Kevyt, vähätanniininen, makeahko, mehumainen, hennon mansikkainen
@@ -314,7 +314,7 @@ Arvosana: 4.25 S 4 M
 VIINI: Luna Negra Merlot
 Päivämäärä: 8.7.2015
 Maa: Chile
-Hinta: 18.99 € / 2 l
+Hinta: 18.99 € (2 l)
 Kuvaus: Marjaisa ja raikas
 	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
 SopiiNautittavaksi: pikkusuolaiset, kana ja kalkkuna, porsas sekä pasta ja pizza.
@@ -473,7 +473,7 @@ Arvosana: 3.5 M S
 VIINI: Santiago 1541 Syrah Cabernet Malbec
 Päivämäärä: 31.10.2016
 Maa: Chile
-Hinta: 7.98 € / 0.75 l
+Hinta: 7.98 € (0.75 l)
 Kuvaus: Mehevä & hilloinen
 Täyteläinen, keskitanniininen, tumman marjainen, luumuinen, kevyen paprikainen, yrttinen
 SopiiNautittavaksi: kana ja kalkkuna, porsas, grilliruoka, noutopöytä.
@@ -486,7 +486,7 @@ Arvosana: 2 M 3 S
 VIINI: San-Tiago Merlot Shiraz
 Päivämäärä: 31.12.2014
 Maa: Espanja
-Hinta: 2.66 € / l (lieferello.de)
+Hinta: 2.66 € (1 l)
 Kuvaus: Marjaisa ja raikas punaviini, joka sopii hyvin liharuokien ja juustojen kanssa juotavaksi. Herkullinen seurusteluviini.
 SopiiNautittavaksi: liharuokien ja juustojen kanssa sekä seurustelujuomaksi.
 url: http://alkostore24.com/fi/gran-san-tiago-merlot-shiraz.html
