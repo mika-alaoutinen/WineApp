@@ -96,15 +96,10 @@ public class WineServiceImpl implements WineService {
             wineType = parseWineType(type);
         }
 
-        System.out.println(wineType);
-
         Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
-        System.out.println(exampleWine);
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
 
         var results = repository.findAll(Example.of(exampleWine, matcher));
-
-        System.out.println(results);
 
         return StreamSupport.stream(results.spliterator(), false)
                 .collect(Collectors.toList());
