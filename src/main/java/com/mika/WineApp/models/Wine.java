@@ -24,10 +24,10 @@ public class Wine {
     private String country;
 
     @Column(precision = 10, scale = 2)
-    private double price;
+    private Double price;
 
     @Column(precision = 10, scale = 2)
-    private double quantity;
+    private Double volume;
 
     @ElementCollection
     @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
@@ -52,8 +52,8 @@ public class Wine {
     public Wine(String name,
                 WineType type,
                 String country,
-                double price,
-                double quantity,
+                Double price,
+                Double volume,
                 List<String> description,
                 List<String>foodPairings,
                 String url) {
@@ -62,7 +62,7 @@ public class Wine {
         this.type = type;
         this.country = country;
         this.price = price;
-        this.quantity = quantity;
+        this.volume = volume;
         this.description = description;
         this.foodPairings = foodPairings;
         this.url = url;

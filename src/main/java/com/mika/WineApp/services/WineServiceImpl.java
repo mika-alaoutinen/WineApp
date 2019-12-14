@@ -6,10 +6,13 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
@@ -34,7 +37,7 @@ public class WineServiceImpl implements WineService {
             wine.setType(editedWine.getType());
             wine.setCountry(editedWine.getCountry());
             wine.setPrice(editedWine.getPrice());
-            wine.setQuantity(editedWine.getQuantity());
+            wine.setVolume(editedWine.getVolume());
             wine.setDescription(editedWine.getDescription());
             wine.setFoodPairings(editedWine.getFoodPairings());
             wine.setUrl(editedWine.getUrl());
@@ -56,20 +59,15 @@ public class WineServiceImpl implements WineService {
     }
 
     public List<Wine> findByType(String type) {
-        try {
-            WineType wineType = WineType.valueOf(type.toUpperCase());
-            return repository.findDistinctByType(wineType);
-        } catch (IllegalArgumentException e) {
-            throw new InvalidWineTypeException(type);
-        }
+        return repository.findDistinctByType(parseWineType(type));
     }
 
     public List<Wine> findByCountry(String country) {
         return repository.findDistinctByCountryIgnoreCase(country);
     }
 
-    public List<Wine> findByQuantity(double quantity) {
-        return repository.findDistinctByQuantity(quantity);
+    public List<Wine> findByQuantity(double volume) {
+        return repository.findDistinctByVolume(volume);
     }
 
     public List<Wine> findByPrice(double minPrice, double maxPrice) {
@@ -90,5 +88,30 @@ public class WineServiceImpl implements WineService {
         return wines.stream()
                 .filter(wine -> wine.getFoodPairings().containsAll(foodPairings))
                 .collect(Collectors.toList());
+    }
+
+    public List<Wine> search(String name, String type, String country, Double price, Double volume) {
+        WineType wineType = null;
+        if (type != null) {
+            wineType = parseWineType(type);
+        }
+
+        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
+
+        var results = repository.findAll(Example.of(exampleWine, matcher));
+
+        return StreamSupport.stream(results.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
+// Utility methods:
+    private WineType parseWineType(String type) {
+        try {
+            return WineType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error in parsing wine type: " + e.getMessage());
+            throw new InvalidWineTypeException(type);
+        }
     }
 }

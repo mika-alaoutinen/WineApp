@@ -96,4 +96,15 @@ public class WineController {
     public long count() {
         return service.count();
     }
+
+    @GetMapping(baseUrl + "/search")
+    public List<Wine> search(
+            @RequestParam(name = "name", required = false) String name,
+            @RequestParam(name = "type", required = false) String type,
+            @RequestParam(name = "country", required = false) String country,
+            @RequestParam(name = "price", required = false) Double price,
+            @RequestParam(name = "volume", required = false) Double volume) {
+
+        return service.search(name, type, country, price, volume);
+    }
 }
