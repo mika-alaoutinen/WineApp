@@ -35,8 +35,8 @@ public class WineService {
         return repository.findDistinctByCountryIgnoreCase(country);
     }
 
-    public List<Wine> findByQuantity(double quantity) {
-        return repository.findDistinctByQuantity(quantity);
+    public List<Wine> findByVolume(double volume) {
+        return repository.findDistinctByVolume(volume);
     }
 
     public List<Wine> findByPrice(double minPrice, double maxPrice) {
@@ -74,7 +74,7 @@ public class WineService {
             wine.setType(editedWine.getType());
             wine.setCountry(editedWine.getCountry());
             wine.setPrice(editedWine.getPrice());
-            wine.setQuantity(editedWine.getQuantity());
+            wine.setVolume(editedWine.getVolume());
             wine.setDescription(editedWine.getDescription());
             wine.setFoodPairings(editedWine.getFoodPairings());
             wine.setUrl(editedWine.getUrl());
@@ -91,13 +91,13 @@ public class WineService {
         return repository.count();
     }
 
-    public List<Wine> search(String name, String type, String country, Double price, Double quantity) {
+    public List<Wine> search(String name, String type, String country, Double price, Double volume) {
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        Wine exampleWine = new Wine(name, wineType, country, price, quantity, null, null, null);
+        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
 
         var results = repository.findAll(Example.of(exampleWine, matcher));

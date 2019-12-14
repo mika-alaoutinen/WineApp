@@ -21,7 +21,7 @@ public interface WineRepository extends PagingAndSortingRepository<Wine, Long>,
     List<Wine> findDistinctByType(WineType type);
     List<Wine> findDistinctByCountryIgnoreCase(String country);
     List<Wine> findDistinctByPriceBetween(double minPrice, double maxPrice);
-    List<Wine> findDistinctByQuantity(double quantity);
+    List<Wine> findDistinctByVolume(double volume);
     List<Wine> findDistinctByDescriptionInIgnoreCase(List<String> descriptions);
     List<Wine> findDistinctByFoodPairingsInIgnoreCase(List<String> food);
 }

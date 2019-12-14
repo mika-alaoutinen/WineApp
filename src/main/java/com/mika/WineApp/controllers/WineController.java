@@ -39,9 +39,9 @@ public class WineController {
         return service.findByCountry(country);
     }
 
-    @GetMapping(baseUrl + "/quantity/{quantity}")
-    public List<Wine> findByQuantity(@PathVariable Double quantity) {
-        return service.findByQuantity(quantity);
+    @GetMapping(baseUrl + "/volume/{volume}")
+    public List<Wine> findByVolume(@PathVariable Double volume) {
+        return service.findByVolume(volume);
     }
 
     @GetMapping(baseUrl + "/price")
@@ -102,8 +102,8 @@ public class WineController {
             @RequestParam(name = "type", required = false) String type,
             @RequestParam(name = "country", required = false) String country,
             @RequestParam(name = "price", required = false) Double price,
-            @RequestParam(name = "quantity", required = false) Double quantity) {
+            @RequestParam(name = "volume", required = false) Double volume) {
 
-        return service.search(name, type, country, price, quantity);
+        return service.search(name, type, country, price, volume);
     }
 }
