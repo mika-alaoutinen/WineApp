@@ -2,6 +2,7 @@ package com.mika.WineApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,12 +10,8 @@ import java.util.List;
 
 @Data
 @Entity
-public class Wine {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(updatable = false, nullable = false)
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class Wine extends  EntityModel {
     private String name;
 
     @Enumerated(EnumType.STRING)
