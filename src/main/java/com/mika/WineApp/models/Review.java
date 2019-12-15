@@ -1,6 +1,7 @@
 package com.mika.WineApp.models;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class Review extends EntityModel {
     private String author;
 
