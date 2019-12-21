@@ -5,9 +5,11 @@ import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -90,19 +92,45 @@ public class WineServiceImpl implements WineService {
                 .collect(Collectors.toList());
     }
 
-    public List<Wine> search(String name, String type, String country, Double price, Double volume) {
+    public List<Wine> search(String name,
+                             String type,
+                             String country,
+                             Double minPrice,
+                             Double maxPrice,
+                             Double[] volumes) {
+        /*
+        Vaihtoehto 1:
+        Tehdään example jokaisesta volumesta:
+        for volume in volumes:
+            exampleWine = new Wine(name, ..., volume);
+
+        Haku hintahaarukan perusteella pitäisi kuitenkin tehdä erililsenä hakuna.
+        List<Wine> hintahaku = getByPrice(min, max);
+
+        Lopuksi yhdistetään kaikki listat ja palautetaan yhteiset viinit...
+
+        Vaihtoehto 2: @Query
+         */
+
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
+        Wine filter = new Wine(name, wineType, country, null, null, null, null, null);
 
-        var results = repository.findAll(Example.of(exampleWine, matcher));
+        return repository.findAll(new WineSpecification(filter, minPrice, maxPrice));
 
-        return StreamSupport.stream(results.spliterator(), false)
-                .collect(Collectors.toList());
+
+
+//
+//        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
+//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
+//
+//        var results = repository.findAll(Example.of(exampleWine, matcher));
+//
+//        return StreamSupport.stream(results.spliterator(), false)
+//                .collect(Collectors.toList());
     }
 
 // Utility methods:
