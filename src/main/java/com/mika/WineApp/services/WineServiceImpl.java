@@ -107,7 +107,6 @@ public class WineServiceImpl implements WineService {
         }
 
         List<Wine> wines = new ArrayList<>();
-
         if (volumes == null) {
             wines.add(new Wine(name, wineType, country, null, null, null, null, null));
         } else {
@@ -122,30 +121,6 @@ public class WineServiceImpl implements WineService {
                 .map(repository::findAll)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
-
-//        Wine filter = new Wine(name, wineType, country, null, null, null, null, null);
-//
-//        return volumes.stream()
-//                .map(volume -> new WineSpecification(filter, minPrice, maxPrice))
-//                .map(repository::findAll)
-//                .flatMap(Collection::stream)
-//                .collect(Collectors.toList());
-
-//        Wine wine = new Wine(name, wineType, country, null, null, null, null, null);
-
-
-//        return repository.findAll(new WineSpecification(filter, minPrice, maxPrice, volumes));
-
-
-
-//
-//        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
-//        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
-//
-//        var results = repository.findAll(Example.of(exampleWine, matcher));
-//
-//        return StreamSupport.stream(results.spliterator(), false)
-//                .collect(Collectors.toList());
     }
 
 // Utility methods:

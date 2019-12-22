@@ -6,7 +6,6 @@ import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WineSpecification implements Specification<Wine> {
     private Double minPrice;
@@ -21,10 +20,6 @@ public class WineSpecification implements Specification<Wine> {
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-//        List<Predicate> preds = List.of("name", "country").stream()
-//                .map(attribute -> buildPredicate(root, builder, attribute))
-//                .collect(Collectors.toList());
-
         // Name:
         Expression<String> rootName = builder.lower(root.get("name"));
         String wineName = formatString(wine.getName());
@@ -66,17 +61,5 @@ public class WineSpecification implements Specification<Wine> {
      */
     private String formatString(String string) {
         return string == null ? "%" : "%" + string.toLowerCase() + "%";
-    }
-
-    private Predicate buildPredicate(Root<Wine> root, CriteriaBuilder builder, String rootAttribute) {
-        Expression<String> expression = builder.lower(root.get(rootAttribute));
-
-        String wineAttribute = switch (rootAttribute) {
-            case "name" -> wine.getName();
-            case "country" -> wine.getCountry();
-            default -> "";
-        };
-
-        return builder.like(expression, wineAttribute);
     }
 }
