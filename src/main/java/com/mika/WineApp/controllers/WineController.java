@@ -102,10 +102,9 @@ public class WineController {
             @RequestParam(name = "name", required = false) String name,
             @RequestParam(name = "type", required = false) String type,
             @RequestParam(name = "country", required = false) String country,
-            @RequestParam(name = "minPrice", required = false) Double minPrice,
-            @RequestParam(name = "maxPrice", required = false) Double maxPrice,
+            @RequestParam(name = "priceRange", required = false) Integer[] priceRange,
             @RequestParam(name = "volumes", required = false) List<Double> volumes) {
 
-        return service.search(name, type, country, minPrice, maxPrice, volumes);
+        return service.search(name, type, country, priceRange, volumes);
     }
 }

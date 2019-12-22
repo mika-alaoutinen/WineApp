@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WineSpecification implements Specification<Wine> {
-    private Double minPrice;
-    private Double maxPrice;
+    private Integer[] priceRange;
     private Wine wine;
 
-    public WineSpecification(Wine wine, Double minPrice, Double maxPrice) {
+    public WineSpecification(Wine wine, Integer[] priceRange) {
         super();
-        this.minPrice = minPrice;
-        this.maxPrice = maxPrice;
+        this.priceRange = priceRange;
         this.wine = wine;
     }
 
@@ -35,8 +33,8 @@ public class WineSpecification implements Specification<Wine> {
         }
 
         // Price range:
-        if (minPrice != null && maxPrice != null) {
-            predicates.add(builder.between(root.get("price"), minPrice, maxPrice));
+        if (priceRange != null && priceRange.length == 2) {
+            predicates.add(builder.between(root.get("price"), priceRange[0], priceRange[1]));
         }
 
         // Volume:

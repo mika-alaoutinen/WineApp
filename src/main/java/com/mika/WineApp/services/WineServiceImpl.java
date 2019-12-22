@@ -93,8 +93,7 @@ public class WineServiceImpl implements WineService {
     public List<Wine> search(String name,
                              String type,
                              String country,
-                             Double minPrice,
-                             Double maxPrice,
+                             Integer[] priceRange,
                              List<Double> volumes) {
 
         WineType wineType = null;
@@ -106,7 +105,7 @@ public class WineServiceImpl implements WineService {
                 volumes, new Wine(name, wineType, country, null, null, null, null, null));
 
         return wines.stream()
-                .map(wine -> new WineSpecification(wine, minPrice,  maxPrice))
+                .map(wine -> new WineSpecification(wine, priceRange))
                 .map(repository::findAll)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
