@@ -5,14 +5,14 @@ import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
@@ -90,18 +90,32 @@ public class WineServiceImpl implements WineService {
                 .collect(Collectors.toList());
     }
 
-    public List<Wine> search(String name, String type, String country, Double price, Double volume) {
+    public List<Wine> search(String name,
+                             String type,
+                             String country,
+                             Double minPrice,
+                             Double maxPrice,
+                             List<Double> volumes) {
+
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        Wine exampleWine = new Wine(name, wineType, country, price, volume, null, null, null);
-        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreCase();
+        List<Wine> wines = new ArrayList<>();
+        if (volumes == null) {
+            wines.add(new Wine(name, wineType, country, null, null, null, null, null));
+        } else {
+            WineType finalWineType = wineType;
+            volumes.stream()
+                    .map(volume -> new Wine(name, finalWineType, country, null, volume, null, null, null))
+                    .forEach(wines::add);
+        }
 
-        var results = repository.findAll(Example.of(exampleWine, matcher));
-
-        return StreamSupport.stream(results.spliterator(), false)
+        return wines.stream()
+                .map(wine -> new WineSpecification(wine, minPrice,  maxPrice))
+                .map(repository::findAll)
+                .flatMap(Collection::stream)
                 .collect(Collectors.toList());
     }
 
