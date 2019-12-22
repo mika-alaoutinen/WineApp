@@ -1,12 +1,12 @@
 package com.mika.WineApp.specifications;
 
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WineSpecification implements Specification<Wine> {
     private Double minPrice;
@@ -21,9 +21,15 @@ public class WineSpecification implements Specification<Wine> {
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+//        List<Predicate> preds = List.of("name", "country").stream()
+//                .map(attribute -> buildPredicate(root, builder, attribute))
+//                .collect(Collectors.toList());
+
+        // Name:
         Expression<String> rootName = builder.lower(root.get("name"));
         String wineName = formatString(wine.getName());
 
+        // Country:
         Expression<String> rootCountry = builder.lower(root.get("country"));
         String wineCountry = formatString(wine.getCountry());
 
@@ -31,16 +37,22 @@ public class WineSpecification implements Specification<Wine> {
                 builder.like(rootName, wineName),
                 builder.like(rootCountry, wineCountry)));
 
-
+        // Type:
         if (wine.getType() != null) {
             predicates.add(builder.equal(root.get("type"), wine.getType()));
         }
 
-        // minPrice, maxPrice and volumes
+        // Price range:
         if (minPrice != null && maxPrice != null) {
             predicates.add(builder.between(root.get("price"), minPrice, maxPrice));
         }
 
+        // Volume:
+        if (wine.getVolume() != null) {
+            predicates.add(builder.equal(root.get("volume"), wine.getVolume()));
+        }
+
+        // Return conjunction predicate:
         Predicate predicate = builder.conjunction();
         predicate.getExpressions().addAll(predicates);
 
@@ -56,13 +68,15 @@ public class WineSpecification implements Specification<Wine> {
         return string == null ? "%" : "%" + string.toLowerCase() + "%";
     }
 
-    private void test(Root<Wine> root, CriteriaBuilder builder, String rootAttribute, String wineAttribute, Predicate predicate) {
-//        List<Predicate> predicates = List.of(builder.like(rootCountry, wineCountry), builder.like(rootName, wineName));
-//        predicate.getExpressions().addAll(predicates);
-
+    private Predicate buildPredicate(Root<Wine> root, CriteriaBuilder builder, String rootAttribute) {
         Expression<String> expression = builder.lower(root.get(rootAttribute));
 
-        predicate.getExpressions()
-                .add(builder.like(expression, wineAttribute));
+        String wineAttribute = switch (rootAttribute) {
+            case "name" -> wine.getName();
+            case "country" -> wine.getCountry();
+            default -> "";
+        };
+
+        return builder.like(expression, wineAttribute);
     }
 }

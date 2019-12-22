@@ -11,6 +11,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -97,29 +99,42 @@ public class WineServiceImpl implements WineService {
                              String country,
                              Double minPrice,
                              Double maxPrice,
-                             Double[] volumes) {
-        /*
-        Vaihtoehto 1:
-        Tehdään example jokaisesta volumesta:
-        for volume in volumes:
-            exampleWine = new Wine(name, ..., volume);
-
-        Haku hintahaarukan perusteella pitäisi kuitenkin tehdä erililsenä hakuna.
-        List<Wine> hintahaku = getByPrice(min, max);
-
-        Lopuksi yhdistetään kaikki listat ja palautetaan yhteiset viinit...
-
-        Vaihtoehto 2: @Query
-         */
+                             List<Double> volumes) {
 
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        Wine filter = new Wine(name, wineType, country, null, null, null, null, null);
+        List<Wine> wines = new ArrayList<>();
 
-        return repository.findAll(new WineSpecification(filter, minPrice, maxPrice));
+        if (volumes == null) {
+            wines.add(new Wine(name, wineType, country, null, null, null, null, null));
+        } else {
+            WineType finalWineType = wineType;
+            volumes.stream()
+                    .map(volume -> new Wine(name, finalWineType, country, null, volume, null, null, null))
+                    .forEach(wines::add);
+        }
+
+        return wines.stream()
+                .map(wine -> new WineSpecification(wine, minPrice,  maxPrice))
+                .map(repository::findAll)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+
+//        Wine filter = new Wine(name, wineType, country, null, null, null, null, null);
+//
+//        return volumes.stream()
+//                .map(volume -> new WineSpecification(filter, minPrice, maxPrice))
+//                .map(repository::findAll)
+//                .flatMap(Collection::stream)
+//                .collect(Collectors.toList());
+
+//        Wine wine = new Wine(name, wineType, country, null, null, null, null, null);
+
+
+//        return repository.findAll(new WineSpecification(filter, minPrice, maxPrice, volumes));
 
 
 
