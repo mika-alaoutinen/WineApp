@@ -20,17 +20,14 @@ public class WineSpecification implements Specification<Wine> {
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        // Name:
+        // Name and country:
         Expression<String> rootName = builder.lower(root.get("name"));
-        String wineName = formatString(wine.getName());
-
-        // Country:
         Expression<String> rootCountry = builder.lower(root.get("country"));
-        String wineCountry = formatString(wine.getCountry());
 
         List<Predicate> predicates = new ArrayList<>(List.of(
-                builder.like(rootName, wineName),
-                builder.like(rootCountry, wineCountry)));
+                builder.like(rootName, formatString(wine.getName())),
+                builder.like(rootCountry, formatString(wine.getCountry()))
+        ));
 
         // Type:
         if (wine.getType() != null) {
@@ -56,10 +53,10 @@ public class WineSpecification implements Specification<Wine> {
 
     /**
      * Converts a string to lowercase and wraps it in query wildcards, like so: %string%.
-     * @param string wineAttribute
+     * @param attribute wineAttribute
      * @return formattedString
      */
-    private String formatString(String string) {
-        return string == null ? "%" : "%" + string.toLowerCase() + "%";
+    private String formatString(String attribute) {
+        return attribute == null ? "%" : "%" + attribute.toLowerCase() + "%";
     }
 }
