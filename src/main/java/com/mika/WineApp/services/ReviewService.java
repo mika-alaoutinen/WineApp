@@ -10,8 +10,13 @@ public interface ReviewService extends CrudService<Review> {
     List<Review> findByAuthor(String author);
     List<Review> findByDate(String startDate, String endDate);
     List<Review> findByRating(double minRating, double maxRating);
-    List<Review> findNewest(int limit);
 
+    // Quick searches:
+    List<Review> findNewest(int limit);
+    List<Review> findBestRated(int limit);
+    List<Review> findWorstRated(int limit);
+
+    // Find by wine:
     List<Review> findByWineId(Long wineId);
     List<Review> findByWineName(String name);
 }
