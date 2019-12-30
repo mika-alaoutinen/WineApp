@@ -49,15 +49,26 @@ public class ReviewController {
         return service.findByRating(minRating, maxRating);
     }
 
-    @GetMapping(baseUrl + "/newest")
-    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
-        return service.findNewest(limit);
-    }
-
     @GetMapping(baseUrl + "/{id}")
     public Review findById(@PathVariable Long id) {
         return service.findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
+    }
+
+// --- Quick searches ---
+    @GetMapping(baseUrl + "/search/newest")
+    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findNewest(limit);
+    }
+
+    @GetMapping(baseUrl + "/search/best")
+    public List<Review> findBest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findBestRated(limit);
+    }
+
+    @GetMapping(baseUrl + "/search/worst")
+    public List<Review> findWorst(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findWorstRated(limit);
     }
 
 // --- Find based on wine ---

@@ -21,7 +21,11 @@ public interface ReviewRepository extends PagingAndSortingRepository<Review, Lon
     List<Review> findDistinctByAuthorIgnoreCase(String author);
     List<Review> findDistinctByDateBetweenOrderByDateDesc(LocalDate start, LocalDate end);
     List<Review> findDistinctByRatingBetweenOrderByRatingDesc(double minRating, double maxRating);
+
+    // Quick searches:
     Page<Review> findAllByOrderByDateDesc(Pageable limit);
+    Page<Review> findAllByOrderByRatingDesc(Pageable limit);
+    Page<Review> findAllByOrderByRatingAsc(Pageable limit);
 
     // Find by Wine attributes:
     List<Review> findByWineId(Long wineId);

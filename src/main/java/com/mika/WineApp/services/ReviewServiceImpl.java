@@ -85,8 +85,19 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.findDistinctByRatingBetweenOrderByRatingDesc(minRating, maxRating);
     }
 
+// --- Quick searches ---
     public List<Review> findNewest(int limit) {
         return repository.findAllByOrderByDateDesc(PageRequest.of(0, limit))
+                .getContent();
+    }
+
+    public List<Review> findBestRated(int limit) {
+        return repository.findAllByOrderByRatingDesc(PageRequest.of(0, limit))
+                .getContent();
+    }
+
+    public List<Review> findWorstRated(int limit) {
+        return repository.findAllByOrderByRatingAsc(PageRequest.of(0, limit))
                 .getContent();
     }
 
