@@ -44,10 +44,5 @@ public class WineSpecification extends SuperSpecification implements Specificati
 
         // Return conjunction predicate:
         return super.toPredicate(builder, predicates);
-
-//        Predicate predicate = builder.conjunction();
-//        predicate.getExpressions().addAll(predicates);
-//
-//        return predicate;
     }
 }

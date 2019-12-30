@@ -5,13 +5,18 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
+    private Date[] dateRange;
+    private Double[] ratingRange;
     private Review review;
 
-    public ReviewSpecification(Review review) {
+    public ReviewSpecification(Review review, Date[] dateRange, Double[] ratingRange) {
         super();
+        this.dateRange = dateRange;
+        this.ratingRange = ratingRange;
         this.review = review;
     }
 
@@ -23,11 +28,14 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
         predicates.add(builder.like(rootAuthor, super.formatString(review.getAuthor())));
 
         // Date range:
+        if (dateRange != null && dateRange.length == 2) {
+            predicates.add(builder.between(root.get("date"), dateRange[0], dateRange[1]));
+        }
 
         // Rating range:
-
-        Predicate predicate = builder.conjunction();
-        predicate.getExpressions().addAll(predicates);
+        if (ratingRange != null && ratingRange.length == 2) {
+            predicates.add(builder.between(root.get("rating"), ratingRange[0], ratingRange[1]));
+        }
 
         return super.toPredicate(builder, predicates);
     }
