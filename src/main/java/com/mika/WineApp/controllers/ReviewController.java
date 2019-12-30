@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -95,10 +94,9 @@ public class ReviewController {
     @GetMapping(baseUrl + "/search")
     public List<Review> search(
             @RequestParam(name = "author", required = false) String author,
-            @RequestParam(name = "dateRange", required = false) Date[] dateRange,
+            @RequestParam(name = "dateRange", required = false) String[] dateRange,
             @RequestParam(name = "ratingRange", required = false) Double[] ratingRange) {
 
-        System.out.println("date range: " + Arrays.toString(dateRange));
         return service.search(author, dateRange, ratingRange);
     }
 

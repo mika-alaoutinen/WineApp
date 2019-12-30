@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.models.Review;
 
-import java.util.Date;
 import java.util.List;
 
 public interface ReviewService extends CrudService<Review> {
@@ -17,7 +16,7 @@ public interface ReviewService extends CrudService<Review> {
     List<Review> findBestRated(int limit);
     List<Review> findWorstRated(int limit);
 
-    List<Review> search(String author, Date[] dateRange, Double[] ratingRange);
+    List<Review> search(String author, String[] dateRange, Double[] ratingRange);
 
     // Find by wine:
     List<Review> findByWineId(Long wineId);

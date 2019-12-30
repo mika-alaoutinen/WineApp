@@ -12,8 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,14 +72,14 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public List<Review> findByDate(String startDate, String endDate) {
-        LocalDate start = parseDateString(startDate);
+        LocalDate start = parseDate(startDate);
         LocalDate end;
 
         // If no end date parameter is given, use current date:
         if (endDate.equals("today")) {
             end = LocalDate.now();
         } else {
-            end = parseDateString(endDate);
+            end = parseDate(endDate);
         }
 
         return repository.findDistinctByDateBetweenOrderByDateDesc(start, end);
@@ -104,9 +106,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 // --- Search ---
-    public List<Review> search(String author, Date[] dateRange, Double[] ratingRange) {
+    public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
+        var dates = Arrays.stream(dateRange)
+                .map(this::parseMonthYear)
+                .toArray(LocalDate[]::new);
+
         Review review = new Review(author, null, null, null, null);
-        return repository.findAll(new ReviewSpecification(review, dateRange, ratingRange));
+        return repository.findAll(new ReviewSpecification(review, dates, ratingRange));
     }
 
 // --- Find  operations based on wines ---
@@ -119,11 +125,21 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 // --- Utility methods ---
-    private LocalDate parseDateString(String dateString) {
+    private LocalDate parseDate(String date) {
         try {
-            return LocalDate.parse(dateString);
+            return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
-            throw new InvalidDateException(dateString);
+            throw new InvalidDateException(date);
+        }
+    }
+
+    private LocalDate parseMonthYear(String date) {
+        try {
+            return YearMonth
+                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
+                    .atDay(1);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(date);
         }
     }
 }

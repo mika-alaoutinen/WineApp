@@ -4,16 +4,17 @@ import com.mika.WineApp.models.Review;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
-    private Date[] dateRange;
+    private LocalDate[] dateRange;
     private Double[] ratingRange;
     private Review review;
 
-    public ReviewSpecification(Review review, Date[] dateRange, Double[] ratingRange) {
+    public ReviewSpecification(Review review, LocalDate[] dateRange, Double[] ratingRange) {
         super();
         this.dateRange = dateRange;
         this.ratingRange = ratingRange;
