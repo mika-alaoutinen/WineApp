@@ -112,9 +112,13 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Search ---
     public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
-        var dates = Arrays.stream(dateRange)
-                .map(this::parseMonthYear)
-                .toArray(LocalDate[]::new);
+        LocalDate[] dates = null;
+
+        if (dateRange != null) {
+            dates = Arrays.stream(dateRange)
+                    .map(this::parseMonthYear)
+                    .toArray(LocalDate[]::new);
+        }
 
         Review review = new Review(author, null, null, null, null);
         return repository.findAll(new ReviewSpecification(review, dates, ratingRange));
