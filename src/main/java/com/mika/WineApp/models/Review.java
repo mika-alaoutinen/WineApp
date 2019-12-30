@@ -21,7 +21,7 @@ public class Review extends EntityModel {
     private String reviewText;
 
     @Column(precision = 3, scale = 2)
-    private double rating;
+    private Double rating;
 
     @ManyToOne
     @JoinColumn(name = "wine_id")
@@ -32,7 +32,7 @@ public class Review extends EntityModel {
         super();
     }
 
-    public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
+    public Review(String author, LocalDate date, String reviewText, Double rating, Wine wine) {
         super();
         this.author = author;
         this.date = date;

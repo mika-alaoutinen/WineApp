@@ -7,11 +7,13 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,6 +101,12 @@ public class ReviewServiceImpl implements ReviewService {
     public List<Review> findWorstRated(int limit) {
         return repository.findAllByOrderByRatingAsc(PageRequest.of(0, limit))
                 .getContent();
+    }
+
+// --- Search ---
+    public List<Review> search(String author, Date[] dateRange, Double[] ratingRange) {
+        Review review = new Review(author, null, null, null, null);
+        return repository.findAll(new ReviewSpecification(review, dateRange, ratingRange));
     }
 
 // --- Find  operations based on wines ---

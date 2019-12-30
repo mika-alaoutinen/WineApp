@@ -42,7 +42,6 @@ public class WineSpecification extends SuperSpecification implements Specificati
             predicates.add(builder.equal(root.get("volume"), wine.getVolume()));
         }
 
-        // Return conjunction predicate:
         return super.toPredicate(builder, predicates);
     }
 }

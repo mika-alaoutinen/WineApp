@@ -9,6 +9,8 @@ import com.mika.WineApp.services.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -55,22 +57,6 @@ public class ReviewController {
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
-// --- Quick searches ---
-    @GetMapping(baseUrl + "/search/newest")
-    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
-        return service.findNewest(limit);
-    }
-
-    @GetMapping(baseUrl + "/search/best")
-    public List<Review> findBest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
-        return service.findBestRated(limit);
-    }
-
-    @GetMapping(baseUrl + "/search/worst")
-    public List<Review> findWorst(@RequestParam(name = "limit", defaultValue = "10") int limit) {
-        return service.findWorstRated(limit);
-    }
-
 // --- Find based on wine ---
     @GetMapping(baseUrl + "/wineId/{wineId}")
     public List<Review> findByWineId(@PathVariable Long wineId) {
@@ -104,5 +90,31 @@ public class ReviewController {
     @GetMapping(baseUrl + "/count")
     public long count() {
         return service.count();
+    }
+
+    @GetMapping(baseUrl + "/search")
+    public List<Review> search(
+            @RequestParam(name = "author", required = false) String author,
+            @RequestParam(name = "dateRange", required = false) Date[] dateRange,
+            @RequestParam(name = "ratingRange", required = false) Double[] ratingRange) {
+
+        System.out.println("date range: " + Arrays.toString(dateRange));
+        return service.search(author, dateRange, ratingRange);
+    }
+
+    // --- Quick searches ---
+    @GetMapping(baseUrl + "/search/newest")
+    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findNewest(limit);
+    }
+
+    @GetMapping(baseUrl + "/search/best")
+    public List<Review> findBest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findBestRated(limit);
+    }
+
+    @GetMapping(baseUrl + "/search/worst")
+    public List<Review> findWorst(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+        return service.findWorstRated(limit);
     }
 }
