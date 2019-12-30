@@ -34,7 +34,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public Review edit(Long id, Review editedReview) {
-        Review review = repository.findById(id)
+        Review review = repository
+                .findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
 
         // If wine info has been edited, save changes. Don't save null wines.
@@ -60,7 +61,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Review service methods ---
     public Review add(Long wineId, Review newReview) {
-        Wine wine = wineRepository.findById(wineId)
+        Wine wine = wineRepository
+                .findById(wineId)
                 .orElseThrow(() -> new WineNotFoundException(wineId));
 
         newReview.setWine(wine);
@@ -91,17 +93,20 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Quick searches ---
     public List<Review> findNewest(int limit) {
-        return repository.findAllByOrderByDateDesc(PageRequest.of(0, limit))
+        return repository
+                .findAllByOrderByDateDesc(PageRequest.of(0, limit))
                 .getContent();
     }
 
     public List<Review> findBestRated(int limit) {
-        return repository.findAllByOrderByRatingDesc(PageRequest.of(0, limit))
+        return repository
+                .findAllByOrderByRatingDesc(PageRequest.of(0, limit))
                 .getContent();
     }
 
     public List<Review> findWorstRated(int limit) {
-        return repository.findAllByOrderByRatingAsc(PageRequest.of(0, limit))
+        return repository
+                .findAllByOrderByRatingAsc(PageRequest.of(0, limit))
                 .getContent();
     }
 

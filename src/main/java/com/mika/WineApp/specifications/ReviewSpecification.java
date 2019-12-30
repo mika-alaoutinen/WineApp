@@ -38,6 +38,9 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
             predicates.add(builder.between(root.get("rating"), ratingRange[0], ratingRange[1]));
         }
 
+        // Get results in descending order:
+        query.orderBy(builder.desc(root.get("date")));
+
         return super.toPredicate(builder, predicates);
     }
 }
