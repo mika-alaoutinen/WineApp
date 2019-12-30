@@ -16,6 +16,8 @@ public interface ReviewService extends CrudService<Review> {
     List<Review> findBestRated(int limit);
     List<Review> findWorstRated(int limit);
 
+    List<Review> search(String author, String[] dateRange, Double[] ratingRange);
+
     // Find by wine:
     List<Review> findByWineId(Long wineId);
     List<Review> findByWineName(String name);

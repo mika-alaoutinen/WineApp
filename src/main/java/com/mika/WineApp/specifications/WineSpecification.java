@@ -7,7 +7,7 @@ import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WineSpecification implements Specification<Wine> {
+public class WineSpecification extends SuperSpecification implements Specification<Wine> {
     private Integer[] priceRange;
     private Wine wine;
 
@@ -23,8 +23,8 @@ public class WineSpecification implements Specification<Wine> {
         Expression<String> rootCountry = builder.lower(root.get("country"));
 
         List<Predicate> predicates = new ArrayList<>(List.of(
-                builder.like(rootName, formatString(wine.getName())),
-                builder.like(rootCountry, formatString(wine.getCountry()))
+                builder.like(rootName, super.formatString(wine.getName())),
+                builder.like(rootCountry, super.formatString(wine.getCountry()))
         ));
 
         // Type:
@@ -42,19 +42,6 @@ public class WineSpecification implements Specification<Wine> {
             predicates.add(builder.equal(root.get("volume"), wine.getVolume()));
         }
 
-        // Return conjunction predicate:
-        Predicate predicate = builder.conjunction();
-        predicate.getExpressions().addAll(predicates);
-
-        return predicate;
-    }
-
-    /**
-     * Converts a string to lowercase and wraps it in query wildcards, like so: %string%.
-     * @param attribute wineAttribute
-     * @return formattedString
-     */
-    private String formatString(String attribute) {
-        return attribute == null ? "%" : "%" + attribute.toLowerCase() + "%";
+        return super.toPredicate(builder, predicates);
     }
 }
