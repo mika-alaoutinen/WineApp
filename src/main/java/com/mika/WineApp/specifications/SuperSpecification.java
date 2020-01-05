@@ -38,6 +38,6 @@ public abstract class SuperSpecification {
      * @return formattedString
      */
     protected String formatString(String attribute) {
-        return attribute == null ? "%" : "%" + attribute.toLowerCase() + "%";
+        return "%" + attribute.toLowerCase() + "%";
     }
 }

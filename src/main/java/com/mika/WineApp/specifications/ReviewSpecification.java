@@ -25,8 +25,10 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
         List<Predicate> predicates = new ArrayList<>();
 
         // Author:
-        Expression<String> rootAuthor = builder.lower(root.get("author"));
-        predicates.add(builder.like(rootAuthor, super.formatString(review.getAuthor())));
+        if (review.getAuthor() != null) {
+            Expression<String> rootAuthor = builder.lower(root.get("author"));
+            predicates.add(builder.like(rootAuthor, super.formatString(review.getAuthor())));
+        }
 
         // Date range:
         if (dateRange != null && dateRange.length == 2) {
