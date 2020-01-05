@@ -41,6 +41,6 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
         // Get results in descending order:
         query.orderBy(builder.desc(root.get("date")));
 
-        return super.toPredicate(builder, predicates);
+        return super.createConjunction(builder, predicates);
     }
 }

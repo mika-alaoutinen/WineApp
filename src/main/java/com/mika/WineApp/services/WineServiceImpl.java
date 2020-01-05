@@ -92,23 +92,27 @@ public class WineServiceImpl implements WineService {
 
     public List<Wine> search(String name,
                              String type,
-                             String country,
-                             Integer[] priceRange,
-                             List<Double> volumes) {
+                             List<String> countries,
+                             List<Double> volumes,
+                             Integer[] priceRange) {
 
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        List<Wine> wines = buildSpecificationFilters(
-                volumes, new Wine(name, wineType, country, null, null, null, null, null));
+        Wine wine = new Wine(name, wineType, null, null, null, null, null, null);
+        return repository.findAll(new WineSpecification(wine, countries, volumes, priceRange));
 
-        return wines.stream()
-                .map(wine -> new WineSpecification(wine, priceRange))
-                .map(repository::findAll)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+
+//        List<Wine> wines = buildSpecificationFilters(
+//                volumes, new Wine(name, wineType, country, null, null, null, null, null));
+//
+//        return wines.stream()
+//                .map(wine -> new WineSpecification(wine, priceRange))
+//                .map(repository::findAll)
+//                .flatMap(Collection::stream)
+//                .collect(Collectors.toList());
     }
 
 // Utility methods:

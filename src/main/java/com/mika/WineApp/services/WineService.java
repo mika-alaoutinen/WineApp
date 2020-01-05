@@ -15,5 +15,9 @@ public interface WineService extends CrudService<Wine> {
     List<Wine> findByDescription(List<String> description);
     List<Wine> findByFoodPairings(List<String> foodPairings);
 
-    List<Wine> search(String name, String type, String country, Integer[] priceRange, List<Double> volumes);
+    List<Wine> search(String name,
+                      String type,
+                      List<String> countries,
+                      List<Double> volumes,
+                      Integer[] priceRange);
 }
