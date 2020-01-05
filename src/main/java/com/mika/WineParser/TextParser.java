@@ -202,6 +202,7 @@ public class TextParser {
 
     /**
      * Parses a list of keywords. Keywords are scrubbed of extra white space and converted into lowercase.
+     * If a keyword contains a full stop, it is removed.
      * @param line parsed line.
      * @return keywords as List<String>.
      */
@@ -211,6 +212,7 @@ public class TextParser {
         return Arrays.stream(keywords)
                 .map(String::strip)
                 .map(String::toLowerCase)
+                .map(word -> word.replace(".", ""))
                 .filter(word -> !word.isBlank())
                 .collect(Collectors.toList());
     }
