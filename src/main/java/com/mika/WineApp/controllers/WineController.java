@@ -27,7 +27,8 @@ public class WineController {
 
     @GetMapping(baseUrl + "/{id}")
     public Wine findById(@PathVariable Long id) {
-        return service.findById(id)
+        return service
+                .findById(id)
                 .orElseThrow(() -> new WineNotFoundException(id));
     }
 
@@ -56,11 +57,11 @@ public class WineController {
 
     @GetMapping(baseUrl + "/search")
     public List<Wine> search(
-            @RequestParam(name = "name", required = false) String name,
-            @RequestParam(name = "type", required = false) String type,
-            @RequestParam(name = "countries", required = false) List<String> countries,
-            @RequestParam(name = "volumes", required = false) List<Double> volumes,
-            @RequestParam(name = "priceRange", required = false) Integer[] priceRange) {
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) List<String> countries,
+            @RequestParam(required = false) List<Double> volumes,
+            @RequestParam(required = false) Integer[] priceRange) {
 
         return service.search(name, type, countries, volumes, priceRange);
     }

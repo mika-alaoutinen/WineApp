@@ -31,7 +31,8 @@ public class ReviewController {
 
     @GetMapping(baseUrl + "/{id}")
     public Review findById(@PathVariable Long id) {
-        return service.findById(id)
+        return service
+                .findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
@@ -71,26 +72,26 @@ public class ReviewController {
 
     @GetMapping(baseUrl + "/search")
     public List<Review> search(
-            @RequestParam(name = "author", required = false) String author,
-            @RequestParam(name = "dateRange", required = false) String[] dateRange,
-            @RequestParam(name = "ratingRange", required = false) Double[] ratingRange) {
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String[] dateRange,
+            @RequestParam(required = false) Double[] ratingRange) {
 
         return service.search(author, dateRange, ratingRange);
     }
 
 // --- Quick searches ---
     @GetMapping(baseUrl + "/search/newest")
-    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findNewest(@RequestParam(defaultValue = "10") int limit) {
         return service.findNewest(limit);
     }
 
     @GetMapping(baseUrl + "/search/best")
-    public List<Review> findBest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findBest(@RequestParam(defaultValue = "10") int limit) {
         return service.findBestRated(limit);
     }
 
     @GetMapping(baseUrl + "/search/worst")
-    public List<Review> findWorst(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findWorst(@RequestParam(defaultValue = "10") int limit) {
         return service.findWorstRated(limit);
     }
 }
