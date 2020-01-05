@@ -8,17 +8,14 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
     private final WineRepository repository;
 
-// --- CRUD service methods ---
+// --- CRUD methods ---
     public List<Wine> findAll() {
         return repository.findAll();
     }
@@ -49,45 +46,9 @@ public class WineServiceImpl implements WineService {
         repository.deleteById(id);
     }
 
+// --- Other methods ---
     public long count() {
         return repository.count();
-    }
-
-// --- Wine service methods ---
-    public List<Wine> findByName(String name) {
-        return repository.findDistinctByNameContainingIgnoreCase(name);
-    }
-
-    public List<Wine> findByType(String type) {
-        return repository.findDistinctByType(parseWineType(type));
-    }
-
-    public List<Wine> findByCountry(String country) {
-        return repository.findDistinctByCountryIgnoreCase(country);
-    }
-
-    public List<Wine> findByQuantity(double volume) {
-        return repository.findDistinctByVolume(volume);
-    }
-
-    public List<Wine> findByPrice(double minPrice, double maxPrice) {
-        return repository.findDistinctByPriceBetween(minPrice, maxPrice);
-    }
-
-    public List<Wine> findByDescription(List<String> description) {
-        var wines = repository.findDistinctByDescriptionInIgnoreCase(description);
-
-        return wines.stream()
-                .filter(wine -> wine.getDescription().containsAll(description))
-                .collect(Collectors.toList());
-    }
-
-    public List<Wine> findByFoodPairings(List<String> foodPairings) {
-        var wines = repository.findDistinctByFoodPairingsInIgnoreCase(foodPairings);
-
-        return wines.stream()
-                .filter(wine -> wine.getFoodPairings().containsAll(foodPairings))
-                .collect(Collectors.toList());
     }
 
     public List<Wine> search(String name,

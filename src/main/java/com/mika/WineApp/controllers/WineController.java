@@ -25,48 +25,6 @@ public class WineController {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/name/{name}")
-    public List<Wine> findByName(@PathVariable String name) {
-        return service.findByName(name);
-    }
-
-    @GetMapping(baseUrl + "/type/{type}")
-    public List<Wine> findByType(@PathVariable String type) {
-        return service.findByType(type);
-    }
-
-    @GetMapping(baseUrl + "/country/{country}")
-    public List<Wine> findByCountry(@PathVariable String country) {
-        return service.findByCountry(country);
-    }
-
-    @GetMapping(baseUrl + "/quantity/{quantity}")
-    public List<Wine> findByQuantity(@PathVariable Double quantity) {
-        return service.findByQuantity(quantity);
-    }
-
-    @GetMapping(baseUrl + "/price")
-    public List<Wine> findByPrice(
-            @RequestParam(name = "minPrice", defaultValue = "0") double minPrice,
-            @RequestParam(name = "maxPrice", defaultValue = "9999") double maxPrice) {
-
-        return service.findByPrice(minPrice, maxPrice);
-    }
-
-    @GetMapping(baseUrl + "/description")
-    public List<Wine> findByDescription(
-            @RequestParam(name = "desc") List<String> description) {
-
-        return service.findByDescription(description);
-    }
-
-    @GetMapping(baseUrl + "/pairing")
-    public List<Wine> findByFoodPairings(
-            @RequestParam(name = "pair") List<String> foodPairings) {
-
-        return service.findByFoodPairings(foodPairings);
-    }
-
     @GetMapping(baseUrl + "/{id}")
     public Wine findById(@PathVariable Long id) {
         return service.findById(id)
