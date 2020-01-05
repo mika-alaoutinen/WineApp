@@ -92,23 +92,17 @@ public class WineServiceImpl implements WineService {
 
     public List<Wine> search(String name,
                              String type,
-                             String country,
-                             Integer[] priceRange,
-                             List<Double> volumes) {
+                             List<String> countries,
+                             List<Double> volumes,
+                             Integer[] priceRange) {
 
         WineType wineType = null;
         if (type != null) {
             wineType = parseWineType(type);
         }
 
-        List<Wine> wines = buildSpecificationFilters(
-                volumes, new Wine(name, wineType, country, null, null, null, null, null));
-
-        return wines.stream()
-                .map(wine -> new WineSpecification(wine, priceRange))
-                .map(repository::findAll)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+        Wine wine = new Wine(name, wineType, null, null, null, null, null, null);
+        return repository.findAll(new WineSpecification(wine, countries, volumes, priceRange));
     }
 
 // Utility methods:
@@ -119,19 +113,5 @@ public class WineServiceImpl implements WineService {
             System.out.println("Error in parsing wine type: " + e.getMessage());
             throw new InvalidWineTypeException(type);
         }
-    }
-
-    /**
-     * Builds a list of WineSpecifications based on volumes given as parameter.
-     * @param volumes to include in query.
-     * @param wine to include in query.
-     * @return list of wines to be used as WineSpecifications for querying database.
-     */
-    private List<Wine> buildSpecificationFilters(List<Double> volumes, Wine wine) {
-        return volumes == null
-                ? List.of(wine)
-                : volumes.stream()
-                        .map(volume -> new Wine(wine.getName(), wine.getType(), wine.getCountry(), null, volume, null, null, null))
-                        .collect(Collectors.toList());
     }
 }

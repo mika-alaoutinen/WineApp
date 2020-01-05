@@ -101,10 +101,10 @@ public class WineController {
     public List<Wine> search(
             @RequestParam(name = "name", required = false) String name,
             @RequestParam(name = "type", required = false) String type,
-            @RequestParam(name = "country", required = false) String country,
-            @RequestParam(name = "priceRange", required = false) Integer[] priceRange,
-            @RequestParam(name = "volumes", required = false) List<Double> volumes) {
+            @RequestParam(name = "countries", required = false) List<String> countries,
+            @RequestParam(name = "volumes", required = false) List<Double> volumes,
+            @RequestParam(name = "priceRange", required = false) Integer[] priceRange) {
 
-        return service.search(name, type, country, priceRange, volumes);
+        return service.search(name, type, countries, volumes, priceRange);
     }
 }

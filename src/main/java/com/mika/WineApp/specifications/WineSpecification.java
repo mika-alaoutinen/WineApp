@@ -6,42 +6,76 @@ import org.springframework.data.jpa.domain.Specification;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WineSpecification extends SuperSpecification implements Specification<Wine> {
     private Integer[] priceRange;
+    private List<String> countries;
+    private List<Double> volumes;
     private Wine wine;
 
-    public WineSpecification(Wine wine, Integer[] priceRange) {
+    public WineSpecification(Wine wine, List<String> countries, List<Double> volumes, Integer[] priceRange) {
         super();
+        this.countries = countries;
+        this.volumes = volumes;
         this.priceRange = priceRange;
         this.wine = wine;
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        // Name and country:
-        Expression<String> rootName = builder.lower(root.get("name"));
-        Expression<String> rootCountry = builder.lower(root.get("country"));
+        namePredicate(root, builder);
+        typePredicate(root, builder);
+        priceRangePredicate(root, builder);
+        countryPredicate(root, builder);
+        volumePredicate(root, builder);
 
-        List<Predicate> predicates = new ArrayList<>(List.of(
-                builder.like(rootName, super.formatString(wine.getName())),
-                builder.like(rootCountry, super.formatString(wine.getCountry()))
-        ));
+        return super.createConjunction(builder, super.predicates);
+    }
 
-        // Type:
+    private void namePredicate(Root<Wine> root, CriteriaBuilder builder) {
+        if (wine.getName() != null) {
+            Expression<String> rootName = builder.lower(root.get("name"));
+            Predicate predicate = builder.like(rootName, super.formatString(wine.getName()));
+            super.predicates.add(predicate);
+        }
+    }
+
+    private void typePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (wine.getType() != null) {
-            predicates.add(builder.equal(root.get("type"), wine.getType()));
+            Predicate predicate = builder.equal(root.get("type"), wine.getType());
+            super.predicates.add(predicate);
         }
+    }
 
-        // Price range:
+    private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (priceRange != null && priceRange.length == 2) {
-            predicates.add(builder.between(root.get("price"), priceRange[0], priceRange[1]));
+            Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
+            super.predicates.add(predicate);
         }
+    }
 
-        // Volume:
-        if (wine.getVolume() != null) {
-            predicates.add(builder.equal(root.get("volume"), wine.getVolume()));
+    private void countryPredicate(Root<Wine> root, CriteriaBuilder builder) {
+        if (countries != null && !countries.isEmpty()) {
+            Expression<String> rootCountry = builder.lower(root.get("country"));
+
+            var countryPredicates = countries.stream()
+                    .map(super::formatString)
+                    .map(country -> builder.like(rootCountry, country))
+                    .collect(Collectors.toList());
+
+            Predicate predicate = super.createDisjunction(builder, countryPredicates);
+            super.predicates.add(predicate);
         }
+    }
 
-        return super.toPredicate(builder, predicates);
+    private void volumePredicate(Root<Wine> root, CriteriaBuilder builder) {
+        if (volumes != null && !volumes.isEmpty()) {
+            var volumePredicates = volumes.stream()
+                    .map(volume -> builder.equal(root.get("volume"), volume))
+                    .collect(Collectors.toList());
+
+            Predicate predicate = super.createDisjunction(builder, volumePredicates);
+            super.predicates.add(predicate);
+        }
     }
 }

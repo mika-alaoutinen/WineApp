@@ -22,25 +22,35 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
     }
 
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        List<Predicate> predicates = new ArrayList<>();
-
-        // Author:
-        Expression<String> rootAuthor = builder.lower(root.get("author"));
-        predicates.add(builder.like(rootAuthor, super.formatString(review.getAuthor())));
-
-        // Date range:
-        if (dateRange != null && dateRange.length == 2) {
-            predicates.add(builder.between(root.get("date"), dateRange[0], dateRange[1]));
-        }
-
-        // Rating range:
-        if (ratingRange != null && ratingRange.length == 2) {
-            predicates.add(builder.between(root.get("rating"), ratingRange[0], ratingRange[1]));
-        }
+        authorPredicate(root, builder);
+        datePredicate(root, builder);
+        ratingPredicate(root, builder);
 
         // Get results in descending order:
         query.orderBy(builder.desc(root.get("date")));
 
-        return super.toPredicate(builder, predicates);
+        return super.createConjunction(builder, predicates);
+    }
+
+    private void authorPredicate(Root<Review> root, CriteriaBuilder builder) {
+        if (review.getAuthor() != null) {
+            Expression<String> rootAuthor = builder.lower(root.get("author"));
+            Predicate predicate = builder.like(rootAuthor, super.formatString(review.getAuthor()));
+            super.predicates.add(predicate);
+        }
+    }
+
+    private void datePredicate(Root<Review> root, CriteriaBuilder builder) {
+        if (dateRange != null && dateRange.length == 2) {
+            Predicate predicate = builder.between(root.get("date"), dateRange[0], dateRange[1]);
+            super.predicates.add(predicate);
+        }
+    }
+
+    private void ratingPredicate(Root<Review> root, CriteriaBuilder builder) {
+        if (ratingRange != null && ratingRange.length == 2) {
+            Predicate predicate = builder.between(root.get("rating"), ratingRange[0], ratingRange[1]);
+            super.predicates.add(predicate);
+        }
     }
 }
