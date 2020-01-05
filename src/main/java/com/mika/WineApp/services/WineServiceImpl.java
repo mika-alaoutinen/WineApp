@@ -114,18 +114,4 @@ public class WineServiceImpl implements WineService {
             throw new InvalidWineTypeException(type);
         }
     }
-
-    /**
-     * Builds a list of WineSpecifications based on volumes given as parameter.
-     * @param volumes to include in query.
-     * @param wine to include in query.
-     * @return list of wines to be used as WineSpecifications for querying database.
-     */
-    private List<Wine> buildSpecificationFilters(List<Double> volumes, Wine wine) {
-        return volumes == null
-                ? List.of(wine)
-                : volumes.stream()
-                        .map(volume -> new Wine(wine.getName(), wine.getType(), wine.getCountry(), null, volume, null, null, null))
-                        .collect(Collectors.toList());
-    }
 }
