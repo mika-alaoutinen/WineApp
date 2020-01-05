@@ -35,59 +35,49 @@ public class WineSpecification extends SuperSpecification implements Specificati
     }
 
     private void namePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (wine.getName() == null) {
-            return;
+        if (wine.getName() != null) {
+            Expression<String> rootName = builder.lower(root.get("name"));
+            Predicate predicate = builder.like(rootName, super.formatString(wine.getName()));
+            predicates.add(predicate);
         }
-
-        Expression<String> rootName = builder.lower(root.get("name"));
-        Predicate predicate = builder.like(rootName, super.formatString(wine.getName()));
-        predicates.add(predicate);
     }
 
     private void typePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (wine.getType() == null) {
-            return;
+        if (wine.getType() != null) {
+            Predicate predicate = builder.equal(root.get("type"), wine.getType());
+            predicates.add(predicate);
         }
-
-        Predicate predicate = builder.equal(root.get("type"), wine.getType());
-        predicates.add(predicate);
     }
 
     private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (priceRange == null || priceRange.length != 2) {
-            return;
+        if (priceRange != null && priceRange.length == 2) {
+            Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
+            predicates.add(predicate);
         }
-
-        Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
-        predicates.add(predicate);
     }
 
     private void countryPredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (countries == null || countries.isEmpty()) {
-            return;
+        if (countries != null && !countries.isEmpty()) {
+            Expression<String> rootCountry = builder.lower(root.get("country"));
+
+            var countryPredicates = countries.stream()
+                    .map(super::formatString)
+                    .map(country -> builder.like(rootCountry, country))
+                    .collect(Collectors.toList());
+
+            Predicate predicate = super.createDisjunction(builder, countryPredicates);
+            predicates.add(predicate);
         }
-
-        Expression<String> rootCountry = builder.lower(root.get("country"));
-
-        var countryPredicates = countries.stream()
-                .map(super::formatString)
-                .map(country -> builder.like(rootCountry, country))
-                .collect(Collectors.toList());
-
-        Predicate predicate = super.createDisjunction(builder, countryPredicates);
-        predicates.add(predicate);
     }
 
     private void volumePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (volumes == null || volumes.isEmpty()) {
-            return;
+        if (volumes != null && !volumes.isEmpty()) {
+            var volumePredicates = volumes.stream()
+                    .map(volume -> builder.equal(root.get("volume"), volume))
+                    .collect(Collectors.toList());
+
+            Predicate predicate = super.createDisjunction(builder, volumePredicates);
+            predicates.add(predicate);
         }
-
-        var volumePredicates = volumes.stream()
-                .map(volume -> builder.equal(root.get("volume"), volume))
-                .collect(Collectors.toList());
-
-        Predicate predicate = super.createDisjunction(builder, volumePredicates);
-        predicates.add(predicate);
     }
 }
