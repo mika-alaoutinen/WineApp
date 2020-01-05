@@ -13,7 +13,6 @@ public class WineSpecification extends SuperSpecification implements Specificati
     private List<String> countries;
     private List<Double> volumes;
     private Wine wine;
-    private List<Predicate> predicates;
 
     public WineSpecification(Wine wine, List<String> countries, List<Double> volumes, Integer[] priceRange) {
         super();
@@ -21,7 +20,6 @@ public class WineSpecification extends SuperSpecification implements Specificati
         this.volumes = volumes;
         this.priceRange = priceRange;
         this.wine = wine;
-        this.predicates = new ArrayList<>();
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
@@ -31,28 +29,28 @@ public class WineSpecification extends SuperSpecification implements Specificati
         countryPredicate(root, builder);
         volumePredicate(root, builder);
 
-        return super.createConjunction(builder, predicates);
+        return super.createConjunction(builder, super.predicates);
     }
 
     private void namePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (wine.getName() != null) {
             Expression<String> rootName = builder.lower(root.get("name"));
             Predicate predicate = builder.like(rootName, super.formatString(wine.getName()));
-            predicates.add(predicate);
+            super.predicates.add(predicate);
         }
     }
 
     private void typePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (wine.getType() != null) {
             Predicate predicate = builder.equal(root.get("type"), wine.getType());
-            predicates.add(predicate);
+            super.predicates.add(predicate);
         }
     }
 
     private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (priceRange != null && priceRange.length == 2) {
             Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
-            predicates.add(predicate);
+            super.predicates.add(predicate);
         }
     }
 
@@ -66,7 +64,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
                     .collect(Collectors.toList());
 
             Predicate predicate = super.createDisjunction(builder, countryPredicates);
-            predicates.add(predicate);
+            super.predicates.add(predicate);
         }
     }
 
@@ -77,7 +75,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
                     .collect(Collectors.toList());
 
             Predicate predicate = super.createDisjunction(builder, volumePredicates);
-            predicates.add(predicate);
+            super.predicates.add(predicate);
         }
     }
 }

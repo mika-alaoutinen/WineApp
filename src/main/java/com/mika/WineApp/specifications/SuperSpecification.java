@@ -2,9 +2,15 @@ package com.mika.WineApp.specifications;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class SuperSpecification {
+public class SuperSpecification {
+    protected List<Predicate> predicates;
+
+    public SuperSpecification() {
+        this.predicates = new ArrayList<>();
+    }
 
     /**
      * Returns a conjunction of given predicates.
