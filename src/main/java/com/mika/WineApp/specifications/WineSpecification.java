@@ -23,14 +23,13 @@ public class WineSpecification extends SuperSpecification implements Specificati
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        // Name and country:
-        Expression<String> rootName = builder.lower(root.get("name"));
-        Expression<String> rootCountry = builder.lower(root.get("country"));
+        List<Predicate> predicates = new ArrayList<>();
 
-        List<Predicate> predicates = new ArrayList<>(List.of(
-                builder.like(rootName, super.formatString(wine.getName())),
-                builder.like(rootCountry, super.formatString(wine.getCountry()))
-        ));
+        // Name:
+        if (wine.getName() != null) {
+            Expression<String> rootName = builder.lower(root.get("name"));
+            predicates.add(builder.like(rootName, super.formatString(wine.getName())));
+        }
 
         // Type:
         if (wine.getType() != null) {
@@ -39,8 +38,11 @@ public class WineSpecification extends SuperSpecification implements Specificati
 
         // Country:
         if (countries != null && !countries.isEmpty()) {
+            Expression<String> rootCountry = builder.lower(root.get("country"));
+
             var countryPredicates = countries.stream()
-                    .map(country -> builder.like(root.get("country"), country))
+                    .map(super::formatString)
+                    .map(country -> builder.like(rootCountry, country))
                     .collect(Collectors.toList());
 
             Predicate disjunction = super.createDisjunction(builder, countryPredicates);
