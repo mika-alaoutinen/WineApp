@@ -19,7 +19,7 @@ public class WineController {
         this.service = new WineServiceImpl(repository);
     }
 
-// --- Find wines ---
+// --- CRUD methods ---
     @GetMapping(baseUrl)
     public List<Wine> findAll() {
         return service.findAll();
@@ -31,7 +31,6 @@ public class WineController {
                 .orElseThrow(() -> new WineNotFoundException(id));
     }
 
-// --- Add, edit and delete ---
     @PostMapping(baseUrl)
     @ResponseStatus(HttpStatus.CREATED)
     public Wine add(@RequestBody Wine newWine) {
@@ -49,7 +48,7 @@ public class WineController {
         service.delete(id);
     }
 
-// --- Additional functionality ---
+// --- Other methods ---
     @GetMapping(baseUrl + "/count")
     public long count() {
         return service.count();
