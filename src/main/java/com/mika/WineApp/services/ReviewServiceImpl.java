@@ -24,13 +24,31 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
     private final WineRepository wineRepository;
 
-// --- CRUD service methods ---
+// --- Find reviews ---
     public List<Review> findAll() {
         return repository.findAll();
     }
 
     public Optional<Review> findById(Long id) {
         return repository.findById(id);
+    }
+
+    public List<Review> findByWineId(Long wineId) {
+        return repository.findByWineId(wineId);
+    }
+
+    public List<Review> findByWineName(String wineName) {
+        return repository.findByWineNameContainingIgnoreCase(wineName);
+    }
+
+// --- Add, edit and delete ---
+    public Review add(Long wineId, Review newReview) {
+        Wine wine = wineRepository
+                .findById(wineId)
+                .orElseThrow(() -> new WineNotFoundException(wineId));
+
+        newReview.setWine(wine);
+        return repository.save(newReview);
     }
 
     public Review edit(Long id, Review editedReview) {
@@ -55,40 +73,22 @@ public class ReviewServiceImpl implements ReviewService {
         repository.deleteById(id);
     }
 
+// --- Other methods ---
     public long count() {
         return repository.count();
     }
 
-// --- Review service methods ---
-    public Review add(Long wineId, Review newReview) {
-        Wine wine = wineRepository
-                .findById(wineId)
-                .orElseThrow(() -> new WineNotFoundException(wineId));
+    public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
+        LocalDate[] dates = null;
 
-        newReview.setWine(wine);
-        return repository.save(newReview);
-    }
-
-    public List<Review> findByAuthor(String author) {
-        return repository.findDistinctByAuthorIgnoreCase(author);
-    }
-
-    public List<Review> findByDate(String startDate, String endDate) {
-        LocalDate start = parseDate(startDate);
-        LocalDate end;
-
-        // If no end date parameter is given, use current date:
-        if (endDate.equals("today")) {
-            end = LocalDate.now();
-        } else {
-            end = parseDate(endDate);
+        if (dateRange != null) {
+            dates = Arrays.stream(dateRange)
+                    .map(this::parseMonthYear)
+                    .toArray(LocalDate[]::new);
         }
 
-        return repository.findDistinctByDateBetweenOrderByDateDesc(start, end);
-    }
-
-    public List<Review> findByRating(double minRating, double maxRating) {
-        return repository.findDistinctByRatingBetweenOrderByRatingDesc(minRating, maxRating);
+        Review review = new Review(author, null, null, null, null);
+        return repository.findAll(new ReviewSpecification(review, dates, ratingRange));
     }
 
 // --- Quick searches ---
@@ -110,38 +110,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .getContent();
     }
 
-// --- Search ---
-    public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
-        LocalDate[] dates = null;
-
-        if (dateRange != null) {
-            dates = Arrays.stream(dateRange)
-                    .map(this::parseMonthYear)
-                    .toArray(LocalDate[]::new);
-        }
-
-        Review review = new Review(author, null, null, null, null);
-        return repository.findAll(new ReviewSpecification(review, dates, ratingRange));
-    }
-
-// --- Find  operations based on wines ---
-    public List<Review> findByWineId(Long wineId) {
-        return repository.findByWineId(wineId);
-    }
-
-    public List<Review> findByWineName(String wineName) {
-        return repository.findByWineNameContainingIgnoreCase(wineName);
-    }
-
 // --- Utility methods ---
-    private LocalDate parseDate(String date) {
-        try {
-            return LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException(date);
-        }
-    }
-
     private LocalDate parseMonthYear(String date) {
         try {
             return YearMonth
