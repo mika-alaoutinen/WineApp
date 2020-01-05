@@ -57,12 +57,12 @@ public class ReviewController {
     }
 
 // --- Find based on wine ---
-    @GetMapping(baseUrl + "/wineId/{wineId}")
+    @GetMapping(baseUrl + "/wine/id/{wineId}")
     public List<Review> findByWineId(@PathVariable Long wineId) {
         return service.findByWineId(wineId);
     }
 
-    @GetMapping(baseUrl + "/wineName/{wineName}")
+    @GetMapping(baseUrl + "/wine/name/{wineName}")
     public List<Review> findByWineName(@PathVariable String wineName) {
         return service.findByWineName(wineName);
     }
