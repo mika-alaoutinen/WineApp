@@ -15,21 +15,16 @@ import java.util.Optional;
 public interface ReviewRepository extends PagingAndSortingRepository<Review, Long>,
                                           JpaSpecificationExecutor<Review> {
 
+    // Find reviews:
     Optional<Review> findById(Long id);
     List<Review> findAll();
-    Review save(Review review);
+    List<Review> findByWineId(Long wineId);
+    List<Review> findByWineNameContainingIgnoreCase(String wineName);
 
-    // Find by Review attributes:
-    List<Review> findDistinctByAuthorIgnoreCase(String author);
-    List<Review> findDistinctByDateBetweenOrderByDateDesc(LocalDate start, LocalDate end);
-    List<Review> findDistinctByRatingBetweenOrderByRatingDesc(double minRating, double maxRating);
+    Review save(Review review);
 
     // Quick searches:
     Page<Review> findAllByOrderByDateDesc(Pageable limit);
     Page<Review> findAllByOrderByRatingDesc(Pageable limit);
     Page<Review> findAllByOrderByRatingAsc(Pageable limit);
-
-    // Find by Wine attributes:
-    List<Review> findByWineId(Long wineId);
-    List<Review> findByWineNameContainingIgnoreCase(String wineName);
 }

@@ -1,6 +1,5 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
@@ -56,42 +55,6 @@ class ReviewServiceImplTest {
         r2.setWine(wine);
 
         reviewList = List.of(r1, r2);
-    }
-
-    @Test
-    void findByDate() {
-        String startDate = "2019-01-01";
-        String endDate = "2019-11-14";
-
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.parse(endDate);
-
-        Mockito.when(repository.findDistinctByDateBetweenOrderByDateDesc(start, end))
-               .thenReturn(reviewList.subList(0, 1));
-
-        assertEquals(1, service.findByDate(startDate, endDate).size());
-    }
-
-    @Test
-    void findByDateToday() {
-        String startDate = "2019-01-01";
-        String endDate = "today";
-
-        LocalDate start = LocalDate.parse(startDate);
-        LocalDate end = LocalDate.now();
-
-        Mockito.when(repository.findDistinctByDateBetweenOrderByDateDesc(start, end))
-               .thenReturn(reviewList);
-
-        assertEquals(2, service.findByDate(startDate, endDate).size());
-    }
-
-    @Test
-    void findByInvalidDate() {
-        String startDate = "2018-13-01";
-        String endDate = "today";
-
-        assertThrows(InvalidDateException.class, () -> service.findByDate(startDate, endDate));
     }
 
     @Test

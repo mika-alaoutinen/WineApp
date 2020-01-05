@@ -19,61 +19,19 @@ public class WineController {
         this.service = new WineServiceImpl(repository);
     }
 
-// --- Find wines ---
+// --- CRUD methods ---
     @GetMapping(baseUrl)
     public List<Wine> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/name/{name}")
-    public List<Wine> findByName(@PathVariable String name) {
-        return service.findByName(name);
-    }
-
-    @GetMapping(baseUrl + "/type/{type}")
-    public List<Wine> findByType(@PathVariable String type) {
-        return service.findByType(type);
-    }
-
-    @GetMapping(baseUrl + "/country/{country}")
-    public List<Wine> findByCountry(@PathVariable String country) {
-        return service.findByCountry(country);
-    }
-
-    @GetMapping(baseUrl + "/quantity/{quantity}")
-    public List<Wine> findByQuantity(@PathVariable Double quantity) {
-        return service.findByQuantity(quantity);
-    }
-
-    @GetMapping(baseUrl + "/price")
-    public List<Wine> findByPrice(
-            @RequestParam(name = "minPrice", defaultValue = "0") double minPrice,
-            @RequestParam(name = "maxPrice", defaultValue = "9999") double maxPrice) {
-
-        return service.findByPrice(minPrice, maxPrice);
-    }
-
-    @GetMapping(baseUrl + "/description")
-    public List<Wine> findByDescription(
-            @RequestParam(name = "desc") List<String> description) {
-
-        return service.findByDescription(description);
-    }
-
-    @GetMapping(baseUrl + "/pairing")
-    public List<Wine> findByFoodPairings(
-            @RequestParam(name = "pair") List<String> foodPairings) {
-
-        return service.findByFoodPairings(foodPairings);
-    }
-
     @GetMapping(baseUrl + "/{id}")
     public Wine findById(@PathVariable Long id) {
-        return service.findById(id)
+        return service
+                .findById(id)
                 .orElseThrow(() -> new WineNotFoundException(id));
     }
 
-// --- Add, edit and delete ---
     @PostMapping(baseUrl)
     @ResponseStatus(HttpStatus.CREATED)
     public Wine add(@RequestBody Wine newWine) {
@@ -91,7 +49,7 @@ public class WineController {
         service.delete(id);
     }
 
-// --- Additional functionality ---
+// --- Other methods ---
     @GetMapping(baseUrl + "/count")
     public long count() {
         return service.count();
@@ -99,11 +57,11 @@ public class WineController {
 
     @GetMapping(baseUrl + "/search")
     public List<Wine> search(
-            @RequestParam(name = "name", required = false) String name,
-            @RequestParam(name = "type", required = false) String type,
-            @RequestParam(name = "countries", required = false) List<String> countries,
-            @RequestParam(name = "volumes", required = false) List<Double> volumes,
-            @RequestParam(name = "priceRange", required = false) Integer[] priceRange) {
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) List<String> countries,
+            @RequestParam(required = false) List<Double> volumes,
+            @RequestParam(required = false) Integer[] priceRange) {
 
         return service.search(name, type, countries, volumes, priceRange);
     }

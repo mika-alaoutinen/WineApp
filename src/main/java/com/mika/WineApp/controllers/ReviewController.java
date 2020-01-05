@@ -23,40 +23,19 @@ public class ReviewController {
         this.service = new ReviewServiceImpl(repository, wineRepository);
     }
 
-// --- Find based on review ---
+// --- Find reviews ---
     @GetMapping(baseUrl)
     public List<Review> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/author/{author}")
-    public List<Review> findByAuthor(@PathVariable String author) {
-        return service.findByAuthor(author);
-    }
-
-    @GetMapping(baseUrl + "/date")
-    public List<Review> findByDate(
-            @RequestParam(name = "start", defaultValue = "2010-01-01") String start,
-            @RequestParam(name = "end", defaultValue = "today") String end) {
-
-        return service.findByDate(start, end);
-    }
-
-    @GetMapping(baseUrl + "/rating")
-    public List<Review> findByRating(
-            @RequestParam(name = "minRating", defaultValue = "0") double minRating,
-            @RequestParam(name = "maxRating", defaultValue = "5.0") double maxRating) {
-
-        return service.findByRating(minRating, maxRating);
-    }
-
     @GetMapping(baseUrl + "/{id}")
     public Review findById(@PathVariable Long id) {
-        return service.findById(id)
+        return service
+                .findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
-// --- Find based on wine ---
     @GetMapping(baseUrl + "/wine/id/{wineId}")
     public List<Review> findByWineId(@PathVariable Long wineId) {
         return service.findByWineId(wineId);
@@ -93,26 +72,26 @@ public class ReviewController {
 
     @GetMapping(baseUrl + "/search")
     public List<Review> search(
-            @RequestParam(name = "author", required = false) String author,
-            @RequestParam(name = "dateRange", required = false) String[] dateRange,
-            @RequestParam(name = "ratingRange", required = false) Double[] ratingRange) {
+            @RequestParam(required = false) String author,
+            @RequestParam(required = false) String[] dateRange,
+            @RequestParam(required = false) Double[] ratingRange) {
 
         return service.search(author, dateRange, ratingRange);
     }
 
-    // --- Quick searches ---
+// --- Quick searches ---
     @GetMapping(baseUrl + "/search/newest")
-    public List<Review> findNewest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findNewest(@RequestParam(defaultValue = "10") int limit) {
         return service.findNewest(limit);
     }
 
     @GetMapping(baseUrl + "/search/best")
-    public List<Review> findBest(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findBest(@RequestParam(defaultValue = "10") int limit) {
         return service.findBestRated(limit);
     }
 
     @GetMapping(baseUrl + "/search/worst")
-    public List<Review> findWorst(@RequestParam(name = "limit", defaultValue = "10") int limit) {
+    public List<Review> findWorst(@RequestParam(defaultValue = "10") int limit) {
         return service.findWorstRated(limit);
     }
 }
