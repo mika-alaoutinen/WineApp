@@ -5,8 +5,6 @@ import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
@@ -26,9 +24,7 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
         datePredicate(root, builder);
         ratingPredicate(root, builder);
 
-        // Get results in descending order:
-        query.orderBy(builder.desc(root.get("date")));
-
+        query.orderBy(createQueryOrder(root, builder));
         return super.createConjunction(builder, predicates);
     }
 
@@ -52,5 +48,13 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
             Predicate predicate = builder.between(root.get("rating"), ratingRange[0], ratingRange[1]);
             super.predicates.add(predicate);
         }
+    }
+
+    private  List<Order> createQueryOrder(Root<Review> root, CriteriaBuilder builder) {
+        return List.of(
+                builder.desc(root.get("date")),
+                builder.asc(root.get("author")),
+                builder.desc(root.get("rating"))
+        );
     }
 }
