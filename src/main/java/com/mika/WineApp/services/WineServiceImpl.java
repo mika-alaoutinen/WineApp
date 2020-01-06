@@ -8,6 +8,7 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,21 @@ public class WineServiceImpl implements WineService {
         return repository.count();
     }
 
+    public List<String> findCountries() {
+        var countries = repository.findAllCountries();
+        return sortAlphabetically(countries);
+    }
+
+    public List<String> findDescriptions() {
+        var descriptions = repository.findAllDescriptions();
+        return sortAlphabetically(descriptions);
+    }
+
+    public List<String> findFoodPairings() {
+        var foodPairings = repository.findAllFoodPairings();
+        return sortAlphabetically(foodPairings);
+    }
+
     public List<Wine> search(String name,
                              String type,
                              List<String> countries,
@@ -72,5 +88,10 @@ public class WineServiceImpl implements WineService {
         } catch (IllegalArgumentException e) {
             throw new InvalidWineTypeException(type);
         }
+    }
+
+    private List<String> sortAlphabetically(List<String> list) {
+        Collections.sort(list);
+        return list;
     }
 }

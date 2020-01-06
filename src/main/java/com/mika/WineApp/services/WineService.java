@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface WineService extends CrudService<Wine> {
     Wine add (Wine newWine);
+
+    List<String> findCountries();
+    List<String> findDescriptions();
+    List<String> findFoodPairings();
+
     List<Wine> search(String name,
                       String type,
                       List<String> countries,

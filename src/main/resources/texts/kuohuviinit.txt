@@ -59,7 +59,7 @@ Päivämäärä: 30.4.2017
 Maa: Espanja
 Hinta: 8.29 € (0.75 l)
 Kuvaus: Puolimakea, keskihapokas, sitruksinen, persikkainen, kevyen passionhedelmäinen, hennon yrttinen
-SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoat, kana ja kalkkuna, itämainen ruoka
+SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, kana ja kalkkuna, itämainen ruoka
 url: https://www.alko.fi/tuotteet00787/Jaume-Serra-Oodi-Vapaudelle-Cava-Semi-Seco 
 ArvosteluMika: Viinissä on kirpakka, mineraalinen, hieman makea ja omenainen tuoksu. Viinin ensimaku on melko hapokas, jonkin verran mineraalinen mutta kuitenkin pehmeä. Jälkimaku on puolikuiva mutta kepeä ja aavistuksen sitruunainen. Maussa on mietoa hedelmäisyyttä, mutta viini on enemmän kuiva kuin makea. Varsin tasainen ja miellyttävä kokonaisuus.
 ArvosteluSalla: Makeahko, kevyen hedelmäinen tuoksu. Maku on melko tasainen, ja siinä on trooppista hedelmäisyyttä. Jälkimaussa esiin nousee myös kirpakkuutta. Tasapainoinen ja miellyttävä kokonaisuus.
@@ -70,7 +70,7 @@ Päivämäärä: 18.04.2015
 Maa: Ranska
 Hinta: 7.85 € (0.75 l)
 Kuvaus: Puolikuiva, keskihapokas, metsämansikkainen, vadelmainen, kevyen sitruksinen
-SopiiNautittavaksi: seurustelujuomana, makeat jälkiruuat, itämainen ruoka, salaatit ja kasvisruoka
+SopiiNautittavaksi: seurustelujuomana, makea jälkiruoka, itämainen ruoka, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet21767/ 
 ArvosteluMika: Alussa maistuu hennon hapokkaalta, mutta happoisuus tasaantuu nopeasti. Varsin miedon ja tasaisen makuinen, maistuu kevyen mansikkaiselta. Hapokkuus tulee uudestaan esiin jälkimakuna mutta myös varsin kevyesti. Viinistä jää vaikutelmana lähinnä vain hento hapokkuus. Maku on hyvin mieto.
 ArvosteluSalla: Väri on hailakan persikkaisen vaaleanpunainen. Pehmeän marjainen ja kesäinen maku.
@@ -81,7 +81,7 @@ Päivämäärä: 16.3.2019
 Maa: Italia
 Hinta: 12.98 € (0.75 l)
 Kuvaus: Puolikuiva, hapokas, punaomenainen, sitrusmarmeladinen, päärynäinen, hennon paahteinen
-SopiiNautittavaksi: aperitiivina, äyräiset, seurustelujuomana, pikkusuolaiset
+SopiiNautittavaksi: aperitiivi, äyräiset, seurustelujuomana, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/940117/ 
 ArvosteluMika: Ensivaikutelma viinistä on melko kuiva ja aluksi suhteellisen mieto, mutta jälkimakuun kehittyy selvästi enemmän potkua; jälkimaku on kohtuullisen mineraalinen ja paahteinen, kuten viinin kuvaus lupaa. Mineraalisuuden ja hapokkuuden lisäksi viinistä nousee lähinnä esiin kevyt omenaisuus. Kokonaisuutena varsin neutraali kuohuviini. Nauttisin tätä todennäköisesti mieluiten paljaaltaan, sillä ainakin makeiden jälkiruokien kumppaniksi tämä on kenties turhan kuiva ja mineraalinen.
 ArvosteluSalla: Hyvin mieto, raikas tuoksu. Maku on melko tasainen eikä liian hapokas, ja siinä on myös hentoa kirpeyttä. Mielestäni viini on aika keskiverto kuohuviini eikä herätä suuria tunteita; toisaalta se on helpommin juotava kuin useimmat kuohuviinit.
@@ -93,7 +93,7 @@ Päivämäärä: 16.6.2014
 Maa: Saksa
 Hinta: 7.79 € (0.75 l)
 Kuvaus: Makea, hapokas, pirskahteleva, runsaan sitruksinen, kevyen sitruunankuorinen, raikas, keltainen, samea
-SopiiNautittavaksi: seurustelujuomana, makeiden jälkiruokien kanssa
+SopiiNautittavaksi: seurustelujuomana, makea jälkiruoka
 url: http://www.alko.fi/tuotteet/606717/ 
 ArvosteluMika: Tuoksu on sitruunasen hapokas, lähinnä jaffainen. Maistuu lähinnä sitruunalonkerolta, joskaan ei ole hirveän vahvan makuinen. Ei juuri alkoholia. Miellyttävän kevyt kesäjuoma, mutta ei tätä viiniksi tunnista. Ei ole hintansa väärti. Ei alkoholia, ei pärinää.
 ArvosteluSalla: Väri on pirtsakka, ja juoma näyttää limpparilta. Limpparimaisuus on havaittavissa myös tuoksussa ja maussa. Sitruunainen ja lonkeromainen maku. Maistuu varmasti parhaiten teineille.
@@ -105,7 +105,6 @@ Päivämäärä: 23.7.2016
 Maa: Saksa
 Hinta: 7.20 € (0.75 l)
 Kuvaus: Makea, keskihapokas, raparperinen, makean marjainen, raikas
-Huom: alkomehua vain 6.9 %.
 SopiiNautittavaksi: seurustelujuomana, marjat ja hedelmät
 url: http://www.alko.fi/tuotteet/637567/
 ArvosteluMika: Väri on raparperinen? Tai ehkä persikkainen. Tuoksu on pirtsakan kirpeä ja marjainen, joskin siinä on myös hieman sitruunaista kirpeyttä. Ensimaku on melko makea ja miellyttävän hiilihappoinen. Jälkimaussa nousee esiin raparperinen maku, joka viipyilee suussa hyvän tovin. Viini on myös jonkin verran hapan, mikä tasapainottaa sen makeutta miellyttävästi, eikä se näin ole kokonaisuutena erityisen makea kuohuviiniksi. Kokonaisuutena miellyttävä ja hieman erikoinen kuohuviini.
@@ -118,7 +117,7 @@ Päivämäärä: 20.12.2014
 Maa: Saksa
 Hinta: 8.50 € (0.75 l)
 Kuvaus: Puolimakea, hapokas, pirskahteleva, hedelmäinen, kanelinen, kevyen glögimausteinen
-SopiiNautittavaksi: seurustelujuomana, makeat jälkiruuat, maljakuohuviini ja juustot
+SopiiNautittavaksi: seurustelujuomana, makea jälkiruoka, maljakuohuviini, juustot
 url: http://www.alko.fi/tuotteet/640537/
 ArvosteluMika: Ensimaku on mausteinen ja kanelinen. Jälkimaku on hennon piparinen. Kokonaisuutena jokseenkin hapokas ja miedon makea. Juoma on tunnelmaltaan ehdottomasti jouluinen. Ei välttämättä erityisen helposti juotava, mutta ilman muuta mielenkiintoinen.
 ArvosteluSalla: Miellyttävän mausteinen – ei liian jouluinen. Miedon glöginen. Joulumieltä nestemäisessä muodossa.
