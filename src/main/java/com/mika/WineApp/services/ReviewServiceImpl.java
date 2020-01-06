@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +80,10 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
+        if (author == null && dateRange == null && ratingRange == null) {
+            return  new ArrayList<>();
+        }
+
         LocalDate[] dates = null;
 
         if (dateRange != null) {
