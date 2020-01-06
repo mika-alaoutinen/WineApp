@@ -213,7 +213,7 @@ public class TextParser {
                 .map(String::strip)
                 .map(String::toLowerCase)
                 .map(word -> word.replace(".", ""))
-                .filter(word -> !word.isBlank())
+                .filter(word -> !word.isBlank() && word.length() > 2)
                 .collect(Collectors.toList());
     }
 
