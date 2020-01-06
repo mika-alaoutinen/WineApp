@@ -311,7 +311,7 @@ Arvosana: 4.25 S 4 M
 VIINI: Luna Negra Merlot
 Päivämäärä: 8.7.2015
 Maa: Chile
-Hinta: 18.99 € / 2 l
+Hinta: 18.99 € (2 l)
 Kuvaus: Marjaisa ja raikas,
 	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
 SopiiNautittavaksi: pikkusuolaiset, kana ja kalkkuna, porsas, pasta ja pizza
@@ -466,7 +466,7 @@ Arvosana: 3.5 M S
 VIINI: Santiago 1541 Syrah Cabernet Malbec
 Päivämäärä: 31.10.2016
 Maa: Chile
-Hinta: 7.98 € / 0.75 l
+Hinta: 7.98 € (0.75 l)
 Kuvaus: Mehevä & hilloinen,
 Täyteläinen, keskitanniininen, tumman marjainen, luumuinen, kevyen paprikainen, yrttinen
 SopiiNautittavaksi: kana ja kalkkuna, porsas, grilliruoka, noutopöytä.
@@ -479,7 +479,7 @@ Arvosana: 2 M 3 S
 VIINI: San-Tiago Merlot Shiraz
 Päivämäärä: 31.12.2014
 Maa: Espanja
-Hinta: 2.66 € / l (lieferello.de)
+Hinta: 7.98 € (3 l)
 Kuvaus: Marjaisa ja raikas
 SopiiNautittavaksi: liharuoat, juustot, seurustelujuomana
 url: http://alkostore24.com/fi/gran-san-tiago-merlot-shiraz.html
