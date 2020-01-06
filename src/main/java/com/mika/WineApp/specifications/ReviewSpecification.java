@@ -10,15 +10,15 @@ import java.util.Date;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
+    private String author;
     private LocalDate[] dateRange;
     private Double[] ratingRange;
-    private Review review;
 
-    public ReviewSpecification(Review review, LocalDate[] dateRange, Double[] ratingRange) {
+    public ReviewSpecification(String author, LocalDate[] dateRange, Double[] ratingRange) {
         super();
+        this.author = author;
         this.dateRange = dateRange;
         this.ratingRange = ratingRange;
-        this.review = review;
     }
 
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
@@ -33,9 +33,9 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
     }
 
     private void authorPredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (review.getAuthor() != null) {
+        if (author != null && !author.isEmpty()) {
             Expression<String> rootAuthor = builder.lower(root.get("author"));
-            Predicate predicate = builder.like(rootAuthor, super.formatString(review.getAuthor()));
+            Predicate predicate = builder.like(rootAuthor, super.formatString(author));
             super.predicates.add(predicate);
         }
     }
