@@ -5,7 +5,6 @@ import com.mika.WineApp.models.WineType;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -33,6 +32,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
         countryPredicate(root, builder);
         volumePredicate(root, builder);
 
+        query.orderBy(createQueryOrder(root, builder));
         return super.createConjunction(builder, super.predicates);
     }
 
@@ -83,5 +83,15 @@ public class WineSpecification extends SuperSpecification implements Specificati
             Predicate predicate = super.createDisjunction(builder, volumePredicates);
             super.predicates.add(predicate);
         }
+    }
+
+    private  List<Order> createQueryOrder(Root<Wine> root, CriteriaBuilder builder) {
+        return List.of(
+                builder.asc(root.get("type")),
+                builder.asc(root.get("volume")),
+                builder.asc(root.get("country")),
+                builder.asc(root.get("name")),
+                builder.asc(root.get("price"))
+        );
     }
 }
