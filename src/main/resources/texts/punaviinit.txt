@@ -2,7 +2,7 @@
 Päivämäärä: 18.04.2018
 Maa: Yhdysvallat
 Hinta: 13.49 € (0.75 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Täyteläinen, keskitanniininen, karhunvatukkahilloinen, mustikkainen, luumuinen, mokkainen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, pasta ja pizza, grilliruoka
 url: https://www.alko.fi/tuotteet/430067/Apothic-Dark-2015
@@ -15,7 +15,7 @@ VIINI: Barone Montalto Nero d’Avola Collezione di Famiglia Passivento
 Päivämäärä: 27.2.2016
 Maa: Italia
 Hinta: 32.99 € (3 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Täyteläinen, keskitanniininen, makean luumuinen, kirsikkahilloinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, miedot juustot, pasta ja pizza
 url: https://www.alko.fi/tuotteet/466488
@@ -28,7 +28,7 @@ VIINI: Betola Organic Monastrell 2014
 Päivämäärä: 27.2.2016
 Maa: Espanja
 Hinta: 7.98 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, tanniininen, kypsän karpaloinen, karhunvatukkainen, mausteinen
 SopiiNautittavaksi: grilliruoka, mausteiset ja lihaisat makkarat, possu, nauta
 url: http://www.alko.fi/tuotteet/459007
@@ -41,7 +41,7 @@ VIINI: Big Top Zinfandel 2016
 Päivämäärä: 5.8.2018
 Maa: Yhdysvallat
 Hinta: 13.60 € (1 l)
-Kuvaus: Mehevä ja hillionen
+Kuvaus: Mehevä ja hillionen,
 Keskitäyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mausteinen, hennon mokkainen
 SopiiNautittavaksi: grilliruoka, porsas, nauta, seurustelujuomana
 url: https://www.alko.fi/tuotteet/453178
@@ -54,7 +54,7 @@ VIINI: Blue Nun Merlot
 Päivämäärä: 22.10.2017
 Maa: Ranska
 Hinta: 19.98 € (2 l)
-Kuvaus: Marjaisa ja raikas
+Kuvaus: Marjaisa ja raikas,
 Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, mustikkainen, kevyen vaniljainen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, pikkusuolaiset, porsas
 url: https://www.alko.fi/tuotteet/451158/
@@ -67,7 +67,7 @@ VIINI: Café Culture Coffee Mocha Pinotage 2015
 Päivämäärä: 25.6.2016
 Maa: Etelä-Afrikka
 Hinta: 9.99 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, tumman luumuinen, karhunvatukkahilloinen, runsaan mokkainen, vaniljainen
 SopiiNautittavaksi: grilliruoka, lammas, nauta, mausteiset ja lihaisat makkarat
 url: http://www.alko.fi/tuotteet/402267/
@@ -80,7 +80,7 @@ VIINI: Cape Zebra Cabernet Sauvignon Merlot 2014
 Päivämäärä: 8.6.2015
 Maa: Etelä-Afrikka, Coastal Region
 Hinta: 8.29 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, kevyen luumuinen, herukkainen, mausteinen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, pikkusuolaiset
 url: http://www.alko.fi/tuotteet/439447/ 
@@ -92,7 +92,7 @@ Arvosana: 3.25 M S
 VIINI: Carlo Rossi California Red
 Päivämäärä: 24.12.2014
 Maa: Yhdysvallat, Kalifornia
-Hinta: 7.77 € (0.75 l)
+Hinta: 7.77 € (0.75 l),
 Kuvaus: Pehmeä ja hedelmäinen
 	Kevyt, vähätanniininen, makeahko, mehumainen, hennon mansikkainen
 SopiiNautittavaksi: seurustelujuomana, kana ja kalkkuna, porsas, itämainen ruoka
@@ -105,7 +105,7 @@ VIINI: Chill Out Smooth & Soft Cabernet Sauvignon 2016
 Päivämäärä: 14.4.2017
 Maa: Australia
 Hinta: 27.95 € (3 l)
-Kuvaus:	Mehevä ja hilloinen
+Kuvaus:	Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, kirsikkainen, puolukkainen, yrttinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, porsas, grilliruoka, mausteiset ja lihaisat makkarat
 url: https://www.alko.fi/tuotteet/435748
@@ -118,7 +118,7 @@ VIINI: Curiousity Tempranillo 2017
 Päivämäärä: 10.11.2018
 Maa: Espanja
 Hinta: 26.54 € (3 l)
-Kuvaus:	Mehevä ja hilloinen
+Kuvaus:	Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, karhunvatukkainen, mustikkainen, kirsikkainen, kevyen mausteinen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, tapas ja antipasti, seurustelujuomana
 url: https://www.alko.fi/tuotteet/429978/
@@ -131,7 +131,7 @@ VIINI: Dimension Shiraz Malbec 2016
 Päivämäärä: 25.1.2017
 Maa: Etelä-Afrikka
 Hinta: 8.48 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 	Täyteläinen, tanniininen, karhunvatukkahilloinen, tumman kirsikkainen, mokkainen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, pataruoat
 url: https://www.alko.fi/tuotteet/453747/Dimension-Shiraz-Malbec-2016
@@ -144,7 +144,7 @@ VIINI: Doppio Passo Primitivo 2016
 Päivämäärä: 6.10.2017
 Maa: Italia
 Hinta: 29.99 € (3 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, puolikuiva, makean kirsikkainen, marjahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, seurustelujuomana, pikkusuolaiset, noutopöytä
 url: https://www.alko.fi/tuotteet/432548
@@ -157,7 +157,7 @@ VIINI: Earth Balance Merlot Cabernet Sauvignon 2014
 Päivämäärä: 24.9.2016
 Maa: Chile
 Hinta: 15.79 € (1.5 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 	Täyteläinen, keskitanniininen, mustaherukkainen, kypsän karpaloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, mausteiset ja lihaisat makkarat, noutopöytä, porsas
 url: http://www.alko.fi/tuotteet/459178/
@@ -171,7 +171,7 @@ VIINI: Evergreen Organic Merlot 2015
 Päivämäärä: 24.3.2017
 Maa: Ranska
 Hinta: 29.94 € (3 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, puolikuiva, kirsikkahilloinen, metsämarjainen, mausteinen, kevyen vaniljainen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, salaatit ja kasvisruoka, noutopöytä
 url: https://www.alko.fi/tuotteet/463308
@@ -183,7 +183,7 @@ VIINI: Expresso Mokka Pinotage 2016
 Päivämäärä: 19.5.2017
 Maa: Etelä-Afrikka
 Hinta: 16.99 € (1.5 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, kypsän kirsikkainen, kevyen luumuinen, mustikkahilloinen, maitokahvinen, mokkainen
 SopiiNautittavaksi: grilliruoka, mausteiset makkarat, porsas, seurustelujuoma
 url: https://www.alko.fi/tuotteet/442588/
@@ -196,7 +196,7 @@ VIINI: Frame Pinot Noir 2016
 Päivämäärä: 28.12.2017
 Maa: Saksa
 Hinta: 20.98 € (2 l)
-Kuvaus: Marjaisa ja raikas
+Kuvaus: Marjaisa ja raikas,
 Keskitäyteläinen, keskitanniininen, vadelmainen, kirsikkainen, hennon vaniljainen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, rasvainen kala, salaatit ja kasvisruoka, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet/477968
@@ -209,7 +209,7 @@ VIINI: Fuzion The Coffee Shop Red Blend
 Päivämäärä: 17.10.2016
 Maa: Argentiina
 Hinta: 9.95 € (0.75 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Täyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mokkainen, kevyen suklainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, porsas, pikkusuolaiset
 url: http://www.alko.fi/tuotteet/458667/
@@ -222,7 +222,7 @@ VIINI: Gato Negro Cabernet Sauvignon Shiraz
 Päivämäärä: 27.10.2015
 Maa: Chile
 Hinta: 8.98 € (1 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 	Keskitäyteläinen, keskitanniininen, mustaherukkainen, mustikkainen, kevyen 	tamminen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, miedot makkarat
 url: http://www.alko.fi/tuotteet/405698
@@ -235,7 +235,7 @@ VIINI: Gnarly Head Pinot Noir 2017
 Päivämäärä: 19.9.2019
 Maa: Yhdysvallat
 Hinta: 35.99 € (3 l)
-Kuvaus: Marjaisa ja raikas
+Kuvaus: Marjaisa ja raikas,
 Keskitäyteläinen, keskitanniininen, vadelmainen, mesimarjainen, kirsikkainen, mokkainen, mausteinen
 SopiiNautittavaksi: grilliruoka, kana ja kalkkuna, seurustelujuoma, salaatit ja kasvisruoka
 url: https://www.alko.fi/tuotteet/448098
@@ -248,7 +248,7 @@ VIINI: Hannibal
 Päivämäärä: 26.03.2016
 Maa: Espanja
 Hinta: 6.99 € (0.75 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 	Keskitäyteläinen, vähätanniininen, makea, kypsän marjainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, miedot juustot
 url: http://www.alko.fi/tuotteet/004246/
@@ -261,12 +261,10 @@ VIINI: Icono Selección Special
 Päivämäärä: 6.10.2019
 Maa: Espanja
 Hinta: 20.98 € (2 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, kypsän kirsikkainen, mansikkahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, miedot makkarat, porsas, pataruoat
-Oliko helposti juotavaa: 
 url: https://www.alko.fi/tuotteet/480848
-
 ArvosteluMika: Viinissä on täyteläisen kirsikkainen tuoksu ja kenties hiven mausteisuutta. Ensivaikutelma mausta on keksitäyteläinen ja -tanniininen. Viinissä on runsas suutuntuma ja maussa päällimmäisenä esiin nousee hapan kirsikka. Erityisesti jälkimaussa nousee esiin myös mausteisuutta, mikä jättää viinille kevyen kirpakan jälkimaun. Viinistä jää myös vahvan tanniininen suutuntuma. Tämä on selvästi enemmän ruoka- kuin seurusteluviini, ja sopii varmasti hyvin esim. erilaisten pataruokien kumppaniksi. Kokonaisuutena viinissä on tuhti ja runsas suutuntuma, mutta se ei kuitenkaan ole liian raskas ollakseen miellyttävä.
 ArvosteluSalla: Tuoksu on täyteläinen ja mehevän kirsikkainen. Ensimaussa tuntuu vahvasti kirsikan happamuus sekä mausteisuus, mutta maku pehmenee jälkimakua kohden. Viinistä jää kuivahko ja happamahko suutuntuma, minkä takia se lienee parempi ruoka- kuin seurustelujuomana. Se sopii varmastikin monenlaisten liharuokien kumppaniksi. Kokonaisuutena viini on melko mieleen painumaton, mutta ihan jees.
 Arvosana: 3.25 M S
@@ -276,10 +274,9 @@ VIINI: Inception Deep Layered Red 2014
 Päivämäärä: 17.2.2017
 Maa: Etelä-Afrikka
 Hinta: 22.89 € (2 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, vähätanniininen, puolimakea, kirsikkahilloinen, mustikkainen, vaniljainen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, porsas, itämainen ruoka
-Oliko helposti juotavaa: 
 url: https://www.alko.fi/tuotteet/903468
 ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, ja päällimmäisenä siinä nousee esiin luumu. Lisäksi siinä on jonkin verran makeutta, melko vahvaa mausteisuutta ja kenties tammea. Viinin ensimaku on melko makea ja mokkainen sekä hennon marjainen. Ensimaun jälkeen viiniin kehittyy selkeästi happamuutta, syvää luumuisuutta ja jonkin verran kitkeryyttä. Ensimaku oli varsin kepeä ja makeahko, mutta jälkimaku on selvästi hapan ja puolikuiva. Kokonaisuutena viini on varsin täyteläinen ja kohtuullisen tanniininen. Viini voisi sopia hyvin esimerkiksi mausteisen broileriruoan kanssa. Kokonaisuutena mielenkiintoinen ja varsin vivahteikas viini, joka sopii myös seurustelujuomaksi.
 ArvosteluSalla: Väri on erittäin tumma kirsikanpunainen. Tuoksun suhteen olen samaa mieltä edellisen kanssa. Maku on täyteläinen ja samettisen pehmeä. Siinä tuntuu mokkaisuus sekä tummat marjat. Viinin maku kehittyy suussa tasaisesti – siirtymä ensimausta jälkimaun viimeiseen häivähdykseen on sulava ja saumaton. Viinipaketin kyljessä suositellaan viiniä esimerkiksi tumman suklaan kaveriksi, ja uskon, että ne muodostaisivatkin hyvän parivaljakon. Viinin maut pääsevät kuitenkin niin hyvin esiin seurustelujuomana, etten välttämättä yhdistäisi sitä minkään ruoan kanssa.
@@ -290,7 +287,7 @@ VIINI: JP. Chenet Cabernet Syrah 2018
 Päivämäärä: 18.8.2019
 Maa: Ranska
 Hinta: 31.98 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, mustikkainen, vadelmainen, kevyen mustaherukkainen, mausteinen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, noutopöytä, grilliruoka
 url: https://www.alko.fi/tuotteet/005312 
@@ -302,7 +299,7 @@ VIINI: Juno Shiraz 2016
 Päivämäärä: 6.4.2018
 Maa: Etelä-Afrikka
 Hinta: 9.98 € (1 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, suklainen, kahvinen, hennon mausteinen
 SopiiNautittavaksi: nauta, porsas, grilliruoka, seurustelujuomana
 url: https://www.alko.fi/tuotteet/487128/Juno-Shiraz-2016-kartonkit-lkki
@@ -315,7 +312,7 @@ VIINI: Luna Negra Merlot
 Päivämäärä: 8.7.2015
 Maa: Chile
 Hinta: 18.99 € / 2 l
-Kuvaus: Marjaisa ja raikas
+Kuvaus: Marjaisa ja raikas,
 	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
 SopiiNautittavaksi: pikkusuolaiset, kana ja kalkkuna, porsas, pasta ja pizza
 url: http://www.alko.fi/tuotteet/005386/ 
@@ -328,7 +325,7 @@ VIINI: Lyngrove Reserve Shiraz Pinotage 2014
 Päivämäärä: 12.11.2016
 Maa: Etelä-Afrikka
 Hinta: 8.99 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, karhunvatukkainen, tumman luumuinen, mokkainen, hennon yrttinen
 SopiiNautittavaksi: nauta, lammas, grilliruoka, voimakkaat juustot
 url: http://www.alko.fi/tuotteet/473107/ 
@@ -341,7 +338,7 @@ VIINI: Maestro Italiano Nero d’Avola Syrah
 Päivämäärä: 11.5.2018
 Maa: Italia
 Hinta: 31.99 € (3 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 	Täyteläinen, keskitanniininen, karpaloinen, kirsikkahilloinen, kevyen mausteinen
 SopiiNautittavaksi: noutopöytä, porsas, kana ja kalkkuna, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/472338/
@@ -354,7 +351,7 @@ VIINI: Mayu Reserva Syrah Appassimento
 Päivämäärä: 18.1.2019
 Maa: Chile
 Hinta: 35.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, kirsikkahilloinen, mesimarjainen, maitokaakaoinen, tamminen
 SopiiNautittavaksi: grilliruoka, porsas, miedot juustot, mausteiset ja lihaisat makkarat
 url: https://www.alko.fi/tuotteet/94726
@@ -367,7 +364,7 @@ VIINI: Melnik 13
 Päivämäärä: 27.8.2016
 Maa: Bulgaria
 Hinta: 7.98 € (0.75 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, puolimakea, kypsän marjainen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, voimakkaat juustot, itämainen ruoka, grilliruoka
  
@@ -381,10 +378,9 @@ VIINI: Millcreek Merlot
 Päivämäärä: 31.10.2017
 Maa: Makedonia
 Hinta: 25.98 € (3 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, puolimakea, makean kirsikkainen, kypsän karpaloinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, pasta ja pizzat, noutopöytä, pikkusuolaiset
- 
 url: https://www.alko.fi/tuotteet/005375/
 ArvosteluMika: Viinissä on melko hapan, kenties karpaloinen, ja hieman savuinen tuoksu. Viiniä hölskytellessä tuoksuun tulee lisää makeutta; mieleeni tuli savustettu paprikajauhe. Viinin ensimaku on kuivahko, keskitanniininen, melko hapan ja tasaisen makuinen. Maussa päällimmäisenä nousee esiin melko vahva karpaloisuus, joskin etenkin jälkimaussa tuntuu myös kirpakkaa mausteisuutta. Viini kuorruttaa suun pinnat ja jättää jälkeen happaman marjaisen jälkimaun. Minun makuuni vähän turhan hapan ja jopa vähän kitkerä. Ei kuitenkaan mikään kovin raskas viini, ja siinä mielessä sopii varmasti monenlaiseen käyttöön.
 ArvosteluSalla: Mieto, pehmeä ja marjainen tuoksu, jossa tuntuu hieman karpalon kirpeyttä. Maku on tasainen, makeahko ja melko samettinen, ja se jättää miellyttävän suutuntuman. Viini on mielestäni oikein suunmakuinen. Hyvä seurustelujuomana ja varmasti myös monipuolinen ruokaviini; kuvittelisin tämän sopivan hyvin etenkin esimerkiksi kasvisruokien kanssa. Hyvä hinta-laatusuhde.
@@ -406,7 +402,7 @@ VIINI: No Name, kartonkitölkki
 Päivämäärä: 3.9.2017
 Maa: Australia
 Hinta: 8.59 € (1 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, tumman kirsikkainen, mustapippurinen, kevyen paahteinen
 SopiiNautittavaksi: porsas, seurustelujuoma, pikkusuolaiset, grilliruoka
 url: https://www.alko.fi/tuotteet/491248/No-Name-kartonkit-lkki
@@ -419,7 +415,7 @@ VIINI: The Original M8 2014
 Päivämäärä: 26.09.2015
 Maa: Australia
 Hinta: 6.99 € (0.75 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, kirsikkahilloinen, mansikkainen, hennon mausteinen
 SopiiNautittavaksi: grilliruoka, pasta ja pizza, noutopöytä, possu
 url: http://www.alko.fi/tuotteet/499057/
@@ -432,7 +428,7 @@ VIINI: Passento, kartonkitölkki
 Päivämäärä: 17.2.2018
 Maa: Australia
 Hinta: 9.52 € (1 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, kirsikkainen, kypsän mansikkainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, porsas, itämainen ruoka
 url: https://www.alko.fi/tuotteet/438238/Passento-kartonkit-lkki 
@@ -445,7 +441,7 @@ VIINI: Rain Dance Shiraz Ruby Cabernet
 Päivämäärä: 13.10.2018
 Maa: Etelä-Afrikka
 Hinta: 27.95 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, tumman kirsikkainen, karpaloinen, mausteinen, savuinen
 SopiiNautittavaksi: grilliruoka, porsas, miedot makkarat, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/420938 
@@ -458,7 +454,7 @@ VIINI: Santa Helena Syrah Cabernet Sauvignon 2018
 Päivämäärä: 9.7.2019
 Maa: Chile
 Hinta: 29.98 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, herukkainen, tumman luumuinen, karhunvatukkahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, nauta, mausteiset ja lihaisat makkarat, noutopöytä
 url: https://www.alko.fi/tuotteet/429478 
@@ -471,7 +467,7 @@ VIINI: Santiago 1541 Syrah Cabernet Malbec
 Päivämäärä: 31.10.2016
 Maa: Chile
 Hinta: 7.98 € / 0.75 l
-Kuvaus: Mehevä & hilloinen
+Kuvaus: Mehevä & hilloinen,
 Täyteläinen, keskitanniininen, tumman marjainen, luumuinen, kevyen paprikainen, yrttinen
 SopiiNautittavaksi: kana ja kalkkuna, porsas, grilliruoka, noutopöytä.
 url: http://www.alko.fi/tuotteet/428147/ 
@@ -509,7 +505,7 @@ VIINI: Savia Viva Organic A Tinto 2011
 Päivämäärä: 31.10.2014
 Maa: Espanja
 Hinta: 8.49 € (0.75 l)
-Kuvaus: Vivahteikas ja kehittynyt
+Kuvaus: Vivahteikas ja kehittynyt,
 Keskitäyteläinen, keskitanniininen, hapankirsikkainen, karhunvatukkainen, mausteinen, hennon nahkainen (luomuviini)
 SopiiNautittavaksi: lammas, porsas, nauta, pataruoat
 url: http://www.alko.fi/tuotteet/477357/
@@ -521,7 +517,7 @@ VIINI: Scientifically Proven Italian Zinfandel
 Päivämäärä: 1.12.2017
 Maa: Italia
 Hinta: 9.98 € (1 l)
-Kuvaus: Pehmeä ja hedelmäinen
+Kuvaus: Pehmeä ja hedelmäinen,
 Keskitäyteläinen, keskitanniininen, mustikkainen, boysenmarjainen, kevyen viikunainen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, tapas ja antipasti, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet/445168/
@@ -533,7 +529,7 @@ VIINI: Sediba Merlot Shiraz 2017
 Päivämäärä: 10.11.2017
 Maa: Etelä-Afrikka
 Hinta: 15.98 € (1.5 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, tumman marjainen, punaherukkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: grilliruoka, nauta, porsas, pataruoat
 Oliko helposti juotavaa:
@@ -547,7 +543,7 @@ VIINI: Torres Santa Digna Cabernet Sauvignon Reserve 2015
 Päivämäärä: 8.7.2017
 Maa: Chile
 Hinta: 9.99 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, tanniininen, herukkainen, karhunvatukkainen, kevyen paprikainen, mausteinen, hennon timjaminen
 SopiiNautittavaksi: voimakkaat juustot, grilliruoka, nauta, porsas
 url: https://www.alko.fi/tuotteet/005896/Torres-Santa-Digna-Cabernet-Sauvignon-Reserve-2015
@@ -560,7 +556,7 @@ VIINI: The Wanted Zin 2016
 Päivämäärä: 27.8.2017
 Maa: Italia
 Hinta: 33.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, marjahilloinen, tumman kirsikkainen, mausteinen, vaniljainen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, mausteiset makkarat, nauta
 url: https://www.alko.fi/tuotteet/460478
@@ -573,7 +569,7 @@ VIINI: Turtle Dreaming 2017
 Päivämäärä: 23.3.2019
 Maa: Australia
 Hinta: 30.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, karhunvatukkainen, herukkainen, vadelmainen, kevyen mausteinen, hennon kukkainen
 SopiiNautittavaksi: porsas, grilliruoka, noutopöytä, seurustelujuomana
 url: https://www.alko.fi/tuotteet/441598/
@@ -586,7 +582,7 @@ VIINI: Two Oceans Soft & Fruity Red 2015
 Päivämäärä: 8.7.2016
 Maa: Etelä-Afrikka
 Hinta: 6.99 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, karpaloinen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: pikkusuolaiset, grilliruoka, miedot makkarat, nauta
 url: http://www.alko.fi/tuotteet/434227/
@@ -599,7 +595,7 @@ VIINI: Vive la Vie Pinot Noir
 Päivämäärä: 6.12.2018
 Maa: Ranska
 Hinta: 32.99 € (3 l)
-Kuvaus: Marjaisa ja raikas
+Kuvaus: Marjaisa ja raikas,
 Kevyt, keskitanniininen, vadelmainen, kirsikkainen, mausteinen, kevyen lakritsinen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, rasvainen kala, tapas ja antipasti
 url: https://www.alko.fi/tuotteet/430858/
@@ -612,7 +608,7 @@ VIINI: What Else? 2014
 Päivämäärä: 16.12.2017
 Maa: Portugali
 Hinta: 9.98 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, kirsikkainen, boysenmarjainen, mustikkainen, kevyen valkopippurinen
 SopiiNautittavaksi: pataruoat, mausteiset makkarat, voimakkaat juustot, seurustelujuomana
 Oliko helposti juotavaa: 
@@ -626,7 +622,7 @@ VIINI: Zantsi The Luscious Red 2015
 Päivämäärä: 1.5.2018
 Maa: Etelä-Afrikka
 Hinta: 7.49 € (0.75 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, boysenmarjainen, mustikkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: porsas, grilliruoka, noutopöytä, nauta
 url: https://www.alko.fi/products/904447/ 
@@ -639,7 +635,7 @@ VIINI: Zensa Rosso Organico 2016
 Päivämäärä: 8.6.2018
 Maa: Italia
 Hinta: 34.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen
+Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, possu
 url: https://www.alko.fi/tuotteet/909138/
@@ -648,8 +644,14 @@ ArvosteluSalla: Viinin tuoksu on syvä, täyteläinen ja kirsikkainen. Viinin ma
 Arvosana: 4.5 M S
 
 
-VIINI: Zensa Rosso Organico 2016, toinen mielipide
+VIINI: Zensa Rosso Organico 2016
 Päivämäärä: 22.9.2018
+Maa: Italia
+Hinta: 34.99 € (3 l)
+Kuvaus: Mehevä ja hilloinen,
+Keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
+SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, possu
+url: https://www.alko.fi/tuotteet/909138/
 ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, mustaherukkainen, hieman karpaloinen ja mausteinen. Ensivaikutelma mausta on lämmin ja täyteläinen mutta kuitenkin yllättävän kepeä eikä liian tanniininen. Se on myös yllättävän makea, mutta ei missään nimessä mehumainen. Viinin hallitseva maku on vaikeasti tunnistettava, mutta se voisi olla mustikkainen. Lisäksi maussa erottuu vaniljaisuutta ja mausteista kirpakkuutta. Viinin ensimmäinen arvio pitää mielestäni edelleen hyvin paikkansa.
 ArvosteluSalla: Lisäyksenä aiempaan arviointiini: viini tuntuu suussa samettisen pehmeältä, ja siitä jää pehmeä ja makeahko jälkimaku.
 Arvosana: 4.5 M S

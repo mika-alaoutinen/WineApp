@@ -123,8 +123,7 @@ VIINI: Cameleon Organic Sauvignon Blanc Chardonnay 2017
 Päivämäärä: 28.3.2018
 Maa: Argentiina
 Hinta: 33.48 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
-Kuiva, hapokas, viherpäärynäinen, kevyen limettinen, hennon kaktuksinen, kevyen persiljainen
+Kuvaus: Pirteä ja hedelmäinen, kuiva, hapokas, viherpäärynäinen, kevyen limettinen, hennon kaktuksinen, kevyen persiljainen
 SopiiNautittavaksi: noutopöytä, salaatit ja kasvisruoka, pikkusuolaiset, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet62298
 ArvosteluMika: Ensivaikutelma viinin tuoksusta on lämpimän hunajainen ja raikkaan päärynäinen ja kirpakka. Ensivaikutelma viinin mausta on yhtä lailla miellyttävän pehmeä ja hieman hunajainen. Hetken kuluttua viiniin kehittyy kuitenkin huomattavasti mineraalisuutta ja greipin hapokkuutta. Kokonaisvaikutelma on mielenkiintoinen ja vivahteikas. Viini on kuiva ja melko hapokas, muttei kuitenkaan liian vissyinen. Viinin jälkimaku on hennon sitruksinen ja kuiva. Kokonaisuutena miellyttävä ja hieman erikoinen viini, joka käy todennäköisesti hyvin esimerkiksi kalan tai mausteisen broileriruuan kanssa.
@@ -136,8 +135,7 @@ VIINI: Cape Gold
 Päivämäärä: 10.10.2014
 Maa: Etelä-Afrikka
 Hinta: 26.70 € (3 l)
-Kuvaus: Pehmeä ja kepeä
-	Kuiva, keskihapokas, trooppisen hedelmäinen, sitruksinen 
+Kuvaus: Pehmeä ja kepeä kuiva, keskihapokas, trooppisen hedelmäinen, sitruksinen 
 SopiiNautittavaksi: salaatit ja kasvisruoka, vähärasvainen kala, pasta, seurustelujuomana
 url: http://www.alko.fi/tuotteet85828/
 ArvosteluMika: Hento ja miellyttävä sitruksinen tuoksu. Yhtälailla pehmeä, mieto ja tasainen ensipuraisu. Jälkimaku on hieman puraisevamman alkoholinen ja kenties hyvin hennon hedelmäinen. Suuhun jää jokseenkin vissyinen jälkimaku.
@@ -149,7 +147,7 @@ VIINI: Casal Garcia
 Päivämäärä: 8.9.2014
 Maa: Portugali
 Hinta: 8.39 € (0.75 l)
-Kuvaus: vivahteikas & ryhdikäs
+Kuvaus: vivahteikas ja ryhdikäs,
 	puolikuiva, hapokas, pirskahteleva, vihreän omenainen, hennon karviaismainen
 SopiiNautittavaksi: aperitiivi, vähärasvainen kala, salaatit ja kasvisruoka, seurustelujuomana
 url: http://www.alko.fi/tuotteet/008361/ 
@@ -162,7 +160,7 @@ VIINI: Casca Wines Sailing Boat
 Päivämäärä: 28.4.2018
 Maa: Portugali
 Hinta: 28.42 € (3 l)
-Kuvaus: Pirteä & hedelmäinen
+Kuvaus: Pirteä & hedelmäinen,
 Kuiva, hapokas, persikkainen, ananaksinen, kevyen mandariininen, kukkainen, mausteinen
 SopiiNautittavaksi: noutopöytä, pikkusuolaiset, salaatit ja kasvisruoka, seurustelujuomana
 Oliko helposti juotavaa: 
@@ -176,7 +174,7 @@ VIINI: Cerro Blanco Verdejo Chardonnay
 Päivämäärä: 27.9.2014
 Maa: Espanja
 Hinta: 8.69 € (1 l)
-Kuvaus: lempeä ja makeahko
+Kuvaus: lempeä ja makeahko,
 	puolikuiva, keskihapokas, hunajameloninen, karviaismainen, kevyen limettinen 
 SopiiNautittavaksi: aperitiivi, seurustelujuomana, salaatit ja kasvisruoka, pizzat ja pikkulämpimät
 url: http://www.alko.fi/tuotteet27198/
@@ -190,7 +188,7 @@ VIINI: Chill Out Fresh & Fruity 2015
 Päivämäärä: 15.3.2016
 Maa: Australia
 Hinta: 27.90 € (3 l)
-Kuvaus: Pirteä & hedelmäinen
+Kuvaus: Pirteä & hedelmäinen,
 Kuiva, hapokas, sitruksinen, trooppisen hedelmäinen, hennon banaaninen, kevyen toffeinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, pikkusuolaiset, noutopöytä
 url: http://www.alko.fi/tuotteet51978
@@ -204,7 +202,7 @@ VIINI: Chill Out Organic Riesling 2018
 Päivämäärä: 22.9.2019
 Maa: Saksa
 Hinta: 33.89 € (3 l)
-Kuvaus: Vivahteikas ja ryhdikäs
+Kuvaus: Vivahteikas ja ryhdikäs,
 Kuiva, hapokas, aprikoosinen, kypsän limettinen, viheromenainen, mineraalinen, hennon mausteinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, kana ja kalkkuna, noutopöytä, rasvainen kala
 url: http://www.alko.fi/tuotteet06638
@@ -217,7 +215,7 @@ VIINI: Christmas Riesling 2013 (kausituote)
 Päivämäärä: 21.11.2014
 Maa: Saksa
 Hinta: 8.90 € (0.75 l)
-Kuvaus: Pirteä & hedelmäinen
+Kuvaus: Pirteä & hedelmäinen,
 Puolikuiva, hapokas, kypsän sitruksinen, aprikoosinen, keltaluumuinen, mausteinen
 SopiiNautittavaksi: kala, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet01337/
@@ -242,7 +240,7 @@ VIINI: Crudo Catarratto Zibibbo 2018
 Päivämäärä: 28.8.2019
 Maa: Italia
 Hinta: 29.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Puolikuiva, hapokas, persikkainen, kypsän sitruksinen, mangoinen, kukkainen
 SopiiNautittavaksi: Salaatit ja kasvisruoka, seurustelujuomana, kana ja kalkkuna, itämainen ruoka.
 url: https://www.alko.fi/tuotteet97948
@@ -255,7 +253,7 @@ VIINI: Deep Roots Riesling Trocken 2017
 Päivämäärä: 31.12.2018
 Maa: Saksa
 Hinta: 36.50 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, limettinen, keltaluumuinen, kevyen aprikoosinen, mineraalinen, hennon kukkainen
 SopiiNautittavaksi: kana ja kalkkuna, noutopöytä, rasvainen kala, salaatit ja kasvisruoka
 url: https://www.alko.fi/tuotteet10238
@@ -268,7 +266,7 @@ VIINI: Devil’s Rock Riesling
 Päivämäärä: 02.11.2015
 Maa: Saksa
 Hinta: 29.90 € (3 l)
-Kuvaus: Pirteä & hedelmäinen
+Kuvaus: Pirteä & hedelmäinen,
 Puolikuiva, hapokas, kypsän sitruksinen, ananaksinen, viheromenainen, hennon yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, noutopöytä, vähärasvainen kala, itämainen ruoka
 url: http://www.alko.fi/tuotteet76948/
@@ -281,7 +279,7 @@ VIINI: Devil’s Rock Riesling, eri vuosikerta?
 Päivämäärä: 23.11.2018
 Maa: Saksa
 Hinta: 32.49 € (3 l)
-Kuvaus: Pirteä & hedelmäinen
+Kuvaus: Pirteä & hedelmäinen,
 Puolikuiva, hapokas, hunajameloninen, aprikoosinen, klementiininen
 SopiiNautittavaksi: rasvainen kala, kana ja kalkkuna, pizza ja pasta, tapas ja antipasti
 url: http://www.alko.fi/tuotteet76948/
@@ -318,7 +316,7 @@ VIINI: Espiritu de Chile Seleccion White
 Päivämäärä: 25.9.2014
 Maa: Chile
 Hinta: 15.49 € (1.5 l)
-Kuvaus: lempeä ja makeahko
+Kuvaus: lempeä ja makeahko,
            puolikuiva, keskihapokas, hedelmäinen, hennon sitruksinen, kevyen kukkainen
 SopiiNautittavaksi: seurustelu, salaatit ja kasvisruoka, aperitiivi, pizzat ja pikkulämpimät
 url: http://www.alko.fi/tuotteet52988/
@@ -331,7 +329,7 @@ VIINI: FlipFlop Californian White 2013 (kartonkitölkki)
 Päivämäärä: 2.5.2015
 Maa: Yhdysvallat
 Hinta: 8.59 € (1 l)
-Kuvaus: lempeä ja makeahko
+Kuvaus: lempeä ja makeahko,
            puolimakea, keskihapokas, kypsän hedelmäinen, päärynäinen, kevyen kukkainen,
            hennon yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, itämainen ruoka, kana ja kalkkuna.
@@ -345,7 +343,7 @@ VIINI: Frisky Zebras Whispering White
 Päivämäärä: 24.7.2015
 Maa: Etelä-Afrikka
 Hinta: 10.25 € (0.75 l)
-Kuvaus: pirteä ja hedelmäinen
+Kuvaus: pirteä ja hedelmäinen,
            Kuiva, hapokas, kypsän sitruksinen, valkoherukkainen, aprikoosinen, kevyen
            mausteinen
 SopiiNautittavaksi: noutopöytä, seurustelujuomana, salaatit ja kasvisruoka, kana ja kalkkuna
@@ -359,7 +357,7 @@ VIINI: Gazela
 Päivämäärä: 4.3.2016
 Maa: Portugali
 Hinta: 7.98 € (0.75 l)
-Kuvaus: pirteä ja hedelmäinen
+Kuvaus: pirteä ja hedelmäinen,
            Puolikuiva, hapokas, pirskahteleva, vihreän omenainen, sitruksinen
 SopiiNautittavaksi: aperitiivi, seurustelujuomana, salaatit ja kasvisruoka, vähärasvainen kala
 url: http://www.alko.fi/tuotteet43877/
@@ -372,7 +370,7 @@ VIINI: Hardys VR Chardonnay 2016
 Päivämäärä: 9.12.2016
 Maa: Australia
 Hinta: 27.90 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen 
+Kuvaus: Pirteä ja hedelmäinen,
            Puolikuiva, keskihapokas, kypsän sitruksinen, hunajameloninen, kevyen yrttinen
 SopiiNautittavaksi: noutopöytä, salaatit ja kasvisruoka, pasta ja pizza, pikkusuolaiset
 url: https://www.alko.fi/tuotteet68238
@@ -385,7 +383,7 @@ VIINI: Hardys VR Chardonnay 2017
 Päivämäärä: 15.9.2018
 Maa: Australia
 Hinta: 31.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen 
+Kuvaus: Pirteä ja hedelmäinen,
            Puolikuiva, keskihapokas, kypsän sitruksinen, hunajameloninen, kevyen yrttinen
 SopiiNautittavaksi: noutopöytä, salaatit ja kasvisruoka, pasta ja pizza, pikkusuolaiset
 url: https://www.alko.fi/tuotteet68238/
@@ -398,7 +396,7 @@ VIINI: Hedgerow Organic White Wine 2013
 Päivämäärä: 5.5.2015
 Maa: Saksa
 Hinta: 8.99 € (0.75 l)
-Kuvaus: lempeä ja makeahko
+Kuvaus: lempeä ja makeahko,
            puolimakea, keskihapokas, kypsän sitruksinen, hennon aprikoosinen, kevyen yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, itämainen ruoka, kana ja kalkkuna.
 url: http://www.alko.fi/tuotteet/007352/ 
@@ -423,7 +421,7 @@ VIINI: Jacob’s Creek Earth Vine Grape Chardonnay 2017
 Päivämäärä: 3.11.2018
 Maa: Australia
 Hinta: 34.90 € / 3 l
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, keskihapokas, kypsän sitruksinen, keltaluumuinen, yrttinen, kevyen paahteinen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, kana ja kalkkuna, rasvainen kala
 url: https://www.alko.fi/tuotteet38778 
@@ -436,7 +434,7 @@ VIINI: J.P. Chenet Columbard Chardonnay 2015
 Päivämäärä: 1.1.2017
 Maa: Ranska
 Hinta: [lahja – Alkossa 22.70 € / 2 l]
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, hapokas, sitruksinen, päärynäinen, kevyen persikkainen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
 Oliko helposti juotavaa: 
@@ -450,7 +448,7 @@ VIINI: Kumala Chenin Chardonnay 2013
 Päivämäärä: 11.12.2014
 Maa: Etelä-Afrikka
 Hinta: 28.90 € (3 l)
-Kuvaus: Pehmeä ja kepeä
+Kuvaus: Pehmeä ja kepeä,
 	Kuiva, keskihapokas, trooppisen hedelmäinen, kevyen banaaninen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, pizzat ja pikkulämpimät, noutopöytä
 url: http://www.alko.fi/tuotteet83928/
@@ -463,7 +461,7 @@ VIINI: Kungfu Girl Riesling 2014
 Päivämäärä: 15.6.2014
 Maa: Yhdysvallat
 Hinta: 14.99 € (0.75 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Puolikuiva, hapokas, kypsän sitruksinen, päärynäinen, kevyen kukkainen, hennon
 	mausteinen
 SopiiNautittavaksi: itämainen ruoka, kana ja kalkkuna, salaatit ja kasvisruoka, vähärasvainen kala.
@@ -477,7 +475,7 @@ VIINI: Kungfu Girl Riesling 2015
 Päivämäärä: 12.8.2017
 Maa: Yhdysvallat
 Hinta: 14.99 € (0.75 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Puolikuiva, hapokas, kypsän sitruksinen, päärynäinen, kevyen kukkainen, hennon
 	mausteinen
 SopiiNautittavaksi: itämainen ruoka, kana ja kalkkuna, salaatit ja kasvisruoka, vähärasvainen kala.
@@ -490,7 +488,7 @@ VIINI: KWV Moscato 2016
 Päivämäärä: 10.7.2017
 Maa: Etelä-Afrikka
 Hinta: 9.80 € (0.75 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 	Puolimakea, keskihapokas, kypsän sitruksinen, persikkainen, kukkainen
 SopiiNautittavaksi: seurustelujuomana, tulinen ruoka, salaatit ja kasvisruoka, pikkusuolaiset
 url: https://www.alko.fi/tuotteet23897/KWV-Moscato-2016
@@ -503,7 +501,7 @@ VIINI: Laroche Chardonnay L 2016
 Päivämäärä: 13.10.2017
 Maa: Ranska
 Hinta: 34.90 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, hapokas, kypsän sitruksinen, keltaomenainen, kevyen päärynäinen, hennon 	yrttinen
 SopiiNautittavaksi: noutopöytä, rasvainen kala, kasvisruoka ja salaatit, seurustelujuomana
 url: https://www.alko.fi/tuotteet72948
@@ -516,7 +514,7 @@ VIINI: Les Fumées Blanches Sauvignon Blanc 2018
 Päivämäärä: 26.1.2019
 Maa: Ranska
 Hinta: 34.98 € (3 l)
-Kuvaus: Vivahteikas ja ryhdikäs
+Kuvaus: Vivahteikas ja ryhdikäs,
 	Kuiva, hapokas, karviaismainen, herukkainen, passionhedelmäinen, kevyen yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, rasvainen kala, seurustelujuoma, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet60638
@@ -529,7 +527,7 @@ VIINI: Lindeman’s Chardonnay 2016
 Päivämäärä: 6.1.2018
 Maa: Australia
 Hinta: -1  € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Hedelmäinen, kirpakka, trooppisen hedelmäinen, ananaksinen, meloninen
 SopiiNautittavaksi: kana, salaatit, merenelävät
 url:
@@ -542,7 +540,7 @@ VIINI: Luna Negra Chardonnay
 Päivämäärä: 30.01.2016
 Maa: Chile
 Hinta: 18.30 € (2 l)
-Kuvaus: Pehmeä ja kepeä
+Kuvaus: Pehmeä ja kepeä,
 	kuiva, keskihapokas, hedelmäinen, kevyen päärynäinen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pasta ja pizza, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet/008163/
@@ -555,7 +553,7 @@ VIINI: Luna Negra Chardonnay (uudempi)
 Päivämäärä: 3.3.2018
 Maa: Chile
 Hinta: 19.58 € (2 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, keskihapokas, persikkainen, kevyen litsiluumuinen, mausteinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pasta ja pizza, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet/008163/
@@ -568,7 +566,7 @@ VIINI: Magyar Fehér Bor
 Päivämäärä: 15.1.2016
 Maa: Unkari
 Hinta: 26.50 € (3 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 	Puolimakea, keskihapokas, hedelmäinen, kypsän persikkainen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, pikkusuolaiset, itämainen ruoka
 url: http://www.alko.fi/tuotteet49818/
@@ -581,7 +579,7 @@ VIINI: McGuigan Black Label Moscato 2015
 Päivämäärä: 30.8.2016
 Maa: Australia
 Hinta: 9.99 € (0.75 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 	Makea, keskihapokas, pirskahteleva, hedelmäinen, litsiluumuinen, kukkainen
 SopiiNautittavaksi: makea jälkiruoka, seurustelujuoma
 url: http://www.alko.fi/tuotteet82497/
@@ -594,7 +592,7 @@ VIINI: Montalto Cataratto Viognier 2014
 Päivämäärä: 25.2.2017
 Maa: Italia
 Hinta: 27.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, keskihapokas, hedelmäinen, kevyen päärynäinen, sitruksinen, hennon kukkainen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, salaatit ja kasvisruoka, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet52158
@@ -667,7 +665,7 @@ VIINI: Murfatlar Late Harvest Chardonnay 2013
 Päivämäärä: 31.05.2016
 Maa: Romania
 Hinta: 8.99 € (0.75 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 	Makea, hapokas, ananaksinen, kypsän persikkainen, kevyen hunajainen, hennon 	mausteinen
 SopiiNautittavaksi: seurustelujuoma, makea jälkiruoka, miedot juustot, tulinen ruoka
 url: http://www.alko.fi/en/products92277/
@@ -692,7 +690,7 @@ VIINI: New Dawn Riesling
 Päivämäärä: 12.9.2016
 Maa: Yhdysvallat
 Hinta: 24.40 € (2 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Puolikuiva, hapokas, päärynäinen, kypsän sitruunainen, aprikoosinen, hennon kukkainen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, itämainen ruoka, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet03798/
@@ -705,7 +703,7 @@ VIINI: Palesa Chenin Blanc 2016
 Päivämäärä: 7.5.2017
 Maa: Etelä-Afrikka
 Hinta: 16.99 € (1.5 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, herukkainen, meloninen, runsaan yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, pikkusuolaiset, seurustelujuoma, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet/97918/
@@ -718,7 +716,7 @@ VIINI: Pebble Park Chardonnay
 Päivämäärä: 25.05.2015
 Maa: Etelä-Afrikka
 Hinta: 18.95 € (2 l)
-Kuvaus: Pehmeä ja kepeä
+Kuvaus: Pehmeä ja kepeä,
 	Kuiva, keskihapokas, kevyen hedelmäinen, hennon tamminen
 SopiiNautittavaksi: salaatit ja kasvisruoka, rasvainen kala, seurustelujuoma, äyriäiset
 url: http://www.alko.fi/tuotteet/008165/
@@ -731,7 +729,7 @@ VIINI: Pino Pino Vino Frizzante Pinot Noir (asiallista)
 Päivämäärä: 25.7.2016
 Maa: Italia
 Hinta: 8.98 € (0.75 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Puolikuiva, hapokas, pirskahteleva, päärynäinen, sitruksinen, kevyen persikkainen, raikas
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, pikkusuolaiset, itämainen ruoka
 url: http://www.alko.fi/tuotteet81577/
@@ -744,7 +742,7 @@ VIINI: Rosemount GTR 2018
 Päivämäärä: 19.7.2019
 Maa: Australia
 Hinta: 10.29 € (0.75 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 Puolimakea, keskihapokas, persikkainen, litsiluumuinen, kypsän limettinen, kukkainen
 SopiiNautittavaksi: itämainen ruoka, seurustelujuoma, tulinen ruoka, kana ja kalkkuna
 Oliko helposti juotavaa: 
@@ -757,7 +755,7 @@ VIINI: Running Duck Chenin Blanc 2017
 Päivämäärä: 24.2.2018
 Maa: Etelä-Afrikka
 Hinta: 21.99 € (2 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, keskihapokas, päärynäinen, viherherukkainen, karviaishilloinen, herukanlehtinen
 SopiiNautittavaksi: tapas ja antipasti, pikkusuolaiset, salaatit ja kasvisruoka, noutopöytä
 url: https://www.alko.fi/tuotteet98588
@@ -770,7 +768,7 @@ VIINI: Santa Helena Chardonnay 2016
 Päivämäärä: 24.5.2017
 Maa: Chile
 Hinta: 26.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, keskihapokas, sitruksinen, persikkainen, mausteinen
 SopiiNautittavaksi: rasvainen kala, kana ja kalkkuna, kasvisruoka, noutopöytä
 url: https://www.alko.fi/tuotteet67838
@@ -783,7 +781,7 @@ VIINI: Satinela 2013
 Päivämäärä: 25.10.2014
 Maa: Espanja
 Hinta: 9.28 € (0.75 l)
-Kuvaus: Lempeä ja makeahko
+Kuvaus: Lempeä ja makeahko,
 	Puolimakea, keskihapokas, makean hedelmäinen, päärynäinen
 SopiiNautittavaksi: seurustelujuoma, itämainen ruoka, juustot, makea jälkiruoka
 url: http://www.alko.fi/tuotteet/007065/
@@ -796,7 +794,7 @@ VIINI: Scientifically Proven German White Blend
 Päivämäärä: 16.7.2018
 Maa: Saksa
 Hinta: 16.89 € (1.5 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Puolikuiva, hapokas, keltaluumuinen, kypsän sitruksinen, viheromenainen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, kana ja kalkkuna, salaatit ja kasvisruoka, itämainen ruoka
 url: https://www.alko.fi/tuotteet13588/ 
@@ -809,7 +807,7 @@ VIINI: Settesoli Pinot Grigio Organic 2017
 Päivämäärä: 28.7.2018
 Maa: Italia
 Hinta: 31.90 (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, kypsän aprikoosinen, päärynäinen, sitruksinen, kukkainen, hennon mausteinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, seurustelujuoma, kana ja kalkkuna, noutopöytä
 url: https://www.alko.fi/tuotteet71658/
@@ -822,7 +820,7 @@ VIINI: Showdown Calamity Jane 2018
 Päivämäärä: 20.6.2019
 Maa: Yhdysvallat
 Hinta: 34.48 (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, viheromenainen, valkoherukkainen, kevyen sitruksinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pikkusuolaiset, pasta ja pizza
 url: https://www.alko.fi/tuotteet46528/
@@ -835,7 +833,7 @@ VIINI: Steinschaden Selektion Grüner Veltliner 2016
 Päivämäärä: 7.12.2017
 Maa: Itävalta
 Hinta: 20.98 € (1.5 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, päärynäinen, sitruksinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, kana ja kalkkuna, salaatit ja kasvisruoka, noutopöytä
 url: https://www.alko.fi/tuotteet36468/ 
@@ -848,7 +846,7 @@ VIINI: St. Elmo Village
 Päivämäärä: 31.3.2019
 Maa: Yhdysvallat
 Hinta: 27.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Puolikuiva, hapokas, persikkainen, hunajameloninen, mausteinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet43668
@@ -861,7 +859,7 @@ VIINI: Tausendhügel Dry Riesling 2018
 Päivämäärä: 18.10.2019
 Maa: Saksa
 Hinta: 35.99 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, hapokas, valkoherukkainen, viheromenainen, hennon raparperinen, kevyen yrttinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, salaatit ja kasvisruoka, kana ja kalkkuna
 url: http://www.alko.fi/tuotteet35478
@@ -874,7 +872,7 @@ VIINI: The Original M8 Sauvignon Blanc 2014
 Päivämäärä: 24.10.2015
 Maa: Australia
 Hinta: 8.98 € (1 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, hapokas, kypsän sitruksinen, herukkainen, kevyen passionhedelmäinen, 	yrttinen
 SopiiNautittavaksi: noutopöytä, simpukat ja osterit, äyriäiset, vähärasvainen kala
 url: http://www.alko.fi/tuotteet06358
@@ -887,7 +885,7 @@ VIINI: Thr3 Monkeys
 Päivämäärä: 20.8.2016
 Maa: Saksa
 Hinta: 7.99 € (1 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Puolimakea, hapokas keltaomenainen, sitruksinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, itämainen ruoka, tulinen ruoka, pikkusuolaiset
 url: http://www.alko.fi/tuotteet/916308/
@@ -900,7 +898,7 @@ VIINI: Ti Amo Pinot Grigio 2016
 Päivämäärä: 16.3.2018
 Maa: Italia
 Hinta: 10.89 € (1 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, keskihapokas, hunajameloninen, kevyen päärynäinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
 Oliko helposti juotavaa: 
@@ -914,7 +912,7 @@ VIINI: Tommasi Adorato Apassianato Bianco 2015
 Päivämäärä: 8.4.2017
 Maa: Italia
 Hinta: 34.98 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, keskihapokas, kypsän sitruksinen, persikkainen, keltaluumuinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, kana ja kalkkuna, pasta ja pizza
 Oliko helposti juotavaa: 
@@ -928,7 +926,7 @@ VIINI: Torres Viña Esmeralda 2015
 Päivämäärä: 30.9.2016
 Maa: Espanja
 Hinta: 29.90 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen
+Kuvaus: Pirteä ja hedelmäinen,
 	Puolikuiva, keskihapokas, sitruksinen, persikkainen, ruusuinen, hennon yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, seurustelujuomana, itämainen ruoka, pikkusuolaiset
 Oliko helposti juotavaa: 
@@ -990,7 +988,7 @@ VIINI: Zafrica Winemakers Blend Chenin Blanc 2015
 Päivämäärä: 4.5.2016
 Maa: Etelä-Afrikka
 Hinta: 8.10 € (1 l)
-Kuvaus: Pehmeä ja kepeä
+Kuvaus: Pehmeä ja kepeä,
 	Kuiva, keskihapokas, kypsän sitruunainen, kevyen persikkainen, päärynäinen, hennon 	mausteinen
 	
 SopiiNautittavaksi: salaatit ja kasvisruoka, seurustelujuoma, pasta ja pizza, rasvainen kala
