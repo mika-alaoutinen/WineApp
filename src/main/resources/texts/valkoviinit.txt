@@ -9,7 +9,7 @@ ArvosteluSalla: Tuoksu on raikas, hieman kirpeä, hivenen yrttinen ja viherlehti
 Arvosana: 1.25 M 3.25 S
 
 
-VIINI: Asio Otus Pinot Grigio Organic 2016, kartonkitölkki
+VIINI: Asio Otus Pinot Grigio Organic 2016
 Päivämäärä: 26.4.2017
 Maa: Italia
 Hinta: 9.99 € (1 l)
@@ -324,7 +324,7 @@ ArvosteluSalla: Kesäinen, voisi juoda jossain kesällä kukkaniityllä, tasaine
 Arvosana: 3.25 M 3.5 S
 
 
-VIINI: FlipFlop Californian White 2013 (kartonkitölkki)
+VIINI: FlipFlop Californian White 2013
 Päivämäärä: 2.5.2015
 Maa: Yhdysvallat
 Hinta: 8.59 € (1 l)
