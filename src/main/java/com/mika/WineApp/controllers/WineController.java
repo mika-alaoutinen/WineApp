@@ -55,6 +55,21 @@ public class WineController {
         return service.count();
     }
 
+    @GetMapping(baseUrl + "/countries")
+    public List<String> countries() {
+        return service.getCountries();
+    }
+
+    @GetMapping(baseUrl + "/descriptions")
+    public List<String> descriptions() {
+        return service.getDescriptions();
+    }
+
+    @GetMapping(baseUrl + "/food-pairings")
+    public List<String> foodPairings() {
+        return service.getFoodPairings();
+    }
+
     @GetMapping(baseUrl + "/search")
     public List<Wine> search(
             @RequestParam(required = false) String name,
