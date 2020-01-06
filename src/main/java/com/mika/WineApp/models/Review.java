@@ -30,7 +30,7 @@ public class Review extends EntityModel {
     @Max(value = 5)
     @NotNull
     @Column(precision = 3, scale = 2)
-    private Double rating;
+    private double rating;
 
     @NotNull
     @ManyToOne
@@ -42,7 +42,7 @@ public class Review extends EntityModel {
         super();
     }
 
-    public Review(String author, LocalDate date, String reviewText, Double rating, Wine wine) {
+    public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
         super();
         this.author = author;
         this.date = date;

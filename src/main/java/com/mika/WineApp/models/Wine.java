@@ -27,12 +27,11 @@ public class Wine extends  EntityModel {
 
     @PositiveOrZero
     @Column(precision = 10, scale = 2)
-    private Double price;
+    private double price;
 
-    @NotNull
     @Positive
     @Column(precision = 10, scale = 2)
-    private Double volume;
+    private double volume;
 
     @NotEmpty
     @ElementCollection
@@ -59,8 +58,8 @@ public class Wine extends  EntityModel {
     public Wine(String name,
                 WineType type,
                 String country,
-                Double price,
-                Double volume,
+                double price,
+                double volume,
                 List<String> description,
                 List<String>foodPairings,
                 String url) {
