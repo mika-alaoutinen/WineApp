@@ -280,7 +280,7 @@ Maa: Saksa
 Hinta: 32.49 € (3 l)
 Kuvaus: Pirteä & hedelmäinen,
 Puolikuiva, hapokas, hunajameloninen, aprikoosinen, klementiininen
-SopiiNautittavaksi: rasvainen kala, kana ja kalkkuna, pizza ja pasta, tapas ja antipasti
+SopiiNautittavaksi: rasvainen kala, kana ja kalkkuna, pasta ja pizza, tapas ja antipasti
 url: http://www.alko.fi/tuotteet76948/
 ArvosteluMika: Viinin tuoksu on kuiva, hapokas ja ehkä hieman yrttinen. Ensivaikutelma viinistä on hyvin kirpeä ja sitruksinen. Viinissä on kuitenkin myös jonkin verran makeutta, mikä tasapainottaa sen kirpakkuutta miellyttävästi. Viinin maku on epämääräisen hedelmäinen, joskin sitruuna erottuu toki erittäin selvästi. Kokonaisvaikutelma viinistä on ehkä jopa trooppinen ja piristävä. Viini toimii erinomaisesti paljaaltaan, minkä lisäksi se voisi sopia myös esimerkiksi kalan kumppaniksi.
 ArvosteluSalla: Viinin tuoksu on mieto, raikas, mineraalinen ja sitruksinen. Ensimaku on makeahko mutta myös mineraalinen. Hedelmäinen makeus ja raikas mineraalisuus täydentävät miellyttävästi toisiaan. Kokonaisuus on tasapainoinen ja myös melko tasainen. Viini on varmasti monipuolinen ruokaviini, mutta keveytensä ansiosta se toimii mainiosti myös seurustelujuomana.
@@ -317,7 +317,7 @@ Maa: Chile
 Hinta: 15.49 € (1.5 l)
 Kuvaus: lempeä ja makeahko,
            puolikuiva, keskihapokas, hedelmäinen, hennon sitruksinen, kevyen kukkainen
-SopiiNautittavaksi: seurustelu, salaatit ja kasvisruoka, aperitiivi, pizzat ja pikkulämpimät
+SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, aperitiivi, pizzat ja pikkulämpimät
 url: http://www.alko.fi/tuotteet52988/
 ArvosteluMika: Tuoksu on hennon miellyttävän makean hedelmäinen, ensimaku on epämääräisen hedelmäinen ja hieman hapan, tasainen; hento happamahko (?) jälkimaku. Kaiken kaikkiaan perushyvä, joskin toisaalta myös helposti unohdettava kokemus. Sopii hyvin seurustelujuomaksi, mutta ei ole kovinkaan jännittävä tai vivahteikas viini.
 ArvosteluSalla: Kesäinen, voisi juoda jossain kesällä kukkaniityllä, tasainen; ei omituisia sivumakuja, maku on miellyttävä ja kevyt, monenlaisiin tilanteisiin (niin seurustelu- kuin ruokajuomaksikin, mahdollisesti myös esim. piknikille) sopiva perusviini, viinipussissa hauska kantotekniikka
@@ -328,9 +328,7 @@ VIINI: FlipFlop Californian White 2013 (kartonkitölkki)
 Päivämäärä: 2.5.2015
 Maa: Yhdysvallat
 Hinta: 8.59 € (1 l)
-Kuvaus: lempeä ja makeahko,
-           puolimakea, keskihapokas, kypsän hedelmäinen, päärynäinen, kevyen kukkainen,
-           hennon yrttinen
+Kuvaus: lempeä ja makeahko, puolimakea, keskihapokas, kypsän hedelmäinen, päärynäinen, kevyen kukkainen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, itämainen ruoka, kana ja kalkkuna.
 url: http://www.alko.fi/tuotteet03858/ 
 ArvosteluMika: Tuoksu on hyvin hennon hedelmäinen, joskin varsin mitäänsanomaton; mukana on kenties aavistus banaania? Ensimaku on keskihapokas ja hieman hapan. Jälkimaku on selvästi pehmeämpi, jopa hieman vetinen. Muutoin maku on hyvin mieto (päärynäinen?) eikä herätä kovin suuria tunteita. Viini ei ole kovinkaan makea vaan kallistuu mielestäni enemmän kuivan puolelle. Viiniä kuitenkin kuvaillaan puolimakeaksi. Kaiken kaikkiaan viiniä voisi kuvailla ehkäpä kevyen hapokkaaksi mutta suorastaan vetiseksi. Ei mikään erityisen mielenkiintoinen tai hyvä viini.
@@ -539,8 +537,7 @@ VIINI: Luna Negra Chardonnay
 Päivämäärä: 30.01.2016
 Maa: Chile
 Hinta: 18.30 € (2 l)
-Kuvaus: Pehmeä ja kepeä,
-	kuiva, keskihapokas, hedelmäinen, kevyen päärynäinen, hennon mausteinen
+Kuvaus: Pehmeä ja kepeä, kuiva, keskihapokas, hedelmäinen, kevyen päärynäinen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuoma, noutopöytä, pasta ja pizza, salaatit ja kasvisruoka
 url: http://www.alko.fi/tuotteet/008163/
 ArvosteluMika: Tuoksu on terävän sitruksinen. Ensivaikutelma on hiukan vetinen, mutta sen jälkeen päällimmäisenä viinistä nousee esiin vahva mineraalinen ja hapan maku. Viini ei mielestäni ole kovinkaan hedelmäinen eikä varsinkaan raikas, vaan enemmänkin vissymäinen ja painostava. Ei sovellu oikein minkään kanssa nautittavaksi.
@@ -565,8 +562,7 @@ VIINI: Magyar Fehér Bor
 Päivämäärä: 15.1.2016
 Maa: Unkari
 Hinta: 26.50 € (3 l)
-Kuvaus: Lempeä ja makeahko,
-	Puolimakea, keskihapokas, hedelmäinen, kypsän persikkainen, hennon mausteinen
+Kuvaus: Lempeä ja makeahko,	puolimakea, keskihapokas, hedelmäinen, kypsän persikkainen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, pikkusuolaiset, itämainen ruoka
 url: http://www.alko.fi/tuotteet49818/
 ArvosteluMika: Viinissä oli kaadettaessa tuoksu. Enää sitä ei ole. Maku on melko makea ja mieto. Jälkimaussa tulee esiin myös hiukan happamuutta ja mineraalisuutta. Ei sopinut erityisen hyvin ruuan kanssa mutta on erinomainen valinta kepeäksi ja makeaksi seurusteluviiniksi. Suolaisten juustojen kanssa nautittuna viini tuo vahvan kontrastin juustoille. Jäin kuitenkin kaipaamaan kuivempaa ja happamampaa viiniä, joka kenties sointuisi paremmin juustojen kanssa. Kaiken kaikkiaan viini sopii mielestäni parhaiten pelkästään juotavaksi tai kenties makeiden jälkiruokien kumppaniksi.
@@ -640,7 +636,7 @@ VIINI: Moselland Riesling Kabinett 2016
 Päivämäärä: 27.7.2017
 Maa: Saksa
 Hinta: 29.90 € (3 l)
-Kuvaus: Pirteä ja hedelmäinen, puolimakea, hapokas, litsiluumuinen, sitruunainen, aprikoosinen, hennon kukkainen (HUOM 7.5 %)
+Kuvaus: Pirteä ja hedelmäinen, puolimakea, hapokas, litsiluumuinen, sitruunainen, aprikoosinen, hennon kukkainen
 SopiiNautittavaksi: seurustelujuoma, pikkusuolaiset, pasta ja pizza, salaatit ja kasvisruoka
 url: https://www.alko.fi/tuotteet/007185
 ArvosteluMika: Viinissä on mieto, makean hedelmäinen tuoksu. Tuoksussa on myös kirpakkuutta. Viinin ensimaku on makean hedelmäinen, joskin siinä on myös sitruunan hapokkuutta ja kirpakkuutta. Viinissä on hyvin pehmeä maku, johon viinin kirpakkuus kuitenkin tuo miellyttävän säväyksen. Viinissä erityisen huomattavaa on sen matala alkoholipitoisuus, mikä antaa sille melko mehumaisen kokonaisvaikutelman. Varsin miellyttävä nautiskelujuoma, mutta voisi sopia myös jonkin naposteltavan kumppaniksi. Ei välttämättä paras ruokaviini.
@@ -715,8 +711,7 @@ VIINI: Pebble Park Chardonnay
 Päivämäärä: 25.05.2015
 Maa: Etelä-Afrikka
 Hinta: 18.95 € (2 l)
-Kuvaus: Pehmeä ja kepeä,
-	Kuiva, keskihapokas, kevyen hedelmäinen, hennon tamminen
+Kuvaus: Pehmeä ja kepeä, kuiva, keskihapokas, kevyen hedelmäinen, hennon tamminen
 SopiiNautittavaksi: salaatit ja kasvisruoka, rasvainen kala, seurustelujuoma, äyriäiset
 url: http://www.alko.fi/tuotteet/008165/
 ArvosteluMika: Ensivaikutelma tuoksusta oli melko mineraalinen. Ensituntuma viiniin on lievästi hapan. Viini on tasaisen makuinen, mutta en erota tästä hedelmäisyyttä. Kuvailisin viiniä kuivaksi, melko happamaksi ja lievän mineraaliseksi. Jäin kaipaamaan viiniltä jotain vahvempia makuja, kuten esimerkiksi jotain hedelmää. Tällaisenaan ei ole kovinkaan mielenkiintoinen.
