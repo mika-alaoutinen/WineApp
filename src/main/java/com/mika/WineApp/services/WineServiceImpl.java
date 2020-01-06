@@ -62,8 +62,7 @@ public class WineServiceImpl implements WineService {
             wineType = parseWineType(type);
         }
 
-        Wine wine = new Wine(name, wineType, null, null, null, null, null, null);
-        return repository.findAll(new WineSpecification(wine, countries, volumes, priceRange));
+        return repository.findAll(new WineSpecification(name, wineType, countries, volumes, priceRange));
     }
 
 // Utility methods:
@@ -71,7 +70,6 @@ public class WineServiceImpl implements WineService {
         try {
             return WineType.valueOf(type.toUpperCase());
         } catch (IllegalArgumentException e) {
-            System.out.println("Error in parsing wine type: " + e.getMessage());
             throw new InvalidWineTypeException(type);
         }
     }

@@ -87,8 +87,7 @@ public class ReviewServiceImpl implements ReviewService {
                     .toArray(LocalDate[]::new);
         }
 
-        Review review = new Review(author, null, null, null, null);
-        return repository.findAll(new ReviewSpecification(review, dates, ratingRange));
+        return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
 // --- Quick searches ---
