@@ -532,7 +532,7 @@ Hinta: 15.98 € (1.5 l)
 Kuvaus: Mehevä ja hilloinen,
 Keskitäyteläinen, keskitanniininen, tumman marjainen, punaherukkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: grilliruoka, nauta, porsas, pataruoat
-Oliko helposti juotavaa:
+
 url: https://www.alko.fi/tuotteet/407428
 ArvosteluMika: Viinissä on syvä, kypsän karpaloinen ja savuinen tuoksu. Viinin ensituntuma on yllättävän mieto ja pehmeä. Jälkimaussa viiniin tulee jonkin verran lisää ryhtiä. Viinistä jää hennon hapan ja hieman tanniininen jälkimaku. Toisella siemauksella viinin tanniinisuus nousee selvästi enemmän esiin, mutta viini on edelleen hyvin pehmeä ja melko kepeä. Jälkimaku on nyt selvästi kirpakan karpaloinen, mutta siinä on myös jonkin verran savuisuutta tuomassa aavistuksen kitkeryyttä. Viini on edelleen ensituntumalta koostumukseltaan hämmentävän kepeä ja jopa mehumainen, mutta viinissä on kuitenkin myös reilusti suun kuorruttavaa tanniinisuutta. Uskoisin, että tämä viini sopii parhaiten punaisen lihan ja grilliruuan kumppaniksi. Seurustelujuomana tämä ei ehkä ole parhaasta päästä, mutta ei missään nimessä huonokaan.
 ArvosteluSalla: Viinissä on mieto mutta syvä tummien marjojen tuoksu. Viinissä on mieto maku, ja se on melko mehumainen tai hillomainen. Maussa tuntuu mausteisuutta sekä tuoksussakin esiin nousseita tummia marjoja. Viini on ainakin paljaaltaan juotuna aika mitäänsanomaton. Miedon makunsa ansiosta se toiminee kuitenkin monenlaisten liharuokien kumppanina.
@@ -611,7 +611,7 @@ Hinta: 9.98 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
 Täyteläinen, keskitanniininen, kirsikkainen, boysenmarjainen, mustikkainen, kevyen valkopippurinen
 SopiiNautittavaksi: pataruoat, mausteiset makkarat, voimakkaat juustot, seurustelujuomana
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/products/904447/ 
 ArvosteluMika: Viinissä on voimakas mutta pehmeä mustaherukkainen tuoksu, jossa on myös havaittavissa jokin kirpakka aromi – kenties boysenmarjat? Tuoksussa on myös lämmintä savuisuutta, mikä tuo tuoksuun rotevuutta. Ensimaku on huomattavasti vähemmän täyteläinen, kuin olisin tuoksun perusteella odottanut. Ensimaussa on kyllä tanniinisuutta, mutta se jää kuitenkin hieman vetisen oloiseksi. Viinissä ei ole juurikaan makeuta, vaan se on varsin kuiva. Toisella kulauksella viinissä nousee esiin jonkin verran kitkeryyttä. Hyvin erikoinen viini, sillä tänä on maultaan vahva ja roteva, mutta suutuntumaltaan kuitenkin yllättävän kepeä eikä lainkaan niin täyteläinen, kuin tällaiselta viiniltä voisi usein odottaa. Viini kaipaa mielestäni jotain raikasta ruokaa kumppanikseen tasapainottamaan sen kuivuutta ja kitkeryyttä.
 ArvosteluSalla: Viinissä on syvän marjainen, kenties mustaherukkainen tuoksu, jossa tuntuu myös karvautta. Ensimaku on melko täyteläinen mutta kuitenkin pehmeä ja jopa kevyehkö. Viini sopii varmasti monipuoliseen käyttöön: se ei ole liian raskas seurustelujuomaksi, mutta sen syvät maut tukevat varmasti myös tuhdimpia liharuokia. Viini käy hyvin myös juustojen kanssa.

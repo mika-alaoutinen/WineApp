@@ -15,7 +15,7 @@ Maa: Italia
 Hinta: 9.99 € (1 l)
 Kuvaus: Pirteä ja hedelmäinen, kuiva, hapokas, päärynäinen, viheromenainen, sitruksinen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, pikkusuolaiset, salaatit ja kasvisruoka
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet97808/Asio-Otus-Pinot-Grigio-Organic-2016-kartonkit-lkki 
 ArvosteluMika: Tuoksu on kirpakan sitruksinen, mutta siinä on myös makeutta, kenties hunajamelonia. Maku on hyvin vivahteikas. Maku on pehmeän meloninen ja erittäin vähämineraalinen. Ensivaikutelma on suorastaan mehumainen, joskaan ei kovin makea. Makuun kuitenkin kehittyy syvyyttä ja hiukan happamuutta, joka tuo viinille lisää runkoa, ”bodya”. Jälkimaussa esiin nousee jälleen hiukan lisää makeutta, mutta makeus ja happamuus ovat varsin tasapainossa. Kokonaisvaikutelma viinistä on kepeä ja päärynäinen. Tarjoilisin viinin sinällään tai kenties raikkaan salaatin kanssa. Viini on varsin omalaatuinen ja joukosta erottuva mutta ei kuitenkaan nouse suosikkeihini.
 ArvosteluSalla: Tuoksu on erittäin raikas ja pirteä. Siinä tuntuu hieman sitrushedelmien kirpeyttä. Sitruksisuus on havaittavissa myös maussa, jossa esiin nousevat lisäksi omenaisuus ja päärynäisyys. Omenan happamuus nousee selkeämmin esiin jälkimaussa; sitä edeltää makea ja vetinen päärynä. Kokonaisuus on kepeä ja tasapainoinen, ja viini toimii mainiosti paljaaltaan juotuna. 
@@ -40,7 +40,7 @@ Maa: Espanja
 Hinta: 29.88 € (3 l)
 Kuvaus: Vivahteikas ja ryhdikäs, kuiva, hapokas, kypsän greippinen, persikkainen, kevyen viherherukkainen, hennon 	yrttinen
 SopiiNautittavaksi: noutopöytä, rasvainen kala, tapas ja antipasti, kana ja kalkkuna
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet55868
 ArvosteluMika: Viinin tuoksu on hapokas ja selkeästi greippinen. Ensimaku on melko mieto, greippinen ja kuiva. Hetken kuluttua makuun tulee runsaasti lisää syvyyttä, mutta hapan greippi on edelleen hallitseva maku. Lopuksi viinissä maistuu aavistus makeutta, mutta kokonaisvaikutelma on vahvan hapokas, kuiva ja greippinen. Viinin pitäisi kuvauksen mukaan olla vivahteikas, mutta mielestäni tämä on melko yksiulotteinen viini – siitä tulee suorastaan mieleen lonkero. En oikein tiedä, minkä ruuan kanssa tätä suosittelisin; ehkä jonkin kalaruuan? Tämä ei ole oikein minun makuinen myöskään seurustelujuomana.
 ArvosteluSalla: Tuoksu on raikas sekä kirpakan ja kypsän greippinen. Siinä tuntuu myös valkoviinimarjaisuutta. Maku tuntuu mielenkiintoiselta ja moniulotteiselta heti alusta alkaen. Siinä on greipin ja valkoviinimarjojen kirpeyttä mutta myös hedelmäistä makeutta. Kokonaisuus on yllättävän helposti lähestyttävä, ja viini käy mielestäni ihan hyvin myös seurustelujuomaksi. Kuvittelisin tämän sopivan esimerkiksi jonkin yrttisen kanaruoan kanssa.
@@ -163,7 +163,7 @@ Hinta: 28.42 € (3 l)
 Kuvaus: Pirteä & hedelmäinen,
 Kuiva, hapokas, persikkainen, ananaksinen, kevyen mandariininen, kukkainen, mausteinen
 SopiiNautittavaksi: noutopöytä, pikkusuolaiset, salaatit ja kasvisruoka, seurustelujuomana
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet32278
 ArvosteluMika: Viinin tuoksu on makea, trooppisen hedelmäinen, ananaksinen ja kukkainen. Ensimaku on melko pehmeä mutta myös hiukan karvas, puolikuiva ja aavistuksen banaaninen. Jälkimaku on yrttinen, mausteinen ja selkeästi karvas. Viinin maku on huomattavasti vähemmän hedelmäinen kuin sen tuoksu antoi olettaa. Mielestäni viinin karvaus (karvaisuus?) tekee siitä melko huonon seurusteluviinin, mutta viini saattaisi toimia paremmin purtavan, esim. juustojen, kanssa…?
 ArvosteluSalla: Tuoksu on raikas, makea, hedelmäinen ja kukkainen. Maku ei ole yhtä kukkainen ja makean hedelmäinen kuin toivoin tuoksun perusteella, vaikka kumpaakin maussa esiintyy. Viini on kuivahko ja karvaahko, mutta persikkaisuus tuo siihen hieman makeutta. Viini on mielestäni ihan miellyttävä, mutta odotin kuitenkin enemmän tuoksun perusteella.
@@ -437,7 +437,7 @@ Hinta: [lahja – Alkossa 22.70 € / 2 l]
 Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, hapokas, sitruksinen, päärynäinen, kevyen persikkainen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet72958
 ArvosteluMika: Tuoksu on kirpakan sitruksinen ja viheromenainen sekä hieman makea ja imelä. Ensivaikutelma mausta on varsin kirpakka ja raikas ja nostaa veden kielelle. Maku on tasainen ja miellyttävä, mutta jälkimaku on melko heikko. Viinin hallitsevat maut ovat sitruunaisuus ja mineraalisuus. Uskoisin, että viini sopii hyvin kalaruoalle, ja se toimii hyvin myös seurustelujuomana. Mielestäni melko yksinkertainen mutta miellyttävä perusviini.
 ArvosteluSalla: Tuoksu on melko mineraalinen, ja siinä tuntuu myös makeahko hedelmäisyys. Maku on pehmeämpi kuin tuoksu antaisi odottaa. Se on mineraalinen kuten tuoksukin, ja siinä on sitrushedelmien kirpeyttä ja raikkautta. Etenkin jälkimaussa on havaittavissa myös yrttisyyttä. Viini kävisi varmasti jonkin valkoisesta lihasta valmistetun aterian kyytipojaksi.
@@ -745,7 +745,7 @@ Hinta: 10.29 € (0.75 l)
 Kuvaus: Lempeä ja makeahko,
 Puolimakea, keskihapokas, persikkainen, litsiluumuinen, kypsän limettinen, kukkainen
 SopiiNautittavaksi: itämainen ruoka, seurustelujuoma, tulinen ruoka, kana ja kalkkuna
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet85757
 ArvosteluMika: Viinin tuoksu on makea, omenainen ja kirpakka, minkä lisäksi siinä on häivähdys trooppista hedelmää. Ensivaikutelma mausta on vahvasti kukkainen ja pehmeä. Ensimaun jälkeen esiin nousee hiukan kirpakkuutta ja hyvin kepeää hapokkuutta. Myös maussa nousee kukkaisuuden takaa esiin jonkin verran hedelmäisyyttä. Viini on erittäin helposti juotava, ja alkoholi ei maistu siinä juuri lainkaan. Jälkimaku kääntyy aivan aavistuksen verran mineraaliseksi, mikä tasapainottaa mukavasti muuten varsin makeaa ja hyvin kevyttä viiniä. Uskon, että viini on parhaimmillaan nautittuna paljaaltaan, ja se on erinomainen valinta kesäiseksi seurusteluviiniksi. Ruokaviininä se soveltuisi ehkä parhaiten jälkiruuan kumppaniksi.
 ArvosteluSalla: Tuoksu on makeahko, raikas, kukkainen ja hieman mineraalinen. Ensimaku on voimakkaan parfyyminen, mutta maku kepenee huomattavasti loppua kohden. Ensimmäisen siemauksen ensivaikutelma on jopa melko päällekäyvä kukkaisuudessaan, mutta maistelun edetessä vaikutelma pehmenee ja kukkaisuuskin hiipuu. Loppua kohden maku muuttuu melko tasaiseksi, hieman mineraaliseksi ja vetisen hedelmäiseksi. Kaipaisin viiniin vähän enemmän jotain jytyä tai potkua; toisaalta juuri sen takia se voisi toimia esimerkiksi tulisen aasialaisen ruoan kumppanina.
@@ -901,7 +901,7 @@ Hinta: 10.89 € (1 l)
 Kuvaus: Pirteä ja hedelmäinen,
 	Kuiva, keskihapokas, hunajameloninen, kevyen päärynäinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet/938997/Ti-Amo-Pinot-Grigio-2016
 ArvosteluMika: Viinissä on makean hunajameloninen ja aavistuksen hapokas tuoksu. Viinin ensimaku on kuiva ja yrttinen. Maku on myös melko mineraalinen ja aavistuksen verran hedelmäinen. Viinissä maistuu kenties kevyt päärynäisyys. Kokonaisuutena varsin neutraali viini, joka voisi sopia kevyesti maistettujen ruokien kanssa.
 ArvosteluSalla: Mieto, makean hedelmäinen tuoksu. Maku tuntuu mielenkiintoiselta ja omalaatuiselta. Tuoksussa tuntunut makea hedelmäisyys ei ole yhtä vahvasti aistittavissa maussa. Viini on melko hapokas. Yrttisyys nousee esiin etenkin jälkimaussa. Kuvittelisin viinin sopivan parhaiten ruokaisien salaattien kanssa.
@@ -915,7 +915,7 @@ Hinta: 34.98 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen,
 Kuiva, keskihapokas, kypsän sitruksinen, persikkainen, keltaluumuinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, kana ja kalkkuna, pasta ja pizza
-Oliko helposti juotavaa: 
+ 
 url: https://www.alko.fi/tuotteet/920338
 ArvosteluMika: Viinin tuoksu on miellyttävän hedelmäinen ja kirpakan viheromenainen. Ensimaku on suhteellisen mieto, mutta maku syvenee pidempään maistellessa. Viini lienee puolikuiva. Alkutuntumalta viinissä maistuu vain vähän happamuutta, mutta happamuus lisääntyy jonkin verran jälkimakua kohden siirtyessä ja antaa näin viinille lisää robustia bodya. Viini on vahvan sitruunainen ja melko raikas. Viini jättää miellyttävän, happamahkon ja hieman mineraalisen jälkimaun. Sopisi varmasti hyvin lohen tai broilerin seuraksi, minkä lisäksi toimii varmasti hyvin myös seurusteluviininä. Kokonaisuutena miellyttävä ja hyvin monipuolinen perusviini, joskaan ei mikään erityisen mieleen jäävä kokemus.
 ArvosteluSalla: Viinin tuoksu on makeahkon hedelmäinen.  Maku on mieto, pehmeä ja tasainen. Viinin maussa ja tuoksussa on hedelmäistä raikkautta. Kokonaisuus on tasapainoinen ja miellyttävä. Ei mitenkään järin jännittävä tai erikoinen viini mutta oikein maukas silti. Varsin yleispätevä viini, joka käy varmasti melkeinpä minkä kanssa tahansa.
@@ -929,7 +929,7 @@ Hinta: 29.90 € (3 l)
 Kuvaus: Pirteä ja hedelmäinen,
 	Puolikuiva, keskihapokas, sitruksinen, persikkainen, ruusuinen, hennon yrttinen
 SopiiNautittavaksi: salaatit ja kasvisruoka, seurustelujuomana, itämainen ruoka, pikkusuolaiset
-Oliko helposti juotavaa: 
+ 
 url: http://www.alko.fi/tuotteet75318/ 
 ArvosteluMika: Viinin tuoksu on puolikuiva ja sitruksinen, ja olen haistavinani siinä myös ruusua. Ensivaikutelma viinistä on kevyt, vähähappoinen, aavistuksen kuiva ja miedonmakuinen. Jälkimaussa nousee esiin hiukan enemmän happamuutta sekä myöskin ruusuisuutta. Maku on tasainen ja hiukan vetinen. Menettelee kepeänä seurustelujuomana, mutta ruokaviiniksi tästä ei oikein ole; nauttisin tätä ehkä jonkin kevyen salaatin seurana. Miellyttävää viinissä on se, että olen tosiaan maistavinani siinä mainostettua ruusua. Kokonaisvaikutelma on kuitenkin valitettavan vetinen ja mieto, ja kaipaisin viiniin vahvempia makuja.
 ArvosteluSalla: Tuoksussa on makeaa ja raikasta kukkaisuutta. Itse maussa kukkaisuuden lähteeksi paljastuu ruusu, joka tuntuu maussa selkeästi. Lisäksi hedelmäisyys tuo viiniin makeutta. Maku on pehmeä, mieto ja miellyttävä, joskin viini on hieman vetinen.
