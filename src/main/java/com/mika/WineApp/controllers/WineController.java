@@ -57,17 +57,17 @@ public class WineController {
 
     @GetMapping(baseUrl + "/countries")
     public List<String> countries() {
-        return service.getCountries();
+        return service.findCountries();
     }
 
     @GetMapping(baseUrl + "/descriptions")
     public List<String> descriptions() {
-        return service.getDescriptions();
+        return service.findDescriptions();
     }
 
     @GetMapping(baseUrl + "/food-pairings")
     public List<String> foodPairings() {
-        return service.getFoodPairings();
+        return service.findFoodPairings();
     }
 
     @GetMapping(baseUrl + "/search")

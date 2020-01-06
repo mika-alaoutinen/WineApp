@@ -52,17 +52,17 @@ public class WineServiceImpl implements WineService {
         return repository.count();
     }
 
-    public List<String> getCountries() {
+    public List<String> findCountries() {
         var countries = repository.findAllCountries();
         return sortAlphabetically(countries);
     }
 
-    public List<String> getDescriptions() {
+    public List<String> findDescriptions() {
         var descriptions = repository.findAllDescriptions();
         return sortAlphabetically(descriptions);
     }
 
-    public List<String> getFoodPairings() {
+    public List<String> findFoodPairings() {
         var foodPairings = repository.findAllFoodPairings();
         return sortAlphabetically(foodPairings);
     }
