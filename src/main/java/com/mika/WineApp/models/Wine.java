@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,34 +13,43 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 public class Wine extends  EntityModel {
+
+    @NotBlank
     private String name;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private WineType type;
 
+    @NotBlank
     private String country;
 
+    @PositiveOrZero
     @Column(precision = 10, scale = 2)
     private Double price;
 
+    @NotNull
+    @Positive
     @Column(precision = 10, scale = 2)
     private Double volume;
 
+    @NotEmpty
     @ElementCollection
     @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
-    private List<String> description;
+    private List<@NotBlank String> description;
 
+    @NotEmpty
     @ElementCollection
     @CollectionTable(name = "wine_food_pairings", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "food_pairings")
-    private List<String> foodPairings;
+    private List<@NotBlank String> foodPairings;
 
     private String url;
 
     @JsonIgnore
     @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
-    private List<Review> reviews;
+    private List<@NotNull Review> reviews;
 
     // Constructors:
     public Wine() {
