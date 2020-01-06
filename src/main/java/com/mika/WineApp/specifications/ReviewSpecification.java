@@ -33,7 +33,7 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
     }
 
     private void authorPredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (author != null && !author.isEmpty()) {
+        if (author != null && !author.isBlank()) {
             Expression<String> rootAuthor = builder.lower(root.get("author"));
             Predicate predicate = builder.like(rootAuthor, super.formatString(author));
             super.predicates.add(predicate);

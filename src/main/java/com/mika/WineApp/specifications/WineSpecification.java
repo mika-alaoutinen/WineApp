@@ -1,25 +1,29 @@
 package com.mika.WineApp.specifications;
 
 import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.WineType;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class WineSpecification extends SuperSpecification implements Specification<Wine> {
+    private String name;
+    private WineType type;
     private Integer[] priceRange;
     private List<String> countries;
     private List<Double> volumes;
-    private Wine wine;
 
-    public WineSpecification(Wine wine, List<String> countries, List<Double> volumes, Integer[] priceRange) {
+    public WineSpecification(String name, WineType type, List<String> countries, List<Double> volumes, Integer[] priceRange) {
         super();
+        this.name = name;
+        this.type = type;
         this.countries = countries;
         this.volumes = volumes;
         this.priceRange = priceRange;
-        this.wine = wine;
     }
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
@@ -33,16 +37,16 @@ public class WineSpecification extends SuperSpecification implements Specificati
     }
 
     private void namePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (wine.getName() != null) {
+        if (name != null && !name.isBlank()) {
             Expression<String> rootName = builder.lower(root.get("name"));
-            Predicate predicate = builder.like(rootName, super.formatString(wine.getName()));
+            Predicate predicate = builder.like(rootName, super.formatString(name));
             super.predicates.add(predicate);
         }
     }
 
     private void typePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (wine.getType() != null) {
-            Predicate predicate = builder.equal(root.get("type"), wine.getType());
+        if (type != null) {
+            Predicate predicate = builder.equal(root.get("type"), type);
             super.predicates.add(predicate);
         }
     }
@@ -59,6 +63,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
             Expression<String> rootCountry = builder.lower(root.get("country"));
 
             var countryPredicates = countries.stream()
+                    .filter(country -> !country.isBlank())
                     .map(super::formatString)
                     .map(country -> builder.like(rootCountry, country))
                     .collect(Collectors.toList());
@@ -71,6 +76,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
     private void volumePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (volumes != null && !volumes.isEmpty()) {
             var volumePredicates = volumes.stream()
+                    .filter(Objects::nonNull)
                     .map(volume -> builder.equal(root.get("volume"), volume))
                     .collect(Collectors.toList());
 
