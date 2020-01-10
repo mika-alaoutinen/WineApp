@@ -2,8 +2,10 @@ package com.mika.WineParser;
 
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,8 +23,8 @@ public class Parser {
         TextParser textParser = new TextParser();
 
         // Path to directory where the text files are:
-        String textsDirectory = ResourceUtils
-                .getFile("classpath:texts")
+        String textsDirectory = new ClassPathResource("texts")
+                .getFile()
                 .getPath();
 
         // Parse all wines and reviews:
