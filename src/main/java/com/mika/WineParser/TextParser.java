@@ -86,11 +86,13 @@ public class TextParser {
      */
     public void parseAll(String pathToDirectory) throws IOException {
         // Wine types in order of text files:
-        List<WineType> types = List.of(WineType.SPARKLING,
+        List<WineType> types = List.of(
+                WineType.SPARKLING,
                 WineType.OTHER,
                 WineType.RED,
                 WineType.ROSE,
-                WineType.WHITE);
+                WineType.WHITE
+        );
 
         // Get a list of Paths to where the text files are:
         try (Stream<Path> paths = Files.walk(Path.of(pathToDirectory))) {
@@ -246,10 +248,9 @@ public class TextParser {
      */
     private String validateUrl(String url) throws IOException {
         if (url.isBlank()) {
-            return "blank";
-        }
-        if (!isUrlValid(url)) {
-            return "invalid";
+            return "";
+        } else if (!isUrlValid(url)) {
+            return "vanhentunut";
         }
         return url;
     }
