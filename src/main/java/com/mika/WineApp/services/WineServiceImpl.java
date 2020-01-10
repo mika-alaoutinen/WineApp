@@ -8,6 +8,7 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -72,6 +73,10 @@ public class WineServiceImpl implements WineService {
                              List<String> countries,
                              List<Double> volumes,
                              Integer[] priceRange) {
+
+        if (name == null && type == null && countries == null && volumes == null && priceRange == null) {
+            return new ArrayList<>();
+        }
 
         WineType wineType = null;
         if (type != null) {

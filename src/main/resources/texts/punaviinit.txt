@@ -398,7 +398,7 @@ ArvosteluMika: Viinin tuoksu on mehevän marjainen, minkä lisäksi boysenmarjal
 ArvosteluSalla: Tuoksu on mehevä, täyteläinen ja hapanmarjainen, ja siinä tuntuu sekä pehmeyttä että kirpakkuutta. Ensimaku on voimakkaan marjainen, ja sekin on todella mehevä ja melko täyteläinen. Kirsikan happamuus puskee vahvasti läpi ja antaa viinille ryhtiä; ilman sitä viini saattaisi olla turhan hillomainen tai mehumainen. Kokonaisvaikutelma on kuitenkin yllättävän pehmeä, ja viini jättää hyvin samettisen suutuntuman. Viini toimii erinomaisesti seurustelujuomana, ja voisin kuvitella sen käyvän hyvin myös vaikkapa grilliruoan kanssa.
 Arvosana: 4.75 M S
 
-VIINI: No Name, kartonkitölkki
+VIINI: No Name
 Päivämäärä: 3.9.2017
 Maa: Australia
 Hinta: 8.59 € (1 l)
@@ -424,7 +424,7 @@ ArvosteluSalla: Miedon ja pehmeän makuinen viini, joka on hinta-laatusuhteeltaa
 Arvosana: 3.75 M 4 S
 
 
-VIINI: Passento, kartonkitölkki
+VIINI: Passento
 Päivämäärä: 17.2.2018
 Maa: Australia
 Hinta: 9.52 € (1 l)

@@ -33,12 +33,10 @@ public class Wine extends  EntityModel {
     @Column(precision = 10, scale = 2)
     private double volume;
 
-    @NotEmpty
     @ElementCollection
     @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
     private List<@NotBlank String> description;
 
-    @NotEmpty
     @ElementCollection
     @CollectionTable(name = "wine_food_pairings", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "food_pairings")
