@@ -29,7 +29,7 @@
 			<uniqueVersion>false</uniqueVersion>
 			<id>Local</id>
 			<name>Local PC</name>
-			<url>file:///home/mikaa/dev/repository</url>
+			<url>file:///C:\Users\mikaa\dev\repository</url>
 			<layout>default</layout>
 		</repository>
 	</distributionManagement>
