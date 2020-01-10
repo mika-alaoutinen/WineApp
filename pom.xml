@@ -19,6 +19,12 @@
 	<name>WineApp</name>
 	<description>REST back end for a wine tasting diary app</description>
 
+	<scm>
+		<connection>scm:git:https://github.com/mika-alaoutinen/WineApp.git</connection>
+		<url>http://github.com/mika-alaoutinen/WineApp</url>
+		<developerConnection>scm:git:https://github.com/mika-alaoutinen/WineApp.git</developerConnection>
+	</scm>
+
 	<properties>
 		<java.version>13</java.version>
 	</properties>
@@ -92,6 +98,16 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<tagNameFormat>@{project.version}</tagNameFormat>
+					<releaseProfiles>release</releaseProfiles>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
