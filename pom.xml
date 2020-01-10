@@ -25,17 +25,6 @@
 		<developerConnection>scm:git:https://github.com/mika-alaoutinen/WineApp.git</developerConnection>
 	</scm>
 
-	<!-- For storing released packages -->
-	<distributionManagement>
-		<repository>
-			<uniqueVersion>false</uniqueVersion>
-			<id>Koodishamaani</id>
-			<name>Local PC</name>
-			<url>file:///home/mikaa/dev/repository</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement>
-
 	<properties>
 		<java.version>13</java.version>
 	</properties>
