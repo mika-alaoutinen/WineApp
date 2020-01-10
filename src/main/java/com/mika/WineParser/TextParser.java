@@ -246,10 +246,9 @@ public class TextParser {
      */
     private String validateUrl(String url) throws IOException {
         if (url.isBlank()) {
-            return "blank";
-        }
-        if (!isUrlValid(url)) {
-            return "invalid";
+            return "";
+        } else if (!isUrlValid(url)) {
+            return "vanhentunut";
         }
         return url;
     }
