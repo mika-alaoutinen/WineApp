@@ -28,19 +28,13 @@ class LoadDataBase {
         Parser parser = new Parser();
 
         return args -> {
-            log.error("Preloading database.");
+            log.info("Preloading database.");
 
-            var wines = parser.getWines();
-            log.error("wines: " + wines);
+            wineRepository.saveAll(parser.getWines());
+            log.info("Wines loaded successfully!");
 
-            wineRepository.saveAll(wines);
-            log.error("Wines loaded successfully!");
-
-            var reviews = parser.getReviews();
-            log.error("reviews: " + reviews);
-
-            reviewRepository.saveAll(reviews);
-            log.error("Reviews loaded successfully!");
+            reviewRepository.saveAll(parser.getReviews());
+            log.info("Reviews loaded successfully!");
         };
     }
 }

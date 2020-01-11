@@ -21,6 +21,11 @@ public class Parser {
         catch (IOException e) { e.printStackTrace(); }
     }
 
+    /**
+     * Reads text files from resources and sends their contents to TextParser to parse.
+     * Wraps the text in a Scanner object.
+     * @throws IOException ex
+     */
     private void parse() throws IOException {
         TextParser textParser = new TextParser();
 
