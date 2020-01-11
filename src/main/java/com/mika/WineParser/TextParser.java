@@ -7,8 +7,6 @@ import com.mika.WineApp.models.WineType;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TextParser {
     // Wine attributes:
@@ -67,8 +64,6 @@ public class TextParser {
         ratingSalla = -1;
     }
 
-// Getters:
-
     public List<Wine> getWines() {
         return wines;
     }
@@ -77,45 +72,13 @@ public class TextParser {
         return reviews;
     }
 
-// Methods for parsing text:
-
     /**
-     * Parses all files in given directory.
-     * @param pathToDirectory file directory as String.
-     * @throws IOException e
-     */
-    public void parseAll(String pathToDirectory) throws IOException {
-        // Wine types in order of text files:
-        List<WineType> types = List.of(
-                WineType.SPARKLING,
-                WineType.OTHER,
-                WineType.RED,
-                WineType.ROSE,
-                WineType.WHITE
-        );
-
-        // Get a list of Paths to where the text files are:
-        try (Stream<Path> paths = Files.walk(Path.of(pathToDirectory))) {
-            List<Path> pathList = paths
-                    .filter(Files::isRegularFile)
-                    .collect(Collectors.toList());
-
-            // Parse each file:
-            for (int i = 0; i < pathList.size(); i++) {
-                parse(pathList.get(i), types.get(i));
-            }
-        }
-    }
-
-    /**
-     * The main method for parsing text files. Uses a Scanner to scan all
-     * lines in a file and then handles each line one by one.
-     * @param path to text file.
+     * The method for parsing text files. Receives the texts in
+     * a Scanner and parses it's contents line by line.
+     * @param scanner containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
-     * @throws IOException exception.
      */
-    private void parse(Path path, WineType wineType) throws IOException {
-        Scanner scanner = new Scanner(path);
+    public void parse(Scanner scanner, WineType wineType) {
         String line = scanner.nextLine();
 
         // Parse each line:
