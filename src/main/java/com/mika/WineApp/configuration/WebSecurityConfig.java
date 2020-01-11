@@ -21,8 +21,9 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Value("${frontend.url}")
-    private String url;
+
+    @Value("#{'${frontend.urls}'.split(',')}")
+    private List<String> allowedUrls;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public FilterRegistrationBean corsFilter() {
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(Collections.singletonList(url));
+        config.setAllowedOrigins(allowedUrls);
         config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
 
