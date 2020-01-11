@@ -2,15 +2,13 @@ package com.mika.WineParser;
 
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.WineType;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.DefaultResourceLoader;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Scanner;
 
 /** Driver class for TextParser. Gets Wines and Reviews as lists. */
 @Slf4j
@@ -23,25 +21,42 @@ public class Parser {
         catch (IOException e) { e.printStackTrace(); }
     }
 
+    /**
+     * Reads text files from resources and sends their contents to TextParser to parse.
+     * Wraps the text in a Scanner object.
+     * @throws IOException ex
+     */
     private void parse() throws IOException {
         TextParser textParser = new TextParser();
 
-        // Path to directory where the text files are:
-        String textsDirectory = new ClassPathResource("texts")
-                .getFile()
-                .getPath();
+        List<WineType> types = List.of(
+                WineType.SPARKLING,
+                WineType.OTHER,
+                WineType.RED,
+                WineType.ROSE,
+                WineType.WHITE
+        );
 
-        log.error("texts directory: " + textsDirectory);
+        List<String> files = List.of(
+                "kuohuviinit.txt",
+                "muut.txt",
+                "punaviinit.txt",
+                "roseviinit.txt",
+                "valkoviinit.txt"
+        );
 
-        // Parse all wines and reviews:
-        textParser.parseAll(textsDirectory);
+        for (int i = 0; i < files.size(); i++) {
+            InputStream text = new DefaultResourceLoader()
+                    .getResource("classpath:texts/" + files.get(i))
+                    .getInputStream();
+
+            var reader = new BufferedReader(new InputStreamReader(text));
+            textParser.parse(new Scanner(reader), types.get(i));
+        }
 
         // Parsed wines and reviews:
         this.wines = textParser.getWines();
         this.reviews = textParser.getReviews();
-
-        log.error("wines: " + wines);
-        log.error("reviews: " + reviews);
     }
 
     public List<Wine> getWines() {

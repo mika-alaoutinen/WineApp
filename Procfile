@@ -1,1 +1,0 @@
-web: java -jar target/WineApp-1.0.0.jar
