@@ -27,7 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Find reviews ---
     public List<Review> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByDateDesc();
     }
 
     public Optional<Review> findById(Long id) {
@@ -98,7 +98,7 @@ public class ReviewServiceImpl implements ReviewService {
 // --- Quick searches ---
     public List<Review> findNewest(int limit) {
         return repository
-                .findAllByOrderByDateDesc(PageRequest.of(0, limit))
+                .findAllDistinctByOrderByDateDesc(PageRequest.of(0, limit))
                 .getContent();
     }
 
