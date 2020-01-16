@@ -11,66 +11,66 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/wines")
 public class WineController {
     private final WineService service;
-    private static final String baseUrl = "/wines";
 
     public WineController(WineRepository repository) {
         this.service = new WineServiceImpl(repository);
     }
 
 // --- CRUD methods ---
-    @GetMapping(baseUrl)
+    @GetMapping("/")
     public List<Wine> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/{id}")
+    @GetMapping("/{id}")
     public Wine findById(@PathVariable Long id) {
         return service
                 .findById(id)
                 .orElseThrow(() -> new WineNotFoundException(id));
     }
 
-    @PostMapping(baseUrl)
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public Wine add(@RequestBody Wine newWine) {
         return service.add(newWine);
     }
 
-    @PutMapping(baseUrl + "/{id}")
+    @PutMapping("/{id}")
     public Wine edit(@PathVariable Long id, @RequestBody Wine editedWine) {
         return service.edit(id, editedWine);
     }
 
-    @DeleteMapping(baseUrl + "/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
 // --- Other methods ---
-    @GetMapping(baseUrl + "/count")
+    @GetMapping("/count")
     public long count() {
         return service.count();
     }
 
-    @GetMapping(baseUrl + "/countries")
+    @GetMapping("/countries")
     public List<String> countries() {
         return service.findCountries();
     }
 
-    @GetMapping(baseUrl + "/descriptions")
+    @GetMapping("/descriptions")
     public List<String> descriptions() {
         return service.findDescriptions();
     }
 
-    @GetMapping(baseUrl + "/food-pairings")
+    @GetMapping("/food-pairings")
     public List<String> foodPairings() {
         return service.findFoodPairings();
     }
 
-    @GetMapping(baseUrl + "/search")
+    @GetMapping("/search")
     public List<Wine> search(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String type,

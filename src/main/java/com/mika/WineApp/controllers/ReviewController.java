@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/reviews")
 public class ReviewController {
     private final ReviewService service;
-    private static final String baseUrl = "/reviews";
 
     public ReviewController(ReviewRepository repository,
                             WineRepository wineRepository) {
@@ -23,53 +23,53 @@ public class ReviewController {
     }
 
 // --- Find reviews ---
-    @GetMapping(baseUrl)
+    @GetMapping("/")
     public List<Review> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(baseUrl + "/{id}")
+    @GetMapping("/{id}")
     public Review findById(@PathVariable Long id) {
         return service
                 .findById(id)
                 .orElseThrow(() -> new ReviewNotFoundException(id));
     }
 
-    @GetMapping(baseUrl + "/wine/id/{wineId}")
+    @GetMapping("/wine/id/{wineId}")
     public List<Review> findByWineId(@PathVariable Long wineId) {
         return service.findByWineId(wineId);
     }
 
-    @GetMapping(baseUrl + "/wine/name/{wineName}")
+    @GetMapping("/wine/name/{wineName}")
     public List<Review> findByWineName(@PathVariable String wineName) {
         return service.findByWineName(wineName);
     }
 
 // --- Add, edit and delete ---
-    @PostMapping(baseUrl + "/{wineId}")
+    @PostMapping("/{wineId}")
     @ResponseStatus(HttpStatus.CREATED)
     public Review add(@PathVariable Long wineId, @RequestBody Review newReview) {
         return service.add(wineId, newReview);
     }
 
-    @PutMapping(baseUrl + "/{id}")
+    @PutMapping("/{id}")
     public Review edit(@PathVariable Long id, @RequestBody Review editedReview) {
         return service.edit(id, editedReview);
     }
 
-    @DeleteMapping(baseUrl + "/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
 // --- Additional functionality ---
-    @GetMapping(baseUrl + "/count")
+    @GetMapping("/count")
     public long count() {
         return service.count();
     }
 
-    @GetMapping(baseUrl + "/search")
+    @GetMapping("/search")
     public List<Review> search(
             @RequestParam(required = false) String author,
             @RequestParam(required = false) String[] dateRange,
@@ -79,17 +79,17 @@ public class ReviewController {
     }
 
 // --- Quick searches ---
-    @GetMapping(baseUrl + "/search/newest")
+    @GetMapping("/search/newest")
     public List<Review> findNewest(@RequestParam(defaultValue = "10") int limit) {
         return service.findNewest(limit);
     }
 
-    @GetMapping(baseUrl + "/search/best")
+    @GetMapping("/search/best")
     public List<Review> findBest(@RequestParam(defaultValue = "10") int limit) {
         return service.findBestRated(limit);
     }
 
-    @GetMapping(baseUrl + "/search/worst")
+    @GetMapping("/search/worst")
     public List<Review> findWorst(@RequestParam(defaultValue = "10") int limit) {
         return service.findWorstRated(limit);
     }
