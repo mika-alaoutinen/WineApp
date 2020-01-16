@@ -88,10 +88,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
     private  List<Order> createQueryOrder(Root<Wine> root, CriteriaBuilder builder) {
         return List.of(
                 builder.asc(root.get("type")),
-                builder.asc(root.get("volume")),
-                builder.asc(root.get("country")),
-                builder.asc(root.get("name")),
-                builder.asc(root.get("price"))
+                builder.asc(root.get("name"))
         );
     }
 }

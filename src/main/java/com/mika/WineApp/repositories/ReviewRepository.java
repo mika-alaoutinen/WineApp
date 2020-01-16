@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,14 +16,14 @@ public interface ReviewRepository extends PagingAndSortingRepository<Review, Lon
 
     // Find reviews:
     Optional<Review> findById(Long id);
-    List<Review> findAll();
+    List<Review> findAllByOrderByDateDesc();
     List<Review> findByWineId(Long wineId);
     List<Review> findByWineNameContainingIgnoreCase(String wineName);
 
     Review save(Review review);
 
     // Quick searches:
-    Page<Review> findAllByOrderByDateDesc(Pageable limit);
+    Page<Review> findAllDistinctByOrderByDateDesc(Pageable limit);
     Page<Review> findAllByOrderByRatingDesc(Pageable limit);
     Page<Review> findAllByOrderByRatingAsc(Pageable limit);
 }

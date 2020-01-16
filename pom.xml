@@ -13,7 +13,7 @@
 
 	<groupId>com.mika</groupId>
 	<artifactId>WineApp</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>WineApp</name>
 	<description>REST back end for a wine tasting diary app</description>
 
@@ -102,6 +102,12 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- Open API documentation -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.26</version>
 		</dependency>
 	</dependencies>
 

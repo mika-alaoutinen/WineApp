@@ -14,12 +14,11 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @Slf4j
-class LoadDataBase {
+class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(WineRepository wineRepository, ReviewRepository reviewRepository) {
-
-        if (!wineRepository.findAll().isEmpty() && !reviewRepository.findAll().isEmpty()) {
+        if (wineRepository.count() != 0 && reviewRepository.count() != 0) {
             log.info("Repositories are already initiated, skipping database preloading!");
             return args -> {};
         }
