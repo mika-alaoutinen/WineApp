@@ -8,12 +8,13 @@ import com.mika.WineApp.services.WineServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/wines")
+@RequestMapping(value = "/wines", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Wines API", description = "Contains CRUD operations, search functionality and ability to retrieve keyword lists.")
 public class WineController {
     private final WineService service;
@@ -23,7 +24,7 @@ public class WineController {
     }
 
 // --- CRUD methods ---
-    @Operation(summary = "Get all wines", description = "Returns all wines ordered alphabetically by name")
+    @Operation(summary = "Get all wines", description = "Returns all wines ordered alphabetically by name.")
     @GetMapping("/")
     public List<Wine> findAll() {
         return service.findAll();
@@ -44,13 +45,13 @@ public class WineController {
         return service.add(newWine);
     }
 
-    @Operation(summary = "Edit wine by wine ID")
+    @Operation(summary = "Edit wine")
     @PutMapping("/{id}")
     public Wine edit(@PathVariable Long id, @RequestBody Wine editedWine) {
         return service.edit(id, editedWine);
     }
 
-    @Operation(summary = "Delete wine by wine ID")
+    @Operation(summary = "Delete wine")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
@@ -58,13 +59,13 @@ public class WineController {
     }
 
 // --- Other methods ---
-    @Operation(summary = "Get total count of wines", description = "Returns total count of wines in the database as long")
+    @Operation(summary = "Get wine count", description = "Returns total count of wines in the application as long.")
     @GetMapping("/count")
     public long count() {
         return service.count();
     }
 
-    @Operation(summary = "Get list of distinct countries", description = "Returns list of all distinct countries found as wine attributes")
+    @Operation(summary = "Get list of distinct countries", description = "Returns list of all distinct countries found as wine attributes.")
     @GetMapping("/countries")
     public List<String> countries() {
         return service.findCountries();
@@ -76,7 +77,7 @@ public class WineController {
         return service.findDescriptions();
     }
 
-    @Operation(summary = "Get list of food pairings", description = "Returns list of all distinct wine-food pairings found as wine attributes")
+    @Operation(summary = "Get list of food pairings", description = "Returns list of all distinct wine-food pairings found as wine attributes.")
     @GetMapping("/food-pairings")
     public List<String> foodPairings() {
         return service.findFoodPairings();
