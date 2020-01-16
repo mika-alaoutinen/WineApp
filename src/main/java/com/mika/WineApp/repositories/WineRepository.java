@@ -14,8 +14,7 @@ public interface WineRepository extends PagingAndSortingRepository<Wine, Long>,
                                         JpaSpecificationExecutor<Wine> {
 
     Optional<Wine> findById(Long id);
-    List<Wine> findAll();
-    List<Wine> findAllByOrderByTypeAsc();
+    List<Wine> findAllByOrderByNameAsc();
     Wine save(Wine wine);
 
     @Query(value = "SELECT DISTINCT country FROM wine ORDER BY country ASC", nativeQuery = true)

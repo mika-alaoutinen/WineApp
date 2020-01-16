@@ -19,7 +19,7 @@ public class WineServiceImpl implements WineService {
 
 // --- CRUD methods ---
     public List<Wine> findAll() {
-        return repository.findAllByOrderByTypeAsc();
+        return repository.findAllByOrderByNameAsc();
     }
 
     public Optional<Wine> findById(Long id) {
