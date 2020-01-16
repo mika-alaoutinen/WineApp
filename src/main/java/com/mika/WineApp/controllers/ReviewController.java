@@ -28,7 +28,7 @@ public class ReviewController {
 
 // --- Find reviews ---
     @Operation(summary = "Get all reviews", description = "Returns all reviews in descending order by date.")
-    @GetMapping("/")
+    @GetMapping()
     public List<Review> findAll() {
         return service.findAll();
     }

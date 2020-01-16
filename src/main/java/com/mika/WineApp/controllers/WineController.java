@@ -25,7 +25,7 @@ public class WineController {
 
 // --- CRUD methods ---
     @Operation(summary = "Get all wines", description = "Returns all wines ordered alphabetically by name.")
-    @GetMapping("/")
+    @GetMapping()
     public List<Wine> findAll() {
         return service.findAll();
     }
@@ -39,7 +39,7 @@ public class WineController {
     }
 
     @Operation(summary = "Add new wine")
-    @PostMapping("/")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public Wine add(@RequestBody Wine newWine) {
         return service.add(newWine);
