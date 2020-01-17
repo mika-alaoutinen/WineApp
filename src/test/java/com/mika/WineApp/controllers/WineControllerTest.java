@@ -53,8 +53,17 @@ public class WineControllerTest {
 
     @Test
     public void findAll() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(url).contentType(MediaType.APPLICATION_JSON))
-           .andExpect(MockMvcResultMatchers.status().isOk());
+        Mockito.when(repository.findAllByOrderByNameAsc()).thenReturn(List.of(wine));
+
+        MvcResult result = mvc
+           .perform(MockMvcRequestBuilders
+                   .get(url)
+                   .contentType(MediaType.APPLICATION_JSON))
+           .andExpect(MockMvcResultMatchers.status().isOk())
+           .andReturn();
+
+        String response = getResponseString(result);
+        Assertions.assertFalse(response.isEmpty());
     }
 
     @Test
@@ -111,14 +120,45 @@ public class WineControllerTest {
         Assertions.assertEquals(foodPairings, response);
     }
 
+    @Test
+    public void search() throws Exception {
+        mvc.perform(MockMvcRequestBuilders
+           .get(url + "/search"))
+           .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void count() throws Exception {
+        Mockito.when(repository.count()).thenReturn(1L);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(url + "/count"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String response = getResponseString(result);
+        Assertions.assertEquals(1, Integer.parseInt(response));
+    }
+
+    /**
+     * Turns MvcResult content into a string.
+     * @param result given by controller.
+     * @return String
+     * @throws UnsupportedEncodingException ex.
+     */
+    private String getResponseString(MvcResult result) throws UnsupportedEncodingException {
+        return result.getResponse().getContentAsString();
+    }
+
     /**
      * Parses result from controller into a list of strings.
      * The result is turned into a string, which is then scrubbed of brackets and quotation marks.
      * @param result given by controller.
      * @return List of words.
+     * @throws UnsupportedEncodingException ex.
      */
     private List<String> parseWordsFromResponse(MvcResult result) throws UnsupportedEncodingException {
-        String response = result.getResponse().getContentAsString();
+        String response = getResponseString(result);
 
         String[] words = response
                 .substring(1, response.length() - 1)
