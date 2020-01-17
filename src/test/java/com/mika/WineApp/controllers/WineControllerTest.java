@@ -6,7 +6,6 @@ import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -24,7 +23,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(WineController.class)
-class WineControllerTest {
+public class WineControllerTest {
 
     @Autowired
     private MockMvc mvc;
@@ -38,32 +37,15 @@ class WineControllerTest {
     @MockBean
     private WineRepository repository;
 
-    private static final String url = "/wines";
-    private List<Wine> wines;
+    private List<String> descriptions;
+    private List<String> foodPairings;
+    private Wine wine;
+    private final String url = "/wines";
 
-    @BeforeEach
-    void setUp() {
-        var description1 = List.of("puolikuiva", "sitruunainen", "yrttinen");
-        var description2 = List.of("kuiva", "sitruunainen", "pirskahteleva");
-        var description3 = List.of("tanniininen", "mokkainen", "täyteläinen", "tamminen");
-
-        var foodPairings1 = List.of("kala", "kasvisruoka", "seurustelujuoma");
-        var foodPairings2 = List.of("kana", "kasvisruoka", "noutopöytä");
-        var foodPairings3 = List.of("nauta", "pataruuat", "noutopöytä");
-
-        var white1 = new Wine("Valkoviini 1", WineType.WHITE, "Espanja", 8.75, 0.75, description1, foodPairings1, "invalid");
-        white1.setId(1L);
-
-        var white2 = new Wine("Valkoviini 2", WineType.WHITE, "Espanja", 8.75, 0.75, description2, foodPairings2, "invalid");
-        white2.setId(2L);
-
-        var red1 = new Wine("Punaviini", WineType.RED, "Ranska", 29.95, 3.0, description3, foodPairings3, "invalid");
-        red1.setId(3L);
-
-        var red2 = new Wine("Gato Negra", WineType.RED, "Italia", 30.95, 3.0, description3, foodPairings3, "invalid");
-        red2.setId(4L);
-
-        wines = List.of(white1, white2, red1, red2);
+    public WineControllerTest() {
+        this.descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
+        this.foodPairings = List.of("kana", "kala", "seurustelujuoma");
+        this.wine = new Wine("Valkoviini 1", WineType.WHITE, "Espanja", 8.75, 0.75, descriptions, foodPairings, "invalid");
     }
 
     @Test
@@ -74,8 +56,6 @@ class WineControllerTest {
 
     @Test
     public void addWine() throws Exception {
-        Wine wine = wines.get(0);
-
         mvc.perform(MockMvcRequestBuilders
                     .post(url)
                     .contentType("application/json")
@@ -91,8 +71,6 @@ class WineControllerTest {
 
     @Test
     public void getDescriptions() throws Exception {
-        var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
-
         Mockito.when(repository.findAllDescriptions()).thenReturn(descriptions);
 
         MvcResult result = mvc
