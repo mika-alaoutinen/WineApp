@@ -9,6 +9,7 @@ import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewServiceImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -23,12 +24,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ReviewController.class)
+@EnableWebMvc
 public class ReviewControllerTest {
 
     @Autowired
@@ -49,6 +52,14 @@ public class ReviewControllerTest {
     private final List<Review> reviews = TestData.initReviews();
     private final List<Wine> wines = TestData.initWines();
     private final String url = "/reviews";
+    private Review review;
+
+    @BeforeEach
+    void init () {
+        this.review = reviews.stream()
+                .findAny()
+                .orElse(null);
+    }
 
     @Test
     public void findAll() throws Exception {
@@ -68,21 +79,52 @@ public class ReviewControllerTest {
 
     @Test
     public void addReview() throws Exception {
-        Wine wine = wines.get(0);
+        Wine wine = wines.stream()
+                .findAny()
+                .orElse(null);
 
         Mockito.when(wineRepository.findById(wine.getId()))
                .thenReturn(Optional.of(wine));
 
-        mvc.perform(MockMvcRequestBuilders
-                .post(url + "/{wineId}", wines.get(0).getId())
+        Mockito.when(repository.save(review))
+                .thenReturn(review);
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
+                .post(url + "/{wineId}", wine.getId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(reviews.get(0))))
-           .andExpect(MockMvcResultMatchers.status().isCreated());
+                .content(objectMapper.writeValueAsString(review)))
+            .andExpect(MockMvcResultMatchers.status().isCreated())
+            .andReturn();
+
+        Review addedReview = getReviewFromResult(result);
+        Assertions.assertEquals(review, addedReview);
+    }
+
+    @Test
+    public void editReview() throws Exception {
+        Mockito.when(repository.findById(review.getId()))
+               .thenReturn(Optional.of(review));
+
+        Mockito.when(repository.save(review))
+               .thenReturn(review);
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
+                .put(url + "/{id}", review.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(review)))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        Review editedReview = getReviewFromResult(result);
+        Assertions.assertEquals(review, editedReview);
     }
 
     @Test
     public void deleteReview() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(url + "/{id}", reviews.get(0).getId()))
+        mvc.perform(MockMvcRequestBuilders
+                .delete(url + "/{id}", review.getId()))
            .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 
@@ -132,6 +174,25 @@ public class ReviewControllerTest {
            .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
+// Helper methods:
+
+    /**
+     * Reads the result from controller and maps it into a Review object.
+     * @param result from controller.
+     * @return Review.
+     * @throws Exception ex.
+     */
+    private Review getReviewFromResult(MvcResult result) throws Exception {
+        String response = TestUtilities.getResponseString(result);
+        return objectMapper.readValue(response, Review.class);
+    }
+
+    /**
+     * Used to query the different quick search endpoints.
+     * @param urlPath as string.
+     * @return List of reviews.
+     * @throws Exception ex.
+     */
     private List<Review> quickSearches(String urlPath) throws Exception {
         MvcResult result = mvc
             .perform(MockMvcRequestBuilders.get(url + urlPath))

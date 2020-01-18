@@ -7,6 +7,7 @@ import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(WineController.class)
@@ -39,8 +41,15 @@ public class WineControllerTest {
     private WineRepository repository;
 
     private final List<Wine> wines = TestData.initWines();
-    private final Wine wine = wines.get(0);
     private final String url = "/wines";
+    private Wine wine;
+
+    @BeforeEach
+    public void initWine() {
+        this.wine = wines.stream()
+                .findAny()
+                .orElse(null);
+    }
 
     @Test
     public void findAll() throws Exception {
@@ -60,11 +69,42 @@ public class WineControllerTest {
 
     @Test
     public void addWine() throws Exception {
-        mvc.perform(MockMvcRequestBuilders
+        Mockito.when(repository.findById(wine.getId()))
+                .thenReturn(Optional.of(wine));
+
+        Mockito.when(repository.save(wine))
+                .thenReturn(wine);
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
                 .post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(wine)))
-           .andExpect(MockMvcResultMatchers.status().isCreated());
+            .andExpect(MockMvcResultMatchers.status().isCreated())
+            .andReturn();
+
+        Wine addedWine = getWineFromResults(result);
+        Assertions.assertEquals(wine, addedWine);
+    }
+
+    @Test
+    public void editWine() throws Exception {
+        Mockito.when(repository.findById(wine.getId()))
+                .thenReturn(Optional.of(wine));
+
+        Mockito.when(repository.save(wine))
+               .thenReturn(wine);
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
+                .put(url + "/{id}", wine.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(wine)))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        Wine editedWine = getWineFromResults(result);
+        Assertions.assertEquals(wine, editedWine);
     }
 
     @Test
@@ -125,6 +165,19 @@ public class WineControllerTest {
         mvc.perform(MockMvcRequestBuilders
            .get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+// Helper methods:
+
+    /**
+     * Reads the result from controller and maps it into a Wine object.
+     * @param result from controller.
+     * @return Wine.
+     * @throws Exception ex.
+     */
+    private Wine getWineFromResults(MvcResult result) throws Exception {
+        String response = TestUtilities.getResponseString(result);
+        return objectMapper.readValue(response, Wine.class);
     }
 
     /**
