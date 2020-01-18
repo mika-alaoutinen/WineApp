@@ -50,6 +50,7 @@ public class WineControllerTest {
         this.descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
         this.foodPairings = List.of("kana", "kala", "seurustelujuoma");
         this.wine = new Wine("Valkoviini 1", WineType.WHITE, "Espanja", 8.75, 0.75, descriptions, foodPairings, "invalid");
+        this.wine.setId(1L);
     }
 
     @Test
@@ -78,8 +79,21 @@ public class WineControllerTest {
 
     @Test
     public void deleteWine() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(url + "/{id}", 1L))
+        mvc.perform(MockMvcRequestBuilders.delete(url + "/{id}", wine.getId()))
            .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+    @Test
+    public void count() throws Exception {
+        Mockito.when(repository.count()).thenReturn(1L);
+
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(url + "/count"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        Assertions.assertEquals(1, Integer.parseInt(response));
     }
 
     @Test
@@ -126,18 +140,5 @@ public class WineControllerTest {
         mvc.perform(MockMvcRequestBuilders
            .get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-    @Test
-    public void count() throws Exception {
-        Mockito.when(repository.count()).thenReturn(1L);
-
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/count"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        Assertions.assertEquals(1, Integer.parseInt(response));
     }
 }
