@@ -1,6 +1,7 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mika.WineApp.TestUtilities;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
@@ -56,22 +57,22 @@ public class WineControllerTest {
         Mockito.when(repository.findAllByOrderByNameAsc()).thenReturn(List.of(wine));
 
         MvcResult result = mvc
-           .perform(MockMvcRequestBuilders
-                   .get(url)
-                   .contentType(MediaType.APPLICATION_JSON))
-           .andExpect(MockMvcResultMatchers.status().isOk())
-           .andReturn();
+            .perform(MockMvcRequestBuilders
+                    .get(url)
+                    .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
 
-        String response = getResponseString(result);
+        String response = TestUtilities.getResponseString(result);
         Assertions.assertFalse(response.isEmpty());
     }
 
     @Test
     public void addWine() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                    .post(url)
-                    .contentType("application/json")
-                    .content(objectMapper.writeValueAsString(wine)))
+                .post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(wine)))
            .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
@@ -90,7 +91,7 @@ public class WineControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        var response = parseWordsFromResponse(result);
+        var response = TestUtilities.parseWordsFromResponse(result);
         Assertions.assertEquals(countries, response);
     }
 
@@ -103,7 +104,7 @@ public class WineControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        var response = parseWordsFromResponse(result);
+        var response = TestUtilities.parseWordsFromResponse(result);
         Assertions.assertEquals(descriptions, response);
     }
 
@@ -116,7 +117,7 @@ public class WineControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        var response = parseWordsFromResponse(result);
+        var response = TestUtilities.parseWordsFromResponse(result);
         Assertions.assertEquals(foodPairings, response);
     }
 
@@ -136,35 +137,7 @@ public class WineControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
-        String response = getResponseString(result);
+        String response = TestUtilities.getResponseString(result);
         Assertions.assertEquals(1, Integer.parseInt(response));
-    }
-
-    /**
-     * Turns MvcResult content into a string.
-     * @param result given by controller.
-     * @return String
-     * @throws UnsupportedEncodingException ex.
-     */
-    private String getResponseString(MvcResult result) throws UnsupportedEncodingException {
-        return result.getResponse().getContentAsString();
-    }
-
-    /**
-     * Parses result from controller into a list of strings.
-     * The result is turned into a string, which is then scrubbed of brackets and quotation marks.
-     * @param result given by controller.
-     * @return List of words.
-     * @throws UnsupportedEncodingException ex.
-     */
-    private List<String> parseWordsFromResponse(MvcResult result) throws UnsupportedEncodingException {
-        String response = getResponseString(result);
-
-        String[] words = response
-                .substring(1, response.length() - 1)
-                .replace("\"", "")
-                .split(",");
-
-        return List.of(words);
     }
 }
