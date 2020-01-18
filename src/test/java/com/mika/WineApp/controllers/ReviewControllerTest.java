@@ -1,6 +1,7 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.CollectionType;
 import com.mika.WineApp.TestUtilities;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
@@ -16,6 +17,8 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +27,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -120,9 +124,56 @@ public class ReviewControllerTest {
     }
 
     @Test
+    public void findNewest() throws Exception {
+        Mockito.when(repository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
+               .thenReturn(new PageImpl<>(reviews));
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders.get(url + "/search/newest"))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
+
+        Assertions.assertEquals(reviews, reviewList);
+    }
+
+    @Test
+    public void findBest() throws Exception {
+        Mockito.when(repository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
+               .thenReturn(new PageImpl<>(reviews));
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders.get(url + "/search/best"))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
+
+        Assertions.assertEquals(reviews, reviewList);
+    }
+
+    @Test
+    public void findWorst() throws Exception {
+        Mockito.when(repository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
+               .thenReturn(new PageImpl<>(reviews));
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders.get(url + "/search/worst"))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
+
+        Assertions.assertEquals(reviews, reviewList);
+    }
+
+    @Test
     public void search() throws Exception {
-        mvc.perform(MockMvcRequestBuilders
-           .get(url + "/search"))
+        mvc.perform(MockMvcRequestBuilders.get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
