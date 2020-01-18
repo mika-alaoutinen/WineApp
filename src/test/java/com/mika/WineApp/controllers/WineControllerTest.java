@@ -94,12 +94,7 @@ public class WineControllerTest {
         Mockito.when(repository.findAllCountries())
                .thenReturn(countries);
 
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/countries"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        var response = TestUtilities.parseWordsFromResponse(result);
+        var response = testKeywordSearch("/countries");
         Assertions.assertEquals(countries, response);
     }
 
@@ -110,12 +105,7 @@ public class WineControllerTest {
         Mockito.when(repository.findAllDescriptions())
                .thenReturn(descriptions);
 
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/descriptions"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        var response = TestUtilities.parseWordsFromResponse(result);
+        var response = testKeywordSearch("/descriptions");
         Assertions.assertEquals(descriptions, response);
     }
 
@@ -126,12 +116,7 @@ public class WineControllerTest {
         Mockito.when(repository.findAllFoodPairings())
                .thenReturn(foodPairings);
 
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/food-pairings"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        var response = TestUtilities.parseWordsFromResponse(result);
+        var response = testKeywordSearch("/food-pairings");
         Assertions.assertEquals(foodPairings, response);
     }
 
@@ -140,5 +125,21 @@ public class WineControllerTest {
         mvc.perform(MockMvcRequestBuilders
            .get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    /**
+     * Tests the endpoints for retrieving lists of distinct keywords used as wine attributes.
+     * E.g. get countries, descriptions or food pairings.
+     * @param urlPath endpoint.
+     * @return List of distinct keywords used in wines.
+     * @throws Exception ex.
+     */
+    private List<String> testKeywordSearch(String urlPath) throws Exception {
+        MvcResult result = mvc
+                .perform(MockMvcRequestBuilders.get(url + urlPath))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        return TestUtilities.parseWordsFromResponse(result);
     }
 }
