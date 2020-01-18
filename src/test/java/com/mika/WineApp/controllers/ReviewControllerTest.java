@@ -2,6 +2,7 @@ package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
+import com.mika.WineApp.TestData;
 import com.mika.WineApp.TestUtilities;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
@@ -10,6 +11,7 @@ import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewServiceImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,36 +52,14 @@ public class ReviewControllerTest {
     @MockBean
     WineRepository wineRepository;
 
-    private List<Review> reviews;
-    private Wine wine;
+    private final List<Review> reviews = TestData.initReviews();
+    private final List<Wine> wines = TestData.initWines();
     private final String url = "/reviews";
-
-    @BeforeEach
-    public void setUp() {
-        // New wine:
-        var description = List.of("puolikuiva", "sitruunainen", "yrttinen");
-        var foodPairings = List.of("kala", "kasvisruoka", "seurustelujuoma");
-        wine = new Wine("Valkoviini", WineType.WHITE, "Espanja", 8.75, 0.75, description, foodPairings, "invalid");
-        wine.setId(1L);
-
-        // New reviews:
-        var date1 = LocalDate.of(2019, 11, 14);
-        var date2 = LocalDate.of(2019, 11, 15);
-
-        Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine);
-        r1.setId(21L);
-        r1.setWine(wine);
-
-        Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine);
-        r2.setId(22L);
-        r2.setWine(wine);
-
-        reviews = List.of(r1, r2);
-    }
 
     @Test
     public void findAll() throws Exception {
-        Mockito.when(repository.findAllByOrderByDateDesc()).thenReturn(reviews);
+        Mockito.when(repository.findAllByOrderByDateDesc())
+               .thenReturn(reviews);
 
         MvcResult result = mvc
             .perform(MockMvcRequestBuilders
@@ -94,11 +74,13 @@ public class ReviewControllerTest {
 
     @Test
     public void addReview() throws Exception {
+        Wine wine = wines.get(0);
+
         Mockito.when(wineRepository.findById(wine.getId()))
                .thenReturn(Optional.of(wine));
 
         mvc.perform(MockMvcRequestBuilders
-                .post(url + "/{wineId}", wine.getId())
+                .post(url + "/{wineId}", wines.get(0).getId())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(reviews.get(0))))
            .andExpect(MockMvcResultMatchers.status().isCreated());
@@ -128,14 +110,7 @@ public class ReviewControllerTest {
         Mockito.when(repository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders.get(url + "/search/newest"))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
-
+        var reviewList = quickSearches("/search/newest");
         Assertions.assertEquals(reviews, reviewList);
     }
 
@@ -144,14 +119,7 @@ public class ReviewControllerTest {
         Mockito.when(repository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders.get(url + "/search/best"))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
-
+        var reviewList = quickSearches("/search/best");
         Assertions.assertEquals(reviews, reviewList);
     }
 
@@ -160,14 +128,7 @@ public class ReviewControllerTest {
         Mockito.when(repository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders.get(url + "/search/worst"))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        var reviewList = List.of(objectMapper.readValue(response, Review[].class));
-
+        var reviewList = quickSearches("/search/worst");
         Assertions.assertEquals(reviews, reviewList);
     }
 
@@ -175,5 +136,15 @@ public class ReviewControllerTest {
     public void search() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    private List<Review> quickSearches(String urlPath) throws Exception {
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders.get(url + urlPath))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        return List.of(objectMapper.readValue(response, Review[].class));
     }
 }
