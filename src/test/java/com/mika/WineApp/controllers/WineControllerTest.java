@@ -1,9 +1,9 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities;
+import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
@@ -39,28 +38,19 @@ public class WineControllerTest {
     @MockBean
     private WineRepository repository;
 
-    private List<String> countries;
-    private List<String> descriptions;
-    private List<String> foodPairings;
-    private Wine wine;
+    private final List<Wine> wines = TestData.initWines();
+    private final Wine wine = wines.get(0);
     private final String url = "/wines";
-
-    public WineControllerTest() {
-        this.countries = List.of("Espanja", "Italia", "Ranska");
-        this.descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
-        this.foodPairings = List.of("kana", "kala", "seurustelujuoma");
-        this.wine = new Wine("Valkoviini 1", WineType.WHITE, "Espanja", 8.75, 0.75, descriptions, foodPairings, "invalid");
-        this.wine.setId(1L);
-    }
 
     @Test
     public void findAll() throws Exception {
-        Mockito.when(repository.findAllByOrderByNameAsc()).thenReturn(List.of(wine));
+        Mockito.when(repository.findAllByOrderByNameAsc())
+               .thenReturn(wines);
 
         MvcResult result = mvc
             .perform(MockMvcRequestBuilders
-                    .get(url)
-                    .contentType(MediaType.APPLICATION_JSON))
+                .get(url)
+                .contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andReturn();
 
@@ -85,7 +75,8 @@ public class WineControllerTest {
 
     @Test
     public void count() throws Exception {
-        Mockito.when(repository.count()).thenReturn(1L);
+        Mockito.when(repository.count())
+               .thenReturn(1L);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(url + "/count"))
@@ -98,7 +89,10 @@ public class WineControllerTest {
 
     @Test
     public void getCountries() throws Exception {
-        Mockito.when(repository.findAllCountries()).thenReturn(countries);
+        var countries = List.of("Espanja", "Italia", "Ranska");
+
+        Mockito.when(repository.findAllCountries())
+               .thenReturn(countries);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(url + "/countries"))
@@ -111,7 +105,10 @@ public class WineControllerTest {
 
     @Test
     public void getDescriptions() throws Exception {
-        Mockito.when(repository.findAllDescriptions()).thenReturn(descriptions);
+        var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
+
+        Mockito.when(repository.findAllDescriptions())
+               .thenReturn(descriptions);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(url + "/descriptions"))
@@ -124,7 +121,10 @@ public class WineControllerTest {
 
     @Test
     public void getFoodPairings() throws Exception {
-        Mockito.when(repository.findAllFoodPairings()).thenReturn(foodPairings);
+        var foodPairings = List.of("kana", "kala", "seurustelujuoma");
+
+        Mockito.when(repository.findAllFoodPairings())
+               .thenReturn(foodPairings);
 
         MvcResult result = mvc
                 .perform(MockMvcRequestBuilders.get(url + "/food-pairings"))

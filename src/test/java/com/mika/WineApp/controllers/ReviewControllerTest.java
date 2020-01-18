@@ -1,18 +1,14 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
-import com.mika.WineApp.TestData;
-import com.mika.WineApp.TestUtilities;
+import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewServiceImpl;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -28,8 +24,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
