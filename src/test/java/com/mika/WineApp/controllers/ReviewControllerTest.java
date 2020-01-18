@@ -55,7 +55,7 @@ public class ReviewControllerTest {
     private Review review;
 
     @BeforeEach
-    void init () {
+    void initReview () {
         this.review = reviews.stream()
                 .findAny()
                 .orElse(null);
@@ -75,6 +75,22 @@ public class ReviewControllerTest {
 
         String response = TestUtilities.getResponseString(result);
         Assertions.assertFalse(response.isEmpty());
+    }
+
+    @Test
+    public void findOne() throws Exception {
+        Mockito.when(repository.findById(review.getId()))
+               .thenReturn(Optional.of(review));
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
+                .get(url + "/{id}", review.getId())
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        Review foundReview = getReviewFromResult(result);
+        Assertions.assertEquals(review, foundReview);
     }
 
     @Test

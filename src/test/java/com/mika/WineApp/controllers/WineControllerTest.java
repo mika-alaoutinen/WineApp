@@ -45,7 +45,7 @@ public class WineControllerTest {
     private Wine wine;
 
     @BeforeEach
-    public void initWine() {
+    void initWine() {
         this.wine = wines.stream()
                 .findAny()
                 .orElse(null);
@@ -65,6 +65,22 @@ public class WineControllerTest {
 
         String response = TestUtilities.getResponseString(result);
         Assertions.assertFalse(response.isEmpty());
+    }
+
+    @Test
+    public void findOne() throws Exception {
+        Mockito.when(repository.findById(wine.getId()))
+               .thenReturn(Optional.of(wine));
+
+        MvcResult result = mvc
+            .perform(MockMvcRequestBuilders
+                .get(url + "/{id}", wine.getId())
+                .contentType(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+
+        Wine foundWine = getWineFromResults(result);
+        Assertions.assertEquals(wine, foundWine);
     }
 
     @Test
