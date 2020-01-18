@@ -1,4 +1,4 @@
-package com.mika.WineApp;
+package com.mika.WineApp.TestUtilities;
 
 import org.springframework.test.web.servlet.MvcResult;
 

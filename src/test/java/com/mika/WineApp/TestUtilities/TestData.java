@@ -1,4 +1,4 @@
-package com.mika.WineApp;
+package com.mika.WineApp.TestUtilities;
 
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
