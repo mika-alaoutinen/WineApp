@@ -1,10 +1,11 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,12 +13,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertSame;
+import java.util.stream.Collectors;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest {
@@ -31,43 +35,107 @@ class ReviewServiceTest {
     @InjectMocks
     private ReviewServiceImpl service;
 
-    private List<Review> reviewList;
+    private final List<Review> reviews = TestData.initReviews();
+    private final List<Wine> wines = TestData.initWines();
+    private Review review;
     private Wine wine;
 
     @BeforeEach
-    void setUp() {
-        // New wine:
-        var description = List.of("puolikuiva", "sitruunainen", "yrttinen");
-        var foodPairings = List.of("kala", "kasvisruoka", "seurustelujuoma");
-        wine = new Wine("Valkoviini", WineType.WHITE, "Espanja", 8.75, 0.75, description, foodPairings, "invalid");
-        wine.setId(1L);
+    void init() {
+        this.review = reviews.stream()
+                .findAny()
+                .orElse(null);
 
-        // New reviews:
-        var date1 = LocalDate.of(2019, 11, 14);
-        var date2 = LocalDate.of(2019, 11, 15);
-
-        Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine);
-        r1.setId(21L);
-        r1.setWine(wine);
-
-        Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine);
-        r2.setId(22L);
-        r2.setWine(wine);
-
-        reviewList = List.of(r1, r2);
+        this.wine = wines.stream()
+                .findAny()
+                .orElse(null);
     }
 
     @Test
-    void add() {
+    public void findAll() {
+        var sortedReviews = reviews.stream()
+                .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
+                .collect(Collectors.toList());
+
+        Mockito.when(repository.findAllByOrderByDateDesc())
+               .thenReturn(sortedReviews);
+
+        var foundReviews = service.findAll();
+
+        Mockito.verify(repository, Mockito.times(1)).findAllByOrderByDateDesc();
+        Assertions.assertEquals(sortedReviews, foundReviews);
+    }
+
+    @Test
+    public void findById() {
+        long id = review.getId();
+
+        Mockito.when(repository.findById(id))
+               .thenReturn(Optional.ofNullable(review));
+
+        Review foundReview = service.findById(id).orElse(null);
+
+        Mockito.verify(repository, Mockito.times(1)).findById(id);
+        Assertions.assertEquals(review, foundReview);
+    }
+
+    @Test
+    void addReview() {
+        long wineId = wine.getId();
         Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, wine);
 
-        Mockito.when(wineRepository.findById(wine.getId()))
-               .thenReturn(Optional.of(wine));
+        Mockito.when(wineRepository.findById(wineId))
+               .thenReturn(Optional.ofNullable(wine));
 
         Mockito.when(repository.save(newReview))
                .thenReturn(newReview);
 
-        Review saved = service.add(wine.getId(), newReview);
-        assertSame(newReview.getId(), saved.getId());
+        Review savedReview = service.add(wineId, newReview);
+
+        Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
+        Mockito.verify(repository, Mockito.times(1)).save(newReview);
+        Assertions.assertEquals(newReview, savedReview);
+    }
+
+    @Test
+    public void editReview() {
+        long id = review.getId();
+
+        Mockito.when(repository.findById(id))
+               .thenReturn(Optional.ofNullable(review));
+
+        Mockito.when(repository.save(review))
+               .thenReturn(review);
+
+        Review editedReview = service.edit(id, review);
+
+        Mockito.verify(repository, Mockito.times(1)).findById(id);
+        Mockito.verify(repository, Mockito.times(1)).save(review);
+        Assertions.assertEquals(review, editedReview);
+    }
+
+    @Test
+    public void deleteReview() {
+        long id = review.getId();
+        service.delete(id);
+
+        Mockito.verify(repository, Mockito.times(1)).deleteById(id);
+    }
+
+    @Test
+    public void count() {
+        Mockito.when(repository.count())
+               .thenReturn((long) reviews.size());
+
+        long reviewCount = service.count();
+
+        Mockito.verify(repository, Mockito.times(1)).count();
+        Assertions.assertEquals(reviews.size(), reviewCount);
+    }
+
+    @Test
+    public void searchWithNullParameters() {
+        var result = service.search(null, null, null);
+        Assertions.assertTrue(result.isEmpty());
     }
 }

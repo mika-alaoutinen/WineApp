@@ -98,8 +98,7 @@ class WineServiceTest {
         long id = wine.getId();
         service.delete(id);
 
-        Mockito.verify(repository, Mockito.times(1))
-               .deleteById(id);
+        Mockito.verify(repository, Mockito.times(1)).deleteById(id);
     }
 
     @Test
