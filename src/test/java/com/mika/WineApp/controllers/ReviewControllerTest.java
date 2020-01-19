@@ -7,7 +7,7 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.services.ReviewServiceImpl;
+import com.mika.WineApp.services.ReviewService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,14 +24,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.List;
 import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ReviewController.class)
-@EnableWebMvc
 public class ReviewControllerTest {
 
     @Autowired
@@ -41,7 +39,7 @@ public class ReviewControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private ReviewServiceImpl service;
+    private ReviewService service;
 
     @MockBean
     private ReviewRepository repository;

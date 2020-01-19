@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 @ExtendWith(MockitoExtension.class)
-class ReviewServiceImplTest {
+class ReviewServiceTest {
 
     @Mock
     private ReviewRepository repository;
