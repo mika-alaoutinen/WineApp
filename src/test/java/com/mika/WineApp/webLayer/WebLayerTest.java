@@ -27,6 +27,8 @@ class WebLayerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    private static final String url = "http://localhost:";
+
 	@Test
 	void contextLoads() {
         Assertions.assertThat(wineController).isNotNull();
@@ -35,8 +37,13 @@ class WebLayerTest {
 
     @Test
     public void shouldReturnWines() {
-	    Assertions.assertThat(restTemplate.getForObject(
-	            "http://localhost:" + port + "/api/wines", String.class))
-                .isNotBlank();
+        String wines = restTemplate.getForObject(url + port + "/api/wines", String.class);
+	    Assertions.assertThat(wines).isNotBlank();
+    }
+
+    @Test
+    public void shouldReturnReviews() {
+        String reviews = restTemplate.getForObject(url + port + "/api/reviews", String.class);
+	    Assertions.assertThat(reviews).isNotBlank();
     }
 }
