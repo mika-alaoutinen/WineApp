@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -99,5 +100,68 @@ class WineServiceTest {
 
         Mockito.verify(repository, Mockito.times(1))
                .deleteById(id);
+    }
+
+    @Test
+    public void count() {
+        Mockito.when(repository.count())
+               .thenReturn((long) wines.size());
+
+        long wineCount = service.count();
+
+        Mockito.verify(repository, Mockito.times(1)).count();
+        Assertions.assertEquals(wines.size(), wineCount);
+    }
+
+    @Test
+    public void findCountries() {
+        var countries = wines.stream()
+                .map(Wine::getCountry)
+                .collect(Collectors.toList());
+
+        Mockito.when(repository.findAllCountries()).thenReturn(countries);
+
+        var foundCountries = service.findCountries();
+
+        Mockito.verify(repository, Mockito.times(1)).findAllCountries();
+        Assertions.assertEquals(countries, foundCountries);
+    }
+
+    @Test
+    public void findDescriptions() {
+        var descriptions = wines.stream()
+                .map(Wine::getDescription)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Mockito.when(repository.findAllDescriptions()).thenReturn(descriptions);
+
+        var foundDescriptions = service.findDescriptions();
+
+        Mockito.verify(repository, Mockito.times(1)).findAllDescriptions();
+        Assertions.assertEquals(descriptions, foundDescriptions);
+    }
+
+    @Test
+    public void findFoodPairings() {
+        var foodPairings = wines.stream()
+                .map(Wine::getFoodPairings)
+                .flatMap(Collection::stream)
+                .distinct()
+                .collect(Collectors.toList());
+
+        Mockito.when(repository.findAllFoodPairings()).thenReturn(foodPairings);
+
+        var foundFoodPairings = service.findFoodPairings();
+
+        Mockito.verify(repository, Mockito.times(1)).findAllFoodPairings();
+        Assertions.assertEquals(foodPairings, foundFoodPairings);
+    }
+
+    @Test
+    public void searchWithNullParameters() {
+        var result = service.search(null, null, null, null, null);
+        Assertions.assertTrue(result.isEmpty());
     }
 }
