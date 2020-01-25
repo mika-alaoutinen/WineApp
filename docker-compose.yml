@@ -3,7 +3,6 @@ version: '3'
 services:
   # Backend API
   wineapp:
-    build: .
     container_name: wineapp
     depends_on:
       - postgres
@@ -14,7 +13,7 @@ services:
       SPRINGDOC_SWAGGER_UI_PATH: /swagger
     expose:
       - 8080
-    image: wineapp
+    image: mikaalaoutinen/wineapp:1.0
     networks:
       - backend
       - frontend
