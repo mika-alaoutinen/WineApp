@@ -13,7 +13,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin     
       SPRINGDOC_SWAGGER_UI_PATH: /swagger
     expose:
-      - '8080'
+      - 8080
+    image: wineapp
     networks:
       - backend
       - frontend
