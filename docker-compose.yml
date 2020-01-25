@@ -4,7 +4,7 @@ services:
   # Backend API
   wineapp:
     build: .
-    # container_name: wineapp
+    container_name: wineapp
     depends_on:
       - postgres
     environment:
