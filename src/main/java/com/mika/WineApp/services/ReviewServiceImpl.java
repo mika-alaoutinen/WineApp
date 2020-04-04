@@ -119,7 +119,7 @@ public class ReviewServiceImpl implements ReviewService {
         try {
             return YearMonth
                     .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atDay(1);
+                    .atDay(31);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(date);
         }
