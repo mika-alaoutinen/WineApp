@@ -1,7 +1,6 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.errors.InvalidDateRangeException;
 import com.mika.WineApp.errors.ReviewNotFoundException;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Review;
@@ -17,7 +16,6 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -115,7 +113,7 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         if (dates.length != 2) {
-            throw new InvalidDateRangeException(dates);
+            throw new InvalidDateException(dates);
         }
 
         LocalDate[] parsedDates = new LocalDate[2];
