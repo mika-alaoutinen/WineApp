@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.InvalidDateException;
+import com.mika.WineApp.errors.InvalidDateRangeException;
 import com.mika.WineApp.errors.ReviewNotFoundException;
 import com.mika.WineApp.errors.WineNotFoundException;
 import com.mika.WineApp.models.Review;
@@ -84,14 +85,7 @@ public class ReviewServiceImpl implements ReviewService {
             return  new ArrayList<>();
         }
 
-        LocalDate[] dates = null;
-
-        if (dateRange != null) {
-            dates = Arrays.stream(dateRange)
-                    .map(this::parseMonthYear)
-                    .toArray(LocalDate[]::new);
-        }
-
+        LocalDate[] dates = parseDateRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
@@ -115,13 +109,33 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 // --- Utility methods ---
-    private LocalDate parseMonthYear(String date) {
+    private LocalDate[] parseDateRange(String[] dates) throws InvalidDateException {
+        if (dates == null) {
+            return null;
+        }
+
+        if (dates.length != 2) {
+            throw new InvalidDateRangeException(dates);
+        }
+
+        LocalDate[] parsedDates = new LocalDate[2];
+        String date = dates[0];
+
         try {
-            return YearMonth
+            parsedDates[0] = YearMonth
                     .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atDay(31);
+                    .atDay(1);
+
+            date = dates[1];
+
+            parsedDates[1] = YearMonth
+                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
+                    .atEndOfMonth();
+
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(date);
         }
+
+        return parsedDates;
     }
 }
