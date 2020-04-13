@@ -1,8 +1,8 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.errors.ReviewNotFoundException;
-import com.mika.WineApp.errors.WineNotFoundException;
+import com.mika.WineApp.errors.common.InvalidDateException;
+import com.mika.WineApp.errors.review.ReviewNotFoundException;
+import com.mika.WineApp.errors.wine.WineNotFoundException;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;

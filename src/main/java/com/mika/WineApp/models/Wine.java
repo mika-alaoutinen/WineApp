@@ -18,6 +18,7 @@ import java.util.List;
 public class Wine extends  EntityModel {
 
     @NotBlank
+    @Column(unique = true)
     private String name;
 
     @NotNull

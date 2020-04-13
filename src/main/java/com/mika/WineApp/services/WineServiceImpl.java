@@ -1,7 +1,8 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.InvalidWineTypeException;
-import com.mika.WineApp.errors.WineNotFoundException;
+import com.mika.WineApp.errors.wine.InvalidWineTypeException;
+import com.mika.WineApp.errors.wine.NewWineException;
+import com.mika.WineApp.errors.wine.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
@@ -26,6 +27,9 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine add(Wine newWine) {
+        if (exists(newWine.getName())) {
+            throw new NewWineException(newWine.getName());
+        }
         return repository.save(newWine);
     }
 
@@ -50,6 +54,10 @@ public class WineServiceImpl implements WineService {
 // --- Other methods ---
     public long count() {
         return repository.count();
+    }
+
+    public Boolean exists(String name) {
+        return repository.existsByName(name);
     }
 
     public List<String> findCountries() {
