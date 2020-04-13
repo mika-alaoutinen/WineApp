@@ -84,7 +84,7 @@ class WineServiceTest {
     public void shouldNotAddSameWineTwice() {
         String name = wine.getName();
 
-        Mockito.when(service.exists(name))
+        Mockito.when(service.isValid(name))
                .thenReturn(true);
 
         Exception e = assertThrows(NewWineException.class, () -> service.add(wine));

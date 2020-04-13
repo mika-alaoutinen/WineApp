@@ -27,10 +27,12 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine add(Wine newWine) {
-        if (exists(newWine.getName())) {
-            throw new NewWineException(newWine.getName());
+        String name = newWine.getName();
+
+        if (isValid(name)) {
+            return repository.save(newWine);
         }
-        return repository.save(newWine);
+        throw new NewWineException(name);
     }
 
     public Wine edit(Long id, Wine editedWine) {
@@ -56,8 +58,8 @@ public class WineServiceImpl implements WineService {
         return repository.count();
     }
 
-    public Boolean exists(String name) {
-        return repository.existsByName(name);
+    public boolean isValid(String name) {
+        return !repository.existsByName(name);
     }
 
     public List<String> findCountries() {

@@ -7,12 +7,12 @@ import java.util.List;
 public interface WineService extends CrudService<Wine> {
 
     /**
-     * Check if wine with a given name exists in the repository.
-     * Same wine should not be saved twice.
-     * @param name of wine
-     * @return boolean
+     * Save new wine to repository. If wine with the same new already exists in repository,
+     * new wine will not be saved.
+     * @param newWine to be added
+     * @return saved wine
      */
-    Boolean exists(String name);
+    Wine add (Wine newWine);
 
     /**
      * Find all distinct countries from wine entries.
@@ -33,12 +33,12 @@ public interface WineService extends CrudService<Wine> {
     List<String> findFoodPairings();
 
     /**
-     * Save new wine to repository. If wine with the same new already exists in repository,
-     * new wine will not be saved.
-     * @param newWine to be added
-     * @return saved wine
+     * Check if wine with a given name exists in the repository.
+     * Same wine should not be saved twice.
+     * @param name of wine
+     * @return boolean
      */
-    Wine add (Wine newWine);
+    boolean isValid(String name);
 
     /**
      * Find wines that match the given criteria. One or many criteria may be given.

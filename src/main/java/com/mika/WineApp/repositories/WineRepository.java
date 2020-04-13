@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface WineRepository extends PagingAndSortingRepository<Wine, Long>,
                                         JpaSpecificationExecutor<Wine> {
 
-    Boolean existsByName(String name);
+    boolean existsByName(String name);
     Optional<Wine> findById(Long id);
     List<Wine> findAllByOrderByNameAsc();
     Wine save(Wine wine);

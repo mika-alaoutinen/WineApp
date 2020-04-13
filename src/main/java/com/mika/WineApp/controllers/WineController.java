@@ -94,4 +94,10 @@ public class WineController {
 
         return service.search(name, type, countries, volumes, priceRange);
     }
+
+    @Operation(summary = "Validate wine's name", description = "Check that wine's name is unique.")
+    @GetMapping("validate")
+    public boolean validate(@RequestParam String name) {
+        return service.isValid(name);
+    }
 }
