@@ -7,8 +7,6 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.services.ReviewService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +26,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ReviewController.class)
 public class ReviewControllerTest {
@@ -37,9 +38,6 @@ public class ReviewControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @MockBean
-    private ReviewService service;
 
     @MockBean
     private ReviewRepository repository;
@@ -72,7 +70,7 @@ public class ReviewControllerTest {
             .andReturn();
 
         String response = TestUtilities.getResponseString(result);
-        Assertions.assertFalse(response.isEmpty());
+        assertFalse(response.isEmpty());
     }
 
     @Test
@@ -88,7 +86,7 @@ public class ReviewControllerTest {
             .andReturn();
 
         Review foundReview = getReviewFromResult(result);
-        Assertions.assertEquals(review, foundReview);
+        assertEquals(review, foundReview);
     }
 
     @Test
@@ -97,6 +95,7 @@ public class ReviewControllerTest {
                 .findAny()
                 .orElse(null);
 
+        assert wine != null;
         Mockito.when(wineRepository.findById(wine.getId()))
                .thenReturn(Optional.of(wine));
 
@@ -112,7 +111,7 @@ public class ReviewControllerTest {
             .andReturn();
 
         Review addedReview = getReviewFromResult(result);
-        Assertions.assertEquals(review, addedReview);
+        assertEquals(review, addedReview);
     }
 
     @Test
@@ -132,7 +131,7 @@ public class ReviewControllerTest {
             .andReturn();
 
         Review editedReview = getReviewFromResult(result);
-        Assertions.assertEquals(review, editedReview);
+        assertEquals(review, editedReview);
     }
 
     @Test
@@ -152,7 +151,7 @@ public class ReviewControllerTest {
                 .andReturn();
 
         String response = TestUtilities.getResponseString(result);
-        Assertions.assertEquals(2, Integer.parseInt(response));
+        assertEquals(2, Integer.parseInt(response));
     }
 
     @Test
@@ -161,7 +160,7 @@ public class ReviewControllerTest {
                .thenReturn(new PageImpl<>(reviews));
 
         var reviewList = quickSearches("/search/newest");
-        Assertions.assertEquals(reviews, reviewList);
+        assertEquals(reviews, reviewList);
     }
 
     @Test
@@ -170,7 +169,7 @@ public class ReviewControllerTest {
                .thenReturn(new PageImpl<>(reviews));
 
         var reviewList = quickSearches("/search/best");
-        Assertions.assertEquals(reviews, reviewList);
+        assertEquals(reviews, reviewList);
     }
 
     @Test
@@ -179,7 +178,7 @@ public class ReviewControllerTest {
                .thenReturn(new PageImpl<>(reviews));
 
         var reviewList = quickSearches("/search/worst");
-        Assertions.assertEquals(reviews, reviewList);
+        assertEquals(reviews, reviewList);
     }
 
     @Test

@@ -5,8 +5,6 @@ import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.services.WineService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,6 +22,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(WineController.class)
 public class WineControllerTest {
@@ -33,9 +34,6 @@ public class WineControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @MockBean
-    private WineService service;
 
     @MockBean
     private WineRepository repository;
@@ -64,7 +62,7 @@ public class WineControllerTest {
             .andReturn();
 
         String response = TestUtilities.getResponseString(result);
-        Assertions.assertFalse(response.isEmpty());
+        assertFalse(response.isEmpty());
     }
 
     @Test
@@ -80,7 +78,7 @@ public class WineControllerTest {
             .andReturn();
 
         Wine foundWine = getWineFromResults(result);
-        Assertions.assertEquals(wine, foundWine);
+        assertEquals(wine, foundWine);
     }
 
     @Test
@@ -100,7 +98,7 @@ public class WineControllerTest {
             .andReturn();
 
         Wine addedWine = getWineFromResults(result);
-        Assertions.assertEquals(wine, addedWine);
+        assertEquals(wine, addedWine);
     }
 
     @Test
@@ -120,7 +118,7 @@ public class WineControllerTest {
             .andReturn();
 
         Wine editedWine = getWineFromResults(result);
-        Assertions.assertEquals(wine, editedWine);
+        assertEquals(wine, editedWine);
     }
 
     @Test
@@ -140,7 +138,7 @@ public class WineControllerTest {
                 .andReturn();
 
         String response = TestUtilities.getResponseString(result);
-        Assertions.assertEquals(1, Integer.parseInt(response));
+        assertEquals(1, Integer.parseInt(response));
     }
 
     @Test
@@ -151,7 +149,7 @@ public class WineControllerTest {
                .thenReturn(countries);
 
         var response = testKeywordSearch("/countries");
-        Assertions.assertEquals(countries, response);
+        assertEquals(countries, response);
     }
 
     @Test
@@ -162,7 +160,7 @@ public class WineControllerTest {
                .thenReturn(descriptions);
 
         var response = testKeywordSearch("/descriptions");
-        Assertions.assertEquals(descriptions, response);
+        assertEquals(descriptions, response);
     }
 
     @Test
@@ -173,7 +171,7 @@ public class WineControllerTest {
                .thenReturn(foodPairings);
 
         var response = testKeywordSearch("/food-pairings");
-        Assertions.assertEquals(foodPairings, response);
+        assertEquals(foodPairings, response);
     }
 
     @Test

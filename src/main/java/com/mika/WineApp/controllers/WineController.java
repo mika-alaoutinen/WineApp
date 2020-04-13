@@ -1,6 +1,6 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.errors.WineNotFoundException;
+import com.mika.WineApp.errors.wine.WineNotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
@@ -93,5 +93,11 @@ public class WineController {
             @RequestParam(required = false) Integer[] priceRange) {
 
         return service.search(name, type, countries, volumes, priceRange);
+    }
+
+    @Operation(summary = "Validate wine's name", description = "Check that wine's name is unique.")
+    @GetMapping("validate")
+    public boolean validate(@RequestParam String name) {
+        return service.isValid(name);
     }
 }

@@ -13,7 +13,7 @@
 
 	<groupId>com.mika</groupId>
 	<artifactId>WineApp</artifactId>
-	<version>1.0.6-SNAPSHOT</version>
+	<version>1.0.7-SNAPSHOT</version>
 	<name>WineApp</name>
 	<description>REST back end for a wine tasting diary app</description>
 

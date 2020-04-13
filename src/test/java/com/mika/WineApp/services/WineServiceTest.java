@@ -1,9 +1,9 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.errors.wine.NewWineException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,6 +17,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class WineServiceTest {
@@ -49,7 +53,7 @@ class WineServiceTest {
         var foundWines = service.findAll();
 
         Mockito.verify(repository, Mockito.times(1)).findAllByOrderByNameAsc();
-        Assertions.assertEquals(sortedWines, foundWines);
+        assertEquals(sortedWines, foundWines);
     }
 
     @Test
@@ -62,7 +66,7 @@ class WineServiceTest {
         Wine foundWine = service.findById(id).orElse(null);
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
-        Assertions.assertEquals(wine, foundWine);
+        assertEquals(wine, foundWine);
     }
 
     @Test
@@ -73,7 +77,19 @@ class WineServiceTest {
         Wine addedWine = service.add(wine);
 
         Mockito.verify(repository, Mockito.times(1)).save(wine);
-        Assertions.assertEquals(wine, addedWine);
+        assertEquals(wine, addedWine);
+    }
+
+    @Test
+    public void shouldNotAddSameWineTwice() {
+        String name = wine.getName();
+
+        Mockito.when(service.isValid(name))
+               .thenReturn(true);
+
+        Exception e = assertThrows(NewWineException.class, () -> service.add(wine));
+        assertEquals(e.getMessage(), "Error: wine with name " + name + " already exists!");
+        Mockito.verify(repository, Mockito.times(1)).existsByName(name);
     }
 
     @Test
@@ -90,7 +106,7 @@ class WineServiceTest {
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
         Mockito.verify(repository, Mockito.times(1)).save(wine);
-        Assertions.assertEquals(wine, editedWine);
+        assertEquals(wine, editedWine);
     }
 
     @Test
@@ -109,7 +125,7 @@ class WineServiceTest {
         long wineCount = service.count();
 
         Mockito.verify(repository, Mockito.times(1)).count();
-        Assertions.assertEquals(wines.size(), wineCount);
+        assertEquals(wines.size(), wineCount);
     }
 
     @Test
@@ -123,7 +139,7 @@ class WineServiceTest {
         var foundCountries = service.findCountries();
 
         Mockito.verify(repository, Mockito.times(1)).findAllCountries();
-        Assertions.assertEquals(countries, foundCountries);
+        assertEquals(countries, foundCountries);
     }
 
     @Test
@@ -139,7 +155,7 @@ class WineServiceTest {
         var foundDescriptions = service.findDescriptions();
 
         Mockito.verify(repository, Mockito.times(1)).findAllDescriptions();
-        Assertions.assertEquals(descriptions, foundDescriptions);
+        assertEquals(descriptions, foundDescriptions);
     }
 
     @Test
@@ -155,12 +171,12 @@ class WineServiceTest {
         var foundFoodPairings = service.findFoodPairings();
 
         Mockito.verify(repository, Mockito.times(1)).findAllFoodPairings();
-        Assertions.assertEquals(foodPairings, foundFoodPairings);
+        assertEquals(foodPairings, foundFoodPairings);
     }
 
     @Test
     public void searchWithNullParameters() {
         var result = service.search(null, null, null, null, null);
-        Assertions.assertTrue(result.isEmpty());
+        assertTrue(result.isEmpty());
     }
 }

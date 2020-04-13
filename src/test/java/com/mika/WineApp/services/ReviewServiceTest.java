@@ -5,7 +5,6 @@ import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -22,6 +19,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest {
@@ -63,7 +63,7 @@ class ReviewServiceTest {
         var foundReviews = service.findAll();
 
         Mockito.verify(repository, Mockito.times(1)).findAllByOrderByDateDesc();
-        Assertions.assertEquals(sortedReviews, foundReviews);
+        assertEquals(sortedReviews, foundReviews);
     }
 
     @Test
@@ -76,7 +76,7 @@ class ReviewServiceTest {
         Review foundReview = service.findById(id).orElse(null);
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
-        Assertions.assertEquals(review, foundReview);
+        assertEquals(review, foundReview);
     }
 
     @Test
@@ -94,7 +94,7 @@ class ReviewServiceTest {
 
         Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
         Mockito.verify(repository, Mockito.times(1)).save(newReview);
-        Assertions.assertEquals(newReview, savedReview);
+        assertEquals(newReview, savedReview);
     }
 
     @Test
@@ -111,7 +111,7 @@ class ReviewServiceTest {
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
         Mockito.verify(repository, Mockito.times(1)).save(review);
-        Assertions.assertEquals(review, editedReview);
+        assertEquals(review, editedReview);
     }
 
     @Test
@@ -130,12 +130,12 @@ class ReviewServiceTest {
         long reviewCount = service.count();
 
         Mockito.verify(repository, Mockito.times(1)).count();
-        Assertions.assertEquals(reviews.size(), reviewCount);
+        assertEquals(reviews.size(), reviewCount);
     }
 
     @Test
     public void searchWithNullParameters() {
         var result = service.search(null, null, null);
-        Assertions.assertTrue(result.isEmpty());
+        assertTrue(result.isEmpty());
     }
 }
