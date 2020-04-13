@@ -1,12 +1,12 @@
-package com.mika.WineApp.errors;
+package com.mika.WineApp.errors.wine;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-class WineNotFoundAdvice {
+public class InvalidWineTypeAdvice {
     @ResponseBody
     @ExceptionHandler
-    String wineNotFoundHandler(WineNotFoundException e) {
+    String invalidWineTypeHandler(InvalidWineTypeException e) {
         return e.getMessage();
     }
 }
