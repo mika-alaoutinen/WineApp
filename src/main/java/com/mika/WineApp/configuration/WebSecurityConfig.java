@@ -1,13 +1,19 @@
 package com.mika.WineApp.configuration;
 
+import com.mika.WineApp.repositories.UserAccountRepository;
+import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -24,9 +30,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("#{'${frontend.urls}'.split(',')}")
     private List<String> allowedUrls;
 
+    private final UserService service;
+
+    public WebSecurityConfig(UserAccountRepository repository) {
+        this.service = new UserServiceImpl(repository);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        setupAuthorization(http);
     }
 
     /**
@@ -35,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * @return FilterRegistrationBean.
      */
     @Bean
-    public FilterRegistrationBean corsFilter() {
+    public FilterRegistrationBean<CorsFilter> corsFilter() {
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(allowedUrls);
@@ -49,5 +62,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 
         return bean;
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
+        authentication
+                .userDetailsService(service)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    /**
+     * Define http request authorization settings.
+     * @param http security
+     * @throws Exception e
+     */
+    private void setupAuthorization(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/wines/count").permitAll() // TODO remove
+                .anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .permitAll()
+                .and()
+            .logout()
+                .permitAll();
     }
 }
