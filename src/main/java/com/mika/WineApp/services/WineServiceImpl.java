@@ -1,8 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.wine.InvalidWineTypeException;
-import com.mika.WineApp.errors.wine.NewWineException;
-import com.mika.WineApp.errors.wine.WineNotFoundException;
+import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.repositories.WineRepository;
@@ -11,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
@@ -22,17 +20,19 @@ public class WineServiceImpl implements WineService {
         return repository.findAllByOrderByNameAsc();
     }
 
-    public Optional<Wine> findById(Long id) {
-        return repository.findById(id);
+    public Wine findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException(new Wine(), id));
     }
 
     public Wine add(Wine newWine) {
         String name = newWine.getName();
 
-        if (isValid(name)) {
-            return repository.save(newWine);
+        if (!isValid(name)) {
+            throw new BadRequestException(name);
         }
-        throw new NewWineException(name);
+
+        return repository.save(newWine);
     }
 
     public Wine edit(Long id, Wine editedWine) {
@@ -46,7 +46,7 @@ public class WineServiceImpl implements WineService {
             wine.setFoodPairings(editedWine.getFoodPairings());
             wine.setUrl(editedWine.getUrl());
             return repository.save(wine);
-        }).orElseThrow(() -> new WineNotFoundException(id));
+        }).orElseThrow(() -> new NotFoundException(editedWine, id));
     }
 
     public void delete(Long id) {
@@ -97,7 +97,7 @@ public class WineServiceImpl implements WineService {
         try {
             return WineType.valueOf(type.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new InvalidWineTypeException(type);
+            throw new BadRequestException(WineType.OTHER, type);
         }
     }
 }

@@ -1,8 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.common.InvalidDateException;
-import com.mika.WineApp.errors.review.ReviewNotFoundException;
-import com.mika.WineApp.errors.wine.WineNotFoundException;
+import com.mika.WineApp.errors.invaliddate.InvalidDateException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.Review;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
@@ -17,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
@@ -29,8 +27,9 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.findAllByOrderByDateDesc();
     }
 
-    public Optional<Review> findById(Long id) {
-        return repository.findById(id);
+    public Review findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException(new Review(), id));
     }
 
     public List<Review> findByWineId(Long wineId) {
@@ -45,7 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
     public Review add(Long wineId, Review newReview) {
         Wine wine = wineRepository
                 .findById(wineId)
-                .orElseThrow(() -> new WineNotFoundException(wineId));
+                .orElseThrow(() -> new NotFoundException(new Wine(), wineId));
 
         newReview.setWine(wine);
         return repository.save(newReview);
@@ -54,7 +53,7 @@ public class ReviewServiceImpl implements ReviewService {
     public Review edit(Long id, Review editedReview) {
         Review review = repository
                 .findById(id)
-                .orElseThrow(() -> new ReviewNotFoundException(id));
+                .orElseThrow(() -> new NotFoundException(editedReview, id));
 
         // If wine info has been edited, save changes. Don't save null wines.
         if (editedReview.getWine() != null) {
