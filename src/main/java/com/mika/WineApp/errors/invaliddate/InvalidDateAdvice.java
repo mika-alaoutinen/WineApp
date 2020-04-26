@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.common;
+package com.mika.WineApp.errors.invaliddate;
 
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

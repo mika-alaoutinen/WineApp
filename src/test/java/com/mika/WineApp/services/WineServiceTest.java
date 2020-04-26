@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.errors.wine.NewWineException;
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -63,7 +63,7 @@ class WineServiceTest {
         Mockito.when(repository.findById(id))
                .thenReturn(Optional.ofNullable(wine));
 
-        Wine foundWine = service.findById(id).orElse(null);
+        Wine foundWine = service.findById(id);
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
         assertEquals(wine, foundWine);
@@ -87,7 +87,7 @@ class WineServiceTest {
         Mockito.when(service.isValid(name))
                .thenReturn(true);
 
-        Exception e = assertThrows(NewWineException.class, () -> service.add(wine));
+        Exception e = assertThrows(BadRequestException.class, () -> service.add(wine));
         assertEquals(e.getMessage(), "Error: wine with name " + name + " already exists!");
         Mockito.verify(repository, Mockito.times(1)).existsByName(name);
     }

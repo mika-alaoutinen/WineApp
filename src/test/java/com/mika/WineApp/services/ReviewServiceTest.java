@@ -73,7 +73,7 @@ class ReviewServiceTest {
         Mockito.when(repository.findById(id))
                .thenReturn(Optional.ofNullable(review));
 
-        Review foundReview = service.findById(id).orElse(null);
+        Review foundReview = service.findById(id);
 
         Mockito.verify(repository, Mockito.times(1)).findById(id);
         assertEquals(review, foundReview);
