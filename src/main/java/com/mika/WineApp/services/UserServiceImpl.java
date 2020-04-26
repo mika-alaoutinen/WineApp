@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -21,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
         return User.builder()
                 .username(account.getUsername())
-                .password(account.getPassword())
+                .password("{noop}" + account.getPassword()) // Password storage format must be explicitly specified as {noop}
                 .authorities("USER")
                 .build();
     }

@@ -1,17 +1,19 @@
 package com.mika.WineApp.models;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
-public class UserAccount extends EntityModel {
+public class UserAccount {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
 
     @NotBlank
     @Column(unique = true)

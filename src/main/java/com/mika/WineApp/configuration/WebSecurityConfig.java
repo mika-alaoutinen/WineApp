@@ -67,8 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
         authentication
-                .userDetailsService(service)
-                .passwordEncoder(new BCryptPasswordEncoder());
+                .userDetailsService(service);
+//                .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     /**
@@ -79,7 +79,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private void setupAuthorization(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/wines/count").permitAll() // TODO remove
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
