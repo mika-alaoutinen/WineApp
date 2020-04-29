@@ -1,10 +1,13 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.user.UserNotFoundException;
 import com.mika.WineApp.models.User;
 import com.mika.WineApp.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -12,17 +15,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User account = repository.findByUsername(username);
+        Optional<User> account = repository.findByUsername(username);
 
-        if (account == null) {
-            throw new UsernameNotFoundException(username);
-        }
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(account.getUsername())
-                .password("{noop}" + account.getPassword()) // Password storage format must be explicitly specified as {noop}
-                .authorities("USER")
-                .build();
+        return account.map(user -> org.springframework.security.core.userdetails.User
+                .builder()
+                .username(user.getUsername())
+                .build()
+        ).orElseThrow(() -> new UserNotFoundException(username));
     }
 
     public User addUser(User newAccount) {
