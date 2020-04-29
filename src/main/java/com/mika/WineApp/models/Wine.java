@@ -3,6 +3,7 @@ package com.mika.WineApp.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 public class Wine extends  EntityModel {
 
     @NotBlank
@@ -50,12 +52,7 @@ public class Wine extends  EntityModel {
 
     @JsonIgnore
     @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
-    private List<@NotNull Review> reviews;
-
-    // Constructors:
-    public Wine() {
-        this.reviews = new ArrayList<>();
-    }
+    private List<@NotNull Review> reviews = new ArrayList<>();
 
     public Wine(String name,
                 WineType type,
