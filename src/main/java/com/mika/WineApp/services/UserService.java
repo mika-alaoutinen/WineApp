@@ -1,5 +1,6 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,4 +14,11 @@ public interface UserService extends UserDetailsService {
      * @throws UsernameNotFoundException e
      */
     UserDetails loadUserByUsername(String username);
+
+    /**
+     * Persist a new user account to database.
+     * @param account to save.
+     * @return saved account.
+     */
+    User addUser(User account);
 }
