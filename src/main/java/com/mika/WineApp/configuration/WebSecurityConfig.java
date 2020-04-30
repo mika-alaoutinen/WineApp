@@ -1,60 +1,75 @@
 package com.mika.WineApp.configuration;
 
+import com.mika.WineApp.security.JwtAuthEntryPoint;
+import com.mika.WineApp.security.JwtProvider;
+import com.mika.WineApp.security.JwtTokenFilter;
+import com.mika.WineApp.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
-/**
- * The web security config is used to disable Spring CSRF.
- */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("#{'${frontend.urls}'.split(',')}")
     private List<String> allowedUrls;
 
-//    private final UserService service;
-//
-//    public WebSecurityConfig(UserAccountRepository repository) {
-//        this.service = new UserServiceImpl(repository);
-//    }
+    private final UserService service;
+
+    private final JwtAuthEntryPoint unauthorizedHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-//            .authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//            .formLogin()
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .permitAll()
-//                .logoutSuccessUrl("/")
-//                .and()
+            .authorizeRequests()
+                .antMatchers("/api/auth/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler)
+                .and()
+            .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
             .csrf()
                 .disable();
+
+        http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
-//    @Autowired
-//    public void configure(AuthenticationManagerBuilder authentication) throws Exception {
-//        authentication
-//                .userDetailsService(service)
-//                .passwordEncoder(new BCryptPasswordEncoder());
-//    }
+    @Override
+    public void configure(AuthenticationManagerBuilder authBuilder) throws Exception {
+        authBuilder
+                .userDetailsService(service)
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
     /**
      * Configure CORS to allow connections from the frontend client. If this configuration
@@ -76,5 +91,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 
         return bean;
+    }
+
+    /**
+     * Use BCrypt as the password encoder.
+     * @return PasswordEncoder.
+     */
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JwtTokenFilter tokenFilter() {
+        return new JwtTokenFilter(new JwtProvider(), service);
     }
 }

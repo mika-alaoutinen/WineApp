@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
 @Slf4j
+@Component
 public class JwtProvider {
 
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    @Value("${jwt.jwtExpiration}")
+    @Value("${jwt.expiration}")
     private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {
