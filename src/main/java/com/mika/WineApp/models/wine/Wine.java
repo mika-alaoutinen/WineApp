@@ -1,6 +1,8 @@
-package com.mika.WineApp.models;
+package com.mika.WineApp.models.wine;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mika.WineApp.models.superclasses.EntityModel;
+import com.mika.WineApp.models.review.Review;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ import java.util.List;
 @Entity
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
-public class Wine extends  EntityModel {
+public class Wine extends EntityModel {
 
     @NotBlank
     @Column(unique = true)

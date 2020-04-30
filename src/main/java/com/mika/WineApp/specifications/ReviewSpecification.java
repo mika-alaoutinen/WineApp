@@ -1,6 +1,6 @@
 package com.mika.WineApp.specifications;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.models.review.Review;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;

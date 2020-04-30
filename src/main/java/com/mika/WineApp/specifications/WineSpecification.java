@@ -1,7 +1,7 @@
 package com.mika.WineApp.specifications;
 
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
+import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.models.wine.WineType;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;

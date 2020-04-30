@@ -1,6 +1,6 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.models.User;
+import com.mika.WineApp.models.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

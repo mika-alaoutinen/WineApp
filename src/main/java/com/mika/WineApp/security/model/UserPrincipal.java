@@ -1,6 +1,7 @@
-package com.mika.WineApp.models;
+package com.mika.WineApp.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mika.WineApp.models.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

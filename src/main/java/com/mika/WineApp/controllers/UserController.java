@@ -1,9 +1,9 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.models.User;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.services.UserService;
-import com.mika.WineApp.services.UserServiceImpl;
+import com.mika.WineApp.services.impl.UserServiceImpl;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

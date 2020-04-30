@@ -1,6 +1,6 @@
 package com.mika.WineApp.errors.badrequest;
 
-import com.mika.WineApp.models.WineType;
+import com.mika.WineApp.models.wine.WineType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

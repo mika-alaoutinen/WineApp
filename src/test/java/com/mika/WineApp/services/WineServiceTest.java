@@ -2,8 +2,9 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.services.impl.WineServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

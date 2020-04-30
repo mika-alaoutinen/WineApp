@@ -1,11 +1,12 @@
-package com.mika.WineApp.services;
+package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;

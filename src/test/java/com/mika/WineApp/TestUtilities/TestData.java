@@ -1,8 +1,8 @@
 package com.mika.WineApp.TestUtilities;
 
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
+import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.models.wine.WineType;
 
 import java.time.LocalDate;
 import java.util.List;

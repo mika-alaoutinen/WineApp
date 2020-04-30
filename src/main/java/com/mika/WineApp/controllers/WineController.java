@@ -1,9 +1,9 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
-import com.mika.WineApp.services.WineServiceImpl;
+import com.mika.WineApp.services.impl.WineServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

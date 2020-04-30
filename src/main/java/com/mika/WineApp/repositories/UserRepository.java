@@ -1,6 +1,6 @@
 package com.mika.WineApp.repositories;
 
-import com.mika.WineApp.models.User;
+import com.mika.WineApp.models.user.User;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 

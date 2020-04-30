@@ -1,6 +1,6 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.models.review.Review;
 
 import java.util.List;
 

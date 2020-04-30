@@ -3,7 +3,7 @@ package com.mika.WineApp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.WineRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

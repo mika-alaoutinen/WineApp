@@ -1,5 +1,6 @@
-package com.mika.WineApp.models;
+package com.mika.WineApp.models.user;
 
+import com.mika.WineApp.models.superclasses.IdentityModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

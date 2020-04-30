@@ -1,5 +1,7 @@
-package com.mika.WineApp.models;
+package com.mika.WineApp.models.review;
 
+import com.mika.WineApp.models.superclasses.EntityModel;
+import com.mika.WineApp.models.wine.Wine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
