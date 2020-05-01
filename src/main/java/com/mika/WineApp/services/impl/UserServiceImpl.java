@@ -29,15 +29,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // TODO
 
-    @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repository.findByUsername(username)
-                .orElseThrow(() -> new NotFoundException(new User(), username));
-
-        return UserPrincipal.build(user);
-    }
-
     public JwtToken loginUser(Authentication authentication) {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateJwtToken(authentication);
