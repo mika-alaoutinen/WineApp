@@ -4,16 +4,13 @@ import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.LoginRequest;
 import com.mika.WineApp.security.model.RegisterUserRequest;
 import com.mika.WineApp.security.model.UserPrincipal;
-import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +24,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-//    private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;
     private final UserRepository repository;
 
-//    @Override
+    @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repository.findByUsername(username)
@@ -40,10 +36,7 @@ public class UserServiceImpl implements UserService {
         return UserPrincipal.build(user);
     }
 
-    public JwtToken loginUser(Authentication authentication, LoginRequest request) {
-//        Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-
+    public JwtToken loginUser(Authentication authentication) {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateJwtToken(authentication);
 

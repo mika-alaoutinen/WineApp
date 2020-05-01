@@ -31,7 +31,7 @@ public class UserController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
-        return service.loginUser(authentication, request);
+        return service.loginUser(authentication);
     }
 
     @PostMapping("/register")

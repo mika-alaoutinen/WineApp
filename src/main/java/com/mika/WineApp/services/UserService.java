@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.LoginRequest;
 import com.mika.WineApp.security.model.RegisterUserRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,11 +19,11 @@ public interface UserService extends UserDetailsService {
     UserDetails loadUserByUsername(String username);
 
     /**
-     * Generate new JWT token by providing user's login credentials.
-     * @param request containing user's credentials.
+     * Generate new JWT token once user has been authenticated.
+     * @param authentication token processed by the AuthenticationManager.
      * @return JWT token.
      */
-    JwtToken loginUser(Authentication authentication, LoginRequest request);
+    JwtToken loginUser(Authentication authentication);
 
     /**
      * Persist a new user account to database.
