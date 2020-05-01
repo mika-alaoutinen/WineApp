@@ -28,7 +28,7 @@ public class User extends IdentityModel {
     @Size(min = 6)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
         name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"),

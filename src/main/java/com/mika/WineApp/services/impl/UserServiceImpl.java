@@ -15,6 +15,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final JwtProvider jwtProvider;
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // TODO
 
     @Override
     @Transactional
@@ -45,12 +48,12 @@ public class UserServiceImpl implements UserService {
 
     public User registerUser(RegisterUserRequest request) {
         String username = request.getUsername();
-        String password = request.getPassword();
 
         if (repository.existsByUsername(username)) {
             throw new BadRequestException(username);
         }
 
+        String password = passwordEncoder.encode(request.getPassword());
         var roles = parseRoles(request.getRoles());
 
         return repository.save(new User(username, password, roles));
