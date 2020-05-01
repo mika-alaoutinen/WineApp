@@ -2,6 +2,9 @@ package com.mika.WineApp.security;
 
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final JwtProvider tokenProvider;
@@ -23,14 +27,18 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        String jwt = getJwt(request);
-        if (jwt != null && tokenProvider.validateJwtToken(jwt)) {
-            String username = tokenProvider.getUserNameFromToken(jwt);
-            UserDetails userDetails = service.loadUserByUsername(username);
+        try {
+            String jwt = getJwt(request);
+            if (jwt != null && tokenProvider.validateJwtToken(jwt)) {
+                String username = tokenProvider.getUserNameFromToken(jwt);
+                UserDetails userDetails = service.loadUserByUsername(username);
 
-            SecurityContextHolder
-                    .getContext()
-                    .setAuthentication(getAuthToken(userDetails, request));
+                SecurityContextHolder
+                        .getContext()
+                        .setAuthentication(getAuthToken(userDetails, request));
+            }
+        } catch (Exception e) {
+            log.error("Unable to set user authentication: " + e.getMessage());
         }
 
         filterChain.doFilter(request, response);

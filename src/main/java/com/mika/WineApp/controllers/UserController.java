@@ -28,8 +28,8 @@ public class UserController {
 
     @PostMapping("/login")
     public JwtToken authenticate(@Valid @RequestBody LoginRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        var token = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+        Authentication authentication = authenticationManager.authenticate(token);
 
         return service.loginUser(authentication);
     }
