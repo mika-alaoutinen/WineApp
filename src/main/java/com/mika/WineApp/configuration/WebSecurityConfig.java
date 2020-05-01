@@ -35,27 +35,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("#{'${frontend.urls}'.split(',')}")
     private List<String> allowedUrls;
 
+    @Value("${spring.security.enabled}")
+    private boolean securityEnabled;
+
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtProvider jwtProvider;
     private final UserService service;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-            .exceptionHandling()
-                .authenticationEntryPoint(unauthorizedHandler)
-                .and()
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-            .csrf()
-                .disable();
+        http.csrf().disable();
 
-        http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        if (securityEnabled) {
+            configureSecurity(http);
+        }
     }
 
     @Override
@@ -105,5 +98,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtTokenFilter tokenFilter() {
         return new JwtTokenFilter(jwtProvider, service);
+    }
+
+
+    // Private methods:
+
+    private void configureSecurity(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler)
+                .and()
+            .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(tokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
