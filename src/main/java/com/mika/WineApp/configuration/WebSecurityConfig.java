@@ -100,9 +100,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JwtTokenFilter(jwtProvider, service);
     }
 
-
     // Private methods:
-
     private void configureSecurity(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()

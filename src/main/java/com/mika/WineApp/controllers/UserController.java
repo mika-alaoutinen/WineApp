@@ -2,7 +2,6 @@ package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.LoginRequest;
 import com.mika.WineApp.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +25,8 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/login")
-    public JwtToken authenticate(@Valid @RequestBody LoginRequest request) {
-        var token = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+    public JwtToken authenticate(@Valid @RequestBody User user) {
+        var token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         Authentication authentication = authenticationManager.authenticate(token);
 
         return service.loginUser(authentication);
