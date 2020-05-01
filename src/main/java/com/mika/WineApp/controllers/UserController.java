@@ -6,9 +6,6 @@ import com.mika.WineApp.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,15 +18,11 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @Tag(name = "User API", description = "Contains operations for login and registering a new user.")
 public class UserController {
-    private final AuthenticationManager authenticationManager;
     private final UserService service;
 
     @PostMapping("/login")
     public JwtToken authenticate(@Valid @RequestBody User user) {
-        var token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-        Authentication authentication = authenticationManager.authenticate(token);
-
-        return service.loginUser(authentication);
+        return service.loginUser(user);
     }
 
     @PostMapping("/register")
