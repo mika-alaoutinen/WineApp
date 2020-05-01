@@ -36,7 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private List<String> allowedUrls;
 
     private final UserService service;
-
     private final JwtAuthEntryPoint unauthorizedHandler;
 
     @Override
