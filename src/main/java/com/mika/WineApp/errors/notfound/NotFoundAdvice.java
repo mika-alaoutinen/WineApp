@@ -1,6 +1,5 @@
 package com.mika.WineApp.errors.notfound;
 
-import com.mika.WineApp.errors.notfound.NotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
