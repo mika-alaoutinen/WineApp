@@ -25,9 +25,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   security:
-    user:
-      name: user
-      password: password
+    enabled: true
 
 springdoc:
   swagger-ui:
@@ -36,3 +34,7 @@ springdoc:
 # Custom properties:
 frontend:
   urls: https://maistissa.herokuapp.com,http://localhost:8081
+
+jwt:
+  expiration: 86400
+  secret: ${JWT_SECRET}
