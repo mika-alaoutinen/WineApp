@@ -1,5 +1,6 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,8 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest extends ServiceTest {
@@ -52,7 +53,19 @@ class ReviewServiceTest extends ServiceTest {
     }
 
     @Test
-    void addReview() {
+    public void findByNonExistingId() {
+        long id = 1L;
+
+        Mockito.when(reviewRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        Exception e = assertThrows(NotFoundException.class, () -> service.findById(id));
+        assertEquals(e.getMessage(), "Error: could not find review with id " + id);
+        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
+    }
+
+    @Test
+    public void addReview() {
         long wineId = wine.getId();
         Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, wine);
 
@@ -70,6 +83,19 @@ class ReviewServiceTest extends ServiceTest {
     }
 
     @Test
+    public void addReviewForNonExistingWine() {
+        long wineId = 1L;
+
+        Mockito.when(wineRepository.findById(wineId))
+                .thenReturn(Optional.empty());
+
+        Exception e = assertThrows(NotFoundException.class, () -> service.add(wineId, review));
+        assertEquals(e.getMessage(), "Error: could not find wine with id " + wineId);
+        Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
+        Mockito.verify(reviewRepository, Mockito.times(0)).save(review);
+    }
+
+    @Test
     public void editReview() {
         long id = review.getId();
 
@@ -84,6 +110,19 @@ class ReviewServiceTest extends ServiceTest {
         Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
         Mockito.verify(reviewRepository, Mockito.times(1)).save(review);
         assertEquals(review, editedReview);
+    }
+
+    @Test
+    public void editNonExistingReview() {
+        long id = 1L;
+
+        Mockito.when(reviewRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        Exception e = assertThrows(NotFoundException.class, () -> service.edit(id, review));
+        assertEquals(e.getMessage(), "Error: could not find review with id " + id);
+        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
+        Mockito.verify(reviewRepository, Mockito.times(0)).save(review);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.impl.WineServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,18 @@ class WineServiceTest extends ServiceTest {
     }
 
     @Test
+    public void findByNonExistingId() {
+        long id = 1L;
+
+        Mockito.when(wineRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        Exception e = assertThrows(NotFoundException.class, () -> service.findById(id));
+        assertEquals(e.getMessage(), "Error: could not find wine with id " + id);
+        Mockito.verify(wineRepository, Mockito.times(1)).findById(id);
+    }
+
+    @Test
     public void addWine() {
         Mockito.when(wineRepository.save(wine))
                .thenReturn(wine);
@@ -88,6 +101,19 @@ class WineServiceTest extends ServiceTest {
         Mockito.verify(wineRepository, Mockito.times(1)).findById(id);
         Mockito.verify(wineRepository, Mockito.times(1)).save(wine);
         assertEquals(wine, editedWine);
+    }
+
+    @Test
+    public void editNonExistingWine() {
+        long id = 1L;
+
+        Mockito.when(wineRepository.findById(id))
+                .thenReturn(Optional.empty());
+
+        Exception e = assertThrows(NotFoundException.class, () -> service.edit(id, wine));
+        assertEquals(e.getMessage(), "Error: could not find wine with id " + id);
+        Mockito.verify(wineRepository, Mockito.times(1)).findById(id);
+        Mockito.verify(wineRepository, Mockito.times(0)).save(wine);
     }
 
     @Test
