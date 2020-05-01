@@ -13,11 +13,11 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
-    @Value("${jwt.secret}")
-    private String jwtSecret;
-
     @Value("${jwt.expiration}")
     private int jwtExpiration;
+
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     public String generateJwtToken(Authentication authentication) {
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();

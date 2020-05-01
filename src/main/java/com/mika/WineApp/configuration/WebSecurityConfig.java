@@ -35,8 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("#{'${frontend.urls}'.split(',')}")
     private List<String> allowedUrls;
 
-    private final UserService service;
     private final JwtAuthEntryPoint unauthorizedHandler;
+    private final JwtProvider jwtProvider;
+    private final UserService service;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -103,6 +104,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public JwtTokenFilter tokenFilter() {
-        return new JwtTokenFilter(new JwtProvider(), service);
+        return new JwtTokenFilter(jwtProvider, service);
     }
 }
