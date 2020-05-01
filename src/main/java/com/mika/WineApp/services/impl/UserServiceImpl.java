@@ -7,7 +7,6 @@ import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.RegisterUserRequest;
 import com.mika.WineApp.security.model.UserPrincipal;
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,22 +45,22 @@ public class UserServiceImpl implements UserService {
         return new JwtToken(jwt);
     }
 
-    public User registerUser(RegisterUserRequest request) {
-        String username = request.getUsername();
+    public User registerUser(User newUser) {
+        String username = newUser.getUsername();
 
         if (repository.existsByUsername(username)) {
             throw new BadRequestException(username);
         }
 
-        String password = passwordEncoder.encode(request.getPassword());
-        var roles = parseRoles(request.getRoles());
+        String password = passwordEncoder.encode(newUser.getPassword());
+        var roles = getUserRoles(newUser);
 
         return repository.save(new User(username, password, roles));
     }
 
-    private Set<Role> parseRoles(Set<String> roles) {
-        return roles.stream()
-                .map(Role::new)
-                .collect(Collectors.toSet());
+    private Set<Role> getUserRoles(User user) {
+        return user.getRoles() == null
+                ? new HashSet<>()
+                : user.getRoles();
     }
 }

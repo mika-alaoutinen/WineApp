@@ -3,7 +3,6 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.security.model.LoginRequest;
-import com.mika.WineApp.security.model.RegisterUserRequest;
 import com.mika.WineApp.services.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User register(@Valid @RequestBody RegisterUserRequest request) {
-        return service.registerUser(request);
+    public User register(@Valid @RequestBody User newUser) {
+        return service.registerUser(newUser);
     }
 }

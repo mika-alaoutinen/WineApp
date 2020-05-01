@@ -25,7 +25,7 @@ public class UserPrincipal implements UserDetails {
 
     public static UserPrincipal build(User user) {
         var authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .map(role -> new SimpleGrantedAuthority(role.name()))
                 .collect(Collectors.toList());
 
         return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), authorities);
