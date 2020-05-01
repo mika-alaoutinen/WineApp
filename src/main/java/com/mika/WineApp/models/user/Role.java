@@ -19,4 +19,12 @@ public class Role extends IdentityModel {
 
     @Enumerated(EnumType.STRING)
     private RoleName name;
+
+    public Role(String name) {
+        try {
+            this.name = RoleName.valueOf(name);
+        } catch (Exception e) {
+            System.out.println("What exception is this: " + e.getMessage());
+        }
+    }
 }
