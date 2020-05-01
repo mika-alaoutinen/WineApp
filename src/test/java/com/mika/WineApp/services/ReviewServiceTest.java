@@ -1,23 +1,16 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.repositories.ReviewRepository;
-import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,32 +18,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
-class ReviewServiceTest {
-
-    @Mock
-    private ReviewRepository repository;
-
-    @Mock
-    private WineRepository wineRepository;
+class ReviewServiceTest extends ServiceTest {
 
     @InjectMocks
     private ReviewServiceImpl service;
-
-    private final List<Review> reviews = TestData.initReviews();
-    private final List<Wine> wines = TestData.initWines();
-    private Review review;
-    private Wine wine;
-
-    @BeforeEach
-    void init() {
-        this.review = reviews.stream()
-                .findAny()
-                .orElse(null);
-
-        this.wine = wines.stream()
-                .findAny()
-                .orElse(null);
-    }
 
     @Test
     public void findAll() {
@@ -58,12 +29,12 @@ class ReviewServiceTest {
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
 
-        Mockito.when(repository.findAllByOrderByDateDesc())
+        Mockito.when(reviewRepository.findAllByOrderByDateDesc())
                .thenReturn(sortedReviews);
 
         var foundReviews = service.findAll();
 
-        Mockito.verify(repository, Mockito.times(1)).findAllByOrderByDateDesc();
+        Mockito.verify(reviewRepository, Mockito.times(1)).findAllByOrderByDateDesc();
         assertEquals(sortedReviews, foundReviews);
     }
 
@@ -71,12 +42,12 @@ class ReviewServiceTest {
     public void findById() {
         long id = review.getId();
 
-        Mockito.when(repository.findById(id))
+        Mockito.when(reviewRepository.findById(id))
                .thenReturn(Optional.ofNullable(review));
 
         Review foundReview = service.findById(id);
 
-        Mockito.verify(repository, Mockito.times(1)).findById(id);
+        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
         assertEquals(review, foundReview);
     }
 
@@ -88,13 +59,13 @@ class ReviewServiceTest {
         Mockito.when(wineRepository.findById(wineId))
                .thenReturn(Optional.ofNullable(wine));
 
-        Mockito.when(repository.save(newReview))
+        Mockito.when(reviewRepository.save(newReview))
                .thenReturn(newReview);
 
         Review savedReview = service.add(wineId, newReview);
 
         Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
-        Mockito.verify(repository, Mockito.times(1)).save(newReview);
+        Mockito.verify(reviewRepository, Mockito.times(1)).save(newReview);
         assertEquals(newReview, savedReview);
     }
 
@@ -102,16 +73,16 @@ class ReviewServiceTest {
     public void editReview() {
         long id = review.getId();
 
-        Mockito.when(repository.findById(id))
+        Mockito.when(reviewRepository.findById(id))
                .thenReturn(Optional.ofNullable(review));
 
-        Mockito.when(repository.save(review))
+        Mockito.when(reviewRepository.save(review))
                .thenReturn(review);
 
         Review editedReview = service.edit(id, review);
 
-        Mockito.verify(repository, Mockito.times(1)).findById(id);
-        Mockito.verify(repository, Mockito.times(1)).save(review);
+        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
+        Mockito.verify(reviewRepository, Mockito.times(1)).save(review);
         assertEquals(review, editedReview);
     }
 
@@ -120,17 +91,17 @@ class ReviewServiceTest {
         long id = review.getId();
         service.delete(id);
 
-        Mockito.verify(repository, Mockito.times(1)).deleteById(id);
+        Mockito.verify(reviewRepository, Mockito.times(1)).deleteById(id);
     }
 
     @Test
     public void count() {
-        Mockito.when(repository.count())
+        Mockito.when(reviewRepository.count())
                .thenReturn((long) reviews.size());
 
         long reviewCount = service.count();
 
-        Mockito.verify(repository, Mockito.times(1)).count();
+        Mockito.verify(reviewRepository, Mockito.times(1)).count();
         assertEquals(reviews.size(), reviewCount);
     }
 
