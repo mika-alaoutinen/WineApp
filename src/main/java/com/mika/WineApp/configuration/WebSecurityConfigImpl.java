@@ -30,7 +30,7 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-public class WebSecurityConfigConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
+public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
 
     @Value("#{'${frontend.urls}'.split(',')}")
     private List<String> allowedUrls;

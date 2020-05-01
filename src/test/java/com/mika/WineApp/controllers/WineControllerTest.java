@@ -1,20 +1,13 @@
 package com.mika.WineApp.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -27,31 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(WineController.class)
-public class WineControllerTest {
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @MockBean
-    private WineRepository repository;
-
-    private final List<Wine> wines = TestData.initWines();
-    private final String url = "/wines";
-    private Wine wine;
-
-    @BeforeEach
-    void initWine() {
-        this.wine = wines.stream()
-                .findAny()
-                .orElse(null);
-    }
+public class WineControllerTest extends ControllerTest {
+    private final static String url = "/wines";
 
     @Test
     public void findAll() throws Exception {
-        Mockito.when(repository.findAllByOrderByNameAsc())
+        Mockito.when(wineRepository.findAllByOrderByNameAsc())
                .thenReturn(wines);
 
         MvcResult result = mvc
@@ -67,7 +41,7 @@ public class WineControllerTest {
 
     @Test
     public void findOne() throws Exception {
-        Mockito.when(repository.findById(wine.getId()))
+        Mockito.when(wineRepository.findById(wine.getId()))
                .thenReturn(Optional.of(wine));
 
         MvcResult result = mvc
@@ -83,10 +57,10 @@ public class WineControllerTest {
 
     @Test
     public void addWine() throws Exception {
-        Mockito.when(repository.findById(wine.getId()))
+        Mockito.when(wineRepository.findById(wine.getId()))
                 .thenReturn(Optional.of(wine));
 
-        Mockito.when(repository.save(wine))
+        Mockito.when(wineRepository.save(wine))
                 .thenReturn(wine);
 
         MvcResult result = mvc
@@ -103,10 +77,10 @@ public class WineControllerTest {
 
     @Test
     public void editWine() throws Exception {
-        Mockito.when(repository.findById(wine.getId()))
+        Mockito.when(wineRepository.findById(wine.getId()))
                 .thenReturn(Optional.of(wine));
 
-        Mockito.when(repository.save(wine))
+        Mockito.when(wineRepository.save(wine))
                .thenReturn(wine);
 
         MvcResult result = mvc
@@ -129,7 +103,7 @@ public class WineControllerTest {
 
     @Test
     public void count() throws Exception {
-        Mockito.when(repository.count())
+        Mockito.when(wineRepository.count())
                .thenReturn(1L);
 
         MvcResult result = mvc
@@ -145,7 +119,7 @@ public class WineControllerTest {
     public void getCountries() throws Exception {
         var countries = List.of("Espanja", "Italia", "Ranska");
 
-        Mockito.when(repository.findAllCountries())
+        Mockito.when(wineRepository.findAllCountries())
                .thenReturn(countries);
 
         var response = testKeywordSearch("/countries");
@@ -156,7 +130,7 @@ public class WineControllerTest {
     public void getDescriptions() throws Exception {
         var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
 
-        Mockito.when(repository.findAllDescriptions())
+        Mockito.when(wineRepository.findAllDescriptions())
                .thenReturn(descriptions);
 
         var response = testKeywordSearch("/descriptions");
@@ -167,7 +141,7 @@ public class WineControllerTest {
     public void getFoodPairings() throws Exception {
         var foodPairings = List.of("kana", "kala", "seurustelujuoma");
 
-        Mockito.when(repository.findAllFoodPairings())
+        Mockito.when(wineRepository.findAllFoodPairings())
                .thenReturn(foodPairings);
 
         var response = testKeywordSearch("/food-pairings");
@@ -179,34 +153,5 @@ public class WineControllerTest {
         mvc.perform(MockMvcRequestBuilders
            .get(url + "/search"))
            .andExpect(MockMvcResultMatchers.status().isOk());
-    }
-
-// Helper methods:
-
-    /**
-     * Reads the result from controller and maps it into a Wine object.
-     * @param result from controller.
-     * @return Wine.
-     * @throws Exception ex.
-     */
-    private Wine getWineFromResults(MvcResult result) throws Exception {
-        String response = TestUtilities.getResponseString(result);
-        return objectMapper.readValue(response, Wine.class);
-    }
-
-    /**
-     * Tests the endpoints for retrieving lists of distinct keywords used as wine attributes.
-     * E.g. get countries, descriptions or food pairings.
-     * @param urlPath endpoint.
-     * @return List of distinct keywords used in wines.
-     * @throws Exception ex.
-     */
-    private List<String> testKeywordSearch(String urlPath) throws Exception {
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + urlPath))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        return TestUtilities.parseWordsFromResponse(result);
     }
 }
