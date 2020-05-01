@@ -1,11 +1,10 @@
 package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
-import com.mika.WineApp.services.impl.WineServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/wines", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 @Tag(name = "Wines API", description = "Contains CRUD operations, search functionality and ability to retrieve keyword lists.")
 public class WineController {
     private final WineService service;
-
-    public WineController(WineRepository repository) {
-        this.service = new WineServiceImpl(repository);
-    }
 
 // --- CRUD methods ---
     @Operation(summary = "Get all wines", description = "Returns all wines ordered alphabetically by name.")

@@ -10,6 +10,7 @@ import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -18,6 +19,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;

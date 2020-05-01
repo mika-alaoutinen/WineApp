@@ -1,5 +1,6 @@
 package com.mika.WineApp.errors.badrequest;
 
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,7 +12,11 @@ public class BadRequestException extends RuntimeException {
         super("Error: requested wine type " + givenType + " does not exist.");
     }
 
-    public BadRequestException(String wineName) {
+    public BadRequestException(Wine wine, String wineName) {
         super("Error: wine with name " + wineName + " already exists!");
+    }
+
+    public BadRequestException(String username) {
+        super("Error: username " + username + " already exists!");
     }
 }

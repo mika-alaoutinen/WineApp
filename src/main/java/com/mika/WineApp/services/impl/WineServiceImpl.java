@@ -8,10 +8,12 @@ import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
     private final WineRepository repository;
@@ -30,7 +32,7 @@ public class WineServiceImpl implements WineService {
         String name = newWine.getName();
 
         if (!isValid(name)) {
-            throw new BadRequestException(name);
+            throw new BadRequestException(newWine, name);
         }
 
         return repository.save(newWine);

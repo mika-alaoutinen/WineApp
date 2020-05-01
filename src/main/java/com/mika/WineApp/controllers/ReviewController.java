@@ -1,12 +1,10 @@
 package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.repositories.ReviewRepository;
-import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.ReviewService;
-import com.mika.WineApp.services.impl.ReviewServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reviews", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 @Tag(name = "Reviews API", description = "Contains CRUD operations and search functionality.")
 public class ReviewController {
     private final ReviewService service;
-
-    public ReviewController(ReviewRepository repository,
-                            WineRepository wineRepository) {
-
-        this.service = new ReviewServiceImpl(repository, wineRepository);
-    }
 
 // --- Find reviews ---
     @Operation(summary = "Get all reviews", description = "Returns all reviews in descending order by date.")
