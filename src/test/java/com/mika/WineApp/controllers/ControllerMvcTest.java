@@ -17,10 +17,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestConfig.class)
@@ -95,6 +96,7 @@ public abstract class ControllerMvcTest {
      * @throws Exception ex.
      */
     protected List<String> testKeywordSearch(String url) throws Exception {
+        System.out.println(url);
         MvcResult result = doGetRequest(url);
         return TestUtilities.parseWordsFromResponse(result);
     }
@@ -102,8 +104,8 @@ public abstract class ControllerMvcTest {
     // Helper methods:
     private MvcResult doGetRequest(String url) throws Exception {
         return mvc
-                .perform(MockMvcRequestBuilders.get(url))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .perform(get(url))
+                .andExpect(status().isOk())
                 .andReturn();
     }
 }

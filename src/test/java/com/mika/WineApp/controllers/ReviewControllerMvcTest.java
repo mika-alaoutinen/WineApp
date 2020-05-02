@@ -29,8 +29,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
         MvcResult result = mvc
             .perform(
                 get(url)
-                .contentType(MediaType.APPLICATION_JSON)
-            )
+                .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -47,8 +46,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
         MvcResult result = mvc
             .perform(
                 get(url + "/{id}", review.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-            )
+                .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -69,8 +67,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
             .perform(
                 post(url + "/{wineId}", wine.getId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(review))
-            )
+                .content(objectMapper.writeValueAsString(review)))
             .andExpect(status().isCreated())
             .andReturn();
 
@@ -91,8 +88,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
             .perform(
                 put(url + "/{id}", review.getId())
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(review))
-            )
+                .content(objectMapper.writeValueAsString(review)))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -103,8 +99,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     @Test
     @WithUserDetails()
     public void deleteReview() throws Exception {
-        mvc
-            .perform(delete(url + "/{id}", review.getId()))
+        mvc.perform(
+                delete(url + "/{id}", review.getId()))
             .andExpect(status().isNoContent());
     }
 
@@ -114,7 +110,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
         Mockito.when(reviewRepository.count()).thenReturn(2L);
 
         MvcResult result = mvc
-            .perform(get(url + "/count"))
+            .perform(
+                get(url + "/count"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -155,7 +152,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     @Test
     @WithUserDetails()
     public void search() throws Exception {
-        mvc.perform(get(url + "/search"))
+        mvc.perform(
+                get(url + "/search"))
            .andExpect(status().isOk());
     }
 }
