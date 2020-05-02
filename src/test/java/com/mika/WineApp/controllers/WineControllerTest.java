@@ -1,157 +1,98 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(WineController.class)
-public class WineControllerTest extends ControllerTest {
-    private final static String url = "/wines";
+@ExtendWith(MockitoExtension.class)
+public class WineControllerTest {
+    private static final Long id = 1L;
+
+    @Mock
+    private WineService service;
+
+    @InjectMocks
+    private WineController controller;
 
     @Test
-    public void findAll() throws Exception {
-        Mockito.when(wineRepository.findAllByOrderByNameAsc())
-               .thenReturn(wines);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .get(url)
-                .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        assertFalse(response.isEmpty());
+    public void findAll() {
+        controller.findAll();
+        verify(service, times(1)).findAll();
     }
 
     @Test
-    public void findOne() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-               .thenReturn(Optional.of(wine));
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .get(url + "/{id}", wine.getId())
-                .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        Wine foundWine = getWineFromResults(result);
-        assertEquals(wine, foundWine);
+    public void findById() {
+        controller.findById(id);
+        verify(service, times(1)).findById(id);
     }
 
     @Test
-    public void addWine() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-                .thenReturn(Optional.of(wine));
-
-        Mockito.when(wineRepository.save(wine))
-                .thenReturn(wine);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .post(url)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(wine)))
-            .andExpect(MockMvcResultMatchers.status().isCreated())
-            .andReturn();
-
-        Wine addedWine = getWineFromResults(result);
-        assertEquals(wine, addedWine);
+    public void add() {
+        Wine wine = new Wine();
+        controller.add(wine);
+        verify(service, times(1)).add(wine);
     }
 
     @Test
-    public void editWine() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-                .thenReturn(Optional.of(wine));
-
-        Mockito.when(wineRepository.save(wine))
-               .thenReturn(wine);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .put(url + "/{id}", wine.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(wine)))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        Wine editedWine = getWineFromResults(result);
-        assertEquals(wine, editedWine);
+    public void edit() {
+        Wine wine = new Wine();
+        controller.edit(id, wine);
+        verify(service, times(1)).edit(id, wine);
     }
 
     @Test
-    public void deleteWine() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.delete(url + "/{id}", wine.getId()))
-           .andExpect(MockMvcResultMatchers.status().isNoContent());
+    public void delete() {
+        controller.delete(id);
+        verify(service, times(1)).delete(id);
     }
 
     @Test
-    public void count() throws Exception {
-        Mockito.when(wineRepository.count())
-               .thenReturn(1L);
-
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/count"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        assertEquals(1, Integer.parseInt(response));
+    public void count() {
+        controller.count();
+        verify(service, times(1)).count();
     }
 
     @Test
-    public void getCountries() throws Exception {
-        var countries = List.of("Espanja", "Italia", "Ranska");
-
-        Mockito.when(wineRepository.findAllCountries())
-               .thenReturn(countries);
-
-        var response = testKeywordSearch("/countries");
-        assertEquals(countries, response);
+    public void countries() {
+        controller.countries();
+        verify(service, times(1)).findCountries();
     }
 
     @Test
-    public void getDescriptions() throws Exception {
-        var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
-
-        Mockito.when(wineRepository.findAllDescriptions())
-               .thenReturn(descriptions);
-
-        var response = testKeywordSearch("/descriptions");
-        assertEquals(descriptions, response);
+    public void descriptions() {
+        controller.descriptions();
+        verify(service, times(1)).findDescriptions();
     }
 
     @Test
-    public void getFoodPairings() throws Exception {
-        var foodPairings = List.of("kana", "kala", "seurustelujuoma");
-
-        Mockito.when(wineRepository.findAllFoodPairings())
-               .thenReturn(foodPairings);
-
-        var response = testKeywordSearch("/food-pairings");
-        assertEquals(foodPairings, response);
+    public void foodPairings() {
+        controller.foodPairings();
+        verify(service, times(1)).findFoodPairings();
     }
 
     @Test
-    public void search() throws Exception {
-        mvc.perform(MockMvcRequestBuilders
-           .get(url + "/search"))
-           .andExpect(MockMvcResultMatchers.status().isOk());
+    public void search() {
+        String name = "Name";
+        String type = "RED";
+        var countries = List.of("Espanja");
+        var volumes = List.of(2.0);
+        Integer[] priceRange = { 10, 20 };
+        controller.search(name, type, countries, volumes, priceRange);
+        verify(service, times(1)).search(name, type, countries, volumes, priceRange);
+    }
+
+    @Test
+    public void validate() {
+        controller.validate("Mika");
+        verify(service, times(1)).isValid("Mika");
     }
 }
