@@ -16,6 +16,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest extends ServiceTest {
@@ -34,7 +36,7 @@ class ReviewServiceTest extends ServiceTest {
 
         var foundReviews = service.findAll();
 
-        Mockito.verify(reviewRepository, Mockito.times(1)).findAllByOrderByDateDesc();
+        verify(reviewRepository, times(1)).findAllByOrderByDateDesc();
         assertEquals(sortedReviews, foundReviews);
     }
 
@@ -47,7 +49,7 @@ class ReviewServiceTest extends ServiceTest {
 
         Review foundReview = service.findById(id);
 
-        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
+        verify(reviewRepository, times(1)).findById(id);
         assertEquals(review, foundReview);
     }
 
@@ -56,11 +58,11 @@ class ReviewServiceTest extends ServiceTest {
         long id = 1L;
 
         Mockito.when(reviewRepository.findById(id))
-                .thenReturn(Optional.empty());
+               .thenReturn(Optional.empty());
 
         Exception e = assertThrows(NotFoundException.class, () -> service.findById(id));
         assertEquals(e.getMessage(), "Error: could not find review with id " + id);
-        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
+        verify(reviewRepository, times(1)).findById(id);
     }
 
     @Test
@@ -76,8 +78,8 @@ class ReviewServiceTest extends ServiceTest {
 
         Review savedReview = service.add(wineId, newReview);
 
-        Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
-        Mockito.verify(reviewRepository, Mockito.times(1)).save(newReview);
+        verify(wineRepository, times(1)).findById(wineId);
+        verify(reviewRepository, times(1)).save(newReview);
         assertEquals(newReview, savedReview);
     }
 
@@ -86,12 +88,12 @@ class ReviewServiceTest extends ServiceTest {
         long wineId = 1L;
 
         Mockito.when(wineRepository.findById(wineId))
-                .thenReturn(Optional.empty());
+               .thenReturn(Optional.empty());
 
         Exception e = assertThrows(NotFoundException.class, () -> service.add(wineId, review));
         assertEquals(e.getMessage(), "Error: could not find wine with id " + wineId);
-        Mockito.verify(wineRepository, Mockito.times(1)).findById(wineId);
-        Mockito.verify(reviewRepository, Mockito.times(0)).save(review);
+        verify(wineRepository, times(1)).findById(wineId);
+        verify(reviewRepository, times(0)).save(review);
     }
 
     @Test
@@ -106,8 +108,8 @@ class ReviewServiceTest extends ServiceTest {
 
         Review editedReview = service.edit(id, review);
 
-        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
-        Mockito.verify(reviewRepository, Mockito.times(1)).save(review);
+        verify(reviewRepository, times(1)).findById(id);
+        verify(reviewRepository, times(1)).save(review);
         assertEquals(review, editedReview);
     }
 
@@ -116,12 +118,12 @@ class ReviewServiceTest extends ServiceTest {
         long id = 1L;
 
         Mockito.when(reviewRepository.findById(id))
-                .thenReturn(Optional.empty());
+               .thenReturn(Optional.empty());
 
         Exception e = assertThrows(NotFoundException.class, () -> service.edit(id, review));
         assertEquals(e.getMessage(), "Error: could not find review with id " + id);
-        Mockito.verify(reviewRepository, Mockito.times(1)).findById(id);
-        Mockito.verify(reviewRepository, Mockito.times(0)).save(review);
+        verify(reviewRepository, times(1)).findById(id);
+        verify(reviewRepository, times(0)).save(review);
     }
 
     @Test
@@ -129,7 +131,7 @@ class ReviewServiceTest extends ServiceTest {
         long id = review.getId();
         service.delete(id);
 
-        Mockito.verify(reviewRepository, Mockito.times(1)).deleteById(id);
+        verify(reviewRepository, times(1)).deleteById(id);
     }
 
     @Test
@@ -139,7 +141,7 @@ class ReviewServiceTest extends ServiceTest {
 
         long reviewCount = service.count();
 
-        Mockito.verify(reviewRepository, Mockito.times(1)).count();
+        verify(reviewRepository, times(1)).count();
         assertEquals(reviews.size(), reviewCount);
     }
 
