@@ -14,6 +14,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class ReviewControllerTest {
     private static final Long id = 1L;
+    private static final Review review = new Review();
 
     @Mock
     private ReviewService service;
@@ -47,14 +48,12 @@ public class ReviewControllerTest {
 
     @Test
     public void add() {
-        Review review = new Review();
         controller.add(id, review);
         verify(service, times(1)).add(id, review);
     }
 
     @Test
     public void edit() {
-        Review review = new Review();
         controller.edit(id, review);
         verify(service, times(1)).edit(id, review);
     }

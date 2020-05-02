@@ -16,6 +16,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class WineControllerTest {
     private static final Long id = 1L;
+    private static final Wine wine = new Wine();
 
     @Mock
     private WineService service;
@@ -37,14 +38,12 @@ public class WineControllerTest {
 
     @Test
     public void add() {
-        Wine wine = new Wine();
         controller.add(wine);
         verify(service, times(1)).add(wine);
     }
 
     @Test
     public void edit() {
-        Wine wine = new Wine();
         controller.edit(id, wine);
         verify(service, times(1)).edit(id, wine);
     }
