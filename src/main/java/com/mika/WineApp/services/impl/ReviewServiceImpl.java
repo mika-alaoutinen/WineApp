@@ -85,7 +85,7 @@ public class ReviewServiceImpl implements ReviewService {
             return  new ArrayList<>();
         }
 
-        LocalDate[] dates = parseDateRange(dateRange);
+        LocalDate[] dates = parseMonthRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
@@ -109,7 +109,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 // --- Utility methods ---
-    private LocalDate[] parseDateRange(String[] dates) throws InvalidDateException {
+    private LocalDate[] parseMonthRange(String[] dates) throws InvalidDateException {
         if (dates == null) {
             return null;
         }

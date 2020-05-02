@@ -10,11 +10,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class WineSpecification extends SuperSpecification implements Specification<Wine> {
-    private String name;
-    private WineType type;
-    private Integer[] priceRange;
-    private List<String> countries;
-    private List<Double> volumes;
+    private final String name;
+    private final WineType type;
+    private final Integer[] priceRange;
+    private final List<String> countries;
+    private final List<Double> volumes;
 
     public WineSpecification(String name, WineType type, List<String> countries, List<Double> volumes, Integer[] priceRange) {
         super();

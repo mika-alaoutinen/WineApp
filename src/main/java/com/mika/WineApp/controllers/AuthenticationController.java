@@ -16,16 +16,21 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Tag(name = "User API", description = "Contains operations for login and registering a new user.")
-public class UserController {
+@Tag(name = "Authentication API", description = "Contains operations for login, logout and registering a new user.")
+public class AuthenticationController {
     private final UserService service;
 
-    @PostMapping("/login")
-    public JwtToken authenticate(@Valid @RequestBody User user) {
+    @PostMapping("login")
+    public JwtToken login(@Valid @RequestBody User user) {
         return service.loginUser(user);
     }
 
-    @PostMapping("/register")
+    @PostMapping("logout")
+    public void logout() {
+        System.out.println("TODO: implement logout functionality");
+    }
+
+    @PostMapping("register")
     public User register(@Valid @RequestBody User newUser) {
         return service.registerUser(newUser);
     }

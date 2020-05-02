@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class InvalidDateException extends RuntimeException {
 
     public InvalidDateException(String date) {
-        super("Error: could not parse date " + date + ".");
+        super("Error: could not parse date " + date);
     }
 
     public InvalidDateException(String[] dates) {

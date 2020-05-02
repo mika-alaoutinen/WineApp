@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
-    private String author;
-    private LocalDate[] dateRange;
-    private Double[] ratingRange;
+    private final String author;
+    private final LocalDate[] dateRange;
+    private final Double[] ratingRange;
 
     public ReviewSpecification(String author, LocalDate[] dateRange, Double[] ratingRange) {
         super();

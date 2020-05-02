@@ -39,17 +39,19 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine edit(Long id, Wine editedWine) {
-        return repository.findById(id).map(wine -> {
-            wine.setName(editedWine.getName());
-            wine.setType(editedWine.getType());
-            wine.setCountry(editedWine.getCountry());
-            wine.setPrice(editedWine.getPrice());
-            wine.setVolume(editedWine.getVolume());
-            wine.setDescription(editedWine.getDescription());
-            wine.setFoodPairings(editedWine.getFoodPairings());
-            wine.setUrl(editedWine.getUrl());
-            return repository.save(wine);
-        }).orElseThrow(() -> new NotFoundException(editedWine, id));
+        Wine wine = repository.findById(id)
+                .orElseThrow(() -> new NotFoundException(editedWine, id));
+
+        wine.setName(editedWine.getName());
+        wine.setType(editedWine.getType());
+        wine.setCountry(editedWine.getCountry());
+        wine.setPrice(editedWine.getPrice());
+        wine.setVolume(editedWine.getVolume());
+        wine.setDescription(editedWine.getDescription());
+        wine.setFoodPairings(editedWine.getFoodPairings());
+        wine.setUrl(editedWine.getUrl());
+
+        return repository.save(wine);
     }
 
     public void delete(Long id) {
