@@ -6,10 +6,8 @@ import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -22,7 +20,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
 class ReviewServiceTest extends ServiceTest {
     private static final String author = "Mika";
     private static final Double[] ratingRange = { 1.0, 5.0 };

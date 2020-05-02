@@ -5,10 +5,8 @@ import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.impl.WineServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -19,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
 class WineServiceTest extends ServiceTest {
 
     @InjectMocks
