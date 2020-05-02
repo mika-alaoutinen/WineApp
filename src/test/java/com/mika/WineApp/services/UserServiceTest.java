@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -18,8 +19,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -67,14 +66,12 @@ public class UserServiceTest {
 
     @Test
     public void registerUserReturnsNewUser() {
-        String username = user.getUsername();
-        String password = user.getPassword();
         User newUser = new User(user.getUsername(), encodedPassword, user.getRoles());
 
-        Mockito.when(repository.existsByUsername(username))
+        Mockito.when(repository.existsByUsername(user.getUsername()))
                .thenReturn(false);
 
-        Mockito.when(passwordEncoder.encode(password))
+        Mockito.when(passwordEncoder.encode(user.getPassword()))
                .thenReturn(encodedPassword);
 
         Mockito.when(repository.save(newUser))
@@ -82,8 +79,8 @@ public class UserServiceTest {
 
         User registeredUser = service.registerUser(user);
 
-        verify(repository, times(1)).existsByUsername(username);
-        verify(passwordEncoder, times(1)).encode(password);
+        verify(repository, times(1)).existsByUsername(user.getUsername());
+        verify(passwordEncoder, times(1)).encode(user.getPassword());
         verify(repository, times(1)).save(newUser);
 
         assertEquals(encodedPassword, registeredUser.getPassword());
@@ -92,38 +89,15 @@ public class UserServiceTest {
     }
 
     @Test
-    public void createsUserWithNoRoles() {
-        User registeredUser = registerValidUser(new User(user.getUsername(), encodedPassword, null));
-        Set<Role> roles = registeredUser.getRoles();
-        assertNotNull(roles);
-        assertTrue(roles.isEmpty());
-    }
-
-//    @Test
     public void throwsExceptionIfUserNameIsTaken() {
         String username = user.getUsername();
-
-    }
-
-    private User registerValidUser(User newUser) {
-        String username = user.getUsername();
-        String password = user.getPassword();
-
         Mockito.when(repository.existsByUsername(username))
-                .thenReturn(false);
+               .thenReturn(true);
 
-        Mockito.when(passwordEncoder.encode(password))
-                .thenReturn(encodedPassword);
+        Exception e = assertThrows(BadRequestException.class, () -> service.registerUser(user));
+        assertEquals("Error: username " + username + " already exists!", e.getMessage());
 
-        Mockito.when(repository.save(user))
-                .thenReturn(newUser);
-
-        User registeredUser = service.registerUser(user);
-
-        verify(repository, times(1)).existsByUsername(username);
-        verify(passwordEncoder, times(1)).encode(password);
-        verify(repository, times(1)).save(newUser);
-
-        return registeredUser;
+        verify(repository, times(1)).existsByUsername(user.getUsername());
+        verify(repository, times(0)).save(any(User.class));
     }
 }
