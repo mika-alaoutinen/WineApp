@@ -4,6 +4,7 @@ import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.impl.WineServiceImpl;
+import com.mika.WineApp.specifications.WineSpecification;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -184,8 +186,26 @@ class WineServiceTest extends ServiceTest {
     }
 
     @Test
+    public void search() {
+        Mockito.when(wineRepository.findAll(any(WineSpecification.class)))
+               .thenReturn(wines);
+
+        var result = service.search("Viini", null, null, null, null);
+        assertFalse(result.isEmpty());
+    }
+
+    @Test
     public void searchWithNullParameters() {
         var result = service.search(null, null, null, null, null);
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void searchWithInvalidWineTypeThrowsException() {
+        String wineType = "whit";
+        Exception e = assertThrows(BadRequestException.class, () ->
+                service.search(null, wineType, null, null, null));
+
+        assertEquals("Error: requested wine type " + wineType + " does not exist.", e.getMessage());
     }
 }

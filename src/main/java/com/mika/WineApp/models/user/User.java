@@ -12,8 +12,8 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")

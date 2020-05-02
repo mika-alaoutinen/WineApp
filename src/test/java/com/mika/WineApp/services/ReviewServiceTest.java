@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -65,6 +66,38 @@ class ReviewServiceTest extends ServiceTest {
         Exception e = assertThrows(NotFoundException.class, () -> service.findById(id));
         assertEquals(e.getMessage(), "Error: could not find review with id " + id);
         verify(reviewRepository, times(1)).findById(id);
+    }
+
+    @Test
+    public void findByWineId() {
+        long id = 1L;
+
+        Mockito.when(reviewRepository.findByWineId(id))
+               .thenReturn(reviews);
+
+        var foundReviews = service.findByWineId(id);
+        assertEquals(2, foundReviews.size());
+    }
+
+    @Test
+    public void findByWineIdReturnsEmptyList() {
+        long id = 1L;
+
+        Mockito.when(reviewRepository.findByWineId(id))
+               .thenReturn(List.of());
+
+        var foundReviews = service.findByWineId(id);
+        assertTrue(foundReviews.isEmpty());
+    }
+
+    @Test
+    public void findByWineName() {
+        String wineName = "Valkoviini 1";
+        Mockito.when(reviewRepository.findByWineNameContainingIgnoreCase(wineName))
+                .thenReturn(reviews);
+
+        var foundReviews = service.findByWineName(wineName);
+        assertEquals(2, foundReviews.size());
     }
 
     @Test
@@ -157,6 +190,12 @@ class ReviewServiceTest extends ServiceTest {
     public void validDateRangeIsParsed() {
         String[] monthRange = { "2020-01", "2020-02" };
         service.search(author, monthRange, ratingRange);
+        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
+    }
+
+    @Test
+    public void dateRangeIsNull() {
+        service.search(author, null, ratingRange);
         verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
