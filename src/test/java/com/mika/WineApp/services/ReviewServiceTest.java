@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest extends ServiceTest {
@@ -148,5 +147,15 @@ class ReviewServiceTest extends ServiceTest {
     public void searchWithNullParameters() {
         var result = service.search(null, null, null);
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void dateRangeIsParsed() {
+
+    }
+
+    @Test
+    public void invalidDateRangeThrowsException() {
+
     }
 }

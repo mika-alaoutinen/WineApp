@@ -30,7 +30,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest()
-public abstract class ControllerTest {
+public abstract class ControllerMvcTest {
 
     @Autowired
     protected MockMvc mvc;

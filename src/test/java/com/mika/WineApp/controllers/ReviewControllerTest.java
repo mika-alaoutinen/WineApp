@@ -1,161 +1,100 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-import java.util.Optional;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+@ExtendWith(MockitoExtension.class)
+public class ReviewControllerTest {
+    private static final Long id = 1L;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(ReviewController.class)
-public class ReviewControllerTest extends ControllerTest {
-    private final static String url = "/reviews";
+    @Mock
+    private ReviewService service;
+
+    @InjectMocks
+    private ReviewController controller;
 
     @Test
-    public void findAll() throws Exception {
-        Mockito.when(reviewRepository.findAllByOrderByDateDesc())
-               .thenReturn(reviews);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                    .get(url)
-                    .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        assertFalse(response.isEmpty());
+    public void findAll() {
+        controller.findAll();
+        verify(service, times(1)).findAll();
     }
 
     @Test
-    public void findOne() throws Exception {
-        Mockito.when(reviewRepository.findById(review.getId()))
-               .thenReturn(Optional.of(review));
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .get(url + "/{id}", review.getId())
-                .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        Review foundReview = getReviewFromResult(result);
-        assertEquals(review, foundReview);
+    public void findById() {
+        controller.findById(id);
+        verify(service, times(1)).findById(id);
     }
 
     @Test
-    public void addReview() throws Exception {
-        Wine wine = wines.stream()
-                .findAny()
-                .orElse(null);
-
-        assert wine != null;
-        Mockito.when(wineRepository.findById(wine.getId()))
-               .thenReturn(Optional.of(wine));
-
-        Mockito.when(reviewRepository.save(review))
-                .thenReturn(review);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .post(url + "/{wineId}", wine.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(review)))
-            .andExpect(MockMvcResultMatchers.status().isCreated())
-            .andReturn();
-
-        Review addedReview = getReviewFromResult(result);
-        assertEquals(review, addedReview);
+    public void findByWineId() {
+        controller.findByWineId(id);
+        verify(service, times(1)).findByWineId(id);
     }
 
     @Test
-    public void editReview() throws Exception {
-        Mockito.when(reviewRepository.findById(review.getId()))
-               .thenReturn(Optional.of(review));
-
-        Mockito.when(reviewRepository.save(review))
-               .thenReturn(review);
-
-        MvcResult result = mvc
-            .perform(MockMvcRequestBuilders
-                .put(url + "/{id}", review.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(review)))
-            .andExpect(MockMvcResultMatchers.status().isOk())
-            .andReturn();
-
-        Review editedReview = getReviewFromResult(result);
-        assertEquals(review, editedReview);
+    public void findByWineName() {
+        controller.findByWineName("Herkkuviini");
+        verify(service, times(1)).findByWineName("Herkkuviini");
     }
 
     @Test
-    public void deleteReview() throws Exception {
-        mvc.perform(MockMvcRequestBuilders
-                .delete(url + "/{id}", review.getId()))
-           .andExpect(MockMvcResultMatchers.status().isNoContent());
+    public void add() {
+        Review review = new Review();
+        controller.add(id, review);
+        verify(service, times(1)).add(id, review);
     }
 
     @Test
-    public void count() throws Exception {
-        Mockito.when(reviewRepository.count()).thenReturn(2L);
-
-        MvcResult result = mvc
-                .perform(MockMvcRequestBuilders.get(url + "/count"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        assertEquals(2, Integer.parseInt(response));
+    public void edit() {
+        Review review = new Review();
+        controller.edit(id, review);
+        verify(service, times(1)).edit(id, review);
     }
 
     @Test
-    public void findNewest() throws Exception {
-        Mockito.when(reviewRepository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
-               .thenReturn(new PageImpl<>(reviews));
-
-        var reviewList = quickSearches(url + "/search/newest");
-        assertEquals(reviews, reviewList);
+    public void delete() {
+        controller.delete(id);
+        verify(service, times(1)).delete(id);
     }
 
     @Test
-    public void findBest() throws Exception {
-        Mockito.when(reviewRepository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
-               .thenReturn(new PageImpl<>(reviews));
-
-        var reviewList = quickSearches(url + "/search/best");
-        assertEquals(reviews, reviewList);
+    public void count() {
+        controller.count();
+        verify(service, times(1)).count();
     }
 
     @Test
-    public void findWorst() throws Exception {
-        Mockito.when(reviewRepository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
-               .thenReturn(new PageImpl<>(reviews));
-
-        var reviewList = quickSearches(url + "/search/worst");
-        assertEquals(reviews, reviewList);
+    public void search() {
+        String author = "author";
+        String[] dateRange = new String[2];
+        Double[] ratingRange = new Double[2];
+        controller.search(author, dateRange, ratingRange);
+        verify(service, times(1)).search(author, dateRange, ratingRange);
     }
 
     @Test
-    public void search() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get(url + "/search"))
-           .andExpect(MockMvcResultMatchers.status().isOk());
+    public void findNewest() {
+        controller.findNewest(5);
+        verify(service, times(1)).findNewest(5);
+    }
+
+    @Test
+    public void findBestRated() {
+        controller.findBest(5);
+        verify(service, times(1)).findBestRated(5);
+    }
+
+    @Test
+    public void findWorstRated() {
+        controller.findWorst(5);
+        verify(service, times(1)).findWorstRated(5);
     }
 }
