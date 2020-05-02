@@ -1,8 +1,10 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
+import com.mika.WineApp.specifications.ReviewSpecification;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,11 +18,14 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest extends ServiceTest {
+    private static final String author = "Mika";
+    private static final Double[] ratingRange = { 1.0, 5.0 };
 
     @InjectMocks
     private ReviewServiceImpl service;
@@ -152,12 +157,31 @@ class ReviewServiceTest extends ServiceTest {
     }
 
     @Test
-    public void dateRangeIsParsed() {
-
+    public void validDateRangeIsParsed() {
+        String[] monthRange = { "2020-01", "2020-02" };
+        service.search(author, monthRange, ratingRange);
+        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
     @Test
-    public void invalidDateRangeThrowsException() {
+    public void invalidDateRangeThrowsException1() {
+        String[] monthRange = { "2020-01-01", "2020-02" };
+        String expectedErrorMessage = "Error: could not parse date 2020-01-01";
+        testInvalidDates(monthRange, expectedErrorMessage);
+    }
 
+    @Test
+    public void invalidDateRangeThrowsException2() {
+        String[] monthRange = { "2020-01" };
+        String expectedErrorMessage = "Error: date range must have a start date and an end date. Given [2020-01]";
+        testInvalidDates(monthRange, expectedErrorMessage);
+    }
+
+    private void testInvalidDates(String[] monthRange, String expectedErrorMessage) {
+        Exception e = assertThrows(InvalidDateException.class, () ->
+                service.search(author, monthRange, ratingRange));
+
+        assertEquals(expectedErrorMessage, e.getMessage());
+        verify(reviewRepository, times(0)).findAll(any(ReviewSpecification.class));
     }
 }
