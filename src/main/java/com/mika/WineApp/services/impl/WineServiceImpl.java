@@ -39,8 +39,7 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine edit(Long id, Wine editedWine) {
-        Wine wine = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException(editedWine, id));
+        Wine wine = findById(id);
 
         wine.setName(editedWine.getName());
         wine.setType(editedWine.getType());
