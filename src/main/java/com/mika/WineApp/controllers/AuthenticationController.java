@@ -25,11 +25,6 @@ public class AuthenticationController {
         return service.loginUser(user);
     }
 
-    @PostMapping("logout")
-    public void logout() {
-        System.out.println("TODO: implement logout functionality");
-    }
-
     @PostMapping("register")
     public User register(@Valid @RequestBody User newUser) {
         return service.registerUser(newUser);
