@@ -29,6 +29,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
     private final UserService userService;
     private final WineService wineService;
+    private final SecurityUtilities securityUtils;
 
 // --- Find reviews ---
     public List<Review> findAll() {
@@ -53,7 +54,7 @@ public class ReviewServiceImpl implements ReviewService {
         Wine wine = wineService.findById(wineId);
         newReview.setWine(wine);
 
-        String username = SecurityUtilities.getUsernameFromSecurityContext();
+        String username = securityUtils.getUsernameFromSecurityContext();
         User user = userService.findByUserName(username);
         newReview.setUser(user);
 
@@ -148,7 +149,7 @@ public class ReviewServiceImpl implements ReviewService {
     private Review validateAndGetReview(Long id) {
         Review review = findById(id);
 
-        if (!SecurityUtilities.isUpdateRequestValid(review)) {
+        if (!securityUtils.isUpdateRequestValid(review)) {
             throw new BadRequestException(review);
         }
 
