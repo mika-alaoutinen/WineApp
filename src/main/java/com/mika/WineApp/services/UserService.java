@@ -1,9 +1,18 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.model.JwtToken;
 
 public interface UserService {
+
+    /**
+     * Find a user by username. Throw exception if user is not found.
+     * @param username, which is unique.
+     * @return User
+     * @throws NotFoundException e
+     */
+    User findByUserName(String username);
 
     /**
      * Generate new JWT token once user has been authenticated.

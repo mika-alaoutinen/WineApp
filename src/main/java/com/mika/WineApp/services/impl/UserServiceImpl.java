@@ -1,6 +1,7 @@
 package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -26,6 +27,11 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository repository;
 
+    public User findByUserName(String username) {
+        return repository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException(new User(), username));
+    }
+
     public JwtToken loginUser(User user) {
         Authentication authentication = getAuthentication(user);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -42,19 +48,12 @@ public class UserServiceImpl implements UserService {
         }
 
         String password = passwordEncoder.encode(newUser.getPassword());
-        var roles = getUserRoles(newUser);
 
-        return repository.save(new User(username, password, roles));
+        return repository.save(new User(username, password));
     }
 
     private Authentication getAuthentication(User user) {
         var token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         return authenticationManager.authenticate(token);
-    }
-
-    private Set<Role> getUserRoles(User user) {
-        return user.getRoles() == null
-                ? new HashSet<>()
-                : user.getRoles();
     }
 }
