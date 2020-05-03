@@ -1,5 +1,6 @@
 package com.mika.WineApp.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.superclasses.IdentityModel;
 import lombok.Data;
@@ -25,15 +26,16 @@ public class User extends IdentityModel {
 
     @NotBlank
     @Size(min = 6)
+    @JsonIgnore
     private String password;
 
     @Enumerated(EnumType.STRING)
     @ElementCollection
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = Set.of();
 
     @OneToMany(mappedBy = "user")
-    private List<Review> reviews;
+    private List<Review> reviews = List.of();
 
     public User(String username, String password) {
         this.username = username;

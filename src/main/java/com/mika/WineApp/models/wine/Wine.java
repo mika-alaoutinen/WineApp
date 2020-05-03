@@ -53,7 +53,7 @@ public class Wine extends EntityModel {
 
     @JsonIgnore
     @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
-    private List<@NotNull Review> reviews;
+    private List<@NotNull Review> reviews = List.of();
 
     public Wine(String name,
                 WineType type,

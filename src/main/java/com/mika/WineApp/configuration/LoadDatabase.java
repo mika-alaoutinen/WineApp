@@ -44,12 +44,15 @@ class LoadDatabase {
             return args -> {};
         }
 
+        // Get admin to set as owner for parsed reviews and wines:
+        User admin = userRepository.findByUsername(adminUsername)
+                .orElse(initAdminUser(userRepository));
+
         // Try to parse wines and reviews into database:
         Parser parser = new Parser();
 
         return args -> {
             log.info("Preloading database.");
-            User admin = initAdminUser(userRepository);
             initWines(parser, wineRepository, admin);
             initReviews(parser, reviewRepository, admin);
         };
