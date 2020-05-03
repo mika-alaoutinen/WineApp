@@ -1,5 +1,6 @@
 package com.mika.WineApp.services.impl;
 
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
@@ -60,9 +61,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public Review edit(Long id, Review editedReview) {
-        Review review = repository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException(editedReview, id));
+        Review review = validateAndGetReview(id);
 
         // If wine info has been edited, save changes. Don't save null wines.
         if (editedReview.getWine() != null) {
@@ -78,6 +77,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public void delete(Long id) {
+        validateAndGetReview(id);
         repository.deleteById(id);
     }
 
@@ -143,5 +143,15 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return parsedDates;
+    }
+
+    private Review validateAndGetReview(Long id) {
+        Review review = findById(id);
+
+        if (!SecurityUtilities.isUpdateRequestValid(review)) {
+            throw new BadRequestException(review);
+        }
+
+        return review;
     }
 }
