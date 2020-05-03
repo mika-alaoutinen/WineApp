@@ -1,16 +1,23 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.impl.WineServiceImpl;
 import com.mika.WineApp.specifications.WineSpecification;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,10 +26,34 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-class WineServiceTest extends ServiceTest {
+@ExtendWith(MockitoExtension.class)
+class WineServiceTest {
+    private static final Long nonExistingWineId = 4L;
+    private static final List<Wine> wines = TestData.initWines();
+    private Wine wine;
+
+    @Mock
+    private WineRepository wineRepository;
 
     @InjectMocks
     private WineServiceImpl service;
+
+    @BeforeEach
+    public void setupTests() {
+        this.wine = wines.stream().findAny().orElse(null);
+
+        Mockito.lenient()
+                .when(wineRepository.findById(wine.getId()))
+                .thenReturn(Optional.ofNullable(wine));
+
+        Mockito.lenient()
+                .when(wineRepository.findById(nonExistingWineId))
+                .thenReturn(Optional.empty());
+
+        Mockito.lenient()
+                .when(wineRepository.save(wine))
+                .thenReturn(wine);
+    }
 
     @Test
     public void findAll() {
@@ -41,36 +72,21 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     public void findById() {
-        long id = wine.getId();
-
-        Mockito.when(wineRepository.findById(id))
-               .thenReturn(Optional.ofNullable(wine));
-
-        Wine foundWine = service.findById(id);
-
-        verify(wineRepository, times(1)).findById(id);
+        Wine foundWine = service.findById(wine.getId());
+        verify(wineRepository, times(1)).findById(wine.getId());
         assertEquals(wine, foundWine);
     }
 
     @Test
     public void findByNonExistingId() {
-        long id = 1L;
-
-        Mockito.when(wineRepository.findById(id))
-               .thenReturn(Optional.empty());
-
-        Exception e = assertThrows(NotFoundException.class, () -> service.findById(id));
-        assertEquals(e.getMessage(), "Error: could not find wine with id " + id);
-        verify(wineRepository, times(1)).findById(id);
+        Exception e = assertThrows(NotFoundException.class, () -> service.findById(nonExistingWineId));
+        assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
+        verify(wineRepository, times(1)).findById(nonExistingWineId);
     }
 
     @Test
     public void addWine() {
-        Mockito.when(wineRepository.save(wine))
-               .thenReturn(wine);
-
         Wine addedWine = service.add(wine);
-
         verify(wineRepository, times(1)).save(wine);
         assertEquals(wine, addedWine);
     }
@@ -89,40 +105,24 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     public void editWine() {
-        long id = wine.getId();
-
-        Mockito.when(wineRepository.findById(id))
-               .thenReturn(Optional.ofNullable(wine));
-
-        Mockito.when(wineRepository.save(wine))
-               .thenReturn((wine));
-
-        Wine editedWine = service.edit(id, wine);
-
-        verify(wineRepository, times(1)).findById(id);
+        Wine editedWine = service.edit(wine.getId(), wine);
+        verify(wineRepository, times(1)).findById(wine.getId());
         verify(wineRepository, times(1)).save(wine);
         assertEquals(wine, editedWine);
     }
 
     @Test
     public void editNonExistingWine() {
-        long id = 1L;
-
-        Mockito.when(wineRepository.findById(id))
-               .thenReturn(Optional.empty());
-
-        Exception e = assertThrows(NotFoundException.class, () -> service.edit(id, wine));
-        assertEquals(e.getMessage(), "Error: could not find wine with id " + id);
-        verify(wineRepository, times(1)).findById(id);
+        Exception e = assertThrows(NotFoundException.class, () -> service.edit(nonExistingWineId, wine));
+        assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
+        verify(wineRepository, times(1)).findById(nonExistingWineId);
         verify(wineRepository, times(0)).save(wine);
     }
 
     @Test
     public void deleteWine() {
-        long id = wine.getId();
-        service.delete(id);
-
-        verify(wineRepository, times(1)).deleteById(id);
+        service.delete(wine.getId());
+        verify(wineRepository, times(1)).deleteById(wine.getId());
     }
 
     @Test
@@ -131,7 +131,6 @@ class WineServiceTest extends ServiceTest {
                .thenReturn((long) wines.size());
 
         long wineCount = service.count();
-
         verify(wineRepository, times(1)).count();
         assertEquals(wines.size(), wineCount);
     }

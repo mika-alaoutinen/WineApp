@@ -44,7 +44,7 @@ class ReviewServiceTest {
     protected Wine wine;
 
     @Mock
-    private ReviewRepository reviewRepository;
+    private ReviewRepository repository;
 
     @Mock
     protected UserService userService;
@@ -64,15 +64,15 @@ class ReviewServiceTest {
         this.wine = wines.stream().findAny().orElse(null);
 
         Mockito.lenient()
-                .when(reviewRepository.findById(nonExistingReviewId))
+                .when(repository.findById(nonExistingReviewId))
                 .thenReturn(Optional.empty());
 
         Mockito.lenient()
-                .when(reviewRepository.findById(review.getId()))
+                .when(repository.findById(review.getId()))
                 .thenReturn(Optional.ofNullable(review));
 
         Mockito.lenient()
-                .when(reviewRepository.save(review))
+                .when(repository.save(review))
                 .thenReturn(review);
 
         Mockito.lenient()
@@ -86,12 +86,12 @@ class ReviewServiceTest {
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
 
-        Mockito.when(reviewRepository.findAllByOrderByDateDesc())
+        Mockito.when(repository.findAllByOrderByDateDesc())
                .thenReturn(sortedReviews);
 
         var foundReviews = service.findAll();
 
-        verify(reviewRepository, times(1)).findAllByOrderByDateDesc();
+        verify(repository, times(1)).findAllByOrderByDateDesc();
         assertEquals(sortedReviews, foundReviews);
     }
 
@@ -100,7 +100,7 @@ class ReviewServiceTest {
         System.out.println(review.getId());
         Review foundReview = service.findById(review.getId());
 
-        verify(reviewRepository, times(1)).findById(review.getId());
+        verify(repository, times(1)).findById(review.getId());
         assertEquals(review, foundReview);
     }
 
@@ -108,12 +108,12 @@ class ReviewServiceTest {
     public void findByNonExistingId() {
         Exception e = assertThrows(NotFoundException.class, () -> service.findById(nonExistingReviewId));
         assertEquals(e.getMessage(), "Error: could not find review with id " + nonExistingReviewId);
-        verify(reviewRepository, times(1)).findById(nonExistingReviewId);
+        verify(repository, times(1)).findById(nonExistingReviewId);
     }
 
     @Test
     public void findByWineId() {
-        Mockito.when(reviewRepository.findByWineId(review.getId()))
+        Mockito.when(repository.findByWineId(review.getId()))
                .thenReturn(reviews);
 
         var foundReviews = service.findByWineId(review.getId());
@@ -124,7 +124,7 @@ class ReviewServiceTest {
     public void findByWineIdReturnsEmptyList() {
         long id = 1L;
 
-        Mockito.when(reviewRepository.findByWineId(id))
+        Mockito.when(repository.findByWineId(id))
                .thenReturn(List.of());
 
         var foundReviews = service.findByWineId(id);
@@ -134,7 +134,7 @@ class ReviewServiceTest {
     @Test
     public void findByWineName() {
         String wineName = "Valkoviini 1";
-        Mockito.when(reviewRepository.findByWineNameContainingIgnoreCase(wineName))
+        Mockito.when(repository.findByWineNameContainingIgnoreCase(wineName))
                 .thenReturn(reviews);
 
         var foundReviews = service.findByWineName(wineName);
@@ -145,13 +145,13 @@ class ReviewServiceTest {
     public void addReview() {
         Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, wine);
 
-        Mockito.when(reviewRepository.save(newReview))
+        Mockito.when(repository.save(newReview))
                .thenReturn(newReview);
 
         Review savedReview = service.add(wine.getId(), newReview);
 
         verify(wineService, times(1)).findById(wine.getId());
-        verify(reviewRepository, times(1)).save(newReview);
+        verify(repository, times(1)).save(newReview);
         assertEquals(newReview, savedReview);
     }
 
@@ -163,14 +163,14 @@ class ReviewServiceTest {
         Exception e = assertThrows(NotFoundException.class, () -> service.add(nonExistingWineId, review));
         assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
         verify(wineService, times(1)).findById(nonExistingWineId);
-        verify(reviewRepository, times(0)).save(review);
+        verify(repository, times(0)).save(review);
     }
 
     @Test
     public void editReview() {
         Review editedReview = service.edit(review.getId(), review);
-        verify(reviewRepository, times(1)).findById(review.getId());
-        verify(reviewRepository, times(1)).save(review);
+        verify(repository, times(1)).findById(review.getId());
+        verify(repository, times(1)).save(review);
         assertEquals(review, editedReview);
     }
 
@@ -178,14 +178,14 @@ class ReviewServiceTest {
     public void editNonExistingReview() {
         Exception e = assertThrows(NotFoundException.class, () -> service.edit(nonExistingReviewId, review));
         assertEquals(e.getMessage(), "Error: could not find review with id " + nonExistingReviewId);
-        verify(reviewRepository, times(1)).findById(nonExistingReviewId);
-        verify(reviewRepository, times(0)).save(review);
+        verify(repository, times(1)).findById(nonExistingReviewId);
+        verify(repository, times(0)).save(review);
     }
 
     @Test
     public void deleteReview() {
         service.delete(review.getId());
-        verify(reviewRepository, times(1)).deleteById(review.getId());
+        verify(repository, times(1)).deleteById(review.getId());
     }
 
     @Test
@@ -199,12 +199,12 @@ class ReviewServiceTest {
 
     @Test
     public void count() {
-        Mockito.when(reviewRepository.count())
+        Mockito.when(repository.count())
                .thenReturn((long) reviews.size());
 
         long reviewCount = service.count();
 
-        verify(reviewRepository, times(1)).count();
+        verify(repository, times(1)).count();
         assertEquals(reviews.size(), reviewCount);
     }
 
@@ -218,13 +218,13 @@ class ReviewServiceTest {
     public void validDateRangeIsParsed() {
         String[] monthRange = { "2020-01", "2020-02" };
         service.search(author, monthRange, ratingRange);
-        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
     @Test
     public void dateRangeIsNull() {
         service.search(author, null, ratingRange);
-        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
     @Test
@@ -246,6 +246,6 @@ class ReviewServiceTest {
                 service.search(author, monthRange, ratingRange));
 
         assertEquals(expectedErrorMessage, e.getMessage());
-        verify(reviewRepository, times(0)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(0)).findAll(any(ReviewSpecification.class));
     }
 }
