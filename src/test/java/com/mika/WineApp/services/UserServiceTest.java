@@ -65,9 +65,9 @@ public class UserServiceTest {
     }
 
     @Test
-    public void registerUserReturnsNewUser() {
+    public void registerUser() {
         User newUser = new User(user.getUsername(), encodedPassword);
-        newUser.setRoles(user.getRoles());
+//        newUser.setRoles(user.getRoles());
 
         Mockito.when(repository.existsByUsername(user.getUsername()))
                .thenReturn(false);
@@ -85,8 +85,7 @@ public class UserServiceTest {
         verify(repository, times(1)).save(newUser);
 
         assertEquals(encodedPassword, registeredUser.getPassword());
-        assertTrue(registeredUser.getRoles().contains(Role.ROLE_USER));
-        assertEquals(1, registeredUser.getRoles().size());
+        assertTrue(registeredUser.getRoles().isEmpty());
     }
 
     @Test
