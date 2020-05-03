@@ -17,6 +17,10 @@ public class NotFoundException extends RuntimeException {
         super("Error: could not find review with id " + id);
     }
 
+    public NotFoundException(User user, Long id) {
+        super("Error: could not find user with id " + id);
+    }
+
     public NotFoundException(User user, String username) {
         super("Error: could not find user with username " + username);
     }

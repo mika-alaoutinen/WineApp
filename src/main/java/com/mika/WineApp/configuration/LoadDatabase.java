@@ -1,5 +1,6 @@
 package com.mika.WineApp.configuration;
 
+import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
@@ -12,6 +13,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Set;
 
 /*
  * This class is used to initiate a database for the first time. The bean uses a Parser class
@@ -54,6 +57,7 @@ class LoadDatabase {
 
     private User initAdminUser(UserRepository repository) {
         User admin = new User(adminUsername, passwordEncoder.encode(adminPassword));
+        admin.setRoles(Set.of(Role.ROLE_ADMIN));
         repository.save(admin);
         log.info("Admin user created successfully!");
         return admin;
