@@ -66,7 +66,8 @@ public class UserServiceTest {
 
     @Test
     public void registerUserReturnsNewUser() {
-        User newUser = new User(user.getUsername(), encodedPassword, user.getRoles());
+        User newUser = new User(user.getUsername(), encodedPassword);
+        newUser.setRoles(user.getRoles());
 
         Mockito.when(repository.existsByUsername(user.getUsername()))
                .thenReturn(false);

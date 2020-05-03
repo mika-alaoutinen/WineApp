@@ -56,9 +56,12 @@ public abstract class TestData {
     }
 
     public static List<User> createTestUsers() {
-        return List.of(
-                new User("user", "user_password", Set.of(Role.ROLE_USER)),
-                new User("admin", "admin_password", Set.of(Role.ROLE_ADMIN))
-        );
+        User user = new User("user", "user_password");
+        user.setRoles(Set.of(Role.ROLE_USER));
+
+        User admin = new User("admin", "admin_password");
+        admin.setRoles(Set.of(Role.ROLE_ADMIN));
+
+        return List.of(user, admin);
     }
 }
