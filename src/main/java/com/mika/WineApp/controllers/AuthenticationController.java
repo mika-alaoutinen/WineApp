@@ -37,7 +37,7 @@ public class AuthenticationController {
     @Operation(summary = "Update user's roles", description = "Replace user's old roles with roles given in request body.")
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public User grantRole(@PathVariable Long id, @RequestBody Set<Role> roles) {
+    public User updateRoles(@PathVariable Long id, @RequestBody Set<Role> roles) {
         return service.updateRoles(id, roles);
     }
 }
