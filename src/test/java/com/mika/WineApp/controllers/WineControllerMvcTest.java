@@ -9,7 +9,6 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -20,7 +19,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     private final static String url = "/wines";
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findAll() throws Exception {
         Mockito.when(wineRepository.findAllByOrderByNameAsc())
                .thenReturn(wines);
@@ -37,11 +36,8 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findOne() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-               .thenReturn(Optional.of(wine));
-
         MvcResult result = mvc
             .perform(
                 get(url + "/{id}", wine.getId())
@@ -54,11 +50,8 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void addWine() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-                .thenReturn(Optional.of(wine));
-
         Mockito.when(wineRepository.save(wine))
                 .thenReturn(wine);
 
@@ -75,11 +68,8 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void editWine() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-                .thenReturn(Optional.of(wine));
-
         Mockito.when(wineRepository.save(wine))
                .thenReturn(wine);
 
@@ -96,7 +86,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void deleteWine() throws Exception {
         mvc.perform(
                 delete(url + "/{id}", wine.getId()))
@@ -104,10 +94,9 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void count() throws Exception {
-        Mockito.when(wineRepository.count())
-               .thenReturn(1L);
+        Mockito.when(wineRepository.count()).thenReturn(1L);
 
         MvcResult result = mvc
                 .perform(
@@ -120,7 +109,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void getCountries() throws Exception {
         var countries = List.of("Espanja", "Italia", "Ranska");
 
@@ -132,7 +121,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void getDescriptions() throws Exception {
         var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
 
@@ -144,7 +133,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void getFoodPairings() throws Exception {
         var foodPairings = List.of("kana", "kala", "seurustelujuoma");
 
@@ -156,7 +145,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void search() throws Exception {
         mvc.perform(
                 get(url + "/search"))
