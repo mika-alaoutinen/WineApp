@@ -1,22 +1,18 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
-import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -30,30 +26,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
-class ReviewServiceTest {
+class ReviewServiceTest extends ServiceTest {
     private static final String author = "Mika";
     private static final Double[] ratingRange = { 1.0, 5.0 };
-    private static final Long nonExistingReviewId = 3L;
-    private static final Long nonExistingWineId = 4L;
-
-    private static final List<Review> reviews = TestData.initReviews();
-    private static final List<Wine> wines = TestData.initWines();
-
-    private Review review;
-    protected Wine wine;
 
     @Mock
     private ReviewRepository repository;
 
     @Mock
-    protected UserService userService;
-
-    @Mock
     private WineService wineService;
-
-    @Mock
-    protected SecurityUtilities securityUtils;
 
     @InjectMocks
     private ReviewServiceImpl service;
@@ -64,12 +45,12 @@ class ReviewServiceTest {
         this.wine = wines.stream().findAny().orElse(null);
 
         Mockito.lenient()
-                .when(repository.findById(nonExistingReviewId))
-                .thenReturn(Optional.empty());
-
-        Mockito.lenient()
                 .when(repository.findById(review.getId()))
                 .thenReturn(Optional.ofNullable(review));
+
+        Mockito.lenient()
+                .when(repository.findById(nonExistingReviewId))
+                .thenReturn(Optional.empty());
 
         Mockito.lenient()
                 .when(repository.save(review))
@@ -145,12 +126,20 @@ class ReviewServiceTest {
     public void addReview() {
         Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, wine);
 
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+                .thenReturn(user.getUsername());
+
+        Mockito.when(userService.findByUserName(user.getUsername()))
+                .thenReturn(user);
+
         Mockito.when(repository.save(newReview))
                .thenReturn(newReview);
 
         Review savedReview = service.add(wine.getId(), newReview);
 
         verify(wineService, times(1)).findById(wine.getId());
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+        verify(userService, times(1)).findByUserName(user.getUsername());
         verify(repository, times(1)).save(newReview);
         assertEquals(newReview, savedReview);
     }

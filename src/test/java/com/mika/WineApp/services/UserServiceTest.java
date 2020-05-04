@@ -111,7 +111,8 @@ public class UserServiceTest {
         verify(repository, times(1)).save(newUser);
 
         assertEquals(encodedPassword, registeredUser.getPassword());
-        assertTrue(registeredUser.getRoles().isEmpty());
+        assertTrue(registeredUser.getRoles().contains(Role.ROLE_USER));
+        assertEquals(1, registeredUser.getRoles().size());
     }
 
     @Test
