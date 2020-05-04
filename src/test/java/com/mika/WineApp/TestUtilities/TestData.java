@@ -1,11 +1,14 @@
 package com.mika.WineApp.TestUtilities;
 
 import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.user.Role;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public abstract class TestData {
 
@@ -50,5 +53,17 @@ public abstract class TestData {
         red2.setId(14L);
 
         return List.of(white1, white2, red1, red2);
+    }
+
+    public static List<User> createTestUsers() {
+        User user = new User("test_user", "test_user_password");
+        user.setRoles(Set.of(Role.ROLE_USER));
+        user.setId(1L);
+
+        User admin = new User("test_admin", "test_admin_password");
+        admin.setRoles(Set.of(Role.ROLE_ADMIN));
+        user.setId(2L);
+
+        return List.of(user, admin);
     }
 }

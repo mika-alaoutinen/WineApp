@@ -5,11 +5,16 @@ import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.configuration.TestConfig;
 import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.superclasses.EntityModel;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
+import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +24,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
+import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,16 +47,48 @@ public abstract class ControllerMvcTest {
     @MockBean
     protected WineRepository wineRepository;
 
+    @MockBean
+    protected UserRepository userRepository;
+
+    @MockBean
+    protected SecurityUtilities securityUtilities;
+
+    protected static final String TEST_USER = "test_user";
     protected final List<Review> reviews = TestData.initReviews();
     protected final List<Wine> wines = TestData.initWines();
+    protected final List<User> users = TestData.createTestUsers();
 
     protected Review review;
     protected Wine wine;
+    protected User admin = users.get(1);
 
     @BeforeEach
-    void init() {
+    void setupTests() {
         this.wine = wines.stream().findAny().orElse(null);
         this.review = reviews.stream().findAny().orElse(null);
+
+        // Review repository mocks:
+        assert review != null;
+        Mockito.when(reviewRepository.findById(review.getId()))
+                .thenReturn(Optional.of(review));
+
+        Mockito.when(reviewRepository.save(any(Review.class)))
+                .thenReturn(review);
+
+        // Wine repository mocks:
+        Mockito.when(wineRepository.findById(wine.getId()))
+                .thenReturn(Optional.of(wine));
+
+        // User repository mocks:
+        Mockito.when(userRepository.findByUsername(TEST_USER))
+                .thenReturn(Optional.ofNullable(admin));
+
+        // Security utilities mocks:
+        Mockito.when(securityUtilities.getUsernameFromSecurityContext())
+               .thenReturn(TEST_USER);
+
+        Mockito.when(securityUtilities.isUpdateRequestValid(any(EntityModel.class)))
+                .thenReturn(true);
     }
 
 // Helper methods:

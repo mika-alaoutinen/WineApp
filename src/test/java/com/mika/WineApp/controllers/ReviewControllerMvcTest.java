@@ -21,7 +21,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     private final static String url = "/reviews";
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findAll() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByDateDesc())
                .thenReturn(reviews);
@@ -38,11 +38,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findOne() throws Exception {
-        Mockito.when(reviewRepository.findById(review.getId()))
-               .thenReturn(Optional.of(review));
-
         MvcResult result = mvc
             .perform(
                 get(url + "/{id}", review.getId())
@@ -55,14 +52,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void addReview() throws Exception {
-        Mockito.when(wineRepository.findById(wine.getId()))
-               .thenReturn(Optional.of(wine));
-
-        Mockito.when(reviewRepository.save(review))
-                .thenReturn(review);
-
         MvcResult result = mvc
             .perform(
                 post(url + "/{wineId}", wine.getId())
@@ -76,14 +67,8 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void editReview() throws Exception {
-        Mockito.when(reviewRepository.findById(review.getId()))
-               .thenReturn(Optional.of(review));
-
-        Mockito.when(reviewRepository.save(review))
-               .thenReturn(review);
-
         MvcResult result = mvc
             .perform(
                 put(url + "/{id}", review.getId())
@@ -97,7 +82,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void deleteReview() throws Exception {
         mvc.perform(
                 delete(url + "/{id}", review.getId()))
@@ -105,7 +90,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void count() throws Exception {
         Mockito.when(reviewRepository.count()).thenReturn(2L);
 
@@ -120,7 +105,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findNewest() throws Exception {
         Mockito.when(reviewRepository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
@@ -130,7 +115,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findBest() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
@@ -140,7 +125,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void findWorst() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
@@ -150,7 +135,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails()
+    @WithUserDetails(TEST_USER)
     public void search() throws Exception {
         mvc.perform(
                 get(url + "/search"))
