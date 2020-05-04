@@ -38,6 +38,18 @@ public class AuthenticationControllerTest {
     }
 
     @Test
+    public void findById() {
+        controller.findById(id);
+        verify(service, times(1)).findById(id);
+    }
+
+    @Test
+    public void findByUsername() {
+        controller.findByUsername("username");
+        verify(service, times(1)).findByUserName("username");
+    }
+
+    @Test
     public void updateRoles() {
         var roles = Set.of(Role.ROLE_ADMIN);
         controller.updateRoles(id, roles);

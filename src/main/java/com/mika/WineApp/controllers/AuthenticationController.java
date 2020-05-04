@@ -35,7 +35,7 @@ public class AuthenticationController {
 
 // Restricted operations limited to users with admin role:
     @GetMapping("search/id/{id}")
-    public User findByUsername(@PathVariable Long id) {
+    public User findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
