@@ -52,9 +52,6 @@ public class WineControllerMvcTest extends ControllerMvcTest {
     @Test
     @WithUserDetails(TEST_USER)
     public void addWine() throws Exception {
-        Mockito.when(wineRepository.save(wine))
-                .thenReturn(wine);
-
         MvcResult result = mvc
             .perform(
                 post(url)

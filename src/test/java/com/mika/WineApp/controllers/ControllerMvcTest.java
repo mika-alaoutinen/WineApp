@@ -79,6 +79,9 @@ public abstract class ControllerMvcTest {
         Mockito.when(wineRepository.findById(wine.getId()))
                 .thenReturn(Optional.of(wine));
 
+        Mockito.when(wineRepository.save(any(Wine.class)))
+                .thenReturn(wine);
+
         // User repository mocks:
         Mockito.when(userRepository.findByUsername(TEST_USER))
                 .thenReturn(Optional.ofNullable(admin));
