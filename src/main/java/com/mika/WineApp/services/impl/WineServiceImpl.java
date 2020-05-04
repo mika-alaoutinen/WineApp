@@ -2,9 +2,12 @@ package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.security.SecurityUtilities;
+import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WineServiceImpl implements WineService {
     private final WineRepository repository;
+    private final UserService userService;
+    private final SecurityUtilities securityUtils;
 
 // --- CRUD methods ---
     public List<Wine> findAll() {
@@ -29,17 +34,19 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine add(Wine newWine) {
-        String name = newWine.getName();
-
-        if (!isValid(name)) {
-            throw new BadRequestException(newWine, name);
+        if (!isValid(newWine.getName())) {
+            throw new BadRequestException(newWine, newWine.getName());
         }
+
+        String username = securityUtils.getUsernameFromSecurityContext();
+        User user = userService.findByUserName(username);
+        newWine.setUser(user);
 
         return repository.save(newWine);
     }
 
     public Wine edit(Long id, Wine editedWine) {
-        Wine wine = findById(id);
+        Wine wine = validateAndGetWine(id);
 
         wine.setName(editedWine.getName());
         wine.setType(editedWine.getType());
@@ -54,6 +61,7 @@ public class WineServiceImpl implements WineService {
     }
 
     public void delete(Long id) {
+        validateAndGetWine(id);
         repository.deleteById(id);
     }
 
@@ -103,5 +111,15 @@ public class WineServiceImpl implements WineService {
         } catch (IllegalArgumentException e) {
             throw new BadRequestException(WineType.OTHER, type);
         }
+    }
+
+    private Wine validateAndGetWine(Long id) {
+        Wine wine = findById(id);
+
+        if (!securityUtils.isUpdateRequestValid(wine)) {
+            throw new BadRequestException(wine);
+        }
+
+        return wine;
     }
 }
