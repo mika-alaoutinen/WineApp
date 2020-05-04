@@ -9,6 +9,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -95,7 +96,10 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     private void configureSecurity(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/register").permitAll()
+                .antMatchers( "/auth/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()
             .exceptionHandling()

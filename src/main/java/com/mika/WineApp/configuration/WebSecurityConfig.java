@@ -19,6 +19,13 @@ public interface WebSecurityConfig {
      * Overrides the default implementation in WebSecurityConfigurerAdapter.
      * Used to disable CSRF. Additionally, if Spring Security is enabled in application.properties,
      * configures authorization rules.
+     *
+     * Authorization rules:
+     * - allow post requests to /auth for login and registration
+     * - allow all GET requests without logging in
+     * - block POST, PUT and DELETE requests from users who are not logged in
+     * - Only admins can change user's roles.
+     *
      * @param http HttpSecurity
      * @throws Exception e
      */
