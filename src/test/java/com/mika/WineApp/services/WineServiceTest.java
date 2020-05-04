@@ -135,6 +135,15 @@ class WineServiceTest extends ServiceTest {
     }
 
     @Test
+    public void shouldThrowErrorWhenWrongUserTriesToDelete() {
+        Mockito.when(securityUtils.isUpdateRequestValid(wine))
+                .thenReturn(false);
+
+        Exception e = assertThrows(BadRequestException.class, () -> service.delete(wine.getId()));
+        assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
+    }
+
+    @Test
     public void count() {
         Mockito.when(repository.count())
                .thenReturn((long) wines.size());
