@@ -1,12 +1,16 @@
 package com.mika.WineApp.services.impl;
 
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
-import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.ReviewService;
+import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +27,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
-    private final WineRepository wineRepository;
+    private final UserService userService;
+    private final WineService wineService;
+    private final SecurityUtilities securityUtils;
 
 // --- Find reviews ---
     public List<Review> findAll() {
@@ -45,18 +51,18 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
-        Wine wine = wineRepository
-                .findById(wineId)
-                .orElseThrow(() -> new NotFoundException(new Wine(), wineId));
-
+        Wine wine = wineService.findById(wineId);
         newReview.setWine(wine);
+
+        String username = securityUtils.getUsernameFromSecurityContext();
+        User user = userService.findByUserName(username);
+        newReview.setUser(user);
+
         return repository.save(newReview);
     }
 
     public Review edit(Long id, Review editedReview) {
-        Review review = repository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException(editedReview, id));
+        Review review = validateAndGetReview(id);
 
         // If wine info has been edited, save changes. Don't save null wines.
         if (editedReview.getWine() != null) {
@@ -72,6 +78,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public void delete(Long id) {
+        validateAndGetReview(id);
         repository.deleteById(id);
     }
 
@@ -137,5 +144,15 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return parsedDates;
+    }
+
+    private Review validateAndGetReview(Long id) {
+        Review review = findById(id);
+
+        if (!securityUtils.isUpdateRequestValid(review)) {
+            throw new BadRequestException(review);
+        }
+
+        return review;
     }
 }

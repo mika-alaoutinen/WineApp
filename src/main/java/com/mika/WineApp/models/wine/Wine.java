@@ -12,7 +12,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -54,7 +53,7 @@ public class Wine extends EntityModel {
 
     @JsonIgnore
     @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
-    private List<@NotNull Review> reviews = new ArrayList<>();
+    private List<@NotNull Review> reviews = List.of();
 
     public Wine(String name,
                 WineType type,
@@ -73,6 +72,6 @@ public class Wine extends EntityModel {
         this.description = description;
         this.foodPairings = foodPairings;
         this.url = url;
-        this.reviews = new ArrayList<>();
+        this.reviews = List.of();
     }
 }
