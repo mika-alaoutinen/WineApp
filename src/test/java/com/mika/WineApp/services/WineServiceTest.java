@@ -39,7 +39,7 @@ class WineServiceTest {
     private WineServiceImpl service;
 
     @BeforeEach
-    public void setupTests() {
+    public void setupMocks() {
         this.wine = wines.stream().findAny().orElse(null);
 
         Mockito.lenient()
