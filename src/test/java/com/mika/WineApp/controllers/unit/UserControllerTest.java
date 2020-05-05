@@ -25,6 +25,12 @@ public class UserControllerTest {
     private UserController controller;
 
     @Test
+    public void findAll() {
+        controller.findAll();
+        verify(service, times(1)).findAll();
+    }
+
+    @Test
     public void findById() {
         controller.findById(id);
         verify(service, times(1)).findById(id);
