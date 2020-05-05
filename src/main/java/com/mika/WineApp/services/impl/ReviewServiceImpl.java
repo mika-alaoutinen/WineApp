@@ -62,7 +62,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public Review edit(Long id, Review editedReview) {
-        Review review = validateAndGetReview(id);
+        Review review = findById(id);
+        securityUtils.validateUpdateRequest(review);
 
         // If wine info has been edited, save changes. Don't save null wines.
         if (editedReview.getWine() != null) {
@@ -78,7 +79,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public void delete(Long id) {
-        validateAndGetReview(id);
+        Review review = findById(id);
+        securityUtils.validateUpdateRequest(review);
         repository.deleteById(id);
     }
 
@@ -144,15 +146,5 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return parsedDates;
-    }
-
-    private Review validateAndGetReview(Long id) {
-        Review review = findById(id);
-
-        if (!securityUtils.isUpdateRequestValid(review)) {
-            throw new BadRequestException(review);
-        }
-
-        return review;
     }
 }

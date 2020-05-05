@@ -46,7 +46,8 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine edit(Long id, Wine editedWine) {
-        Wine wine = validateAndGetWine(id);
+        Wine wine = findById(id);
+        securityUtils.validateUpdateRequest(wine);
 
         wine.setName(editedWine.getName());
         wine.setType(editedWine.getType());
@@ -61,7 +62,8 @@ public class WineServiceImpl implements WineService {
     }
 
     public void delete(Long id) {
-        validateAndGetWine(id);
+        Wine wine = findById(id);
+        securityUtils.validateUpdateRequest(wine);
         repository.deleteById(id);
     }
 
@@ -111,15 +113,5 @@ public class WineServiceImpl implements WineService {
         } catch (IllegalArgumentException e) {
             throw new BadRequestException(WineType.OTHER, type);
         }
-    }
-
-    private Wine validateAndGetWine(Long id) {
-        Wine wine = findById(id);
-
-        if (!securityUtils.isUpdateRequestValid(wine)) {
-            throw new BadRequestException(wine);
-        }
-
-        return wine;
     }
 }
