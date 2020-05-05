@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.controllers.mvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;

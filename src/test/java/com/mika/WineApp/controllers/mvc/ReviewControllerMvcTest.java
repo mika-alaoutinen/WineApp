@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.controllers.mvc;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.review.Review;
@@ -9,8 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

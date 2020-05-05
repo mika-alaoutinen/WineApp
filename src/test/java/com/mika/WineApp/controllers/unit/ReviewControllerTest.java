@@ -1,5 +1,6 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.controllers.unit;
 
+import com.mika.WineApp.controllers.ReviewController;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.services.ReviewService;
 import org.junit.jupiter.api.Test;
