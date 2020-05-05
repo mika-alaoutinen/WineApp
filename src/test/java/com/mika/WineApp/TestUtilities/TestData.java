@@ -62,7 +62,7 @@ public abstract class TestData {
 
         User admin = new User("test_admin", "test_admin_password");
         admin.setRoles(Set.of(Role.ROLE_ADMIN));
-        user.setId(2L);
+        admin.setId(2L);
 
         return List.of(user, admin);
     }
