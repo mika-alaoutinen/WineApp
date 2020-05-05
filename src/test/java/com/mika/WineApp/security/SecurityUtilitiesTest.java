@@ -1,6 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.security.model.UserPrincipal;
 import com.mika.WineApp.services.UserService;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -16,11 +18,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class SecurityUtilitiesTest {
-    private static final String username = "test_user";
+    private static final User user = TestData.createTestUsers().get(0);
 
     @Mock
     private UserService service;
@@ -34,22 +35,37 @@ public class SecurityUtilitiesTest {
         SecurityContext securityContext = mock(SecurityContext.class);
         UserPrincipal userPrincipal = mock(UserPrincipal.class);
 
-        when(securityContext.getAuthentication()).thenReturn(authentication);
+        Mockito.when(securityContext.getAuthentication())
+               .thenReturn(authentication);
+
         SecurityContextHolder.setContext(securityContext);
-        when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(userPrincipal);
-        when(userPrincipal.getUsername()).thenReturn(username);
+
+        Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
+               .thenReturn(userPrincipal);
+
+        Mockito.lenient()
+                .when(userPrincipal.getUsername())
+                .thenReturn(user.getUsername());
+
+        Mockito.lenient()
+                .when(userPrincipal.getId())
+                .thenReturn(user.getId());
     }
 
     @Test
     public void getUsernameFromSecurityContext() {
         String name = securityUtils.getUsernameFromSecurityContext();
-        assertEquals(username, name);
+        assertEquals(user.getUsername(), name);
     }
 
     @Test
     public void validateUpdateRequest() {
         Wine wine = TestData.initWines().get(0);
-        securityUtils.validateUpdateRequest(wine);
+        wine.setUser(user);
 
+        Mockito.when(service.findById(user.getId()))
+               .thenReturn(user);
+
+        securityUtils.validateUpdateRequest(wine);
     }
 }
