@@ -55,10 +55,6 @@ class ReviewServiceTest extends ServiceTest {
         Mockito.lenient()
                 .when(repository.save(review))
                 .thenReturn(review);
-
-        Mockito.lenient()
-                .when(securityUtils.isUpdateRequestValid(review))
-                .thenReturn(true);
     }
 
     @Test
@@ -179,8 +175,8 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     public void shouldThrowErrorWhenWrongUserTriesToDelete() {
-        Mockito.when(securityUtils.isUpdateRequestValid(review))
-                .thenReturn(false);
+        Mockito.doThrow(new BadRequestException(review))
+               .when(securityUtils).validateUpdateRequest(review);
 
         Exception e = assertThrows(BadRequestException.class, () -> service.delete(review.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());

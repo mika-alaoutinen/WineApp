@@ -89,9 +89,6 @@ public abstract class ControllerMvcTest {
         // Security utilities mocks:
         Mockito.when(securityUtilities.getUsernameFromSecurityContext())
                .thenReturn(TEST_USER);
-
-        Mockito.when(securityUtilities.isUpdateRequestValid(any(EntityModel.class)))
-                .thenReturn(true);
     }
 
 // Helper methods:
