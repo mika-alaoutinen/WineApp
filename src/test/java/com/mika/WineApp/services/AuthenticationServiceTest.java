@@ -27,7 +27,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class AuthenticationServiceTest {
     private final static String encodedPassword = "encoded_password";
-    private final static User user = TestData.createTestUsers().get(0);
+    private final static User user = TestData.initTestUsers().get(0);
 
     @Mock
     private AuthenticationManager authenticationManager;

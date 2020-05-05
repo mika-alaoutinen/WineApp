@@ -26,7 +26,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
-    private final static List<User> users = TestData.createTestUsers();
+    private final static List<User> users = TestData.initTestUsers();
     private final static User user = users.get(0);
     private final static Long userId = user.getId();
     private final static String username = user.getUsername();

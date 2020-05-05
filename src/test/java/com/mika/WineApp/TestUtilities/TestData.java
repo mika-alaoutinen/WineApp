@@ -55,7 +55,7 @@ public abstract class TestData {
         return List.of(white1, white2, red1, red2);
     }
 
-    public static List<User> createTestUsers() {
+    public static List<User> initTestUsers() {
         User user = new User("test_user", "test_user_password");
         user.setRoles(Set.of(Role.ROLE_USER));
         user.setId(1L);

@@ -21,7 +21,8 @@ import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 public class SecurityUtilitiesTest {
-    private static final User user = TestData.createTestUsers().get(0);
+    private static final User user = TestData.initTestUsers().get(0);
+    private static final User admin = TestData.initTestUsers().get(1);
 
     @Mock
     private UserService service;

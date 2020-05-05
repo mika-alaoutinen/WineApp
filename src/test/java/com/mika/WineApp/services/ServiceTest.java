@@ -18,7 +18,7 @@ public abstract class ServiceTest {
     protected static final Long nonExistingWineId = 4L;
     protected static final List<Review> reviews = TestData.initReviews();
     protected static final List<Wine> wines = TestData.initWines();
-    protected static final User user = TestData.createTestUsers().get(0);
+    protected static final User user = TestData.initTestUsers().get(0);
     protected Review review;
     protected Wine wine;
 
