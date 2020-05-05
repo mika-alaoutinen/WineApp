@@ -12,6 +12,12 @@ import java.util.Set;
 public interface UserService {
 
     /**
+     * Find all users.
+     * @return list of users
+     */
+    List<User> findAll();
+
+    /**
      * Find user by ID.
      * @param id of user
      * @return User

@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -34,18 +35,26 @@ public class AuthenticationController {
     }
 
 // Restricted operations limited to users with admin role:
-    @GetMapping("search/id/{id}")
+    @Operation(summary = "Find all users", description = "Find all saved users.")
+    @GetMapping("users")
+    public List<User> findAll() {
+        return service.findAll();
+    }
+
+    @Operation(summary = "Find user by ID", description = "Find a user by user ID.")
+    @GetMapping("users/id/{id}")
     public User findById(@PathVariable Long id) {
         return service.findById(id);
     }
 
-    @GetMapping("search/username/{username}")
+    @Operation(summary = "Find user by username", description = "Find a user by username.")
+    @GetMapping("users/username/{username}")
     public User findByUsername(@PathVariable String username) {
         return service.findByUserName(username);
     }
 
     @Operation(summary = "Update user's roles", description = "Replace user's old roles with roles given in request body.")
-    @PutMapping("{id}/roles")
+    @PutMapping("users/{id}/roles")
     public User updateRoles(@PathVariable Long id, @RequestBody Set<Role> roles) {
         return service.updateRoles(id, roles);
     }
