@@ -23,6 +23,8 @@ import static org.mockito.Mockito.mock;
 public class SecurityUtilitiesTest {
     private static final User user = TestData.initTestUsers().get(0);
     private static final User admin = TestData.initTestUsers().get(1);
+    private static final Wine wine = TestData.initWines().get(0);
+    private UserPrincipal userPrincipal;
 
     @Mock
     private UserService service;
@@ -34,7 +36,7 @@ public class SecurityUtilitiesTest {
     public void setupMocks() {
         Authentication authentication = mock(Authentication.class);
         SecurityContext securityContext = mock(SecurityContext.class);
-        UserPrincipal userPrincipal = mock(UserPrincipal.class);
+        UserPrincipal mockUserPrincipal = mock(UserPrincipal.class);
 
         Mockito.when(securityContext.getAuthentication())
                .thenReturn(authentication);
@@ -42,31 +44,48 @@ public class SecurityUtilitiesTest {
         SecurityContextHolder.setContext(securityContext);
 
         Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
-               .thenReturn(userPrincipal);
+               .thenReturn(mockUserPrincipal);
 
-        Mockito.lenient()
-                .when(userPrincipal.getUsername())
-                .thenReturn(user.getUsername());
-
-        Mockito.lenient()
-                .when(userPrincipal.getId())
-                .thenReturn(user.getId());
+        userPrincipal = mockUserPrincipal;
     }
 
     @Test
     public void getUsernameFromSecurityContext() {
+        Mockito.when(userPrincipal.getUsername())
+               .thenReturn(user.getUsername());
+
         String name = securityUtils.getUsernameFromSecurityContext();
         assertEquals(user.getUsername(), name);
     }
 
     @Test
-    public void validateUpdateRequest() {
-        Wine wine = TestData.initWines().get(0);
+    public void validateUpdateRequestForOwner() {
         wine.setUser(user);
+
+        Mockito.when(userPrincipal.getId())
+               .thenReturn(user.getId());
 
         Mockito.when(service.findById(user.getId()))
                .thenReturn(user);
 
         securityUtils.validateUpdateRequest(wine);
+    }
+
+    @Test
+    public void validateUpdateRequestForAdmin() {
+        wine.setUser(user);
+
+        Mockito.when(userPrincipal.getId())
+               .thenReturn(admin.getId());
+
+        Mockito.when(service.findById(admin.getId()))
+               .thenReturn(admin);
+
+        securityUtils.validateUpdateRequest(wine);
+    }
+
+    @Test
+    public void shouldThrowExceptionOnFailedValidation() {
+
     }
 }
