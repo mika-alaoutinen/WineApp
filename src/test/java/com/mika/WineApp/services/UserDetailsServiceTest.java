@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class UserDetailsServiceTest {
-    private static final User user = TestData.createTestUsers().get(0);
+    private static final User user = TestData.initTestUsers().get(0);
 
     @Mock
     private UserRepository repository;

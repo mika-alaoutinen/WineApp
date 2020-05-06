@@ -12,6 +12,12 @@ import java.util.Set;
 public interface UserService {
 
     /**
+     * Find all users.
+     * @return list of users
+     */
+    List<User> findAll();
+
+    /**
      * Find user by ID.
      * @param id of user
      * @return User
@@ -28,25 +34,17 @@ public interface UserService {
     User findByUserName(String username) throws NotFoundException;
 
     /**
+     * Saves a new user. User's password must be encoded before saving it.
+     * @param user to save
+     * @return saved user
+     */
+    User save(User user);
+
+    /**
      * Update user's roles. New roles override possible old roles.
      * @param username for user to give role to
      * @param roles new set of roles for the user.
      * @return updated user
      */
     User updateRoles(Long username, Set<Role> roles) throws NotFoundException;
-
-    /**
-     * Generate new JWT token once user has been authenticated.
-     * @param user with credentials.
-     * @return JWT token.
-     */
-    JwtToken loginUser(User user);
-
-    /**
-     * Persist a new user account to database.
-     * @param user new user.
-     * @return saved user.
-     * @throws BadRequestException e
-     */
-    User registerUser(User user) throws BadRequestException;
 }

@@ -45,10 +45,6 @@ class WineServiceTest extends ServiceTest {
         Mockito.lenient()
                 .when(repository.save(wine))
                 .thenReturn(wine);
-
-        Mockito.lenient()
-                .when(securityUtils.isUpdateRequestValid(wine))
-                .thenReturn(true);
     }
 
     @Test
@@ -136,8 +132,8 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     public void shouldThrowErrorWhenWrongUserTriesToDelete() {
-        Mockito.when(securityUtils.isUpdateRequestValid(wine))
-                .thenReturn(false);
+        Mockito.doThrow(new BadRequestException(wine))
+               .when(securityUtils).validateUpdateRequest(wine);
 
         Exception e = assertThrows(BadRequestException.class, () -> service.delete(wine.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());

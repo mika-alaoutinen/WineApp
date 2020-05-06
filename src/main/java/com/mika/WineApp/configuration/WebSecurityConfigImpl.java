@@ -96,9 +96,8 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     private void configureSecurity(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
-                .antMatchers("/auth/register").permitAll()
-                .antMatchers( "/auth/**").hasRole("ADMIN")
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers( "/users/**").hasRole("ADMIN")
                 .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()

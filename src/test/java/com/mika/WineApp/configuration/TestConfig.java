@@ -19,7 +19,7 @@ public class TestConfig {
     @Bean
     @Primary
     public UserDetailsService userDetailsService() {
-        var users = TestData.createTestUsers();
+        var users = TestData.initTestUsers();
         var userDetails = buildUserDetails(users);
 
         return new InMemoryUserDetailsManager(userDetails);

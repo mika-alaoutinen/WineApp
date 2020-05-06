@@ -1,5 +1,6 @@
 package com.mika.WineApp.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.superclasses.IdentityModel;
@@ -34,6 +35,7 @@ public class User extends IdentityModel {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles = Set.of(Role.ROLE_USER);
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Review> reviews = List.of();
 

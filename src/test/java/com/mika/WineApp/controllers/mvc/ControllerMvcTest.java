@@ -1,11 +1,10 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.controllers.mvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.configuration.TestConfig;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.superclasses.EntityModel;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
@@ -56,7 +55,7 @@ public abstract class ControllerMvcTest {
     protected static final String TEST_USER = "test_user";
     protected final List<Review> reviews = TestData.initReviews();
     protected final List<Wine> wines = TestData.initWines();
-    protected final List<User> users = TestData.createTestUsers();
+    protected final List<User> users = TestData.initTestUsers();
 
     protected Review review;
     protected Wine wine;
@@ -89,9 +88,6 @@ public abstract class ControllerMvcTest {
         // Security utilities mocks:
         Mockito.when(securityUtilities.getUsernameFromSecurityContext())
                .thenReturn(TEST_USER);
-
-        Mockito.when(securityUtilities.isUpdateRequestValid(any(EntityModel.class)))
-                .thenReturn(true);
     }
 
 // Helper methods:
