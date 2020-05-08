@@ -65,11 +65,6 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = findById(id);
         securityUtils.validateUpdateRequest(review);
 
-        // If wine info has been edited, save changes. Don't save null wines.
-        if (editedReview.getWine() != null) {
-            review.setWine(editedReview.getWine());
-        }
-
         review.setAuthor(editedReview.getAuthor());
         review.setDate(editedReview.getDate());
         review.setReviewText(editedReview.getReviewText());

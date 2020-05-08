@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class UserController {
 
     @Operation(summary = "Update user's roles", description = "Replace user's old roles with roles given in request body.")
     @PutMapping("{id}/roles")
-    public User updateRoles(@PathVariable Long id, @RequestBody Set<Role> roles) {
+    public User updateRoles(@PathVariable Long id, @Valid @RequestBody Set<Role> roles) {
         return service.updateRoles(id, roles);
     }
 }
