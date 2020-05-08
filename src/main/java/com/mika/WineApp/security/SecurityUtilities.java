@@ -1,7 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.models.superclasses.EntityModel;
+import com.mika.WineApp.models.EntityModel;
 
 public interface SecurityUtilities {
     /**

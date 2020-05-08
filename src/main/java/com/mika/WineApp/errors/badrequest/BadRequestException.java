@@ -1,6 +1,6 @@
 package com.mika.WineApp.errors.badrequest;
 
-import com.mika.WineApp.models.superclasses.EntityModel;
+import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;

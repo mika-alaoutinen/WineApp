@@ -1,4 +1,4 @@
-package com.mika.WineApp.models.superclasses;
+package com.mika.WineApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.user.User;

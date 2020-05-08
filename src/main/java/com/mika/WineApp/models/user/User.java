@@ -3,9 +3,7 @@ package com.mika.WineApp.models.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.superclasses.IdentityModel;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -16,10 +14,14 @@ import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Table(name = "users")
-public class User extends IdentityModel {
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
+    private Long id;
 
     @NotBlank
     @Column(unique = true)
