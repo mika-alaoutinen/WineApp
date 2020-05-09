@@ -46,8 +46,7 @@ public class WineServiceImpl implements WineService {
     }
 
     public Wine edit(Long id, Wine editedWine) {
-        Wine wine = findById(id);
-        securityUtils.validateUpdateRequest(wine);
+        Wine wine = findAndValidateWine(id);
 
         wine.setName(editedWine.getName());
         wine.setType(editedWine.getType());
@@ -62,10 +61,11 @@ public class WineServiceImpl implements WineService {
     }
 
     public void delete(Long id) {
-        Wine wine = findById(id);
-        securityUtils.validateUpdateRequest(wine);
+        findAndValidateWine(id);
         repository.deleteById(id);
     }
+
+
 
 // --- Other methods ---
     public long count() {
@@ -107,6 +107,13 @@ public class WineServiceImpl implements WineService {
     }
 
 // Utility methods:
+    private Wine findAndValidateWine(Long id) {
+        Wine wine = findById(id);
+        User user = userService.findByUserName(securityUtils.getUsernameFromSecurityContext());
+        securityUtils.validateUpdateRequest(wine, user);
+        return wine;
+    }
+
     private WineType parseWineType(String type) {
         try {
             return WineType.valueOf(type.toUpperCase());
