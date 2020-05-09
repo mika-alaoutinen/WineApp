@@ -65,8 +65,6 @@ public class WineServiceImpl implements WineService {
         repository.deleteById(id);
     }
 
-
-
 // --- Other methods ---
     public long count() {
         return repository.count();
