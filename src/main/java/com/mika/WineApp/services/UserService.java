@@ -1,15 +1,19 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.security.model.JwtToken;
 
 import java.util.List;
 import java.util.Set;
 
 public interface UserService {
+
+    /**
+     * Return the username of the logged in user.
+     * @return username as String
+     */
+    String getUsername();
 
     /**
      * Find all users.
