@@ -6,6 +6,7 @@ import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,9 @@ public class UserServiceTest {
 
     @Mock
     UserRepository repository;
+
+    @Mock
+    private SecurityUtilities securityUtils;
 
     @InjectMocks
     UserServiceImpl service;
