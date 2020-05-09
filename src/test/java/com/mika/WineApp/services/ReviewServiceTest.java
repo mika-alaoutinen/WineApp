@@ -175,8 +175,14 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     public void shouldThrowErrorWhenWrongUserTriesToDelete() {
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+               .thenReturn(user.getUsername());
+
+        Mockito.when(userService.findByUserName(user.getUsername()))
+               .thenReturn(user);
+
         Mockito.doThrow(new BadRequestException(review))
-               .when(securityUtils).validateUpdateRequest(review);
+               .when(securityUtils).validateUpdateRequest(review, user);
 
         Exception e = assertThrows(BadRequestException.class, () -> service.delete(review.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());

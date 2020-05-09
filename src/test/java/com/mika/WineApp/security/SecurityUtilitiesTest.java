@@ -5,14 +5,9 @@ import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.security.model.UserPrincipal;
-import com.mika.WineApp.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
-@ExtendWith(MockitoExtension.class)
 public class SecurityUtilitiesTest {
     private static final Wine wine = TestData.initWines().get(0);
     private static final List<User> testUsers = TestData.initTestUsers();
@@ -31,11 +25,7 @@ public class SecurityUtilitiesTest {
     private static final User admin = testUsers.get(1);
     private UserPrincipal userPrincipal;
 
-    @Mock
-    private UserService service;
-
-    @InjectMocks
-    private SecurityUtilitiesImpl securityUtils;
+    private final SecurityUtilitiesImpl securityUtils = new SecurityUtilitiesImpl();
 
     @BeforeEach
     public void setupMocks() {
@@ -64,33 +54,24 @@ public class SecurityUtilitiesTest {
     @Test
     public void validateUpdateRequestForOwner() {
         wine.setUser(user);
-
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
-        Mockito.when(service.findById(user.getId())).thenReturn(user);
-
-        securityUtils.validateUpdateRequest(wine);
+        securityUtils.validateUpdateRequest(wine, user);
     }
 
     @Test
     public void validateUpdateRequestForAdmin() {
         wine.setUser(user);
-        System.out.println("id " + admin.getId());
-
         Mockito.when(userPrincipal.getId()).thenReturn(admin.getId());
-        Mockito.when(service.findById(admin.getId())).thenReturn(admin);
-
-        securityUtils.validateUpdateRequest(wine);
+        securityUtils.validateUpdateRequest(wine, admin);
     }
 
     @Test
     public void shouldThrowExceptionOnFailedValidation() {
         wine.setUser(admin);
-
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
-        Mockito.when(service.findById(user.getId())).thenReturn(user);
 
         Exception e = assertThrows(BadRequestException.class, () ->
-                securityUtils.validateUpdateRequest(wine));
+                securityUtils.validateUpdateRequest(wine, user));
 
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
     }

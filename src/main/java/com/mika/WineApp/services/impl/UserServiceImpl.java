@@ -5,6 +5,7 @@ import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,12 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private final SecurityUtilities securityUtils;
     private final UserRepository repository;
+
+    public String getUsername() {
+        return securityUtils.getUsernameFromSecurityContext();
+    }
 
     public List<User> findAll() {
         return repository.findAll();

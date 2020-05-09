@@ -98,6 +98,7 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
             .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers( "/users/**").hasRole("ADMIN")
+                .antMatchers("/users/username").hasAnyRole()
                 .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest().authenticated()
                 .and()

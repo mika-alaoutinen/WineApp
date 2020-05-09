@@ -1,6 +1,5 @@
 package com.mika.WineApp.services.impl;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
@@ -27,9 +26,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
+    private final SecurityUtilities securityUtils;
     private final UserService userService;
     private final WineService wineService;
-    private final SecurityUtilities securityUtils;
 
 // --- Find reviews ---
     public List<Review> findAll() {
@@ -62,8 +61,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public Review edit(Long id, Review editedReview) {
-        Review review = findById(id);
-        securityUtils.validateUpdateRequest(review);
+        Review review = findAndValidateReview(id);
 
         review.setAuthor(editedReview.getAuthor());
         review.setDate(editedReview.getDate());
@@ -74,8 +72,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public void delete(Long id) {
-        Review review = findById(id);
-        securityUtils.validateUpdateRequest(review);
+        findAndValidateReview(id);
         repository.deleteById(id);
     }
 
@@ -113,6 +110,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 // --- Utility methods ---
+    private Review findAndValidateReview(Long id) {
+        Review review = findById(id);
+        User user = userService.findByUserName(securityUtils.getUsernameFromSecurityContext());
+        securityUtils.validateUpdateRequest(review, user);
+        return review;
+    }
+
     private LocalDate[] parseMonthRange(String[] dates) throws InvalidDateException {
         if (dates == null) {
             return null;
