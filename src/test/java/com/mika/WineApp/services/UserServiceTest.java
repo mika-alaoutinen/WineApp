@@ -58,6 +58,16 @@ public class UserServiceTest {
     }
 
     @Test
+    public void getUsername() {
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+               .thenReturn(user.getUsername());
+
+        String username = service.getUsername();
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+        assertEquals(user.getUsername(), username);
+    }
+
+    @Test
     public void findAll() {
         Mockito.when(repository.findAll())
                .thenReturn(users);
