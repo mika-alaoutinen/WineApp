@@ -1,53 +1,70 @@
 package com.mika.WineApp.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.mika.WineApp.security.JwtTokenFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.List;
-
 /**
- * The web security config is used to disable Spring CSRF.
+ * This interface is used to move Javadocs out of the implementing class.
  */
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public interface WebSecurityConfig {
 
-    @Value("#{'${frontend.urls}'.split(',')}")
-    private List<String> allowedUrls;
+// Configurations:
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-    }
+    /**
+     * Overrides the default implementation in WebSecurityConfigurerAdapter.
+     * Used to disable CSRF. Additionally, if Spring Security is enabled in application.properties,
+     * configures authorization rules.
+     *
+     * Authorization rules:
+     * - allow post requests to /auth for login and registration
+     * - allow all GET requests without logging in
+     * - block POST, PUT and DELETE requests from users who are not logged in
+     * - Only admins can change user's roles.
+     *
+     * @param http HttpSecurity
+     * @throws Exception e
+     */
+    void configure(HttpSecurity http) throws Exception;
+
+    /**
+     * Configures the Spring AuthenticationManager with custom UserDetailsService implementation
+     * and sets the password encoder to BCrypt.
+     * @param authBuilder AuthenticationManagerBuilder
+     * @throws Exception e
+     */
+    void configure(AuthenticationManagerBuilder authBuilder) throws Exception;
+
+
+// Beans:
+
+    /**
+     * Creates the AuthenticationManagerBean used for user authentication.
+     * @return authenticationManagerBean
+     * @throws Exception e
+     */
+    AuthenticationManager authenticationManagerBean() throws Exception;
 
     /**
      * Configure CORS to allow connections from the frontend client. If this configuration
      * is missing, communication between client and server is blocked and a CORS error is shown.
      * @return FilterRegistrationBean.
      */
-    @Bean
-    public FilterRegistrationBean corsFilter() {
-        var config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.setAllowedOrigins(allowedUrls);
-        config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
-        config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+    FilterRegistrationBean<CorsFilter> corsFilter();
 
-        var source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config);
+    /**
+     * JwtTokenFilter extends OncePerRequestFilter. It is used to set user authentication token.
+     * @return token filter.
+     */
+    JwtTokenFilter tokenFilter();
 
-        var bean = new FilterRegistrationBean<>(new CorsFilter(source));
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-
-        return bean;
-    }
+    /**
+     * Use BCrypt as the password encoder.
+     * @return PasswordEncoder
+     */
+    PasswordEncoder passwordEncoder();
 }

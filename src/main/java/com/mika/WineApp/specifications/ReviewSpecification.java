@@ -1,6 +1,6 @@
 package com.mika.WineApp.specifications;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.models.review.Review;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
-    private String author;
-    private LocalDate[] dateRange;
-    private Double[] ratingRange;
+    private final String author;
+    private final LocalDate[] dateRange;
+    private final Double[] ratingRange;
 
     public ReviewSpecification(String author, LocalDate[] dateRange, Double[] ratingRange) {
         super();

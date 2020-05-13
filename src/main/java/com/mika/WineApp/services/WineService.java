@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.models.wine.Wine;
 
 import java.util.List;
 
@@ -11,8 +12,9 @@ public interface WineService extends CrudService<Wine> {
      * new wine will not be saved.
      * @param newWine to be added
      * @return saved wine
+     * @throws BadRequestException e
      */
-    Wine add (Wine newWine);
+    Wine add (Wine newWine) throws BadRequestException;
 
     /**
      * Find all distinct countries from wine entries.
@@ -48,10 +50,9 @@ public interface WineService extends CrudService<Wine> {
      * @param volumes to find
      * @param priceRange to find
      * @return list of wines matching given criteria
+     * @throws BadRequestException e
      */
-    List<Wine> search(String name,
-                      String type,
-                      List<String> countries,
-                      List<Double> volumes,
-                      Integer[] priceRange);
+    List<Wine> search(
+            String name, String type, List<String> countries, List<Double> volumes, Integer[] priceRange)
+            throws BadRequestException;
 }

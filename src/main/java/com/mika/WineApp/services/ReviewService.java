@@ -1,6 +1,8 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.errors.invaliddate.InvalidDateException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.review.Review;
 
 import java.util.List;
 
@@ -10,8 +12,9 @@ public interface ReviewService extends CrudService<Review> {
      * Find all reviews for a given wine.
      * @param wineId to find
      * @return reviews for wine with given id
+     * @throws NotFoundException e
      */
-    List<Review> findByWineId(Long wineId);
+    List<Review> findByWineId(Long wineId) throws NotFoundException;
 
     /**
      * Find all reviews for wines that match given name.
@@ -34,8 +37,9 @@ public interface ReviewService extends CrudService<Review> {
      * @param dateRange to find
      * @param ratingRange to find
      * @return list of reviews matching given criteria
+     * @throws InvalidDateException e
      */
-    List<Review> search(String author, String[] dateRange, Double[] ratingRange);
+    List<Review> search(String author, String[] dateRange, Double[] ratingRange) throws InvalidDateException;
 
 // Quick searches:
 
