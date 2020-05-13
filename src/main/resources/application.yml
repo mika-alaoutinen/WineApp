@@ -12,9 +12,9 @@ spring:
     initialSize: 5
     removeAbandoned: true
     # ----------- Local development settings -----------
-#    url: jdbc:postgresql://localhost:5432/wine_app
-#    username: admin
-#    password: admin
+    url: jdbc:postgresql://localhost:5432/wine_app
+    username: admin
+    password: admin
     # ----------- Local development settings -----------
 
   jpa:
