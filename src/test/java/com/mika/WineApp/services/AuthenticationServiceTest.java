@@ -15,14 +15,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthenticationServiceTest {
@@ -45,10 +44,11 @@ public class AuthenticationServiceTest {
     private AuthenticationServiceImpl service;
 
     @Test
+    @WithMockUser
     public void loginReturnsJwtToken() {
-        var authToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        Authentication authToken = mock(Authentication.class);
 
-        Mockito.when(authenticationManager.authenticate(authToken))
+        Mockito.when(authenticationManager.authenticate(any(Authentication.class)))
                 .thenReturn(authToken);
 
         Mockito.when(jwtProvider.generateJwtToken(authToken))
@@ -59,7 +59,6 @@ public class AuthenticationServiceTest {
         verify(authenticationManager, times(1)).authenticate(any(Authentication.class));
         verify(jwtProvider, times(1)).generateJwtToken(any(Authentication.class));
 
-        assertEquals(authToken, SecurityContextHolder.getContext().getAuthentication());
         assertEquals("Bearer jwt-token", token.getToken());
     }
 
