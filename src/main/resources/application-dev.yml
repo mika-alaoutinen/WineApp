@@ -1,6 +1,6 @@
-#######################################################
-# Development config for running application locally  #
-#######################################################
+######################################################
+# Development config for running application locally #
+######################################################
 
 spring:
   datasource:
@@ -14,10 +14,10 @@ admin:
   username: admin
   password: admin
 
-# Is user authentication and authorization required
-security:
-  enabled: true
-
 # Allow connections from this URL:
 frontend:
   url: http://localhost:8081
+
+jwt:
+  expiration: 900000 # Expiration time is 15 min
+  secret: jwt_secret

@@ -3,6 +3,7 @@ server:
   servlet:
     context-path: /api
 
+spring:
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,10 +11,10 @@ server:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  # Is user authentication and authorization required
+  security:
+    enabled: true
+
 springdoc:
   swagger-ui:
     path: /swagger
-
-jwt:
-  expiration: 900000 # Expiration time is 15 min
-  secret: ${JWT_SECRET}
