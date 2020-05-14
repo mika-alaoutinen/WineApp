@@ -1,0 +1,23 @@
+#######################################################
+# Development config for running application locally  #
+#######################################################
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/wine_app
+    username: admin
+    password: admin
+
+# Used in LoadDatabase to create an initial admin user
+admin:
+  username: admin
+  password: admin
+
+# Is user authentication and authorization required
+security:
+  enabled: true
+
+# Allow connections from this URL:
+frontend:
+  url: http://localhost:8081
