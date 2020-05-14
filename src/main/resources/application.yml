@@ -3,20 +3,6 @@ server:
   servlet:
     context-path: /api
 
-spring:
-  datasource:
-    driverClassName: org.postgresql.Driver
-    maxActive: 10
-    maxIdle: 5
-    minIdle: 2
-    initialSize: 5
-    removeAbandoned: true
-    # ----------- Local development settings -----------
-#    url: jdbc:postgresql://localhost:5432/wine_app
-#    username: admin
-#    password: admin
-    # ----------- Local development settings -----------
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,21 +10,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  security:
-    enabled: true
-
 springdoc:
   swagger-ui:
     path: /swagger
 
-# Custom properties:
-frontend:
-  urls: https://maistissa.herokuapp.com,http://localhost:8081
-
 jwt:
   expiration: 900000 # Expiration time is 15 min
   secret: ${JWT_SECRET}
-
-admin:
-  username: ${ADMIN_USERNAME}
-  password: ${ADMIN_PASSWORD}
