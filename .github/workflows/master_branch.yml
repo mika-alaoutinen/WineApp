@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - master
-      - actions
 
 jobs:
   build:
@@ -23,7 +22,7 @@ jobs:
       - name: Build and test with Maven
         run: mvn -B clean package --file pom.xml
 
-  release:
+  tag:
     name: Bump version and add tag
     runs-on: ubuntu-latest
     needs:
@@ -35,4 +34,3 @@ jobs:
         uses: mathieudutour/github-tag-action@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          dry_run: true
