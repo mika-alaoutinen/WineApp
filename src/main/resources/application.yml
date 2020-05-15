@@ -19,3 +19,7 @@ springdoc:
 jwt:
   expiration: 900000 # Expiration time is 15 min
   secret: jwt_secret
+
+# Allow connections from this URL:
+frontend:
+  url: http://localhost:8081

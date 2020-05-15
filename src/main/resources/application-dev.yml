@@ -13,7 +13,3 @@ spring:
 admin:
   username: admin
   password: admin
-
-# Allow connections from this URL:
-frontend:
-  url: http://localhost:8081
