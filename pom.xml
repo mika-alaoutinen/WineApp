@@ -70,6 +70,12 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <!-- In-memory DB for running tests -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+        </dependency>
         <!-- Development utilities -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

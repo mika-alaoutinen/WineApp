@@ -4,9 +4,6 @@ server:
     context-path: /api
 
 spring:
-  datasource:
-    driverClassName: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
