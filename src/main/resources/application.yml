@@ -4,41 +4,28 @@ server:
     context-path: /api
 
 spring:
-  datasource:
-    driverClassName: org.postgresql.Driver
-    maxActive: 10
-    maxIdle: 5
-    minIdle: 2
-    initialSize: 5
-    removeAbandoned: true
-    # ----------- Local development settings -----------
-#    url: jdbc:postgresql://localhost:5432/wine_app
-#    username: admin
-#    password: admin
-    # ----------- Local development settings -----------
-
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
+  # Is user authentication and authorization required
   security:
     enabled: true
 
+# localhost:8080/api/swagger
 springdoc:
   swagger-ui:
     path: /swagger
 
-# Custom properties:
-frontend:
-  urls: https://maistissa.herokuapp.com,http://localhost:8081
-
 jwt:
   expiration: 900000 # Expiration time is 15 min
-  secret: ${JWT_SECRET}
+  secret: jwt_secret
 
+# Used in LoadDatabase to create an initial admin user
 admin:
-  username: ${ADMIN_USERNAME}
-  password: ${ADMIN_PASSWORD}
+  username: admin
+  password: admin
+
+# Allow connections from this URL:
+frontend:
+  url: http://localhost:8081

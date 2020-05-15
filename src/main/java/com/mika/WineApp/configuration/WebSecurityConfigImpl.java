@@ -33,8 +33,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
 
-    @Value("#{'${frontend.urls}'.split(',')}")
-    private List<String> allowedUrls;
+    @Value("${frontend.url}")
+    private String allowedUrl;
 
     @Value("${spring.security.enabled}")
     private boolean securityEnabled;
@@ -69,7 +69,7 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(allowedUrls);
+        config.setAllowedOrigins(List.of(allowedUrl));
         config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
 

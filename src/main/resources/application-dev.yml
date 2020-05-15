@@ -1,0 +1,10 @@
+######################################################
+# Development config for running application locally #
+######################################################
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/wine_app
+    username: admin
+    password: admin

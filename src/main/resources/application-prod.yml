@@ -1,0 +1,24 @@
+###########################################
+# Production config for Heroku deployment #
+###########################################
+
+spring:
+  datasource:
+    maxActive: 10
+    maxIdle: 5
+    minIdle: 2
+    initialSize: 5
+    removeAbandoned: true
+
+# Used in LoadDatabase to create an initial admin user
+admin:
+  username: ${ADMIN_USERNAME}
+  password: ${ADMIN_PASSWORD}
+
+# Allow connections from this URL:
+frontend:
+  url: https://maistissa.herokuapp.com
+
+jwt:
+  expiration: 900000 # Expiration time is 15 min
+  secret: ${JWT_SECRET}
