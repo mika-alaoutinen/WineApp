@@ -12,6 +12,7 @@ spring:
   security:
     enabled: true
 
+# localhost:8080/api/swagger
 springdoc:
   swagger-ui:
     path: /swagger
@@ -19,6 +20,11 @@ springdoc:
 jwt:
   expiration: 900000 # Expiration time is 15 min
   secret: jwt_secret
+
+# Used in LoadDatabase to create an initial admin user
+admin:
+  username: admin
+  password: admin
 
 # Allow connections from this URL:
 frontend:
