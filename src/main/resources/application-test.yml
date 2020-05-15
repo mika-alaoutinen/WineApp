@@ -8,3 +8,7 @@ spring:
     url: jdbc:h2:mem:tesdb
     username: sa
     password:
+
+# Allow connections from this URL:
+frontend:
+  url: http://localhost:8081
