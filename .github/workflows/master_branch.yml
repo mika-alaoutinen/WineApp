@@ -50,5 +50,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: mikaalaoutinen/wineapp
-          tag_with_ref: true
-          push: ${{ startsWith(github.ref, 'refs/tags/') }}
+          tags: latest
