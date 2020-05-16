@@ -24,7 +24,7 @@ jwt:
 # Used in LoadDatabase to create an initial admin user
 admin:
   username: admin
-  password: admin
+  password: password
 
 # Allow connections from this URL:
 frontend:
