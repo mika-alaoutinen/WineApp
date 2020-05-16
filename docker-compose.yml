@@ -23,13 +23,14 @@ services:
     depends_on:
       - postgres
     environment:
+      SPRING_PROFILES_ACTIVE: dev
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/
       SPRING_DATASOURCE_USERNAME: admin
-      SPRING_DATASOURCE_PASSWORD: admin     
+      SPRING_DATASOURCE_PASSWORD: admin
       SPRINGDOC_SWAGGER_UI_PATH: /swagger
     expose:
       - 8080
-    image: mikaalaoutinen/wineapp
+    image: mikaalaoutinen/wineapp:latest
     ports:
       - 8080:8080
     restart: unless-stopped
