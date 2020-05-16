@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - master
-      - docker # todo
+      - docker_action # todo
 
 jobs:
   build:
@@ -33,6 +33,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true # todo
   
   docker:
     name: Creates Docker image and pushes it to Docker Hub
