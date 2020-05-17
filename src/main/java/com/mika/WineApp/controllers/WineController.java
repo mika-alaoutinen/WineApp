@@ -76,6 +76,11 @@ public class WineController {
         return service.findFoodPairings();
     }
 
+    @GetMapping("{id}/allow-edit")
+    public boolean isAllowedToEdit(@PathVariable Long id) {
+        return service.isAllowedToEdit(id);
+    }
+
     @Operation(summary = "Search wines", description = "Search for wines based on their name, type, countries, volumes and prices.")
     @GetMapping("search")
     public List<Wine> search(

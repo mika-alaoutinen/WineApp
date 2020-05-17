@@ -37,9 +37,13 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
     }
 
     private UserPrincipal getUserPrincipal() {
-        return (UserPrincipal) SecurityContextHolder
+        Object principal = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
+
+        return principal.equals("anonymousUser")
+                ? UserPrincipal.build(new User())
+                : (UserPrincipal) principal;
     }
 }

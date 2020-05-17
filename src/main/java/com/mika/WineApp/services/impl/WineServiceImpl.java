@@ -70,6 +70,13 @@ public class WineServiceImpl implements WineService {
         return repository.count();
     }
 
+    public boolean isAllowedToEdit(Long id) {
+        Wine wine = findById(id);
+        String owner = wine.getUser().getUsername();
+        String user = securityUtils.getUsernameFromSecurityContext();
+        return owner.equals(user);
+    }
+
     public boolean isValid(String name) {
         return !repository.existsByName(name);
     }

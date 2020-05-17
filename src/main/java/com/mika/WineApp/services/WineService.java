@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 
 import java.util.List;
@@ -33,6 +34,14 @@ public interface WineService extends CrudService<Wine> {
      * @return list of food pairings
      */
     List<String> findFoodPairings();
+
+    /**
+     * Checks if the logged in user is allowed to edit or delete a wine.
+     * @param id of wine
+     * @return boolean
+     * @throws NotFoundException e
+     */
+    boolean isAllowedToEdit(Long id);
 
     /**
      * Check if wine with a given name exists in the repository.
