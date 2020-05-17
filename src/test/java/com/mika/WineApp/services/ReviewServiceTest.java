@@ -1,6 +1,6 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
@@ -181,10 +181,10 @@ class ReviewServiceTest extends ServiceTest {
         Mockito.when(userService.findByUserName(user.getUsername()))
                .thenReturn(user);
 
-        Mockito.doThrow(new BadRequestException(review))
+        Mockito.doThrow(new ForbiddenException(review))
                .when(securityUtils).validateUpdateRequest(review, user);
 
-        Exception e = assertThrows(BadRequestException.class, () -> service.delete(review.getId()));
+        Exception e = assertThrows(ForbiddenException.class, () -> service.delete(review.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
     }
 

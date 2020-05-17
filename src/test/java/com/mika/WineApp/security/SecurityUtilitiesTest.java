@@ -1,7 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.security.model.UserPrincipal;
@@ -70,7 +70,7 @@ public class SecurityUtilitiesTest {
         wine.setUser(admin);
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
 
-        Exception e = assertThrows(BadRequestException.class, () ->
+        Exception e = assertThrows(ForbiddenException.class, () ->
                 securityUtils.validateUpdateRequest(wine, user));
 
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());

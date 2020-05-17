@@ -1,6 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.WineRepository;
@@ -138,10 +139,10 @@ class WineServiceTest extends ServiceTest {
         Mockito.when(userService.findByUserName(user.getUsername()))
                .thenReturn(user);
 
-        Mockito.doThrow(new BadRequestException(wine))
+        Mockito.doThrow(new ForbiddenException(wine))
                .when(securityUtils).validateUpdateRequest(wine, user);
 
-        Exception e = assertThrows(BadRequestException.class, () -> service.delete(wine.getId()));
+        Exception e = assertThrows(ForbiddenException.class, () -> service.delete(wine.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
     }
 
