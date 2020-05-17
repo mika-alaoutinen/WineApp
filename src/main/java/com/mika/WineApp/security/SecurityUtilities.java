@@ -1,6 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 
@@ -19,5 +20,5 @@ public interface SecurityUtilities {
      * @param model wine or review
      * @throws BadRequestException e
      */
-    void validateUpdateRequest(EntityModel model, User user);
+    void validateUpdateRequest(EntityModel model, User user) throws ForbiddenException;
 }

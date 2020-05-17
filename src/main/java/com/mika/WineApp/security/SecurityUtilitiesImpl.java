@@ -1,6 +1,6 @@
 package com.mika.WineApp.security;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
@@ -21,7 +21,7 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         boolean isOwner = isUserOwnerOfModel(model, userId);
 
         if (!isAdmin && !isOwner) {
-            throw new BadRequestException(model);
+            throw new ForbiddenException(model);
         }
     }
 
