@@ -4,9 +4,13 @@ server:
     context-path: /api
 
 spring:
+  h2:
+    console:
+      enabled: false
   jpa:
     hibernate:
       ddl-auto: update
+    open-in-view: false
 
   # Is user authentication and authorization required
   security:

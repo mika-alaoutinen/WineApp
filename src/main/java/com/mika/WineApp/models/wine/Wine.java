@@ -1,8 +1,8 @@
 package com.mika.WineApp.models.wine;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.EntityModel;
+import com.mika.WineApp.models.review.Review;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

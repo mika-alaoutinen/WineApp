@@ -1,5 +1,6 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
@@ -41,8 +42,9 @@ public interface UserService {
      * Saves a new user. User's password must be encoded before saving it.
      * @param user to save
      * @return saved user
+     * @throws BadRequestException e
      */
-    User save(User user);
+    User save(User user) throws BadRequestException;
 
     /**
      * Update user's roles. New roles override possible old roles.
