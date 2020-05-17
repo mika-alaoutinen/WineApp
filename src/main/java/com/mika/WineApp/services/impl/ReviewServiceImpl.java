@@ -90,6 +90,13 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
+    public boolean isAllowedToEdit(Long id) {
+        Review review = findById(id);
+        String owner = review.getUser().getUsername();
+        String user = securityUtils.getUsernameFromSecurityContext();
+        return owner.equals(user);
+    }
+
 // --- Quick searches ---
     public List<Review> findNewest(int limit) {
         return repository

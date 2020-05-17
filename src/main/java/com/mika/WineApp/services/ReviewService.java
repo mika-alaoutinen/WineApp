@@ -32,6 +32,14 @@ public interface ReviewService extends CrudService<Review> {
     Review add(Long wineId, Review newReview);
 
     /**
+     * Checks if the logged in user is allowed to edit or delete a review.
+     * @param id of review
+     * @return boolean
+     * @throws NotFoundException e
+     */
+    boolean isAllowedToEdit(Long id);
+
+    /**
      * Find reviews that match the given criteria. One or many criteria may be given.
      * @param author of review
      * @param dateRange to find
