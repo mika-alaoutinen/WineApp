@@ -1,6 +1,5 @@
 package com.mika.WineApp.security;
 
-import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
@@ -19,14 +18,13 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         return user.getRoles().contains(Role.ROLE_ADMIN);
     }
 
-    public void validateUpdateRequest(EntityModel model, User user) {
+    public boolean isUserAllowedToEdit(EntityModel model, User user) {
         Long userId = getUserPrincipal().getId();
+
         boolean isAdmin = isUserAdmin(user);
         boolean isOwner = isUserOwnerOfModel(model, userId);
 
-        if (!isAdmin && !isOwner) {
-            throw new ForbiddenException(model);
-        }
+        return isAdmin || isOwner;
     }
 
     private boolean isUserOwnerOfModel(EntityModel model, Long userId) {

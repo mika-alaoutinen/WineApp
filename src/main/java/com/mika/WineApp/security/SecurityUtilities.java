@@ -1,7 +1,5 @@
 package com.mika.WineApp.security;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 
@@ -25,7 +23,7 @@ public interface SecurityUtilities {
      * 1) an admin or
      * 2) the owner of the item being edited.
      * @param model wine or review
-     * @throws BadRequestException e
+     * @return boolean
      */
-    void validateUpdateRequest(EntityModel model, User user) throws ForbiddenException;
+    boolean isUserAllowedToEdit(EntityModel model, User user);
 }
