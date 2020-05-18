@@ -15,6 +15,10 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         return getUserPrincipal().getUsername();
     }
 
+    public boolean isUserAdmin(User user) {
+        return user.getRoles().contains(Role.ROLE_ADMIN);
+    }
+
     public void validateUpdateRequest(EntityModel model, User user) {
         Long userId = getUserPrincipal().getId();
         boolean isAdmin = isUserAdmin(user);
@@ -23,10 +27,6 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         if (!isAdmin && !isOwner) {
             throw new ForbiddenException(model);
         }
-    }
-
-    private boolean isUserAdmin(User user) {
-        return user.getRoles().contains(Role.ROLE_ADMIN);
     }
 
     private boolean isUserOwnerOfModel(EntityModel model, Long userId) {

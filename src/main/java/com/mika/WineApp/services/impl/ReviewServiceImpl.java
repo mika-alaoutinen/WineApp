@@ -91,10 +91,8 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public boolean isAllowedToEdit(Long id) {
-        Review review = findById(id);
-        String owner = review.getUser().getUsername();
-        String user = securityUtils.getUsernameFromSecurityContext();
-        return owner.equals(user);
+        String username = securityUtils.getUsernameFromSecurityContext();
+        return userIsAdmin(username) || userIsOwner(username, id);
     }
 
 // --- Quick searches ---
@@ -152,5 +150,16 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return parsedDates;
+    }
+
+    private boolean userIsAdmin(String username) {
+        User user = userService.findByUserName(username);
+        return securityUtils.isUserAdmin(user);
+    }
+
+    private boolean userIsOwner(String username, Long id) {
+        Review review = findById(id);
+        String owner = review.getUser().getUsername();
+        return owner.equals(username);
     }
 }

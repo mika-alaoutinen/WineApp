@@ -13,6 +13,13 @@ public interface SecurityUtilities {
     String getUsernameFromSecurityContext();
 
     /**
+     * Check if a given user has admin role.
+     * @param user to check
+     * @return boolean
+     */
+    boolean isUserAdmin(User user);
+
+    /**
      * Validates an edit or delete action on wines and reviews before committing it.
      * Checks that the user was from a user that is either
      * 1) an admin or
