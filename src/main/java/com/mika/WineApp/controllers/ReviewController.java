@@ -71,7 +71,7 @@ public class ReviewController {
         return service.count();
     }
 
-    @GetMapping("{id}/allow-edit")
+    @GetMapping("{id}/editable")
     public boolean isAllowedToEdit(@PathVariable Long id) {
         return service.isAllowedToEdit(id);
     }

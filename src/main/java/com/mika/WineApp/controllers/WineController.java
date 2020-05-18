@@ -76,7 +76,7 @@ public class WineController {
         return service.findFoodPairings();
     }
 
-    @GetMapping("{id}/allow-edit")
+    @GetMapping("{id}/editable")
     public boolean isAllowedToEdit(@PathVariable Long id) {
         return service.isAllowedToEdit(id);
     }
