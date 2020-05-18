@@ -2,6 +2,7 @@ package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -21,6 +22,22 @@ public class UserServiceImpl implements UserService {
 
     public String getUsername() {
         return securityUtils.getUsernameFromSecurityContext();
+    }
+
+    public boolean isLoggedInUserAdmin() throws NotFoundException {
+        User user = findLoggedInUser();
+        return securityUtils.isUserAdmin(user);
+    }
+
+    public boolean isUserAllowedToEdit(EntityModel model) {
+        User user = findLoggedInUser();
+        return securityUtils.isUserAllowedToEdit(model, user);
+    }
+
+    public EntityModel setUser(EntityModel model) {
+        User user = findLoggedInUser();
+        model.setUser(user);
+        return model;
     }
 
     public List<User> findAll() {
@@ -48,5 +65,10 @@ public class UserServiceImpl implements UserService {
         User user = findById(id);
         user.setRoles(roles);
         return repository.save(user);
+    }
+
+    private User findLoggedInUser() {
+        String username = securityUtils.getUsernameFromSecurityContext();
+        return findByUserName(username);
     }
 }

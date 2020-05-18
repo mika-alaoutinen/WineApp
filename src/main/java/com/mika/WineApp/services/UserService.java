@@ -2,6 +2,7 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 
@@ -15,6 +16,27 @@ public interface UserService {
      * @return username as String
      */
     String getUsername();
+
+    /**
+     * Checks if logged in user has admin role.
+     * @return boolean
+     * @throws NotFoundException e
+     */
+    boolean isLoggedInUserAdmin() throws NotFoundException;
+
+    /**
+     * Is currently logged in user allowed to edit or delete the given model.
+     * @param model review or wine
+     * @return boolean
+     */
+    boolean isUserAllowedToEdit(EntityModel model);
+
+    /**
+     * Sets the currently logged in user as the owner of a review or wine.
+     * @param model review or wine
+     * @return review or wine
+     */
+    EntityModel setUser(EntityModel model);
 
     /**
      * Find all users.
