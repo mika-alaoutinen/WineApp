@@ -1,32 +1,29 @@
 package com.mika.WineApp.services.impl;
 
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
-import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
-    private final SecurityUtilities securityUtils;
     private final UserService userService;
     private final WineService wineService;
 
@@ -50,14 +47,9 @@ public class ReviewServiceImpl implements ReviewService {
 
 // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
-        Wine wine = wineService.findById(wineId);
-        newReview.setWine(wine);
-
-        String username = securityUtils.getUsernameFromSecurityContext();
-        User user = userService.findByUserName(username);
-        newReview.setUser(user);
-
-        return repository.save(newReview);
+        Review review = (Review) userService.setUser(newReview);
+        review.setWine(wineService.findById(wineId));
+        return repository.save(review);
     }
 
     public Review edit(Long id, Review editedReview) {
@@ -81,18 +73,18 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.count();
     }
 
+    public boolean isAllowedToEdit(Long id) throws UsernameNotFoundException {
+        Review review = findById(id);
+        return userService.isUserAllowedToEdit(review);
+    }
+
     public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
         if (author == null && dateRange == null && ratingRange == null) {
-            return  new ArrayList<>();
+            return List.of();
         }
 
         LocalDate[] dates = parseMonthRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
-    }
-
-    public boolean isAllowedToEdit(Long id) {
-        String username = securityUtils.getUsernameFromSecurityContext();
-        return userIsAdmin(username) || userIsOwner(username, id);
     }
 
 // --- Quick searches ---
@@ -117,8 +109,11 @@ public class ReviewServiceImpl implements ReviewService {
 // --- Utility methods ---
     private Review findAndValidateReview(Long id) {
         Review review = findById(id);
-        User user = userService.findByUserName(securityUtils.getUsernameFromSecurityContext());
-        securityUtils.validateUpdateRequest(review, user);
+
+        if (!userService.isUserAllowedToEdit(review)) {
+            throw new ForbiddenException(review);
+        }
+
         return review;
     }
 
@@ -150,16 +145,5 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return parsedDates;
-    }
-
-    private boolean userIsAdmin(String username) {
-        User user = userService.findByUserName(username);
-        return securityUtils.isUserAdmin(user);
-    }
-
-    private boolean userIsOwner(String username, Long id) {
-        Review review = findById(id);
-        String owner = review.getUser().getUsername();
-        return owner.equals(username);
     }
 }

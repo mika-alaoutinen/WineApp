@@ -3,6 +3,7 @@ package com.mika.WineApp.services;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public interface ReviewService extends CrudService<Review> {
      * @return boolean
      * @throws NotFoundException e
      */
-    boolean isAllowedToEdit(Long id);
+    boolean isAllowedToEdit(Long id) throws UsernameNotFoundException;
 
     /**
      * Find reviews that match the given criteria. One or many criteria may be given.
