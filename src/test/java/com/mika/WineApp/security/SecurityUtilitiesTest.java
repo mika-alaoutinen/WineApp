@@ -1,7 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.errors.forbidden.ForbiddenException;
+import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.security.model.UserPrincipal;
@@ -13,9 +13,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.List;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 public class SecurityUtilitiesTest {
@@ -55,24 +55,31 @@ public class SecurityUtilitiesTest {
     public void validateUpdateRequestForOwner() {
         wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
-        securityUtils.validateUpdateRequest(wine, user);
+        securityUtils.isUserAllowedToEdit(wine, user);
     }
 
     @Test
-    public void validateUpdateRequestForAdmin() {
+    public void shouldAllowAdminsToEdit() {
         wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(admin.getId());
-        securityUtils.validateUpdateRequest(wine, admin);
+        assertTrue(securityUtils.isUserAllowedToEdit(wine, admin));
     }
 
     @Test
-    public void shouldThrowExceptionOnFailedValidation() {
-        wine.setUser(admin);
+    public void shouldAllowOwnerToEdit() {
+        wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
+        assertTrue(securityUtils.isUserAllowedToEdit(wine, user));
+    }
 
-        Exception e = assertThrows(ForbiddenException.class, () ->
-                securityUtils.validateUpdateRequest(wine, user));
+    @Test
+    public void shouldNotAllowOtherUsersToEdit() {
+        User nonOwner = new User();
+        nonOwner.setId(123L);
+        nonOwner.setRoles(Set.of(Role.ROLE_USER));
+        wine.setUser(user);
 
-        assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
+        Mockito.when(userPrincipal.getId()).thenReturn(nonOwner.getId());
+        assertFalse(securityUtils.isUserAllowedToEdit(wine, user));
     }
 }
