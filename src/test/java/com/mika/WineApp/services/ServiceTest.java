@@ -4,6 +4,7 @@ import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -26,5 +27,8 @@ public abstract class ServiceTest {
     protected UserService userService;
 
     @Mock
-    protected SecurityUtilities securityUtils;
+    protected ReviewRepository repository;
+
+    @Mock
+    protected WineService wineService;
 }

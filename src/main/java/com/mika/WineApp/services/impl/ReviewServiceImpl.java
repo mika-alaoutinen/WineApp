@@ -4,6 +4,7 @@ import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
@@ -48,7 +49,8 @@ public class ReviewServiceImpl implements ReviewService {
 // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
         Review review = (Review) userService.setUser(newReview);
-        review.setWine(wineService.findById(wineId));
+        Wine wine = wineService.findById(wineId);
+        review.setWine(wine);
         return repository.save(review);
     }
 

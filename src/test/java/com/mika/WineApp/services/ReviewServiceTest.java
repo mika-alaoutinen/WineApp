@@ -5,13 +5,11 @@ import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
@@ -29,12 +27,6 @@ import static org.mockito.Mockito.verify;
 class ReviewServiceTest extends ServiceTest {
     private static final String author = "Mika";
     private static final Double[] ratingRange = { 1.0, 5.0 };
-
-    @Mock
-    private ReviewRepository repository;
-
-    @Mock
-    private WineService wineService;
 
     @InjectMocks
     private ReviewServiceImpl service;
@@ -120,22 +112,19 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     public void addReview() {
-        Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, wine);
+        Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, new Wine());
 
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-                .thenReturn(user.getUsername());
-
-        Mockito.when(userService.findByUserName(user.getUsername()))
-                .thenReturn(user);
+        Mockito.when(userService.setUser(newReview))
+               .thenReturn(newReview);
 
         Mockito.when(repository.save(newReview))
                .thenReturn(newReview);
 
         Review savedReview = service.add(wine.getId(), newReview);
+        System.out.println("saved " + savedReview);
 
         verify(wineService, times(1)).findById(wine.getId());
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        verify(userService, times(1)).findByUserName(user.getUsername());
+        verify(userService, times(1)).setUser(newReview);
         verify(repository, times(1)).save(newReview);
         assertEquals(newReview, savedReview);
     }
@@ -145,7 +134,9 @@ class ReviewServiceTest extends ServiceTest {
         Mockito.when(wineService.findById(nonExistingWineId))
                .thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
 
-        Exception e = assertThrows(NotFoundException.class, () -> service.add(nonExistingWineId, review));
+        NotFoundException e = assertThrows(NotFoundException.class, () ->
+                service.add(nonExistingWineId, review));
+
         assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
         verify(wineService, times(1)).findById(nonExistingWineId);
         verify(repository, times(0)).save(review);
@@ -153,37 +144,49 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     public void editReview() {
+        Mockito.when(userService.isUserAllowedToEdit(review))
+               .thenReturn(true);
+
         Review editedReview = service.edit(review.getId(), review);
         verify(repository, times(1)).findById(review.getId());
+        verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(repository, times(1)).save(review);
         assertEquals(review, editedReview);
     }
 
     @Test
     public void editNonExistingReview() {
-        Exception e = assertThrows(NotFoundException.class, () -> service.edit(nonExistingReviewId, review));
+        NotFoundException e = assertThrows(NotFoundException.class, () ->
+                service.edit(nonExistingReviewId, review));
+
         assertEquals(e.getMessage(), "Error: could not find review with id " + nonExistingReviewId);
         verify(repository, times(1)).findById(nonExistingReviewId);
         verify(repository, times(0)).save(review);
     }
 
     @Test
+    public void editReviewWithoutPermission() {
+        ForbiddenException e = assertThrows(ForbiddenException.class, () ->
+                service.edit(review.getId(), review));
+
+        assertEquals(e.getMessage(), "Error: tried to modify review or wine that you do not own!");
+        verify(repository, times(1)).findById(review.getId());
+        verify(userService, times(1)).isUserAllowedToEdit(review);
+        verify(repository, times(0)).save(review);
+    }
+
+    @Test
     public void deleteReview() {
+        Mockito.when(userService.isUserAllowedToEdit(any(Review.class)))
+               .thenReturn(true);
+
         service.delete(review.getId());
+        verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(repository, times(1)).deleteById(review.getId());
     }
 
     @Test
     public void shouldThrowErrorWhenWrongUserTriesToDelete() {
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-               .thenReturn(user.getUsername());
-
-        Mockito.when(userService.findByUserName(user.getUsername()))
-               .thenReturn(user);
-
-        Mockito.doThrow(new ForbiddenException(review))
-               .when(securityUtils).validateUpdateRequest(review, user);
-
         Exception e = assertThrows(ForbiddenException.class, () -> service.delete(review.getId()));
         assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
     }
