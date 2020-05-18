@@ -18,13 +18,6 @@ public interface UserService {
     String getUsername();
 
     /**
-     * Checks if logged in user has admin role.
-     * @return boolean
-     * @throws NotFoundException e
-     */
-    boolean isLoggedInUserAdmin() throws NotFoundException;
-
-    /**
      * Is currently logged in user allowed to edit or delete the given model.
      * @param model review or wine
      * @return boolean

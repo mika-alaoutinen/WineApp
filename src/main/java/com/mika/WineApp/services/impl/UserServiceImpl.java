@@ -24,11 +24,6 @@ public class UserServiceImpl implements UserService {
         return securityUtils.getUsernameFromSecurityContext();
     }
 
-    public boolean isLoggedInUserAdmin() throws NotFoundException {
-        User user = findLoggedInUser();
-        return securityUtils.isUserAdmin(user);
-    }
-
     public boolean isUserAllowedToEdit(EntityModel model) {
         User user = findLoggedInUser();
         return securityUtils.isUserAllowedToEdit(model, user);
