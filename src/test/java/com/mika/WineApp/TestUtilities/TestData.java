@@ -13,8 +13,9 @@ import java.util.Set;
 public abstract class TestData {
 
     public static List<Review> initReviews() {
-        // Get wines to review:
         var wines = initWines();
+        var admin = initTestUsers().get(1);
+
         Wine wine1 = wines.get(0);
         Wine wine2 = wines.get(1);
 
@@ -25,6 +26,7 @@ public abstract class TestData {
         Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine1);
         r1.setId(21L);
         r1.setWine(wine1);
+        r1.setUser(admin);
 
         Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine2);
         r2.setId(22L);
