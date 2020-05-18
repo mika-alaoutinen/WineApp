@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -112,21 +111,18 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     public void addReview() {
-        Review newReview = new Review("Mika", LocalDate.now(), "Lisätty arvostelu", 2.0, new Wine());
+        Mockito.when(userService.setUser(review))
+               .thenReturn(review);
 
-        Mockito.when(userService.setUser(newReview))
-               .thenReturn(newReview);
+        Mockito.when(reviewRepository.save(review))
+               .thenReturn(review);
 
-        Mockito.when(reviewRepository.save(newReview))
-               .thenReturn(newReview);
-
-        Review savedReview = service.add(wine.getId(), newReview);
-        System.out.println("saved " + savedReview);
+        Review savedReview = service.add(wine.getId(), review);
 
         verify(wineService, times(1)).findById(wine.getId());
-        verify(userService, times(1)).setUser(newReview);
-        verify(reviewRepository, times(1)).save(newReview);
-        assertEquals(newReview, savedReview);
+        verify(userService, times(1)).setUser(review);
+        verify(reviewRepository, times(1)).save(review);
+        assertEquals(review, savedReview);
     }
 
     @Test
@@ -169,15 +165,15 @@ class ReviewServiceTest extends ServiceTest {
         ForbiddenException e = assertThrows(ForbiddenException.class, () ->
                 service.edit(review.getId(), review));
 
-        assertEquals(e.getMessage(), "Error: tried to modify review or wine that you do not own!");
+        assertEquals("Error: tried to modify a review that you do not own!", e.getMessage());
         verify(reviewRepository, times(1)).findById(review.getId());
         verify(userService, times(1)).isUserAllowedToEdit(review);
-        verify(reviewRepository, times(0)).save(review);
+        verify(reviewRepository, times(0)).save(any(Review.class));
     }
 
     @Test
     public void deleteReview() {
-        Mockito.when(userService.isUserAllowedToEdit(any(Review.class)))
+        Mockito.when(userService.isUserAllowedToEdit(review))
                .thenReturn(true);
 
         service.delete(review.getId());
@@ -188,7 +184,7 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     public void shouldThrowErrorWhenWrongUserTriesToDelete() {
         Exception e = assertThrows(ForbiddenException.class, () -> service.delete(review.getId()));
-        assertEquals("Error: tried to modify review or wine that you do not own!", e.getMessage());
+        assertEquals("Error: tried to modify a review that you do not own!", e.getMessage());
     }
 
     @Test
@@ -200,6 +196,16 @@ class ReviewServiceTest extends ServiceTest {
 
         verify(reviewRepository, times(1)).count();
         assertEquals(reviews.size(), reviewCount);
+    }
+
+    @Test
+    public void isAllowedToEditTrue() {
+        isAllowedToEdit(true);
+    }
+
+    @Test
+    public void isAllowedToEditFalse() {
+        isAllowedToEdit(false);
     }
 
     @Test
@@ -241,5 +247,15 @@ class ReviewServiceTest extends ServiceTest {
 
         assertEquals(expectedErrorMessage, e.getMessage());
         verify(reviewRepository, times(0)).findAll(any(ReviewSpecification.class));
+    }
+
+    // Private methods:
+    private void isAllowedToEdit(boolean isAllowed) {
+        Mockito.when(userService.isUserAllowedToEdit(review))
+                .thenReturn(isAllowed);
+
+        assertEquals(service.isAllowedToEdit(review.getId()), isAllowed);
+        verify(reviewRepository, times(1)).findById(review.getId());
+        verify(userService, times(1)).isUserAllowedToEdit(review);
     }
 }
