@@ -10,8 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -100,6 +101,26 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
         String response = TestUtilities.getResponseString(result);
         assertEquals(2, Integer.parseInt(response));
+    }
+
+    @Test
+    @WithUserDetails(TEST_USER)
+    public void isAllowedToEdit() throws Exception {
+        Review reviewWithUser = review;
+        reviewWithUser.setUser(admin);
+
+        Mockito.when(reviewRepository.findById(reviewWithUser.getId()))
+               .thenReturn(Optional.of(reviewWithUser));
+
+        MvcResult result = mvc
+            .perform(
+                get(url + "/{id}/editable", reviewWithUser.getId())
+            )
+            .andExpect(status().isOk())
+            .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        assertTrue(Boolean.parseBoolean(response));
     }
 
     @Test
