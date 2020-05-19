@@ -82,4 +82,13 @@ public class SecurityUtilitiesTest {
         Mockito.when(userPrincipal.getId()).thenReturn(nonOwner.getId());
         assertFalse(securityUtils.isUserAllowedToEdit(wine, user));
     }
+
+    @Test
+    public void shouldHandleGetUserPrincipalWhenUserNotLoggedIn() {
+        Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
+                .thenReturn("anonymousUser");
+
+        String usernameOfLoggedInUser = securityUtils.getUsernameFromSecurityContext();
+        assertNull(usernameOfLoggedInUser);
+    }
 }
