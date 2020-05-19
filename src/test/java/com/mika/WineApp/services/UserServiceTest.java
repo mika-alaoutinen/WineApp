@@ -3,8 +3,10 @@ package com.mika.WineApp.services;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.impl.UserServiceImpl;
@@ -32,6 +34,7 @@ public class UserServiceTest {
     private final static Long userId = user.getId();
     private final static String username = user.getUsername();
     private final static Long nonExistentUserId = 123L;
+    private final static Wine wine = TestData.initWines().get(0);
 
     @Mock
     UserRepository repository;
@@ -53,18 +56,41 @@ public class UserServiceTest {
                 .thenReturn(Optional.empty());
 
         Mockito.lenient()
+                .when(repository.findByUsername(username))
+                .thenReturn(Optional.of(user));
+
+        Mockito.lenient()
                 .when(repository.save(user))
                 .thenReturn(user);
+
+        Mockito.lenient()
+                .when(securityUtils.getUsernameFromSecurityContext())
+                .thenReturn(user.getUsername());
     }
 
     @Test
     public void getUsername() {
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-               .thenReturn(user.getUsername());
-
         String username = service.getUsername();
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
         assertEquals(user.getUsername(), username);
+    }
+
+    @Test
+    public void isUserAllowedToEdit() {
+        Mockito.when(securityUtils.isUserAllowedToEdit(wine, user))
+               .thenReturn(true);
+
+        assertTrue(service.isUserAllowedToEdit(wine));
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+        verify(repository, times(1)).findByUsername(user.getUsername());
+        verify(securityUtils, times(1)).isUserAllowedToEdit(wine, user);
+    }
+
+    @Test
+    public void setUser() {
+        EntityModel wineWithUser = service.setUser(wine);
+        assertEquals(user, wineWithUser.getUser());
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
     }
 
     @Test
