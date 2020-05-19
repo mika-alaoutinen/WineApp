@@ -1,12 +1,11 @@
 package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.forbidden.ForbiddenException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.WineSpecification;
@@ -21,7 +20,6 @@ import java.util.List;
 public class WineServiceImpl implements WineService {
     private final WineRepository repository;
     private final UserService userService;
-    private final SecurityUtilities securityUtils;
 
 // --- CRUD methods ---
     public List<Wine> findAll() {
@@ -38,11 +36,8 @@ public class WineServiceImpl implements WineService {
             throw new BadRequestException(newWine, newWine.getName());
         }
 
-        String username = securityUtils.getUsernameFromSecurityContext();
-        User user = userService.findByUserName(username);
-        newWine.setUser(user);
-
-        return repository.save(newWine);
+        Wine wine = (Wine) userService.setUser(newWine);
+        return repository.save(wine);
     }
 
     public Wine edit(Long id, Wine editedWine) {
@@ -68,6 +63,11 @@ public class WineServiceImpl implements WineService {
 // --- Other methods ---
     public long count() {
         return repository.count();
+    }
+
+    public boolean isAllowedToEdit(Long id) throws NotFoundException {
+        Wine wine = findById(id);
+        return userService.isUserAllowedToEdit(wine);
     }
 
     public boolean isValid(String name) {
@@ -107,8 +107,11 @@ public class WineServiceImpl implements WineService {
 // Utility methods:
     private Wine findAndValidateWine(Long id) {
         Wine wine = findById(id);
-        User user = userService.findByUserName(securityUtils.getUsernameFromSecurityContext());
-        securityUtils.validateUpdateRequest(wine, user);
+
+        if (!userService.isUserAllowedToEdit(wine)) {
+            throw new ForbiddenException(wine);
+        }
+
         return wine;
     }
 

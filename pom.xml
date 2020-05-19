@@ -66,6 +66,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2database.version}</version>
+            <scope>test</scope>
         </dependency>
         <!-- Development utilities -->
         <dependency>

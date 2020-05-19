@@ -1,5 +1,6 @@
 package com.mika.WineApp.security;
 
+import com.mika.WineApp.errors.jwt.JwtExpiredException;
 import com.mika.WineApp.security.model.UserPrincipal;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ public class JwtProviderImpl implements JwtProvider {
             log.error("Invalid JWT token: " + e.getMessage());
         } catch (ExpiredJwtException e) {
             log.error("Expired JWT token: " + e.getMessage());
+            throw new JwtExpiredException(authToken);
         } catch (UnsupportedJwtException e) {
             log.error("Unsupported JWT token: " + e.getMessage());
         } catch (IllegalArgumentException e) {

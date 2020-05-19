@@ -1,6 +1,7 @@
 package com.mika.WineApp.controllers.mvc;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
+import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -9,9 +10,9 @@ import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -103,6 +104,26 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
         String response = TestUtilities.getResponseString(result);
         assertEquals(1, Integer.parseInt(response));
+    }
+
+    @Test
+    @WithUserDetails(TEST_USER)
+    public void isAllowedToEdit() throws Exception {
+        Wine wineWithUser = wine;
+        wineWithUser.setUser(admin);
+
+        Mockito.when(wineRepository.findById(wineWithUser.getId()))
+                .thenReturn(Optional.of(wineWithUser));
+
+        MvcResult result = mvc
+                .perform(
+                        get(url + "/{id}/editable", wineWithUser.getId())
+                )
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        assertTrue(Boolean.parseBoolean(response));
     }
 
     @Test

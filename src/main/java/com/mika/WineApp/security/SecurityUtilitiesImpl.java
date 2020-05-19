@@ -1,6 +1,5 @@
 package com.mika.WineApp.security;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
@@ -15,18 +14,17 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         return getUserPrincipal().getUsername();
     }
 
-    public void validateUpdateRequest(EntityModel model, User user) {
+    public boolean isUserAdmin(User user) {
+        return user.getRoles().contains(Role.ROLE_ADMIN);
+    }
+
+    public boolean isUserAllowedToEdit(EntityModel model, User user) {
         Long userId = getUserPrincipal().getId();
+
         boolean isAdmin = isUserAdmin(user);
         boolean isOwner = isUserOwnerOfModel(model, userId);
 
-        if (!isAdmin && !isOwner) {
-            throw new BadRequestException(model);
-        }
-    }
-
-    private boolean isUserAdmin(User user) {
-        return user.getRoles().contains(Role.ROLE_ADMIN);
+        return isAdmin || isOwner;
     }
 
     private boolean isUserOwnerOfModel(EntityModel model, Long userId) {
@@ -37,9 +35,13 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
     }
 
     private UserPrincipal getUserPrincipal() {
-        return (UserPrincipal) SecurityContextHolder
+        Object principal = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
+
+        return principal.equals("anonymousUser")
+                ? UserPrincipal.build(new User())
+                : (UserPrincipal) principal;
     }
 }

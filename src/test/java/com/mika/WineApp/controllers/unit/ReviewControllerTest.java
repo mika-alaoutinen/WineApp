@@ -72,6 +72,12 @@ public class ReviewControllerTest {
     }
 
     @Test
+    public void isAllowedToEdit() {
+        controller.isAllowedToEdit(id);
+        verify(service, times(1)).isAllowedToEdit(id);
+    }
+
+    @Test
     public void search() {
         String author = "author";
         String[] dateRange = new String[2];

@@ -1,6 +1,8 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 
@@ -14,6 +16,20 @@ public interface UserService {
      * @return username as String
      */
     String getUsername();
+
+    /**
+     * Is currently logged in user allowed to edit or delete the given model.
+     * @param model review or wine
+     * @return boolean
+     */
+    boolean isUserAllowedToEdit(EntityModel model);
+
+    /**
+     * Sets the currently logged in user as the owner of a review or wine.
+     * @param model review or wine
+     * @return review or wine
+     */
+    EntityModel setUser(EntityModel model);
 
     /**
      * Find all users.
@@ -41,8 +57,9 @@ public interface UserService {
      * Saves a new user. User's password must be encoded before saving it.
      * @param user to save
      * @return saved user
+     * @throws BadRequestException e
      */
-    User save(User user);
+    User save(User user) throws BadRequestException;
 
     /**
      * Update user's roles. New roles override possible old roles.

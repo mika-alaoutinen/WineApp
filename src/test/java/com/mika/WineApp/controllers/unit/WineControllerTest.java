@@ -80,6 +80,12 @@ public class WineControllerTest {
     }
 
     @Test
+    public void isAllowedToEdit() {
+        controller.isAllowedToEdit(id);
+        verify(service, times(1)).isAllowedToEdit(id);
+    }
+
+    @Test
     public void search() {
         String name = "Name";
         String type = "RED";

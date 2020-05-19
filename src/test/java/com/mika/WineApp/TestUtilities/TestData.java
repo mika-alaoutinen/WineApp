@@ -13,8 +13,8 @@ import java.util.Set;
 public abstract class TestData {
 
     public static List<Review> initReviews() {
-        // Get wines to review:
         var wines = initWines();
+
         Wine wine1 = wines.get(0);
         Wine wine2 = wines.get(1);
 
