@@ -56,6 +56,21 @@ public class UserServiceTest {
     }
 
     @Test
+    public void isLoggedIn() {
+        assertTrue(service.isLoggedIn());
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+    }
+
+    @Test
+    public void notLoggedIn() {
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+               .thenReturn(null);
+
+        assertFalse(service.isLoggedIn());
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+    }
+
+    @Test
     public void isUserAllowedToEdit() {
         Mockito.when(securityUtils.getUsernameFromSecurityContext())
                .thenReturn(user.getUsername());
