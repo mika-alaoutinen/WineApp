@@ -22,7 +22,7 @@ springdoc:
     path: /swagger
 
 jwt:
-  expiration: 900000 # Expiration time is 15 min
+  expiration: 18000000 # Expiration time is 30 min
   secret: jwt_secret
 
 # Used in LoadDatabase to create an initial admin user
