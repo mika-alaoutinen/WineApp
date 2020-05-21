@@ -75,7 +75,7 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.count();
     }
 
-    public boolean isAllowedToEdit(Long id) throws UsernameNotFoundException {
+    public boolean isAllowedToEdit(Long id) {
         Review review = findById(id);
         return userService.isUserAllowedToEdit(review);
     }

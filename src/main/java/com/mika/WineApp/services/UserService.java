@@ -28,8 +28,9 @@ public interface UserService {
      * Sets the currently logged in user as the owner of a review or wine.
      * @param model review or wine
      * @return review or wine
+     * @throws NotFoundException e
      */
-    EntityModel setUser(EntityModel model);
+    EntityModel setUser(EntityModel model) throws NotFoundException;
 
     /**
      * Find all users.
@@ -66,6 +67,7 @@ public interface UserService {
      * @param username for user to give role to
      * @param roles new set of roles for the user.
      * @return updated user
+     * @throws NotFoundException e
      */
     User updateRoles(Long username, Set<Role> roles) throws NotFoundException;
 }
