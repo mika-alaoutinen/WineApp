@@ -25,12 +25,18 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean isUserAllowedToEdit(EntityModel model) {
-        User user = findLoggedInUser();
+        String username = securityUtils.getUsernameFromSecurityContext();
+        if (username == null) {
+            return false;
+        }
+
+        User user = findByUserName(username);
         return securityUtils.isUserAllowedToEdit(model, user);
     }
 
     public EntityModel setUser(EntityModel model) {
-        User user = findLoggedInUser();
+        String username = securityUtils.getUsernameFromSecurityContext();
+        User user = findByUserName(username);
         model.setUser(user);
         return model;
     }
@@ -60,10 +66,5 @@ public class UserServiceImpl implements UserService {
         User user = findById(id);
         user.setRoles(roles);
         return repository.save(user);
-    }
-
-    private User findLoggedInUser() {
-        String username = securityUtils.getUsernameFromSecurityContext();
-        return findByUserName(username);
     }
 }
