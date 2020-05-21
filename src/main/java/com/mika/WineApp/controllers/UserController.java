@@ -20,12 +20,6 @@ import java.util.Set;
 public class UserController {
     private final UserService service;
 
-    @Operation(summary = "Get username", description = "Get username for logged in user.")
-    @GetMapping("username")
-    public String getUsername() {
-        return service.getUsername();
-    }
-
     @Operation(summary = "Find all users", description = "Find all saved users.")
     @GetMapping()
     public List<User> findAll() {

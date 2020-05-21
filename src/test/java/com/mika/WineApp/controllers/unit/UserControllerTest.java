@@ -25,12 +25,6 @@ public class UserControllerTest {
     private UserController controller;
 
     @Test
-    public void getUsername() {
-        controller.getUsername();
-        verify(service, times(1)).getUsername();
-    }
-
-    @Test
     public void findAll() {
         controller.findAll();
         verify(service, times(1)).findAll();

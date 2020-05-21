@@ -3,6 +3,7 @@ package com.mika.WineApp.controllers.unit;
 import com.mika.WineApp.controllers.AuthenticationController;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.services.AuthenticationService;
+import com.mika.WineApp.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,8 +20,17 @@ public class AuthenticationControllerTest {
     @Mock
     private AuthenticationService service;
 
+    @Mock
+    private UserService userService;
+
     @InjectMocks
     private AuthenticationController controller;
+
+    @Test
+    public void getUsername() {
+        controller.getUsername();
+        verify(userService, times(1)).getUsername();
+    }
 
     @Test
     public void login() {
