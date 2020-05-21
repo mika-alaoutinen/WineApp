@@ -12,7 +12,6 @@ import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.ReviewSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

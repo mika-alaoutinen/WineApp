@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @Operation(summary = "Check if user is logged in", description = "Returns true if request has a valid JWT token in headers.")
-    @GetMapping("logged")
+    @GetMapping("loggedIn")
     public boolean isLoggedIn() {
         return service.isLoggedIn();
     }

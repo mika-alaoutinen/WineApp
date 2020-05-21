@@ -6,7 +6,6 @@ import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
