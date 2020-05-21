@@ -77,6 +77,9 @@ public class UserServiceTest {
 
     @Test
     public void isUserAllowedToEdit() {
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+               .thenReturn(user.getUsername());
+
         Mockito.when(securityUtils.isUserAllowedToEdit(wine, user))
                .thenReturn(true);
 
@@ -84,6 +87,17 @@ public class UserServiceTest {
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
         verify(repository, times(1)).findByUsername(user.getUsername());
         verify(securityUtils, times(1)).isUserAllowedToEdit(wine, user);
+    }
+
+    @Test
+    public void userIsNotAllowedToEditWhenNotLoggedIn() {
+        Mockito.when(securityUtils.getUsernameFromSecurityContext())
+               .thenReturn(null);
+
+        assertFalse(service.isUserAllowedToEdit(wine));
+        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+        verify(repository, times(0)).findByUsername(any(String.class));
+        verify(securityUtils, times(0)).isUserAllowedToEdit(any(EntityModel.class), any(User.class));
     }
 
     @Test
