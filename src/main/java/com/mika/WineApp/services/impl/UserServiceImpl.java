@@ -1,27 +1,26 @@
 package com.mika.WineApp.services.impl;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
 import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.SecurityUtilities;
+import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Set;
-
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private final AdminService service;
     private final SecurityUtilities securityUtils;
-    private final UserRepository repository;
 
     public String getUsername() {
         return securityUtils.getUsernameFromSecurityContext();
+    }
+
+    public boolean isLoggedIn() {
+        String username = securityUtils.getUsernameFromSecurityContext();
+        return username != null;
     }
 
     public boolean isUserAllowedToEdit(EntityModel model) {
@@ -30,41 +29,14 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        User user = findByUserName(username);
+        User user = service.findByUserName(username);
         return securityUtils.isUserAllowedToEdit(model, user);
     }
 
     public EntityModel setUser(EntityModel model) {
         String username = securityUtils.getUsernameFromSecurityContext();
-        User user = findByUserName(username);
+        User user = service.findByUserName(username);
         model.setUser(user);
         return model;
-    }
-
-    public List<User> findAll() {
-        return repository.findAll();
-    }
-
-    public User findById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new NotFoundException(new User(), id));
-    }
-
-    public User findByUserName(String username) {
-        return repository.findByUsername(username)
-                .orElseThrow(() -> new NotFoundException(new User(), username));
-    }
-
-    public User save(User user) {
-        if (repository.existsByUsername(user.getUsername())) {
-            throw new BadRequestException(user, user.getUsername());
-        }
-        return repository.save(user);
-    }
-
-    public User updateRoles(Long id, Set<Role> roles) {
-        User user = findById(id);
-        user.setRoles(roles);
-        return repository.save(user);
     }
 }
