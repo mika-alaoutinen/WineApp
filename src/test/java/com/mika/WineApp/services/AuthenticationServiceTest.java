@@ -38,7 +38,7 @@ public class AuthenticationServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Mock
-    private UserService userService;
+    private AdminService adminService;
 
     @InjectMocks
     private AuthenticationServiceImpl service;
@@ -80,7 +80,7 @@ public class AuthenticationServiceTest {
     public void register() {
         User newUser = new User(user.getUsername(), encodedPassword);
 
-        Mockito.when(userService.save(any(User.class)))
+        Mockito.when(adminService.save(any(User.class)))
                .thenReturn(newUser);
 
         Mockito.when(passwordEncoder.encode(user.getPassword()))
@@ -89,7 +89,7 @@ public class AuthenticationServiceTest {
         User registeredUser = service.register(user);
 
         verify(passwordEncoder, times(1)).encode(user.getPassword());
-        verify(userService, times(1)).save(newUser);
+        verify(adminService, times(1)).save(newUser);
         assertEquals(encodedPassword, registeredUser.getPassword());
     }
 }
