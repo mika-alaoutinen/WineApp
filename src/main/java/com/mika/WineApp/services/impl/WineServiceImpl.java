@@ -65,7 +65,7 @@ public class WineServiceImpl implements WineService {
         return repository.count();
     }
 
-    public boolean isAllowedToEdit(Long id) throws NotFoundException {
+    public boolean isAllowedToEdit(Long id) {
         Wine wine = findById(id);
         return userService.isUserAllowedToEdit(wine);
     }

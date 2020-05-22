@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value = "auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Tag(name = "Authentication API", description = "Contains operations for login, logout and registering a new user. Both are public operations available to everyone")
+@Tag(name = "Authentication API", description = "Contains operations for login and registering a new user. Both are public operations available to everyone")
 public class AuthenticationController {
     private final AuthenticationService service;
 
