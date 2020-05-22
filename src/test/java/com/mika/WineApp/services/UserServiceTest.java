@@ -29,7 +29,7 @@ public class UserServiceTest {
     private final static Wine wine = TestData.initWines().get(0);
 
     @Mock
-    private AdminService adminService;
+    private UserRepositoryReader userReader;
 
     @Mock
     private SecurityUtilities securityUtils;
@@ -44,7 +44,7 @@ public class UserServiceTest {
                 .thenReturn(user.getUsername());
 
         Mockito.lenient()
-                .when(adminService.findByUserName(username))
+                .when(userReader.findByUserName(username))
                 .thenReturn(user);
     }
 
@@ -80,7 +80,7 @@ public class UserServiceTest {
 
         assertTrue(service.isUserAllowedToEdit(wine));
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        verify(adminService, times(1)).findByUserName(username);
+        verify(userReader, times(1)).findByUserName(username);
         verify(securityUtils, times(1)).isUserAllowedToEdit(wine, user);
     }
 
@@ -91,7 +91,7 @@ public class UserServiceTest {
 
         assertFalse(service.isUserAllowedToEdit(wine));
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        verify(adminService, times(0)).findByUserName(username);
+        verify(userReader, times(0)).findByUserName(username);
         verify(securityUtils, times(0)).isUserAllowedToEdit(any(EntityModel.class), any(User.class));
     }
 

@@ -3,7 +3,7 @@ package com.mika.WineApp.services.impl;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.SecurityUtilities;
-import com.mika.WineApp.services.AdminService;
+import com.mika.WineApp.services.UserRepositoryReader;
 import com.mika.WineApp.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final AdminService service;
+    private final UserRepositoryReader service;
     private final SecurityUtilities securityUtils;
 
     public String getUsername() {
