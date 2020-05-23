@@ -5,7 +5,7 @@ Hinta: 13.49 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
 täyteläinen, keskitanniininen, karhunvatukkahilloinen, mustikkainen, luumuinen, mokkainen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, pasta ja pizza, grilliruoka
-url: https://www.alko.fi/tuotteet/430067/Apothic-Dark-2015
+url: https://www.alko.fi/tuotteet/430067/
 ArvosteluMika: Viini on väriltään syvän punainen ja sen tuoksu on tumman luumuinen ja mokkainen. Ensivaikutelma viinin mausta on yllättävän kuiva, tekstuuriltaan kepeä ja vaikeasti määriteltävä. Hetken päästä makuun kehittyy mietoa karhunvatukkaa. Viinin jälkimaku on pitkä, savuinen ja aavistuksen kitkerä. Kokonaisuutena yllättävän kevyt, melko vähätanniininen ja varsin miedon makuinen viini. Tämä on mielestäni melko neutraali punaviini, joka käy todennäköisesti hyvin yhteen erilaisien ruokien kanssa tai vaikka paljaaltaan. Viini on helposti juotava, mutta ei kuitenkaan mikään huippuviini.
 ArvosteluSalla: Viinin tuoksu on syvä ja täyteläinen, ja siinä on havaittavissa makeaa mustikkaa ja ehkä hieman kirsikkaa. Ensimaussa on hieman happamuutta ja kirpakkuutta, joka haihtuu kuitenkin pian. Viinin maku on erittäin pehmeä ja lempeän täyteläinen, ja se tuo mieleen sametin syleilyn. Jälkimaussa esiin nousee ehkä hieman mokkaisuutta. Viini jättää suuhun pehmeän ja miedon jälkimaun. Tämä sopii mielestäni parhaiten rauhallisiin nautiskeluhetkiin, ja tätä voisi kuvailla ns. suunmakuiseksi.
 Arvosana: 3.75 M 4.75 S
@@ -134,7 +134,7 @@ Hinta: 8.48 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
 täyteläinen, tanniininen, karhunvatukkahilloinen, tumman kirsikkainen, mokkainen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, pataruoat
-url: https://www.alko.fi/tuotteet/453747/Dimension-Shiraz-Malbec-2016
+url: https://www.alko.fi/tuotteet/453747/
 ArvosteluMika: Alkunuuhkiminen tuli lähinnä ohitettua, mutta mieleen jäi täyteläinen mustaherukkainen tuoksu. Ensimaku on kepeä, vähätanniininen ja makean mustaherukkainen. Ensimaun jälkeen viiniin kehittyy kuitenkin syvempi tanniininen ja hieman happamampi maku. Jälkimaku on melko tanniininen ja kuorruttaa suun, mutta se on kuitenkin myös miellyttävän makea ja marjainen. Melko yksinkertainen ja miellyttävä kokonaisuus. Toimi erinomaisesti tuhdin liharuoan kanssa, mutta voisin kuvitella juovani tätä myös seurustelujuomana tai kenties juustojen kanssa.
 ArvosteluSalla: Viinin tuoksussa tuntuvat vahvasti tummat marjat sekä tanniinisuus; maussa ne tuntuvat vain entistä voimakkaammin. Kuitenkin maku on mielestäni hyvin pehmeä, tasainen ja tasapainoinen. Viini ei ole kovin erikoinen muttei mitenkään tylsäkään.
 Arvosana: 4.25 M 3.75 S
@@ -302,7 +302,7 @@ Hinta: 9.98 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
 keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, suklainen, kahvinen, hennon mausteinen
 SopiiNautittavaksi: nauta, porsas, grilliruoka, seurustelujuomana
-url: https://www.alko.fi/tuotteet/487128/Juno-Shiraz-2016-kartonkit-lkki
+url: https://www.alko.fi/tuotteet/487128/
 ArvosteluMika: Viinissä on makean täyteläinen, kypsän punamarjainen ja roteva tuoksu. Tuoksussa erottuu happamia marjoja ja aavistus savua. Viinissä on täyteläinen ja melko tanniininen ja samettinen suutuntuma, mutta viinin tekstuuri ei kuitenkaan ole liian raskas. Ensivaikutelma viinin mausta on  happaman kirsikkainen, vahvan tanniininen mutta kuitenkin yllättävän mieto. Viini jättää pitkän happaman marjaisen jälkimaun. Viinin mausta on vaikea erottaa selkeästi muita makuja, kuin tummaa kirsikkaa, mutta siinä on kenties myös hieman mausteisuutta. Viini on hieman raskas seurustelujuomaksi ja käy todennäköisesti parhaiten liharuuan kumppaniksi. Kokonaisuutena miellyttävä, täyteläinen ja jopa roteva.
 ArvosteluSalla: Tuoksu on täyteläinen, makeahko ja kirsikkainen. Viinin maku on pehmeä, täyteläinen, runsas ja hieman hilloinen, ja siinä tuntuu kirsikoiden happamuutta. Kokonaisuus on tasapainoinen ja erittäin miellyttävä ja maukas. Erinomainen nautiskeluviini, joka voisi käydä myös miedompien juustojen kanssa.
 Arvosana: 4.25 S 4 M
@@ -404,7 +404,7 @@ Hinta: 8.59 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
 keskitäyteläinen, keskitanniininen, kypsän karpaloinen, tumman kirsikkainen, mustapippurinen, kevyen paahteinen
 SopiiNautittavaksi: porsas, seurustelujuoma, pikkusuolaiset, grilliruoka
-url: https://www.alko.fi/tuotteet/491248/No-Name-kartonkit-lkki
+url: https://www.alko.fi/tuotteet/491248/
 ArvosteluMika: Viini on väriltään tumman mutta hieman hailakan punainen, mikä kenties viittaa vähäiseen tanniinisuuteen. Tuoksu on melko mieto ja siinä on hapanta karpaloa. Viinin ensimaku on melko kepeä ja karpaloinen. Jälkimakua kohti siirryttäessä makuun tulee kuitenkin lisää potkua, joskin kuvailisin silti viiniä kokonaisuutena melko kevyeksi. Viini vaikuttaa varsin vähätanniiniselta. Jälkimaussa nousee esiin hieman kitkeryyttä ja kenties aavistus savua. Viinin vähätanniinisuudesta huolimatta se ei kuitenkaan ole mehumainen, sillä karpalo ja punamarjaisuus tekevät viinistä varsin happaman. Kokonaisuutena kepeähkö, joskin melko hapan ja yksiulotteinen viini. Soveltunee kohtuullisen hyvin seurustelujuomaksi tai kevyemmän liharuoan seuraksi.
 ArvosteluSalla: Viinissä on hento ja miellyttävä, punamarjainen tuoksu. Viinin ensimaku on poikkeuksellisen kepeä ja mieto punaviiniksi, mutta maku syvenee ja tummenee loppua kohden. Ensi- ja jälkimaun välissä on havaittavissa karpaloisuutta ja hieman kirsikkaisuutta. Paikoitellen vaikutelma on jopa hieman marjamehumainen, mutta mehumaisuus kestää vain hetkisen. Kokonaisuutena hieman erikoinen punaviini kepeytensä takia.
 Arvosana: 3 M 3.5 S
@@ -430,7 +430,7 @@ Hinta: 9.52 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
 täyteläinen, keskitanniininen, kirsikkainen, kypsän mansikkainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, porsas, itämainen ruoka
-url: https://www.alko.fi/tuotteet/438238/Passento-kartonkit-lkki 
+url: https://www.alko.fi/tuotteet/438238/
 ArvosteluMika: Viinin tuoksu on tumman luumuinen, tamminen ja happaman kirsikkainen. Viinin ensimaku on melko hapan mutta kuitenkin kepeä. Viini on varsin vähätanniininen ja sen tekstuuri on yllättävän kevyt. Viinissä ei ole selkeää hallitsevaa makua, vaan vaikutelma on epämääräisen punamarjainen. Jälkimaku on kenties hieman paprikainen, minkä lisäksi viinin happamuus nousee vahvemmin esiin sen jälkimaussa. Vaikka viini tuntui aluksi vähätanniiniselta, jättää se kuitenkin suuhun tanniinisen jälkituntuman. Viini voisi sopia mahdollisesti jonkin kevyehkön liharuuan kumppaniksi, eikä ole huono paljaaltaankaan.
 ArvosteluSalla: Tuoksu on täyteläinen ja happamahko, ja maku on huomattavasti pehmeämpi kuin tuoksu antaa olettaa. Siinä tuntuu toki selvästi täyteläisyyttä ja tanniinisuutta mutta ei liian pistävästi. Maku pehmenee merkittävästi erityisesti loppua kohden. Viinissä maistuu kirsikka ja ehkä hieman vanilja, ja siinä vilahtaa myös aavistus makeutta. Kokonaisuus on aika sopiva yhdistelmä pehmeyttä ja happamuutta. Viini on mielestäni varsin hyvä ihan vain siemailuun, mutta se käy varmasti myös esimerkiksi pikkupurtavan kanssa, miksei toki ruokaviiniksikin. Viini jättää suuhun miellyttävän samettisen tunteen.
 Arvosana: 3.5 M 3.75 S
@@ -544,7 +544,7 @@ Hinta: 9.99 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
 täyteläinen, tanniininen, herukkainen, karhunvatukkainen, kevyen paprikainen, mausteinen, hennon timjaminen
 SopiiNautittavaksi: voimakkaat juustot, grilliruoka, nauta, porsas
-url: https://www.alko.fi/tuotteet/005896/Torres-Santa-Digna-Cabernet-Sauvignon-Reserve-2015
+url: https://www.alko.fi/tuotteet/005896/
 ArvosteluMika: Viini on väriltään syvänpunaista. Tuoksu on syvän mustaherukkainen ja aavistuksen verran makea, minkä lisäksi tuoksussa on myös kirpakkuutta, kenties karpaloa. Ensimaku on syvä, täyteläinen ja tanniininen. Selkeimpinä makuina ovat runsas mustaherukka ja jokin hieman tunkkainen maku; kenties savua tai tammisuutta. Toisaalta viinissä on myös hieman makeutta tasapainottamassa muuten melko raskaita makuja. Jälkimaku kehittyy selvästi ensituntumaa happamammaksi – esiin nousee hapanta marjaisuutta, mahdollisesti karpalo. Viini jättää selkeästi tanniinisen ja ikeniä kuorruttavan suutuntuman. Viini toimii erinomaisesti tuhdin liharuuan seurana. Seurustelujuomaksi tämä on varsin raskas, mutta ei mikään mahdoton ajatus kuitenkaan.
 ArvosteluSalla: Tuoksussa tuntuu vahvasti kirsikkaisuus sekä myös mustaherukkaisuus. Viinin maku on syvä, pehmeä ja täyteläinen. Siinä tuntuu myös hapanta marjaisuutta. Viini on selvästi enemmän ruoka- kuin seurustelujuoma, mutta sitä pystyy juomaan myös paljaaltaan. Liharuokien lisäksi voisin kuvitella sen sopivan hyvin esimerkiksi homejuustojen kanssa.
 Arvosana: 4 M 3.75 S

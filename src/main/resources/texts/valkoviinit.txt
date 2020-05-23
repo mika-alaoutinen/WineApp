@@ -51,7 +51,7 @@ Maa: Unkari
 Hinta: 7.80 € (0.75 l)
 Kuvaus: Lempeä ja makeahko, puolimakea, keskihapokas, persikkainen, kypsän mangoinen, hennon hunajameloninen, kevyen kukkainen
 SopiiNautittavaksi: tulinen ruoka, seurustelujuomana, salaatit ja kasvisruoka, marjat ja hedelmät
-url: https://www.alko.fi/products67907/Bird-s-Tree-2017
+url: https://www.alko.fi/tuotteet/67907/
 ArvosteluMika: Viinin tuoksu on makean ja trooppisen hedelmäinen sekä miellyttävän raikas. Ensivaikutelma mausta on hyvin pehmeä, makea ja trooppisen hedelmäinen, kenties jopa banaaninen; selkeimpänä makuna maistuu kuitenkin mango. Viinissä ei ole juurikaan hapokkuutta eikä lainkaan mineraalisuutta. Maku on tasainen ja miellyttävä, joskin se voisi hyötyä kirpakkuudesta. Olen samaa mieltä viinin hajuvesimäisyydestä. Viini voisi toimia tulisen ruuan kumppanina, mutta se ei missään nimessä ole ruokaviini, vaan sopii ilman muuta parhaiten seurustelu/kaatoviiniksi. Mielestäni viinissä on edelleen hyvä hinta-laatusuhde kasuaalia juopottelua varten, mutta ei tämä enää oikein vakavahenkiseen ja intellektuelliin nautiskeluun riitä. Bird’s Tree on uusi lonkero? [Ajattelija-Alaoutinen.jpeg]
 ArvosteluSalla: Tuoksu on trooppisen hedelmäinen ja makea mutta hieman mineraalinen. Viinin tuoksu muistuttaa hieman käynyttä hedelmäsalaattia. Ensimaussa tuntuu vahvasti pehmeä kukkaisuus. Trooppiset hedelmät tuovat viiniin reilusti makeutta. Viinin maku on jopa hieman hajuvesimäinen. Tämä oli yksi nuoruusvuosieni suosikkiviineistä, mutta nykyään en kyllä enää valitsisi tätä mihinkään tilaisuuteen.
 Arvosana: 3.5 M 1.5 S
@@ -885,7 +885,7 @@ Hinta: 10.89 € (1 l)
 Kuvaus: Pirteä ja hedelmäinen,
 kuiva, keskihapokas, hunajameloninen, kevyen päärynäinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, noutopöytä, kana ja kalkkuna
-url: https://www.alko.fi/tuotteet/938997/Ti-Amo-Pinot-Grigio-2016
+url: https://www.alko.fi/tuotteet/938997/
 ArvosteluMika: Viinissä on makean hunajameloninen ja aavistuksen hapokas tuoksu. Viinin ensimaku on kuiva ja yrttinen. Maku on myös melko mineraalinen ja aavistuksen verran hedelmäinen. Viinissä maistuu kenties kevyt päärynäisyys. Kokonaisuutena varsin neutraali viini, joka voisi sopia kevyesti maistettujen ruokien kanssa.
 ArvosteluSalla: Mieto, makean hedelmäinen tuoksu. Maku tuntuu mielenkiintoiselta ja omalaatuiselta. Tuoksussa tuntunut makea hedelmäisyys ei ole yhtä vahvasti aistittavissa maussa. Viini on melko hapokas. Yrttisyys nousee esiin etenkin jälkimaussa. Kuvittelisin viinin sopivan parhaiten ruokaisien salaattien kanssa.
 Arvosana: 2.5 M 3.75 S
