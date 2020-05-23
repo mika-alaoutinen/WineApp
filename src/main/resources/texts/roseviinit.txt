@@ -16,7 +16,7 @@ Maa: Yhdysvallat
 Hinta: 9.99 € (0.75 l)
 Kuvaus: Puolimakea, keskihapokas, mansikkahilloinen, kevyen vadelmainen
 SopiiNautittavaksi: seurustelujuomana, kana ja kalkkuna, salaatit ja kasvisruoka, tulinen ruoka
-url: https://www.alko.fi/tuotteet/412697/Beringer-Zinfandel-Ros-2015 
+url: https://www.alko.fi/tuotteet/412697/
 ArvosteluMika: Viinissä on kirpakan makea ja raikas tuoksu. Ensituntuma mausta on pehmeä, makean mansikkainen ja vähähappoinen. Viini on mansikkakaramellinen ja kukkainen muttei kuitenkaan mehumainen; siinä on lisäksi hieman kuivuutta antamassa maulle syvyyttä. Tämä on selkeästi jälkiruoka- tai seurusteluviini. Maku on varsin tasainen ja erittäin miellyttävä.
 ArvosteluSalla: Mieto, makean marjainen tuoksu, josta tulee mieleen mansikkakarkki. Ensimaku on kirpeämpi kuin tuoksu antaa olettaa. Ensimaun jälkeen tuntuu kukkaisuutta – viini on kuin kukkaan puhkeava ruusu. Poikkeuksellisen makuinen rosee, mutta ei ollenkaan huonolla tavalla. Erinomainen viini, etenkin juuri seurustelutarkoituksiin.
 Arvosana: 4.5 M 4.75 S
@@ -28,7 +28,7 @@ Maa: Yhdysvallat
 Hinta: 9.99 € (0.75 l)
 Kuvaus: Puolimakea, keskihapokas, mansikkahilloinen, kevyen vadelmainen
 SopiiNautittavaksi: seurustelujuomana, kana ja kalkkuna, salaatit ja kasvisruoka, tulinen ruoka
-url: https://www.alko.fi/tuotteet/412697/Beringer-Zinfandel-Ros-2016
+url: https://www.alko.fi/tuotteet/412697/
 ArvosteluMika: Viinin tuoksu on mansikkainen, kirpakka ja jonkin verran hapokas. Ensimaku on pehmeä, makeahko ja hyvin miellyttävä. Viinin hallitseva maku on mansikka, mutta jälkimaussa maistuu myös vadelmaa. Viinissä on tavallista vähemmän alkoholia, mikä selittää sen pehmeyden. Kokonaisuus on suoraviivainen – toisaalta miellyttävä, mutta toisaalta myös hieman tylsä. Erittäin helppo seurusteluviini, joka voisi sopia myös jälkiruokien kumppaniksi; ruokaviiniksi tästä ei luultavasti ole.
 ArvosteluSalla: Raikas, makean mansikkainen tuoksu. Maku on hyvin mansikkamehumainen, mutta ei huonolla tavalla. Siinä on pehmeyttä ja makeutta mutta myös hieman kirpakkuutta. Viini on kokonaisuutena hyvin mutkaton, ja se onkin erityisen hyvä seurustelujuomana. 
 Arvosana: 4 S 3.5 M
@@ -62,7 +62,7 @@ VIINI: DNA Murviedro Fashion Rosa Fashion
 Päivämäärä: 23.9.2017
 Maa: Espanja
 Hinta: 0 € (1.5 l)
-Kuvaus: raikas, pirteä, hedelmäinen, kypsän punamarjainen, hennon viheromenainen
+Kuvaus: Raikas, pirteä, hedelmäinen, kypsän punamarjainen, hennon viheromenainen
 SopiiNautittavaksi: aperitiivi, valkea liha, pasta ja riisi
 url: https://murviedro.es/en/lista-vinos/dna-murviedro-fashion-rosa-fashion-eng
 ArvosteluMika: Viinissä on mieto, mansikkainen mutta myös kirpakka tuoksu. Viinin ensivaikutelma on puolikuiva, miedosti hapan ja hennon mansikkainen. Maku on tasainen, joskin jälkimaussa nousee esiin hiukan enemmän happamuutta. Toivoisin viinin olevan hieman marjaisempi ja kenties myös aavistuksen verran makeampi. Toisaalta viini on kuitenkin kokonaisuutena miellyttävä ja helposti juotava. Maku on sen verran neutraali, että tämä luultavasti sopii kohtalaisen hyvin eri tyyppisten ruokien kanssa, aina makeista jälkiruuista kanaan ja kalaan asti. Varsin tasapaksu rosee, joka ei yllä suosikiksi, mutta ei myöskään ole huono.
@@ -74,7 +74,7 @@ VIINI: Filarino Sangiovese Rosé 2017
 Päivämäärä: 13.2.2019
 Maa: Italia
 Hinta: 30.99 € (3 l)
-Kuvaus: kuiva, keskihapokas, metsämarjainen, sitruksinen, kirsikkainen, mansikkainen
+Kuvaus: Kuiva, keskihapokas, metsämarjainen, sitruksinen, kirsikkainen, mansikkainen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, pikkusuolaiset, tapas ja antipasti
 url: https://www.alko.fi/tuotteet/486078/
 ArvosteluMika: Viinin tuoksu on varsin mieto, pirskahtelevan sitruksinen ja kepeän mansikkainen. Ensivaikutelma mausta on yllättävän kuiva, varsin hapokas ja hivenen raparperinen. Maku on tasainen ja siitä on vaikea erottaa yksittäisiä makuja. Tämä on mielestäni roseeviiniksi keskivertoa selvästi kuivempi ja hapokkaampi, ja maultaan lähempänä kuivaa valkoviiniä, jossa on hieman tavallista enemmän marjaisuutta. Fillarino sopinee hyvin ruokaviiniksi, esimerkiksi kalan kanssa, mutta seurusteluviininä tämä on melko keskinkertainen.
@@ -209,3 +209,27 @@ url: https://www.alko.fi/tuotteet/490728
 ArvosteluMika: Viini on väriltään haalean pinkki. Viinissä on miellyttävä, hennon mansikkainen tuoksu, jossa on myös hiukan kirpeyttä. Ensivaikutelma mausta on varsin kuiva, ei kovinkaan makea ja hiukan hapan. Ensimaun jälkeen viiniin kehittyy mansikkaisuutta ja raparperia. Maku jää hieman vetiseksi. Viini jättää suuhun miedon ja hiukan happaman jälkimaun. Kokonaisuutena viini on kevyt ja hieman vaatimaton. Se voisi sopia hyvin jonkin raikkaan ja kevyen ruuan kanssa, mutta paljaaltaan siinä saisi olla hiukan enemmän makua.
 ArvosteluSalla: Viini on mansikkamehunväristä. Tuoksu on makean mansikkainen ja raikas. Maku on kuivahko ja miellyttävän mansikkainen. Kuivuusaste on mielestäni juuri sopiva. Jälkimaussa esiin nousee hieman enemmän happamuutta. Maku on tasainen ja mieto, ja kokonaisuutena viini on aika mutkaton. Toimii hyvin seurustelujuomana mutta käy varmasti myös kevyiden ruokien kanssa.
 Arvosana: 2.25 M 3.5 S
+
+
+VIINI: Montalto Passivento Rosato 2018
+Päivämäärä: 14.2.2020
+Maa: Italia
+Hinta: 10.99 € (0.75 l)
+Kuvaus: Makea, hapokas, villivadelmainen, metsämansikkainen, sitruksinen, kevyen kirsikkainen
+SopiiNautittavaksi: seurustelujuoma, salaatit ja kasvisruoka, itämainen ruoka, kana ja kalkkuna
+url: https://www.alko.fi/tuotteet/403687
+ArvosteluMika: Tuoksu on vahvan sitruksinen ja mansikkainen. Lisäksi viinin tuoksu tuo mieleen vastaleikatun nurmikon. Ensivaikutelma mausta on yllättävän hapokas ja mineraalinen. Makuun kehittyy kuitenkin nopeasti myös runsaasti makeutta, mikä tuo mielenkiintoisen kontrastin hapokkuuden kanssa. Maku on aluksi melko terävä, mutta pehmenee pian, jolloin viinin pehmeä mansikkaisuus nousee esiin. Viinin jälkimaku on pehmeä ja kevyen mansikkainen. Tämä on mielestäni selkeästi enemmän seurustelu- kuin ruokaviini, ja seurustelujuomana viini on erinomainen. Viini on helposti juotava mutta kuitenkin vivahteikas, eikä pelkkä kaatoviini.
+ArvosteluSalla: Viinin tuoksu on mieto ja makean mansikkainen mutta myös hivenen kirpakka. Viinin maku on pehmeä, makean mansikkainen ja miellyttävän kesäinen. Jälkimaun mieto sitruunaisuus tuo viiniin mukavasti kontrastia, mutta kokonaisvaikutelma on varsin pehmeä ja makea. Erittäin miellyttävä seurusteluviini.
+Arvosana: 3.75 S 4.5 M
+
+
+VIINI: Woodie Rose 2018
+Päivämäärä: 11.4.2020
+Maa: Australia
+Hinta: 29.99 € (3 l)
+Kuvaus: Kuiva, keskihapokas, kirsikkainen, metsämansikkainen, kevyen vadelmahilloinen, hennon yrttinen
+SopiiNautittavaksi: seurustelujuoma, porsas, kana ja kalkkuna, rasvainen kala
+url: https://www.alko.fi/tuotteet/487628
+ArvosteluMika: Tuoksussa tuntuu mansikkaisuutta ja raparperisuutta. Maku on kuiva mutta lempeän mansikkainen sekä lisäksi kirpakka ja jonkin verran hapokas. Mansikkaisuus ja kuivuus ovat mielenkiintoinen yhdistelmä, sillä mansikkaiset viinit ovat tyypillisesti tätä makeampia. Tämä on oikein hyvä seurusteluviini. Se voisi sopia myös jonkin broileriruoan kumppaniksi.
+ArvosteluSalla: Raikas, hieman kirpakka ja vahvan mansikkainen tuoksu. Ensimaussa tuntuu mansikan makeus, jonka alta kuitenkin pian puskee läpi viinin kuivuus. Jälkimaussa tuntuu myös aavistus yrttisyyttä. Kokonaisuus on tasapainoinen mutta ei missään nimessä tylsä, ja se sopii erittäin hyvin etenkin seurustelujuomaksi.
+Arvosana: 3.5 M S
