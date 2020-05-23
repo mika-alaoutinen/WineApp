@@ -3,9 +3,9 @@ Päivämäärä: 18.04.2018
 Maa: Yhdysvallat
 Hinta: 13.49 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Täyteläinen, keskitanniininen, karhunvatukkahilloinen, mustikkainen, luumuinen, mokkainen
+täyteläinen, keskitanniininen, karhunvatukkahilloinen, mustikkainen, luumuinen, mokkainen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, pasta ja pizza, grilliruoka
-url: https://www.alko.fi/tuotteet/430067/Apothic-Dark-2015
+url: https://www.alko.fi/tuotteet/430067/
 ArvosteluMika: Viini on väriltään syvän punainen ja sen tuoksu on tumman luumuinen ja mokkainen. Ensivaikutelma viinin mausta on yllättävän kuiva, tekstuuriltaan kepeä ja vaikeasti määriteltävä. Hetken päästä makuun kehittyy mietoa karhunvatukkaa. Viinin jälkimaku on pitkä, savuinen ja aavistuksen kitkerä. Kokonaisuutena yllättävän kevyt, melko vähätanniininen ja varsin miedon makuinen viini. Tämä on mielestäni melko neutraali punaviini, joka käy todennäköisesti hyvin yhteen erilaisien ruokien kanssa tai vaikka paljaaltaan. Viini on helposti juotava, mutta ei kuitenkaan mikään huippuviini.
 ArvosteluSalla: Viinin tuoksu on syvä ja täyteläinen, ja siinä on havaittavissa makeaa mustikkaa ja ehkä hieman kirsikkaa. Ensimaussa on hieman happamuutta ja kirpakkuutta, joka haihtuu kuitenkin pian. Viinin maku on erittäin pehmeä ja lempeän täyteläinen, ja se tuo mieleen sametin syleilyn. Jälkimaussa esiin nousee ehkä hieman mokkaisuutta. Viini jättää suuhun pehmeän ja miedon jälkimaun. Tämä sopii mielestäni parhaiten rauhallisiin nautiskeluhetkiin, ja tätä voisi kuvailla ns. suunmakuiseksi.
 Arvosana: 3.75 M 4.75 S
@@ -16,7 +16,7 @@ Päivämäärä: 27.2.2016
 Maa: Italia
 Hinta: 32.99 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Täyteläinen, keskitanniininen, makean luumuinen, kirsikkahilloinen, kevyen mausteinen
+täyteläinen, keskitanniininen, makean luumuinen, kirsikkahilloinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, miedot juustot, pasta ja pizza
 url: https://www.alko.fi/tuotteet/466488
 ArvosteluMika: Viinissä on pehmeä kirsikkainen ja ehkä aavistuksen mausteinen tuoksu. Viini on väriltään täyteläisen punainen. Ensimaku on tasainen, happaman kirsikkainen mutta kumminkin pehmeä ja keskitanniininen. Toisella siemauksella esiin nousee enemmän makeutta, mutta tanniinisuus on edelleen vahvasti läsnä. Toisella kertaa jälkimaussa maistuu mausteisuutta. Kokonaisuutena viinin maussa on selkeästi happamuutta kirsikasta, makeutta, kohtalaisesti tanniinisuutta sekä ripaus mausteisuutta. Näin ollen viinin kokonaisvaikutelma on täyteläinen, muttei kuitenkaan liian raskas, ja tasapainoinen. Tämä on mielestäni erinomainen punaviini, joka sopii varmasti monenlaisen ruuan kumppaniksi, mutta ei myöskään ole liian raskas nautittavaksi paljaaltaan.
@@ -29,7 +29,7 @@ Päivämäärä: 27.2.2016
 Maa: Espanja
 Hinta: 7.98 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, tanniininen, kypsän karpaloinen, karhunvatukkainen, mausteinen
+täyteläinen, tanniininen, kypsän karpaloinen, karhunvatukkainen, mausteinen
 SopiiNautittavaksi: grilliruoka, mausteiset ja lihaisat makkarat, porsas, nauta
 url: http://www.alko.fi/tuotteet/459007
 ArvosteluMika: Viini on täyteläisen tummanpunainen. Tuoksu on vahvan tanniininen ja aavistuksen karpaloinen. Ensivaikutelma viinistä on vahvan tanniininen ja hilloinen. En maista viinissä kuvailun marjaisuutta, sillä tanniinisuus peittää sen alleen. Viinin marjaisuus nousee jonkin verran esiin jälkimaussa, joskin jälkimaun päällimmäinen vaikutelma on suun pinnat liisteröivä hilloisuus. Viiniä juotua tekee mieli ottaa kulaus vettä ja pestä hampaat. Viini vaatii ehdottomasti tuhdin ruuan kumppanikseen, en missään nimessä valitsisi tätä seurustelujuomaksi.
@@ -42,7 +42,7 @@ Päivämäärä: 5.8.2018
 Maa: Yhdysvallat
 Hinta: 13.60 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mausteinen, hennon mokkainen
+keskitäyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mausteinen, hennon mokkainen
 SopiiNautittavaksi: grilliruoka, porsas, nauta, seurustelujuomana
 url: https://www.alko.fi/tuotteet/453178
 ArvosteluMika: Viinin tuoksu on punamarjainen – luultavasti boysenmarjainen – ja kirpakan mausteinen. Ensivaikutelma mausta on yllättävän kepeä, punamarjainen ja kevyen tanniininen. Viini ei ole oikein hapan, muttei myöskään suoranaisesti makea, vaan varsin neutraali ja tasapainoinen välimallijätkä. Boysenmarja tuo viiniin miellyttävää lisäpotkua, mutta se ei kuitenkaan maistu liian vahvasti. Viini sopi hyvin ruuan kanssa, mutta on ehkä turhan kepeä hyvin tuhtien liharuokien kumppaniksi. Viini toimii erinomaisesti myös seurustelujuomana. Kokonaisuutena viini oli kuvauksestaan poiketen mielestäni melko kepeä ja marjainen.
@@ -55,7 +55,7 @@ Päivämäärä: 22.10.2017
 Maa: Ranska
 Hinta: 19.98 € (2 l)
 Kuvaus: Marjaisa ja raikas,
-Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, mustikkainen, kevyen vaniljainen
+keskitäyteläinen, keskitanniininen, kypsän karpaloinen, mustikkainen, kevyen vaniljainen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, pikkusuolaiset, porsas
 url: https://www.alko.fi/tuotteet/451158/
 ArvosteluMika: Viinissä on syvä, kirsikkainen ja hieman hapan tuoksu. Viinin ensimaussa ensimmäisenä esiin nousevat tanniinit, jotka kuorruttavat suun välittömästi. Maun puolesta viini on jonkin verran hapan, jopa hiukan karvas, ja karpaloinen. Viinin maku on varsin tasainen, joskin jälkimaussa viinin happamuus nousee ensimakua selvemmin esiin. Kokonaisuutena viini on kohtalaisen roteva ja täyteläinen, muttei kuitenkaan liian raskas nautittavaksi paljaaltaan. Mielestäni viini toimii kuitenkin paremmin ruuan kanssa kuin yksinään, ja se voisikin olla melko monipuolinen punaviini.
@@ -68,7 +68,7 @@ Päivämäärä: 25.6.2016
 Maa: Etelä-Afrikka
 Hinta: 9.99 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, tumman luumuinen, karhunvatukkahilloinen, runsaan mokkainen, vaniljainen
+täyteläinen, keskitanniininen, tumman luumuinen, karhunvatukkahilloinen, runsaan mokkainen, vaniljainen
 SopiiNautittavaksi: grilliruoka, lammas, nauta, mausteiset ja lihaisat makkarat
 url: http://www.alko.fi/tuotteet/402267/
 ArvosteluMika: Viini on varsin tanniininen ja täyteläinen ja se kuorruttaa kielen. Vaikka viinin pääasiallinen vaikutelma on varsin syvä ja täyteläinen, on siinä kuitenkin myös jonkin verran makeutta ja marjaisaa kepeyttä. Ensimaistamalla olin myös tunnistavani mokkaisen maun, mutta myöhemmällä maistelulla se ei kyllä enää nouse esiin. Sopii hyvin täydentämään ronskia liharuokaa, mutta on melko raskas paljaaltaan juotavaksi.
@@ -81,7 +81,7 @@ Päivämäärä: 8.6.2015
 Maa: Etelä-Afrikka
 Hinta: 8.29 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, kevyen luumuinen, herukkainen, mausteinen
+keskitäyteläinen, keskitanniininen, tumman kirsikkainen, kevyen luumuinen, herukkainen, mausteinen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, pikkusuolaiset
 url: http://www.alko.fi/tuotteet/439447/ 
 ArvosteluMika: Punaviiniksi viinin maku on melko mieto ja kevyt. Vaikka viini on kuvauksen mukaan keskitanniininen, itse arvioisin sen ennemminkin vähätanniiniseksi. Viini on hiukan hapan, ja herukkaisuus maistuu hennosti. Viini on melko kevyt, enkä valitsisi sitä punaisen lihan kanssa. Alkoholi ei juuri maistu viinissä. Sopisi melko hyvin seurustelujuomaksi.
@@ -94,7 +94,7 @@ Päivämäärä: 24.12.2014
 Maa: Yhdysvallat
 Hinta: 7.77 € (0.75 l),
 Kuvaus: Pehmeä ja hedelmäinen,
-	Kevyt, vähätanniininen, makeahko, mehumainen, hennon mansikkainen
+kevyt, vähätanniininen, makeahko, mehumainen, hennon mansikkainen
 SopiiNautittavaksi: seurustelujuomana, kana ja kalkkuna, porsas, itämainen ruoka
 url: http://www.alko.fi/tuotteet/006955/ 
 ArvosteluSalla: Pehmeänmakuinen, mehumainen viini. Jälkimaku on hieman katkera. Oiva ruokajuoma miedon makunsa vuoksi; ei peitä ruoan makuja alleen, vaan parhaimmillaan korostaa niitä. En itse valitsisi tätä kuitenkaan seurustelujuomaksi, ellei seurustelun ohessa olisi jotain pikkupurtavaa tarjolla. Ihan kelpo peruspunkku, jos pitää kevyestä ja mehumaisesta.
@@ -106,7 +106,7 @@ Päivämäärä: 14.4.2017
 Maa: Australia
 Hinta: 27.95 € (3 l)
 Kuvaus:	Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, kirsikkainen, puolukkainen, yrttinen, kevyen mausteinen
+keskitäyteläinen, keskitanniininen, kirsikkainen, puolukkainen, yrttinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, porsas, grilliruoka, mausteiset ja lihaisat makkarat
 url: https://www.alko.fi/tuotteet/435748
 ArvosteluMika: Ensivaikutelma tuoksusta oli syvän mustaherukkainen. Viinin ensimaku on mustaherukkainen, kohtuullisen tanniininen, syvä muttei kovinkaan kitkerä. Ensimaku on melko pehmeä, mutta viinin maku voimistuu jälkimakua kohden. Viini jättää suuhun tanniinisen ja happaman marjaisen jälkimaun. Viini on sen verran tanniininen, että se vaatii kumppanikseen ehkä mieluiten punaista lihaa. Voisi sopia myös tuhtien juustojen kanssa.
@@ -119,7 +119,7 @@ Päivämäärä: 10.11.2018
 Maa: Espanja
 Hinta: 26.54 € (3 l)
 Kuvaus:	Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, karhunvatukkainen, mustikkainen, kirsikkainen, kevyen mausteinen
+keskitäyteläinen, keskitanniininen, karhunvatukkainen, mustikkainen, kirsikkainen, kevyen mausteinen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, tapas ja antipasti, seurustelujuomana
 url: https://www.alko.fi/tuotteet/429978/
 ArvosteluMika: Viinin tuoksu on miedon karhunvatukkainen ja mausteinen. Ensivaikutelma mausta on yllättävän tanniininen ja tasainen. Maussa päällimmäisenä nousee esiin karhunvatukkaisuus, minkä lisäksi etenkin jälkimaussa on hieman mausteisuutta. Viinin alkoholisuus peittyy poikkeuksellisen hyvin, joskin runsaat tanniinit antavat sille runsaasti bodya. Viini on mauiltaan melko mieto, mutta tekstuuriltaan täyteläinen ja runsas. Näin ollen se on mielestäni poikkeuksellisen neutraali punaviini, minkä ansiosta se todennäköisesti käy hyvin monenlaisien ruokien kanssa.
@@ -132,9 +132,9 @@ Päivämäärä: 25.1.2017
 Maa: Etelä-Afrikka
 Hinta: 8.48 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-	Täyteläinen, tanniininen, karhunvatukkahilloinen, tumman kirsikkainen, mokkainen
+täyteläinen, tanniininen, karhunvatukkahilloinen, tumman kirsikkainen, mokkainen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, pataruoat
-url: https://www.alko.fi/tuotteet/453747/Dimension-Shiraz-Malbec-2016
+url: https://www.alko.fi/tuotteet/453747/
 ArvosteluMika: Alkunuuhkiminen tuli lähinnä ohitettua, mutta mieleen jäi täyteläinen mustaherukkainen tuoksu. Ensimaku on kepeä, vähätanniininen ja makean mustaherukkainen. Ensimaun jälkeen viiniin kehittyy kuitenkin syvempi tanniininen ja hieman happamampi maku. Jälkimaku on melko tanniininen ja kuorruttaa suun, mutta se on kuitenkin myös miellyttävän makea ja marjainen. Melko yksinkertainen ja miellyttävä kokonaisuus. Toimi erinomaisesti tuhdin liharuoan kanssa, mutta voisin kuvitella juovani tätä myös seurustelujuomana tai kenties juustojen kanssa.
 ArvosteluSalla: Viinin tuoksussa tuntuvat vahvasti tummat marjat sekä tanniinisuus; maussa ne tuntuvat vain entistä voimakkaammin. Kuitenkin maku on mielestäni hyvin pehmeä, tasainen ja tasapainoinen. Viini ei ole kovin erikoinen muttei mitenkään tylsäkään.
 Arvosana: 4.25 M 3.75 S
@@ -145,7 +145,7 @@ Päivämäärä: 6.10.2017
 Maa: Italia
 Hinta: 29.99 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, puolikuiva, makean kirsikkainen, marjahilloinen, mausteinen
+keskitäyteläinen, keskitanniininen, puolikuiva, makean kirsikkainen, marjahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, seurustelujuomana, pikkusuolaiset, noutopöytä
 url: https://www.alko.fi/tuotteet/432548
 ArvosteluMika: Viinin tuoksu on kirsikkainen, makean paprikainen ja hennon savuinen. Ensimaku on pehmeä, vähätanniininen ja melko mieto. Hetken kuluttua makuun kehittyy selvästi lisää happamuutta, mikä antaa viinille kaivattua ryhtiä. Jälkimaku on happamahko ja jopa aavistuksen kitkerä. Toisella siemauksella viinin happamuus ja kitkeryys korostuvat ensimaistelua enemmän, mutta kokonaisvaikutelma on siltä kepeä. Viini on ehkä liian mieto liharuuan kumppaniksi, mutta uskon, että se voi sopia hyvin kasvisruuan kanssa. Se toimii myös hyvin paljaaltaan ja on poikkeuksellisen vähätanniininen ja helposti juotava punaviini. Viinin happamuus ja kuivuus pitää kuitenkin huolen siitä, ettei viini maistu mehumaiselta.
@@ -158,7 +158,7 @@ Päivämäärä: 24.9.2016
 Maa: Chile
 Hinta: 15.79 € (1.5 l)
 Kuvaus: Mehevä ja hilloinen,
-	Täyteläinen, keskitanniininen, mustaherukkainen, kypsän karpaloinen, mausteinen
+täyteläinen, keskitanniininen, mustaherukkainen, kypsän karpaloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, mausteiset ja lihaisat makkarat, noutopöytä, porsas
 url: http://www.alko.fi/tuotteet/459178/
 ArvosteluMika: Viinin tuoksusta päällimmäisenä nousi esiin kirpakka karpaloisuus. Lisäksi tuoksussa on selkeää happamuutta, mutta viini ei kuitenkaan tuoksu erityisen raskaalta. Ensimaku oli yllättävän kepeä. Keskivaiheilla esiin nousi kypsä karpalon maku, ja siirryttäessä kohti jälkimaku karpaloisuus siirtyi syrjään mustaherukkaisuuden tieltä. Viini maistuu puolikuivalta ja varsin vähätanniiniselta, joskin se kuorruttaa suun sisäpinnat punaviinille tyypilliseen tapaan varsin vahvasti. Tämä on mielestäni hyvä yleisviini lihan kanssa nautittavaksi; viini on riittävän kepeä eikä välttämättä tarvitse kumppanikseen tuhtia liharuokaa, mutta se toiminee kuitenkin myös tuhdin ruoan kumppanina. Viinissä yhdistyvät miellyttävästi kirpakkuus, happamuus ja marjainen makeus, ja kokonaisuus on monivivahteinen.
@@ -172,7 +172,7 @@ Päivämäärä: 24.3.2017
 Maa: Ranska
 Hinta: 29.94 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, puolikuiva, kirsikkahilloinen, metsämarjainen, mausteinen, kevyen vaniljainen
+keskitäyteläinen, keskitanniininen, puolikuiva, kirsikkahilloinen, metsämarjainen, mausteinen, kevyen vaniljainen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, salaatit ja kasvisruoka, noutopöytä
 url: https://www.alko.fi/tuotteet/463308
 ArvosteluMika: Viini on väriltään melko tumma ja sen tuoksu on vahvan mustaherukkainen. Tuoksu on syvä ja melko makea. Ensivaikutelma mausta on varsin kepeä ja hiukan hapan sekä marjainen. Maussa keskivaiheilla viinin tanniinit nousevat selkeämmin esiin; arvioisin viiniä keskitanniiniseksi. Jälkimaussa voimakkaimmin esiin nousee mustaherukkaisuus. Tanniinisuudesta huolimatta viini on varsin kepeä. Huomionarvoista on se, kuinka viinin maku kehittyy melko kevyestä ja hiukan happamasta ensimausta kohtuullisen syvään, mustaherukkaiseen jälkimakuun. Viini jättää suuhun miedon mustaherukkaisen jälkimaun, joskin viinin tanniinit maistuvat pitkään senkin jälkeen, kun juoma on kulautettu kurkkutorvesta alas kohti mahalaukkua. Viini toimii luultavasti monenlaisien ruokien kumppanina, pois lukien ehkä hyvin tuhdit liharuoat. Itse kokeilisin tätä broilerin kanssa.
@@ -184,7 +184,7 @@ Päivämäärä: 19.5.2017
 Maa: Etelä-Afrikka
 Hinta: 16.99 € (1.5 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, kypsän kirsikkainen, kevyen luumuinen, mustikkahilloinen, maitokahvinen, mokkainen
+keskitäyteläinen, keskitanniininen, kypsän kirsikkainen, kevyen luumuinen, mustikkahilloinen, maitokahvinen, mokkainen
 SopiiNautittavaksi: grilliruoka, mausteiset makkarat, porsas, seurustelujuoma
 url: https://www.alko.fi/tuotteet/442588/
 ArvosteluMika: Viinissä on hapan, kirsikkainen ja melko vahvasti tanniininen tuoksu. Viini on väriltään syvän punainen. Viinin ensimaku on hapan ja tanniininen. Nielaistessa maistuu raikas kirsikka, ja jälkimaku on mokkainen. Viini jättää vahvasti tanniinisen ja melko happaman jälkimaun. Viini kaipaa ehdottomasti kumppanikseen ruokaa, sillä paljaaltaan nautittuna se on turhan hapan ja tanniininen. Söisin tämän kanssa ehkä jotain mausteisia makkaroita tai grillattua punaista lihaa.
@@ -197,7 +197,7 @@ Päivämäärä: 28.12.2017
 Maa: Saksa
 Hinta: 20.98 € (2 l)
 Kuvaus: Marjaisa ja raikas,
-Keskitäyteläinen, keskitanniininen, vadelmainen, kirsikkainen, hennon vaniljainen, kevyen mausteinen
+keskitäyteläinen, keskitanniininen, vadelmainen, kirsikkainen, hennon vaniljainen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, rasvainen kala, salaatit ja kasvisruoka, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet/477968
 ArvosteluMika: Viinin tuoksu on varsin mieto, kirsikkainen ja hieman savuinen ja mausteinen. Viinin maku on kevyt, jopa vetinen, vähätanniininen ja jonkin verran hapan. Päällimmäisenä siinä maistuu kirsikkaisuutta ja hentoa mausteisuutta. Viinin jälkimaku on miedon hapan ja karpaloinen. Kokonaisuutena viini on yksiulotteinen, mehumainen ja jopa tunkkainen. Kannattanee huomata, että tonkka on seisonut avattuna noin viikon, mikä saattaa vaikuttaa sen makuun.
@@ -210,7 +210,7 @@ Päivämäärä: 17.10.2016
 Maa: Argentiina
 Hinta: 9.95 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Täyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mokkainen, kevyen suklainen, mausteinen
+täyteläinen, keskitanniininen, kirsikkahilloinen, boysenmarjainen, mokkainen, kevyen suklainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, porsas, pikkusuolaiset
 url: http://www.alko.fi/tuotteet/458667/
 ArvosteluMika: Viinissä on vahvan mustaherukkainen ja hiukan makea tuoksu. Ensivaikutelma on täyteläinen ja hieman makea. Hetken kuluttua maussa nousee esiin makea mustaherukkaisuus. Toisella siemauksella esiin nousee selkeää happamuutta ja kenties karpaloisuutta. Viinissä täyteläinen marjaisuus, makeus ja hapokkuus ovat miellyttävässä tasapainossa. Viini on melko kevyt ja vähätanniininen. Viini voisi olla hyvä vaihtoehto esimerkiksi kasvisruoille tai muille kevyille ruoille. Lisäksi voisi sopia myös vaikkapa juustolautasen ja keksien kanssa sekä seurustelujuomana. Kokonaisuutena oikein miellyttävä ja kepeähkö punaviini.
@@ -223,7 +223,7 @@ Päivämäärä: 27.10.2015
 Maa: Chile
 Hinta: 8.98 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
-	Keskitäyteläinen, keskitanniininen, mustaherukkainen, mustikkainen, kevyen 	tamminen
+keskitäyteläinen, keskitanniininen, mustaherukkainen, mustikkainen, kevyen 	tamminen
 SopiiNautittavaksi: porsas, grilliruoka, nauta, miedot makkarat
 url: http://www.alko.fi/tuotteet/405698
 ArvosteluMika: Viini on melko tuhti mutta varsin miellyttävän makuinen. Maku on tasainen ja paksu, jälkimaku on siirappisen tanniininen; kuorruttaa kielen tehokkaasti. Minun makuuni liian raskas seurustelujuomaksi, mutta sen sijaan sopi hyvin tuhdin liharuuan pariksi.
@@ -236,7 +236,7 @@ Päivämäärä: 19.9.2019
 Maa: Yhdysvallat
 Hinta: 35.99 € (3 l)
 Kuvaus: Marjaisa ja raikas,
-Keskitäyteläinen, keskitanniininen, vadelmainen, mesimarjainen, kirsikkainen, mokkainen, mausteinen
+keskitäyteläinen, keskitanniininen, vadelmainen, mesimarjainen, kirsikkainen, mokkainen, mausteinen
 SopiiNautittavaksi: grilliruoka, kana ja kalkkuna, seurustelujuoma, salaatit ja kasvisruoka
 url: https://www.alko.fi/tuotteet/448098
 ArvosteluMika: Viinin tuoksusta ei irtoa oikein mitään, kenties hiven kirsikkaa. Ensivaikutelma mausta on pehmeä, melko makea ja tasainen. Jälkimaussa nousee kuitenkin esiin myös happamuutta ja aavistus kitkeryyttä. Viinistä on kuitenkin vaikea saada irti mitään kauhean erityistä, ja kokonaisvaikutelma on tasapaksu ja mitäänsanomaton. Viini ei ole huono, muttei myöskään erotu mitenkään edukseen.
@@ -249,7 +249,7 @@ Päivämäärä: 26.03.2016
 Maa: Espanja
 Hinta: 6.99 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-	Keskitäyteläinen, vähätanniininen, makea, kypsän marjainen, mausteinen
+keskitäyteläinen, vähätanniininen, makea, kypsän marjainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, miedot juustot
 url: http://www.alko.fi/tuotteet/004246/
 ArvosteluMika: Viini on väriltään hyvin tummanpunainen. Ensinuuhkaisulla viinissä on voimakkaan marjainen ja makeahko tuoksu. Todella erikoisen makuinen. Ensivaikutelma on hyvin makea ja raikkaan marjainen. Viinissä on todella vähän tanniinisuutta, mikä yhdessä sen makeuden kanssa tekee siitä erittäin pehmeän ja tasaisen makuisen, suorastaan mehumaisen. Marjaisuuden hienovaraisena kontrastina viinissä on myös kevyttä mausteisuutta. Sopii erinomaisesti sinällään juotavaksi, mutta ei missään nimessä ole ruokaviini. Sopii erinomaisesti sinihomejuuston kanssa tasapainottamaan sen suolaisuutta. Kaiken kaikkiaan hyvin poikkeuksellinen punaviini, jolle on todella vaikea yrittää antaa numeerista arvosanaa. Pidän viinistä paljon, koska se on todella kevyt ja helposti juotava punaviini, joka erottuu selkeästi peruspunaviinien joukosta. Toisaalta viiniä on vaikea mieltää punaviiniksi, koska se on niin erilainen keskivertopunaviiniin nähden.
@@ -262,7 +262,7 @@ Päivämäärä: 6.10.2019
 Maa: Espanja
 Hinta: 20.98 € (2 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, kypsän kirsikkainen, mansikkahilloinen, mausteinen
+keskitäyteläinen, kypsän kirsikkainen, mansikkahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, miedot makkarat, porsas, pataruoat
 url: https://www.alko.fi/tuotteet/480848
 ArvosteluMika: Viinissä on täyteläisen kirsikkainen tuoksu ja kenties hiven mausteisuutta. Ensivaikutelma mausta on keksitäyteläinen ja -tanniininen. Viinissä on runsas suutuntuma ja maussa päällimmäisenä esiin nousee hapan kirsikka. Erityisesti jälkimaussa nousee esiin myös mausteisuutta, mikä jättää viinille kevyen kirpakan jälkimaun. Viinistä jää myös vahvan tanniininen suutuntuma. Tämä on selvästi enemmän ruoka- kuin seurusteluviini, ja sopii varmasti hyvin esim. erilaisten pataruokien kumppaniksi. Kokonaisuutena viinissä on tuhti ja runsas suutuntuma, mutta se ei kuitenkaan ole liian raskas ollakseen miellyttävä.
@@ -275,7 +275,7 @@ Päivämäärä: 17.2.2017
 Maa: Etelä-Afrikka
 Hinta: 22.89 € (2 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, vähätanniininen, puolimakea, kirsikkahilloinen, mustikkainen, vaniljainen, hennon mausteinen
+keskitäyteläinen, vähätanniininen, puolimakea, kirsikkahilloinen, mustikkainen, vaniljainen, hennon mausteinen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, porsas, itämainen ruoka
 url: https://www.alko.fi/tuotteet/903468
 ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, ja päällimmäisenä siinä nousee esiin luumu. Lisäksi siinä on jonkin verran makeutta, melko vahvaa mausteisuutta ja kenties tammea. Viinin ensimaku on melko makea ja mokkainen sekä hennon marjainen. Ensimaun jälkeen viiniin kehittyy selkeästi happamuutta, syvää luumuisuutta ja jonkin verran kitkeryyttä. Ensimaku oli varsin kepeä ja makeahko, mutta jälkimaku on selvästi hapan ja puolikuiva. Kokonaisuutena viini on varsin täyteläinen ja kohtuullisen tanniininen. Viini voisi sopia hyvin esimerkiksi mausteisen broileriruoan kanssa. Kokonaisuutena mielenkiintoinen ja varsin vivahteikas viini, joka sopii myös seurustelujuomaksi.
@@ -288,7 +288,7 @@ Päivämäärä: 18.8.2019
 Maa: Ranska
 Hinta: 31.98 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, mustikkainen, vadelmainen, kevyen mustaherukkainen, mausteinen
+keskitäyteläinen, keskitanniininen, mustikkainen, vadelmainen, kevyen mustaherukkainen, mausteinen
 SopiiNautittavaksi: porsas, kana ja kalkkuna, noutopöytä, grilliruoka
 url: https://www.alko.fi/tuotteet/005312 
 ArvosteluMika: Viinissä on miellyttävän kirsikkainen ja mehevä tuoksu, mutta se ei kuitenkaan vaikuta tuoksun perusteella liian raskaalta. Olen erottavinani tuoksussa myös hienoista mokkaisuutta, mikä antaa tuoksulle lisää syvyyttä. Ensivaikutelma mausta on keskitanniininen ja maltillisen hapan. Hallitsevana makuna on pehmeä kirsikka, mutta etenkin jälkimaussa nousee esiin myös mausteisuutta. Kokonaisuus on riittävän tanniininen, jotta viini sopii monipuolisesti erilaisien ruokien kumppaniksi, mutta kokonaisvaikutelma on kuitenkin pehmeä ja helposti juotava. Kokonaisuutena tämä on hyvin monipuolinen ja keskivertoa parempi perusviini; se ei ole erityisen eksoottinen, mutta kuitenkin toimii erinomaisesti sekä ruuan kanssa että paljaaltaan.
@@ -300,9 +300,9 @@ Päivämäärä: 6.4.2018
 Maa: Etelä-Afrikka
 Hinta: 9.98 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, suklainen, kahvinen, hennon mausteinen
+keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, suklainen, kahvinen, hennon mausteinen
 SopiiNautittavaksi: nauta, porsas, grilliruoka, seurustelujuomana
-url: https://www.alko.fi/tuotteet/487128/Juno-Shiraz-2016-kartonkit-lkki
+url: https://www.alko.fi/tuotteet/487128/
 ArvosteluMika: Viinissä on makean täyteläinen, kypsän punamarjainen ja roteva tuoksu. Tuoksussa erottuu happamia marjoja ja aavistus savua. Viinissä on täyteläinen ja melko tanniininen ja samettinen suutuntuma, mutta viinin tekstuuri ei kuitenkaan ole liian raskas. Ensivaikutelma viinin mausta on  happaman kirsikkainen, vahvan tanniininen mutta kuitenkin yllättävän mieto. Viini jättää pitkän happaman marjaisen jälkimaun. Viinin mausta on vaikea erottaa selkeästi muita makuja, kuin tummaa kirsikkaa, mutta siinä on kenties myös hieman mausteisuutta. Viini on hieman raskas seurustelujuomaksi ja käy todennäköisesti parhaiten liharuuan kumppaniksi. Kokonaisuutena miellyttävä, täyteläinen ja jopa roteva.
 ArvosteluSalla: Tuoksu on täyteläinen, makeahko ja kirsikkainen. Viinin maku on pehmeä, täyteläinen, runsas ja hieman hilloinen, ja siinä tuntuu kirsikoiden happamuutta. Kokonaisuus on tasapainoinen ja erittäin miellyttävä ja maukas. Erinomainen nautiskeluviini, joka voisi käydä myös miedompien juustojen kanssa.
 Arvosana: 4.25 S 4 M
@@ -313,7 +313,7 @@ Päivämäärä: 8.7.2015
 Maa: Chile
 Hinta: 18.99 € (2 l)
 Kuvaus: Marjaisa ja raikas,
-	Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
+keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kevyen paprikainen, hennon vaniljainen
 SopiiNautittavaksi: pikkusuolaiset, kana ja kalkkuna, porsas, pasta ja pizza
 url: http://www.alko.fi/tuotteet/005386/ 
 ArvosteluMika: Ensimaku on hieman pistävä, minkä jälkeen viinissä tulee esille karpalon maku. Yhdyn myös siihen, että viinissä on savun makua. Karpalo tuo viiniin melko hapanta ja jopa pistävää makua. Toisaalta viini ei ole kovin vahvasti tanniininen, ja näin ollen se on kokonaisuutena melko kepeä. Saatan vain kuvitella, mutta olen maistavinani jälkimaussa aavistuksen luvattua vaniljaa. Kokonaisuutena kuvailisin viiniä marjaisaksi ja hieman happamaksi. Melko kepeä punaviiniksi, ja soveltunee kohtalaisen hyvin nautittavaksi myös sinällään.
@@ -326,7 +326,7 @@ Päivämäärä: 12.11.2016
 Maa: Etelä-Afrikka
 Hinta: 8.99 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, karhunvatukkainen, tumman luumuinen, mokkainen, hennon yrttinen
+täyteläinen, keskitanniininen, karhunvatukkainen, tumman luumuinen, mokkainen, hennon yrttinen
 SopiiNautittavaksi: nauta, lammas, grilliruoka, voimakkaat juustot
 url: http://www.alko.fi/tuotteet/473107/ 
 ArvosteluMika: Väri on syvän punainen, ja viinin tuoksu on hieman makea, syvän marjainen ja kenties tamminen. Ensivaikutelma on keskitanniininen, melko hapan ja ei kovin makea. Jälkimaussa viinin happamuus korostuu, ja viini on enemmänkin raskas ja hieman tunkkainen kuin raikkaan marjainen. Viinin tanniinisuus nousee selvemmin esiin jälkimaussa. Viini on myös kuivahko. Seurustelujuomaksi viini on turhan raskas ja pistävä, mutta se sopinee paremmin punaisen lihan tai vahvojen juustojen kanssa nautittavaksi. Ei kuitenkaan nouse minun suosikkeihini.
@@ -339,7 +339,7 @@ Päivämäärä: 11.5.2018
 Maa: Italia
 Hinta: 31.99 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-	Täyteläinen, keskitanniininen, karpaloinen, kirsikkahilloinen, kevyen mausteinen
+täyteläinen, keskitanniininen, karpaloinen, kirsikkahilloinen, kevyen mausteinen
 SopiiNautittavaksi: noutopöytä, porsas, kana ja kalkkuna, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/472338/
 ArvosteluMika: Viinin tuoksu on lempeän marjaisa sekä suklainen. Viinin tekstuuri on täyteläinen ja melko tanniininen, mutta sen maku on yllättävän kepeä. Päällimmäisenä mausta nousee esiin karpalo, minkä lisäksi viinissä on kuitenkin myös jonkin verran makeutta, mikä tasapainottaa karpalon happamuutta. Viini on erikoinen kokonaisuus, sillä se on toisaalta hyvin täyteläinen ja kuorruttaa suun tanniineilla, mutta toisaalta sen maku on kuitenkin melko kepeä ja jopa raikas. Viini on ehkä turhan täyteläinen paljaaltaan nautittavaksi, mutta uskoisin, että se sopii hyvin monipuolisesti erilaisien ruokien kumppaniksi.
@@ -352,7 +352,7 @@ Päivämäärä: 18.1.2019
 Maa: Chile
 Hinta: 35.99 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, kirsikkahilloinen, mesimarjainen, maitokaakaoinen, tamminen
+täyteläinen, keskitanniininen, kirsikkahilloinen, mesimarjainen, maitokaakaoinen, tamminen
 SopiiNautittavaksi: grilliruoka, porsas, miedot juustot, mausteiset ja lihaisat makkarat
 url: https://www.alko.fi/tuotteet/94726
 ArvosteluMika: Viinin tuoksu on täyteläinen, kirpakka ja kenties mustikkainen. Olen lisäksi tunnistavinani tuoksussa tammisuutta. Maku on samanaikaisesti sekä yllättävän kepeä että kohtalaisen tanniininen ja täyteläinen. Viinin maku on tasainen, mutta jälkimakuun kehittyy selvästi kirpakkaa marjaisuutta sekä lisää happamuutta. Nyt kun viini on hieman kerennyt lämpenemään, ja sitä on tullut nautiskeltua jonkin verran, siitä nousee esiin enemmän makeutta. Viini on kokonaisuutena melko neutraali, joskin se sopi erityisen hyvin juustojen kumppaniksi. Luulen, että suosittelisin tätä viiniä ensisijaisesti broilerin kanssa, joskin se toimi hyvin myös lohen kera.
@@ -365,9 +365,8 @@ Päivämäärä: 27.8.2016
 Maa: Bulgaria
 Hinta: 7.98 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, puolimakea, kypsän marjainen, kevyen mausteinen
+keskitäyteläinen, keskitanniininen, puolimakea, kypsän marjainen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, voimakkaat juustot, itämainen ruoka, grilliruoka
- 
 url: http://www.alko.fi/tuotteet/007081/
 ArvosteluMika: Viinissä on ensituntumalta melko vahva makea, jopa hieman imelä tuoksu. Lisää nuuhkiessa esiin nousee myös happamaa marjaisuutta, kenties karpaloa. Ensimaku on vahvan hapan, joskin happamuutta pehmentää jonkin verran viinin tavallista runsaampi makeus. Viinissä on myös marjaisuutta, joskin happamuus tahtoo peittää sen alleen. Jälkimaku on selkeästi karpaloinen. Viinin tanniinisuus ei oikeistaan nouse esiin maussa, sillä vahva happamuus peittää sen alleen, mutta sen huomaa kuitenkin viinin tekstuurista; juodessa viini tuntuu suussa kuivalta ja kuorruttaa suun pinnat tehokkaasti. Ei maistu ollenkaan tyypilliseltä punaviiniltä, vaan enemmänkin jonkinlaiselta maustetulta punaviiniltä tai glögiltä. En valitsisi tätä minkään ruuan kanssa, ja se on kaiken kaikkiaan ehkä turhan erikoinen minun makuuni. Ei tämä pahaa ole, muttei myöskään vastaa käsitystäni siitä, millaista punaviini on.
 ArvosteluSalla: Viinin tuoksu on voimakas, ja siinä tuntuu mehevää marjaisuutta. Maku on ainakin aluksi todella kepeä, eikä ensimausta edes tule mieleen punaviini. Keskimaku sen sijaan on vahvempi ja happamampi, mutta sekin pehmenee miellyttävän marjaiseksi jälkimauksi. Mukavan pehmeä ja kepeä punaviini seurustelujuomaksi.
@@ -379,7 +378,7 @@ Päivämäärä: 31.10.2017
 Maa: Makedonia
 Hinta: 25.98 € (3 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, puolimakea, makean kirsikkainen, kypsän karpaloinen, kevyen mausteinen
+keskitäyteläinen, keskitanniininen, puolimakea, makean kirsikkainen, kypsän karpaloinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, pasta ja pizza, noutopöytä, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/005375/
 ArvosteluMika: Viinissä on melko hapan, kenties karpaloinen, ja hieman savuinen tuoksu. Viiniä hölskytellessä tuoksuun tulee lisää makeutta; mieleeni tuli savustettu paprikajauhe. Viinin ensimaku on kuivahko, keskitanniininen, melko hapan ja tasaisen makuinen. Maussa päällimmäisenä nousee esiin melko vahva karpaloisuus, joskin etenkin jälkimaussa tuntuu myös kirpakkaa mausteisuutta. Viini kuorruttaa suun pinnat ja jättää jälkeen happaman marjaisen jälkimaun. Minun makuuni vähän turhan hapan ja jopa vähän kitkerä. Ei kuitenkaan mikään kovin raskas viini, ja siinä mielessä sopii varmasti monenlaiseen käyttöön.
@@ -403,9 +402,9 @@ Päivämäärä: 3.9.2017
 Maa: Australia
 Hinta: 8.59 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, tumman kirsikkainen, mustapippurinen, kevyen paahteinen
+keskitäyteläinen, keskitanniininen, kypsän karpaloinen, tumman kirsikkainen, mustapippurinen, kevyen paahteinen
 SopiiNautittavaksi: porsas, seurustelujuoma, pikkusuolaiset, grilliruoka
-url: https://www.alko.fi/tuotteet/491248/No-Name-kartonkit-lkki
+url: https://www.alko.fi/tuotteet/491248/
 ArvosteluMika: Viini on väriltään tumman mutta hieman hailakan punainen, mikä kenties viittaa vähäiseen tanniinisuuteen. Tuoksu on melko mieto ja siinä on hapanta karpaloa. Viinin ensimaku on melko kepeä ja karpaloinen. Jälkimakua kohti siirryttäessä makuun tulee kuitenkin lisää potkua, joskin kuvailisin silti viiniä kokonaisuutena melko kevyeksi. Viini vaikuttaa varsin vähätanniiniselta. Jälkimaussa nousee esiin hieman kitkeryyttä ja kenties aavistus savua. Viinin vähätanniinisuudesta huolimatta se ei kuitenkaan ole mehumainen, sillä karpalo ja punamarjaisuus tekevät viinistä varsin happaman. Kokonaisuutena kepeähkö, joskin melko hapan ja yksiulotteinen viini. Soveltunee kohtuullisen hyvin seurustelujuomaksi tai kevyemmän liharuoan seuraksi.
 ArvosteluSalla: Viinissä on hento ja miellyttävä, punamarjainen tuoksu. Viinin ensimaku on poikkeuksellisen kepeä ja mieto punaviiniksi, mutta maku syvenee ja tummenee loppua kohden. Ensi- ja jälkimaun välissä on havaittavissa karpaloisuutta ja hieman kirsikkaisuutta. Paikoitellen vaikutelma on jopa hieman marjamehumainen, mutta mehumaisuus kestää vain hetkisen. Kokonaisuutena hieman erikoinen punaviini kepeytensä takia.
 Arvosana: 3 M 3.5 S
@@ -416,7 +415,7 @@ Päivämäärä: 26.09.2015
 Maa: Australia
 Hinta: 6.99 € (0.75 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, kirsikkahilloinen, mansikkainen, hennon mausteinen
+keskitäyteläinen, keskitanniininen, kirsikkahilloinen, mansikkainen, hennon mausteinen
 SopiiNautittavaksi: grilliruoka, pasta ja pizza, noutopöytä, porsas
 url: http://www.alko.fi/tuotteet/499057/
 ArvosteluMika: Ensivaikutelma oli raikkaan marjainen ja yllättävän kepeä. Punaviiniksi poikkeuksellisen helposti juotava, soveltuisi hyvin nautiskelujuomaksi. Viini on luokiteltu keskitanniiniseksi, mutta mielestäni se on kuitenkin varsin kevyt. Maku on hyvin tasainen eikä alkoholin maku nouse esiin juurikaan, paitsi hentona jälkipoltteena. Ei ole järin jännittävä, mutta oikein toimiva ja miellyttävän makuinen perus punaviini.
@@ -429,9 +428,9 @@ Päivämäärä: 17.2.2018
 Maa: Australia
 Hinta: 9.52 € (1 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, kirsikkainen, kypsän mansikkainen, mausteinen
+täyteläinen, keskitanniininen, kirsikkainen, kypsän mansikkainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, porsas, itämainen ruoka
-url: https://www.alko.fi/tuotteet/438238/Passento-kartonkit-lkki 
+url: https://www.alko.fi/tuotteet/438238/
 ArvosteluMika: Viinin tuoksu on tumman luumuinen, tamminen ja happaman kirsikkainen. Viinin ensimaku on melko hapan mutta kuitenkin kepeä. Viini on varsin vähätanniininen ja sen tekstuuri on yllättävän kevyt. Viinissä ei ole selkeää hallitsevaa makua, vaan vaikutelma on epämääräisen punamarjainen. Jälkimaku on kenties hieman paprikainen, minkä lisäksi viinin happamuus nousee vahvemmin esiin sen jälkimaussa. Vaikka viini tuntui aluksi vähätanniiniselta, jättää se kuitenkin suuhun tanniinisen jälkituntuman. Viini voisi sopia mahdollisesti jonkin kevyehkön liharuuan kumppaniksi, eikä ole huono paljaaltaankaan.
 ArvosteluSalla: Tuoksu on täyteläinen ja happamahko, ja maku on huomattavasti pehmeämpi kuin tuoksu antaa olettaa. Siinä tuntuu toki selvästi täyteläisyyttä ja tanniinisuutta mutta ei liian pistävästi. Maku pehmenee merkittävästi erityisesti loppua kohden. Viinissä maistuu kirsikka ja ehkä hieman vanilja, ja siinä vilahtaa myös aavistus makeutta. Kokonaisuus on aika sopiva yhdistelmä pehmeyttä ja happamuutta. Viini on mielestäni varsin hyvä ihan vain siemailuun, mutta se käy varmasti myös esimerkiksi pikkupurtavan kanssa, miksei toki ruokaviiniksikin. Viini jättää suuhun miellyttävän samettisen tunteen.
 Arvosana: 3.5 M 3.75 S
@@ -442,7 +441,7 @@ Päivämäärä: 13.10.2018
 Maa: Etelä-Afrikka
 Hinta: 27.95 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, tumman kirsikkainen, karpaloinen, mausteinen, savuinen
+täyteläinen, keskitanniininen, tumman kirsikkainen, karpaloinen, mausteinen, savuinen
 SopiiNautittavaksi: grilliruoka, porsas, miedot makkarat, pikkusuolaiset
 url: https://www.alko.fi/tuotteet/420938 
 ArvosteluMika: 
@@ -455,7 +454,7 @@ Päivämäärä: 9.7.2019
 Maa: Chile
 Hinta: 29.98 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, herukkainen, tumman luumuinen, karhunvatukkahilloinen, mausteinen
+täyteläinen, keskitanniininen, herukkainen, tumman luumuinen, karhunvatukkahilloinen, mausteinen
 SopiiNautittavaksi: grilliruoka, nauta, mausteiset ja lihaisat makkarat, noutopöytä
 url: https://www.alko.fi/tuotteet/429478 
 ArvosteluMika: Viinissä on mehevän marjainen, tanniininen ja herukkainen tuoksu. Ensivaikutelma mausta on keskitäyteläinen, keskitanniininen ja jonkin verran hapan. Päällimmäisenä maussa nousee esiin hapan karpalo. Maku on tasainen, suoraviivainen ja miellyttävän täyteläinen, muttei kuitenkaan liian raskas. Viini jättää kenties hivenen savuisen jälkimaun. Kokonaisuutena mutkaton perusviini, joka sopii varmasti hyvin kaiken kanssa. Viinissä on riittävästi tanniinisuutta ja täyteläisyyttä monenlaisien liharuokien kumppaniksi, mutta se ei ole liian raskas myöskään paljaaltaan nautittavaksi. Erinomainen valinta kyykkyviiniksi.
@@ -468,7 +467,7 @@ Päivämäärä: 31.10.2016
 Maa: Chile
 Hinta: 7.98 € (0.75 l)
 Kuvaus: Mehevä & hilloinen,
-Täyteläinen, keskitanniininen, tumman marjainen, luumuinen, kevyen paprikainen, yrttinen
+täyteläinen, keskitanniininen, tumman marjainen, luumuinen, kevyen paprikainen, yrttinen
 SopiiNautittavaksi: kana ja kalkkuna, porsas, grilliruoka, noutopöytä.
 url: http://www.alko.fi/tuotteet/428147/ 
 ArvosteluMika: Väri on tummanpunainen. Viinin tuoksu on syvän mustaherukkainen, makeahko ja ehkä hiukan savuinen. Maku on epämääräisen marjainen, kenties mustaherukkainen. Lisäksi taustalla maistuu hieman kitkeryyttä. Maku on tasainen ja enemmän hapan kuin makea. Viini ei ole erityisen tanniininen, mutta se on kokonaisvaikutelmaltaan kuitenkin melko tunkkainen. Nauttisin tätä ehkäpä mieluiten grilliruoan kanssa, mutta en ehkä kuitenkaan erityisen tuhtien liharuokien kanssa.
@@ -493,7 +492,7 @@ Päivämäärä: 26.12.2015
 Maa: Italia
 Hinta: 14.48 € (0.75 l)
 Kuvaus: Vivahteikas ja kehittynyt
-Keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kirsikkainen, kevyen yrttinen, hennon lakritsainen ja mausteinen
+keskitäyteläinen, keskitanniininen, kypsän karpaloinen, kirsikkainen, kevyen yrttinen, hennon lakritsainen ja mausteinen
 SopiiNautittavaksi: porsas, riistalinnut, lammas, miedot juustot
 url: http://www.alko.fi/tuotteet/428697/ 
 ArvosteluMika: Viini on väriltään melko tumman ja täyteläisen näköinen. Tuoksu on erittäin mieto. Ensivaikutelmana viinissä on varsin erikoinen ja vivahteikas maku. Viinistä puuttuu punaviinille tyypillinen kitkeryys. Ensimaku on kevyen raikas, marjainen sekä hiukan makea ja kirpakka. Viinin tekstuuri on kevyt ja jopa vetinen. Jälkimaku on melko vahvan marjainen, joskin olen maistavinani myös savuisuutta ja jonkin verran happamuutta. Viini ei mielestäni ole kovin vahvasti tanniininen.
@@ -506,7 +505,7 @@ Päivämäärä: 31.10.2014
 Maa: Espanja
 Hinta: 8.49 € (0.75 l)
 Kuvaus: Vivahteikas ja kehittynyt,
-Keskitäyteläinen, keskitanniininen, hapankirsikkainen, karhunvatukkainen, mausteinen, hennon nahkainen, luomuviini
+keskitäyteläinen, keskitanniininen, hapankirsikkainen, karhunvatukkainen, mausteinen, hennon nahkainen, luomuviini
 SopiiNautittavaksi: lammas, porsas, nauta, pataruoat
 url: http://www.alko.fi/tuotteet/477357/
 ArvosteluSalla: Sopii pullon puolesta erinomaisesti esim. halloween-juhliin, mutta ei ole kyllä mikään paras seurustelujuoma maun puolesta. Maku on vahva ja tanniininen, ja viini pääsisi varmasti paremmin oikeuksiinsa ruoan kanssa nautittuna, jolloin ehkä sen ”vivahteikkuuskin” tulisi esille. Paljaaltaan nautittuna maistuu melko happamalta eikä mitenkään äärettömän miellyttävältä.
@@ -518,7 +517,7 @@ Päivämäärä: 1.12.2017
 Maa: Italia
 Hinta: 9.98 € (1 l)
 Kuvaus: Pehmeä ja hedelmäinen,
-Keskitäyteläinen, keskitanniininen, mustikkainen, boysenmarjainen, kevyen viikunainen
+keskitäyteläinen, keskitanniininen, mustikkainen, boysenmarjainen, kevyen viikunainen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, tapas ja antipasti, kana ja kalkkuna
 url: https://www.alko.fi/tuotteet/445168/
 ArvosteluMika: Viinissä on syvän punamarjainen tuoksu, jossa on puolukkaista happamuutta mutta myös makeutta. Viinin ensimakua on vaikea kuvailla; se on syvä, mutta ei kuitenkaan erityisen voimakas. Mausta ei oikein nouse mikään erityisesti esiin, vaan se on tasaisen hapan ja hennon marjainen. Oikeastaan viinistä nousee enemmän esiin sen melko tanniininen ja samettimainen tekstuuri, joka kuorruttaa suun. Toisella kulauksella ensimaussa nousee esiin puolukkaisuutta, joka kuitenkin tasoittuu hetken päästä viinin tanniinien ottaessa vallan. Viini jättää suuhun vahvasti tanniinisen ja melko happaman jälkimaun. Viinissä on varsin kuiva, eikä siinä ole juurikaan makeutta. Tämä ei mielestäni ole erityisen hyvä seurustelujuoma, mutta voisi sopia esim. tuhdin pataruuan kumppaniksi.
@@ -530,9 +529,8 @@ Päivämäärä: 10.11.2017
 Maa: Etelä-Afrikka
 Hinta: 15.98 € (1.5 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, tumman marjainen, punaherukkainen, kevyen mausteinen, hennon savuinen
+keskitäyteläinen, keskitanniininen, tumman marjainen, punaherukkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: grilliruoka, nauta, porsas, pataruoat
-
 url: https://www.alko.fi/tuotteet/407428
 ArvosteluMika: Viinissä on syvä, kypsän karpaloinen ja savuinen tuoksu. Viinin ensituntuma on yllättävän mieto ja pehmeä. Jälkimaussa viiniin tulee jonkin verran lisää ryhtiä. Viinistä jää hennon hapan ja hieman tanniininen jälkimaku. Toisella siemauksella viinin tanniinisuus nousee selvästi enemmän esiin, mutta viini on edelleen hyvin pehmeä ja melko kepeä. Jälkimaku on nyt selvästi kirpakan karpaloinen, mutta siinä on myös jonkin verran savuisuutta tuomassa aavistuksen kitkeryyttä. Viini on edelleen ensituntumalta koostumukseltaan hämmentävän kepeä ja jopa mehumainen, mutta viinissä on kuitenkin myös reilusti suun kuorruttavaa tanniinisuutta. Uskoisin, että tämä viini sopii parhaiten punaisen lihan ja grilliruuan kumppaniksi. Seurustelujuomana tämä ei ehkä ole parhaasta päästä, mutta ei missään nimessä huonokaan.
 ArvosteluSalla: Viinissä on mieto mutta syvä tummien marjojen tuoksu. Viinissä on mieto maku, ja se on melko mehumainen tai hillomainen. Maussa tuntuu mausteisuutta sekä tuoksussakin esiin nousseita tummia marjoja. Viini on ainakin paljaaltaan juotuna aika mitäänsanomaton. Miedon makunsa ansiosta se toiminee kuitenkin monenlaisten liharuokien kumppanina.
@@ -544,9 +542,9 @@ Päivämäärä: 8.7.2017
 Maa: Chile
 Hinta: 9.99 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, tanniininen, herukkainen, karhunvatukkainen, kevyen paprikainen, mausteinen, hennon timjaminen
+täyteläinen, tanniininen, herukkainen, karhunvatukkainen, kevyen paprikainen, mausteinen, hennon timjaminen
 SopiiNautittavaksi: voimakkaat juustot, grilliruoka, nauta, porsas
-url: https://www.alko.fi/tuotteet/005896/Torres-Santa-Digna-Cabernet-Sauvignon-Reserve-2015
+url: https://www.alko.fi/tuotteet/005896/
 ArvosteluMika: Viini on väriltään syvänpunaista. Tuoksu on syvän mustaherukkainen ja aavistuksen verran makea, minkä lisäksi tuoksussa on myös kirpakkuutta, kenties karpaloa. Ensimaku on syvä, täyteläinen ja tanniininen. Selkeimpinä makuina ovat runsas mustaherukka ja jokin hieman tunkkainen maku; kenties savua tai tammisuutta. Toisaalta viinissä on myös hieman makeutta tasapainottamassa muuten melko raskaita makuja. Jälkimaku kehittyy selvästi ensituntumaa happamammaksi – esiin nousee hapanta marjaisuutta, mahdollisesti karpalo. Viini jättää selkeästi tanniinisen ja ikeniä kuorruttavan suutuntuman. Viini toimii erinomaisesti tuhdin liharuuan seurana. Seurustelujuomaksi tämä on varsin raskas, mutta ei mikään mahdoton ajatus kuitenkaan.
 ArvosteluSalla: Tuoksussa tuntuu vahvasti kirsikkaisuus sekä myös mustaherukkaisuus. Viinin maku on syvä, pehmeä ja täyteläinen. Siinä tuntuu myös hapanta marjaisuutta. Viini on selvästi enemmän ruoka- kuin seurustelujuoma, mutta sitä pystyy juomaan myös paljaaltaan. Liharuokien lisäksi voisin kuvitella sen sopivan hyvin esimerkiksi homejuustojen kanssa.
 Arvosana: 4 M 3.75 S
@@ -557,7 +555,7 @@ Päivämäärä: 27.8.2017
 Maa: Italia
 Hinta: 33.99 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, marjahilloinen, tumman kirsikkainen, mausteinen, vaniljainen
+täyteläinen, keskitanniininen, marjahilloinen, tumman kirsikkainen, mausteinen, vaniljainen
 SopiiNautittavaksi: seurustelujuomana, grilliruoka, mausteiset makkarat, nauta
 url: https://www.alko.fi/tuotteet/460478
 ArvosteluMika: Viini on väriltään syvänpunainen. Viinissä on täyteläinen, pehmeä, savuinen ja paprikainen tai mahdollisesti kirsikkainen tuoksu. Viinin suutuntuma on varsin tanniininen. Ensimaku on pehmeä, täyteläinen ja happaman kirsikkainen. Jälkimaussa nousee esiin kenties hieman mausteisuutta. Viinistä jää suuhun tanniininen kuorrutus ja kirsikoiden maku viipyilee pitkään suussa. Tämä on ehkä hiukan liian tanniininen ja raskas seurustelujuomaksi, mutta sopii varmasti erinomaisesti punaisen lihan kumppaniksi. Toisaalta viini on täyteläisyydestään huolimatta kokonaisuutena melko pehmeän makuinen, joten kyllä tätä juo myös paljaaltaan.
@@ -570,7 +568,7 @@ Päivämäärä: 23.3.2019
 Maa: Australia
 Hinta: 30.99 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, karhunvatukkainen, herukkainen, vadelmainen, kevyen mausteinen, hennon kukkainen
+keskitäyteläinen, keskitanniininen, karhunvatukkainen, herukkainen, vadelmainen, kevyen mausteinen, hennon kukkainen
 SopiiNautittavaksi: porsas, grilliruoka, noutopöytä, seurustelujuomana
 url: https://www.alko.fi/tuotteet/441598/
 ArvosteluMika: Viinin tuoksussa ensimmäisenä nousee esiin tammea ja hentoa savuisuutta, ja sen jälkeen kirsikkaa. Ensimaku on täyteläinen, melko tanniininen ja hieman hapan. Ensimaun jälkeen esiin nousee kirpakkaa kirsikkaa. Viinin jälkimaku on pitkä, tanniininen ja hapan. Viinissä oleva kirpakkuus tasapainottaa hyvin sen muuten varsin raskasta makua. Tämä sopii varmasti erinomaisesti liharuuan kanssa, mutta toimii varsin hyvin myös seurustelujuomana, mikäli haluaa nauttia hieman tuhdimpaa punaviiniä.
@@ -583,7 +581,7 @@ Päivämäärä: 8.7.2016
 Maa: Etelä-Afrikka
 Hinta: 6.99 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, karpaloinen, kevyen mausteinen, hennon savuinen
+keskitäyteläinen, keskitanniininen, karpaloinen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: pikkusuolaiset, grilliruoka, miedot makkarat, nauta
 url: http://www.alko.fi/tuotteet/434227/
 ArvosteluMika: Viini on väriltään syvänpunainen. Viinissä on melko tunkkainen ja hieman pistävä tuoksu. Maku on melko täyteläinen ja tanniininen. Karpaloisuus tulee esiin ensimaussa kirpakkuutena ja hapokkuutena, mutta jälkimaku on suorastaan tunkkainen. Viini kaipaisi mielestäni lisää marjaisuutta, tällaisenaan se on varsin raskas ja vaikeasti juotava. Ei sovellu seurustelujuomaksi, vaan vaatii tuhdin ruuan kumppanikseen.
@@ -596,7 +594,7 @@ Päivämäärä: 6.12.2018
 Maa: Ranska
 Hinta: 32.99 € (3 l)
 Kuvaus: Marjaisa ja raikas,
-Kevyt, keskitanniininen, vadelmainen, kirsikkainen, mausteinen, kevyen lakritsinen
+kevyt, keskitanniininen, vadelmainen, kirsikkainen, mausteinen, kevyen lakritsinen
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, rasvainen kala, tapas ja antipasti
 url: https://www.alko.fi/tuotteet/430858/
 ArvosteluMika: Viinin tuoksu on kepeän marjainen, mutta siinä on myös punamarjaista happamuutta. Ensivaikutelma mausta on toisaalta kepeän marjainen, mutta kuitenkin yllättävän syvä ja ryhdikkään tanniininen. Viinin kuvauksessa mainostettu lakritsisuus tulee hienovaraisesti esiin ja antaa viinille mielenkiintoisen hivenen suolaisen maun. Viini on kevyen tanniininen, mutta sen verrattain vahvat maut antavat sille kuitenkin runsaasti luonnetta. Vähätanniinisuudesta huolimatta viini ei missään nimessä ole mehumainen. Kokonaisuutena mielenkiintoinen ja melko monipuolinen viini, joka voisi sopia hyvin esim. broilerin tai kalan kanssa, minkä lisäksi se toimii myös seurustelujuomana.
@@ -609,10 +607,9 @@ Päivämäärä: 16.12.2017
 Maa: Portugali
 Hinta: 9.98 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Täyteläinen, keskitanniininen, kirsikkainen, boysenmarjainen, mustikkainen, kevyen valkopippurinen
+täyteläinen, keskitanniininen, kirsikkainen, boysenmarjainen, mustikkainen, kevyen valkopippurinen
 SopiiNautittavaksi: pataruoat, mausteiset makkarat, voimakkaat juustot, seurustelujuomana
- 
-url: https://www.alko.fi/products/904447/ 
+url: https://www.alko.fi/tuotteet/904447/
 ArvosteluMika: Viinissä on voimakas mutta pehmeä mustaherukkainen tuoksu, jossa on myös havaittavissa jokin kirpakka aromi – kenties boysenmarjat? Tuoksussa on myös lämmintä savuisuutta, mikä tuo tuoksuun rotevuutta. Ensimaku on huomattavasti vähemmän täyteläinen, kuin olisin tuoksun perusteella odottanut. Ensimaussa on kyllä tanniinisuutta, mutta se jää kuitenkin hieman vetisen oloiseksi. Viinissä ei ole juurikaan makeuta, vaan se on varsin kuiva. Toisella kulauksella viinissä nousee esiin jonkin verran kitkeryyttä. Hyvin erikoinen viini, sillä tänä on maultaan vahva ja roteva, mutta suutuntumaltaan kuitenkin yllättävän kepeä eikä lainkaan niin täyteläinen, kuin tällaiselta viiniltä voisi usein odottaa. Viini kaipaa mielestäni jotain raikasta ruokaa kumppanikseen tasapainottamaan sen kuivuutta ja kitkeryyttä.
 ArvosteluSalla: Viinissä on syvän marjainen, kenties mustaherukkainen tuoksu, jossa tuntuu myös karvautta. Ensimaku on melko täyteläinen mutta kuitenkin pehmeä ja jopa kevyehkö. Viini sopii varmasti monipuoliseen käyttöön: se ei ole liian raskas seurustelujuomaksi, mutta sen syvät maut tukevat varmasti myös tuhdimpia liharuokia. Viini käy hyvin myös juustojen kanssa.
 Arvosana: 2.25 M 3.5 S
@@ -623,9 +620,9 @@ Päivämäärä: 1.5.2018
 Maa: Etelä-Afrikka
 Hinta: 7.49 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, boysenmarjainen, mustikkainen, kevyen mausteinen, hennon savuinen
+keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, boysenmarjainen, mustikkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: porsas, grilliruoka, noutopöytä, nauta
-url: https://www.alko.fi/products/904447/ 
+url: https://www.alko.fi/tuotteet/904447/ 
 ArvosteluMika: Viinissä on syvän karpaloinen, mokkainen ja luultavasti boysenmarjainen tuoksu. Ensivaikutelma mausta on kitkerä, tanniininen ja hieman hapan. Viinin maussa on jokin kirpakka ja kitkerä maku (kenties boysenmarja?), joka nousee esiin muuten melko tasaisesta ja happamasta yleismausta. Kokonaisuutena viini maistuu tunkkaiselta, kitkerältä ja epämiellyttävän tanniiniselta. Erittäin huono seurustelujuomana, mutta toimi kohtalaisesti ruuan kanssa.
 ArvosteluSalla: Viinin tuoksu on kirsikkainen ja happamahko. Ensimaku on syvä ja melko tanniininen, ja myös siinä on kirsikkaisuutta ja happamuutta. Maku pehmenee kuitenkin pian. Kokonaisuutena viini on oikeastaan melko mitäänsanomaton. Viini on selkeästi parempi ruoka- kuin seurustelujuomana, ja se sopikin mainiosti lihapullavuoan kumppaniksi.
 Arvosana: 1.25 M 2.75 S
@@ -636,7 +633,7 @@ Päivämäärä: 8.6.2018
 Maa: Italia
 Hinta: 34.99 € (3 l)
 Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
+keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
 SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, porsas
 url: https://www.alko.fi/tuotteet/909138/
 ArvosteluMika: viinissä on täyteläinen, karpaloinen ja mausteinen tuoksu. Suutuntuma on täyteläinen muttei liian raskas. Viinin maku on poikkeuksellinen ja vaikeasti kuvailtava. Päällimmäisenä makuna on kirpakka karpalo, mutta viiniin kehittyy myös karamellimainen maku, joka pehmentää karpaloa. Jälkimaussa nousee esiin mustikkaisuutta. Maussa on myös hiukan mausteisuutta, joka antaa viinille hiukan lisää potkua. Kokonaisuutena viini on kuitenkin varsin kevyt ja yllättävän helposti juotava. Toimii hyvin seurustelujuomana, mutta voisi sopia hyvin myös itämaisen ruuan kumppaniksi.
@@ -644,14 +641,79 @@ ArvosteluSalla: Viinin tuoksu on syvä, täyteläinen ja kirsikkainen. Viinin ma
 Arvosana: 4.5 M S
 
 
-VIINI: Zensa Rosso Organico 2016
-Päivämäärä: 22.9.2018
+VIINI: Adobe Merlot Cabernet Sauvignon Syrah 2018
+Päivämäärä: 15.12.2019
+Maa: Chile
+Hinta: 17.98 € (1.5 l)
+Kuvaus: Pehmeä ja hedelmäinen
+keskitäyteläinen, keskitanniininen, punaherukkainen, kypsän karpaloinen, pensasmustikkainen, kevyen savuinen
+SopiiNautittavaksi: grilliruoka, seurustelujuoma, porsas, kana ja kalkkuna
+url: https://www.alko.fi/tuotteet/459178
+ArvosteluMika: Viinin tuoksu on lempeän mustaherukkainen ja täyteläinen. Ensivaikutelma mausta on yllättävän pehmeä ja miellyttävä, joskin viinissä on myös happamuutta. Maku on helposti lähestyttävä, mutta kuitenkin runsas, täyteläinen ja tanniininen. Viini ei kuitenkaan missään nimessä ole raskas. Viinin jälkimaku on melko mieto, mutta viinistä jää tanniininen suutuntuma. Tämä on ihan kelpo nautiskeluviini joskin lienee kuitenkin parhaillaan ruuan kanssa.
+ArvosteluSalla: Viinissä on mehevä, täyteläinen ja mustikkainen tuoksu. Ensivaikutelma mausta on yllättävän pehmeä ja tasainen, mutta siihen kehittyy myös hieman kitkeryyttä. Mustikka tuo viiniin mukavaa samettista pehmeyttä. Jälkimaku on hennon savuinen ja mausteinen. Kokonaisuus on melko tasainen muttei kuitenkaan tylsä, ja viini sopiikin sekä seurustelu- että ruokajuomaksi.
+Arvosana: 3.25 M 3.5 S
+
+
+VIINI: Bruce Jack Pinotage & Cinsault 2019
+Päivämäärä: 23.2.2020
+Maa: Etelä-Afrikka
+Hinta: 33.89 € (3 l)
+Kuvaus: Mehevä ja hilloinen
+keskitäyteläinen, keskitanniininen, kirsikkainen, herukkainen, luumuinen, mausteinen
+SopiiNautittavaksi: porsas, grilliruoka, miedot makkarat, noutopöytä
+url: https://www.alko.fi/tuotteet/405778
+ArvosteluMika: Tuoksussa nousee päällimmäisenä esiin karpaloa ja mehevää marjaisuutta. Ensivaikutelma mausta vastaa tuoksua – viini on pehmeän marjainen, minkä lisäksi karpalo tuo viiniin selkeästi happamuutta. Viini on kohtalaisen tanniininen, mutta ei kuitenkaan liian raskas; kuvailisin tätä pikemminkin meheväksi kuin raskaaksi. Viini jättää jälkeensä happaman karpaloisen maun, joka viipyilee suussa hyvän tovin. Viinissä maistuu myös mausteisuutta, mikä antaa sille hieman lisäpotkua ja kirpakkuutta. Tämä on monipuolinen viini, joka sopii hyvin seurustelujuomaksi ja toimii varmasti yhtä lailla hyvin ruuan kanssa. Tarjoilisin tätä luultavasti mieluiten liharuokien kanssa, kuten Alkon kuvaus suositteleekin.
+ArvosteluSalla: Tuoksu on mehevä ja happamahko. Viinin maku on jopa yllättävän pehmeä ja hilloinen; siinä ei juurikaan ole havaittavissa tuoksussa esiin noussutta happamuutta. Viini ei ole ollenkaan liian raskas seurustelujuomaksi, päinvastoin – sen jälkimaku ikään kuin sulaa suussa. Viini sopi hyvin myös mausteisen liharuoan kumppaniksi. Kokonaisuus on miellyttävällä tavalla tasainen, mehevä ja hilloinen.
+Arvosana: 4.25 M S
+
+
+VIINI: Doppio Passo Primitivo 2019
+Päivämäärä: 26.4.2020
 Maa: Italia
-Hinta: 34.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen,
-Keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
-SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, porsas
-url: https://www.alko.fi/tuotteet/909138/
-ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, mustaherukkainen, hieman karpaloinen ja mausteinen. Ensivaikutelma mausta on lämmin ja täyteläinen mutta kuitenkin yllättävän kepeä eikä liian tanniininen. Se on myös yllättävän makea, mutta ei missään nimessä mehumainen. Viinin hallitseva maku on vaikeasti tunnistettava, mutta se voisi olla mustikkainen. Lisäksi maussa erottuu vaniljaisuutta ja mausteista kirpakkuutta. Viinin ensimmäinen arvio pitää mielestäni edelleen hyvin paikkansa.
-ArvosteluSalla: Lisäyksenä aiempaan arviointiini: viini tuntuu suussa samettisen pehmeältä, ja siitä jää pehmeä ja makeahko jälkimaku.
-Arvosana: 4.5 M S
+Hinta: 33.89 € (3 l)
+Kuvaus: Pehmeä ja hedelmäinen
+keskitäyteläinen, keskitanniininen, mansikkainen, vadelmainen, maitosuklainen, yrttinen
+SopiiNautittavaksi: pikkusuolaiset, pasta ja pizza, kana ja kalkkuna, seurustelujuoma
+url: https://www.alko.fi/tuotteet/432548
+ArvosteluMika: Viinin tuoksu on mehevän marjainen, pehmeä, täyteläinen ja hieman makea. Ensivaikutelma mausta on kepeän marjainen, melko vähätanniinen ja runsaan täyteläinen muttei kuitenkaan liian raskas. Muutaman kulauksen jälkeen viinin tanniinisuus alkaa nousta vahvemmin esiin ja viini jättää selvästi tanniinisen suutuntuman. Maussa päällimmäisenä nousee esiin kirsikka. Tämä sopii varmasti hyvin monenlaisien ruokien kumppaniksi ja maistuu myös seurustelujuomana. Kokonaisuutena vahva valinta!
+ArvosteluSalla: Tuoksu on mehevä, metsämarjainen ja hieman kirsikkainen, Maku on pehmeä ja marjainen mutta myös hivenen hapan. Kokonaisuus on tasapainoinen, melko kepeä ja pehmeä mutta kuitenkin mielenkiintoinen. Mielestäni viini käy varsin mainiosti sekä seurustelu- että ruokajuomaksi
+Arvosana: 4.25 M 4 S
+
+
+VIINI: La Mirada Organic Tempranillo Syrah 2018
+Päivämäärä: 26.10.2019
+Maa: Espanja
+Hinta: 29.49 € (3 l)
+Kuvaus: Pehmeä ja hedelmäinen
+täyteläinen, keskitanniininen, karhunvatukkahilloinen, kirsikkainen, kevyen vadelmainen, tummasuklainen, mausteinen
+SopiiNautittavaksi: porsas, nauta, seurustelujuoma, pikkusuolaiset
+url: http://www.alko.fi/tuotteet/458778
+ArvosteluMika: Viinissä on miellyttävän pehmeä ja hivenen makea mustaherukkainen tuoksu. Ensivaikutelma mausta on vähätanniininen, pehmeä ja hiukan makea, kuten tuoksu lupailikin. Viini on kepeä, mutta ei kuitenkaan mehumainen. Jälkimaku on pehmeä ja hienovarainen, mutta viinistä jää kuitenkin täyteläisen tanniininen suutuntuma. Maku on tasainen ja miellyttävä; ensivaikutelma on kepeä ja kutsuva, mutta jälkimaussa makuun tulee selvästi lisää luonnetta ja potkua. Veikkaan, että viini sopii erinomaisesti juustojen kumppaniksi, joskin tämä on hyvin helposti lähestyttävä punaviini, ja todennäköisesti toimii hyvin monipuolisesti erilaisien ruokien kumppanina. Viini on myös herkullista paljaaltaan. Varmasti yksi parhaista punaviineistä, mitä olen maistanut.
+ArvosteluSalla: Mehevä ja täyteläinen tuoksu, jossa tuntuu hieman karhunvatukkaisuutta. Viinin maussa on mielenkiintoista ja miellyttävää pehmeyttä ja makeutta. Kirsikka tuo makuun sopivasti happamuutta; etenkin jälkimaussa tuntuu makea vadelma. Kokonaisuus on pehmeä ja miellyttävä muttei kuitenkaan liian tasainen tai yksipuolinen. Viinistä jää myös mukavan pehmeä suutuntuma, minkä takia se sopii erinomaisesti seurustelujuomaksi. Uskon sen sopivan myös ruokajuomaksi monenlaisten syötävien kanssa.
+Arvosana: 5 M 4.75 S
+
+
+VIINI: Masca del Tacco Susumaniello 2018
+Päivämäärä: 31.12.2019
+Maa: Italia
+Hinta: 16.99 € (0.75 l)
+Kuvaus: Mehevä ja hilloinen
+täyteläinen, keskitanniininen, kuningatarhilloinen, boysenmarjainen, maitosuklainen, mokkainen
+SopiiNautittavaksi: nauta, seurustelujuoma, voimakkaat juustot, itämainen ruoka
+url: https://www.alko.fi/tuotteet/910947
+ArvosteluMika: Ensivaikutelma viinin tuoksusta oli mehevän marjainen ja täyteläinen, mutta tuoksu laantui nopeasti lasiin kaatamisen jälkeen. Viinin kuvauksessa oleva boysenmarja nousee hienoisesti esiin tuoksussa, antaen viinille hivenen katkeruutta. Ensivaikutelma mausta on yllättävän pehmeä ja lempeän marjainen. Makuun kehittyy kuitenkin nopeasti lisää syvyyttä ja happamuutta, mikä antaa viinille täyteläisen kokonaistuntuman. Toisella kulauksella boysenmarja nousee esiin aiempaa vahvemmin. Viini on varsin hapan, mutta ei kuitenkaan raskas, sillä siinä tuntuu olevan maltillisesti tanniinisuutta. Viini menee sujuvasti paljaaltaankin, mutta on kenties hiukan turhan hapan minun makuuni paljaaltaan juotavaksi; parhaimmillaan viini lienee ruuan kumppanina. Kokeilisin tätä etenkin pastan kanssa.
+ArvosteluSalla: Tuoksu on mehevä, marjainen ja makeahko. Ensivaikutelma viinin mausta on erinomainen: täyteläinen ja samettisen pehmeä. Happamahkot marjat antavat sille mukavasti rakennetta, mutta kokonaisvaikutelma on kuitenkin mukavan pehmeä ja hilloinen. Viini sopii hyvin nautiskeltavaksi sellaisenaankin, mutta uskon sen olevan parhaimmillaan juustojen kanssa.
+Arvosana: 4.5 S 4 M
+
+
+VIINI: Raimat Abadia Cabernet Sauvignon Tempranillo 2016
+Päivämäärä: 16.11.2019
+Maa: Espanja
+Hinta: 34.98 € (3 l)
+Kuvaus: Mehevä ja hilloinen
+täyteläinen, tanniininen, kirsikkainen, boysenmarjainen, kevyen herukkainen, mausteinen, hennon mokkainen
+SopiiNautittavaksi: porsas, nauta, lammas, pataruoat
+url: https://www.alko.fi/tuotteet/415098
+ArvosteluMika: Viinin tuoksu on syvä, maanläheinen ja tumman kirsikkainen. Ensivaikutelma mausta on runsaan tanniininen ja hyvin täyteläinen mutta kuitenkin kohtalaisen pehmeä. Makuun kehittyy kuitenkin hetken kuluttua huomattavaa happamuutta, ja jälkimaku on jopa aavistuksen kitkerä. Pienen maistelun jälkeen olen tunnistavinani maussa tammisuutta, mikä kenties tuo viiniin sen kitkeryyden. Suuhun jäävä jälkimaku on vahvan tanniininen ja kenties hiukan savuinen. Tämä on ehdottomasti enemmän ruoka- kuin seurusteluviini, ja sopisi varmasti erinomaisesti esim. tuhtien pataruokien kumppaniksi.
+ArvosteluSalla: Viinin tuoksu on hieman hapan ja vahvan kirsikkainen. Maku on todella mehevä ja tuhti, ja siinä tuntuu vahvasti kirsikkaisuus ja boysenmarjaisuus. Viini on happamahko ja se jättää kuivahkon suutuntuman, minkä takia se toimii selvästi paremmin ruoka- kuin seurustelujuomana. Viini sopii varmasti erinomaisesti erilaisten tuhtien liharuokien kumppaniksi.
+Arvosana: 3.5 M 3.75 S
