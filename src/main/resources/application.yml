@@ -33,3 +33,11 @@ admin:
 # Allow connections from this URL:
 frontend:
   url: http://localhost:8081
+
+
+# Wine parser settings:
+
+# If set to true, TextParser will ping the url to see if it is still valid.
+# This should be set to false by default.
+parser:
+  validate-url: false
