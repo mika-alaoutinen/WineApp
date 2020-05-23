@@ -609,7 +609,7 @@ Hinta: 9.98 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
 täyteläinen, keskitanniininen, kirsikkainen, boysenmarjainen, mustikkainen, kevyen valkopippurinen
 SopiiNautittavaksi: pataruoat, mausteiset makkarat, voimakkaat juustot, seurustelujuomana
-url: https://www.alko.fi/products/904447/ 
+url: https://www.alko.fi/tuotteet/904447/
 ArvosteluMika: Viinissä on voimakas mutta pehmeä mustaherukkainen tuoksu, jossa on myös havaittavissa jokin kirpakka aromi – kenties boysenmarjat? Tuoksussa on myös lämmintä savuisuutta, mikä tuo tuoksuun rotevuutta. Ensimaku on huomattavasti vähemmän täyteläinen, kuin olisin tuoksun perusteella odottanut. Ensimaussa on kyllä tanniinisuutta, mutta se jää kuitenkin hieman vetisen oloiseksi. Viinissä ei ole juurikaan makeuta, vaan se on varsin kuiva. Toisella kulauksella viinissä nousee esiin jonkin verran kitkeryyttä. Hyvin erikoinen viini, sillä tänä on maultaan vahva ja roteva, mutta suutuntumaltaan kuitenkin yllättävän kepeä eikä lainkaan niin täyteläinen, kuin tällaiselta viiniltä voisi usein odottaa. Viini kaipaa mielestäni jotain raikasta ruokaa kumppanikseen tasapainottamaan sen kuivuutta ja kitkeryyttä.
 ArvosteluSalla: Viinissä on syvän marjainen, kenties mustaherukkainen tuoksu, jossa tuntuu myös karvautta. Ensimaku on melko täyteläinen mutta kuitenkin pehmeä ja jopa kevyehkö. Viini sopii varmasti monipuoliseen käyttöön: se ei ole liian raskas seurustelujuomaksi, mutta sen syvät maut tukevat varmasti myös tuhdimpia liharuokia. Viini käy hyvin myös juustojen kanssa.
 Arvosana: 2.25 M 3.5 S
@@ -638,19 +638,6 @@ SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, porsas
 url: https://www.alko.fi/tuotteet/909138/
 ArvosteluMika: viinissä on täyteläinen, karpaloinen ja mausteinen tuoksu. Suutuntuma on täyteläinen muttei liian raskas. Viinin maku on poikkeuksellinen ja vaikeasti kuvailtava. Päällimmäisenä makuna on kirpakka karpalo, mutta viiniin kehittyy myös karamellimainen maku, joka pehmentää karpaloa. Jälkimaussa nousee esiin mustikkaisuutta. Maussa on myös hiukan mausteisuutta, joka antaa viinille hiukan lisää potkua. Kokonaisuutena viini on kuitenkin varsin kevyt ja yllättävän helposti juotava. Toimii hyvin seurustelujuomana, mutta voisi sopia hyvin myös itämaisen ruuan kumppaniksi.
 ArvosteluSalla: Viinin tuoksu on syvä, täyteläinen ja kirsikkainen. Viinin maku on mielenkiintoinen yhdistelmä täyteläistä marjaisuutta ja toffeista (?) pehmeyttä. Täyteläisyydestään ja tanniinisuudestaan huolimatta viinin kokonaisvaikutelma on pehmeä ja jopa melko kepeä, eikä siinä ole juurikaan punaviineille usein tyypillistä kitkeryyttä. Kaiken kaikkiaan viini on mielenkiintoinen ja mieleenpainuva, ja se sopinee yhtä hyvin sekä seurustelu- että ruokajuomaksi. Plussaa orgaanisuudesta. 😊
-Arvosana: 4.5 M S
-
-
-VIINI: Zensa Rosso Organico 2016
-Päivämäärä: 22.9.2018
-Maa: Italia
-Hinta: 34.99 € (3 l)
-Kuvaus: Mehevä ja hilloinen,
-keskitäyteläinen, keskitanniininen, mustikkahilloinen, karpaloinen, toffeinen, vaniljainen, mausteinen
-SopiiNautittavaksi: seurustelujuomana, itämainen ruoka, nauta, porsas
-url: https://www.alko.fi/tuotteet/909138/
-ArvosteluMika: Viini on väriltään syvän punainen. Viinin tuoksu on täyteläinen, mustaherukkainen, hieman karpaloinen ja mausteinen. Ensivaikutelma mausta on lämmin ja täyteläinen mutta kuitenkin yllättävän kepeä eikä liian tanniininen. Se on myös yllättävän makea, mutta ei missään nimessä mehumainen. Viinin hallitseva maku on vaikeasti tunnistettava, mutta se voisi olla mustikkainen. Lisäksi maussa erottuu vaniljaisuutta ja mausteista kirpakkuutta. Viinin ensimmäinen arvio pitää mielestäni edelleen hyvin paikkansa.
-ArvosteluSalla: Lisäyksenä aiempaan arviointiini: viini tuntuu suussa samettisen pehmeältä, ja siitä jää pehmeä ja makeahko jälkimaku.
 Arvosana: 4.5 M S
 
 
