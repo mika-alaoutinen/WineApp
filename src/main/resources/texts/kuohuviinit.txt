@@ -4,7 +4,7 @@ Maa: Espanja
 Hinta: 7.98 € (0.75 l)
 Kuvaus: Erittäin kuiva, keskihapokas, päärynäinen, persikkainen, kypsän sitruksinen, kevyen mausteinen
 SopiiNautittavaksi: seurustelujuomana, pikkusuolaiset, salaatit ja kasvisruoka, kana ja kalkkuna
-url: http://www.alko.fi/tuotteet53597/ 
+url: http://www.alko.fi/tuotteet/53597/ 
 ArvosteluSalla: Muutaman lasillisen jälkeen voin todeta, että kyseessä on erittäin tasaisen, hienostuneen ja yllättävän kepeän makuinen kuohuviini. Etukäteen maininta ”erittäin kuiva” hieman hirvitti, mutta viini maistuukin oikein miellyttävältä. Hedelmäisyys tuntuu enemmän viinin tuoksussa kuin itse maussa; sen sijaan maussa nousee esiin heikko mausteisuus. Viini sopii yllättävän hyvin ihan seurustelujuomaksi, mutta nauttisin kuitenkin mieluiten sen kanssa jotain kevyttä syötävää. Esimerkiksi kanasalaatti voisi olla aika bueno.
 Arvosana: 4 S
 
@@ -14,7 +14,7 @@ Maa: Espanja
 Hinta: 9.70 € (0.75 l)
 Kuvaus: Puolimakea, keskihapokas, punamarjainen, kirsikkainen, mausteinen, rosee
 SopiiNautittavaksi: seurustelujuomana, noutopöytä, makea jälkiruoka, marjat ja hedelmät
-url: https://www.alko.fi/tuotteet28017/Castellblanc-Rosado-Cava-Medium-Dry 
+url: https://www.alko.fi/tuotteet/28017/Castellblanc-Rosado-Cava-Medium-Dry 
 ArvosteluMika: Tuoksussa on kuivahkoa ja hapokasta mansikkaa. Ensimaku on mieto ja pehmeän mansikkainen sekä puolikuiva. Jälkimaussa nousee esiin enemmän kirpakkuutta ja hapokkuutta, mutta toisaalta myös makeus syvenee hiukan. Viini on miellyttävä mutta ei kovinkaan mieleenpainuva.
 ArvosteluSalla: Ensivaikutelma on tasainen ja miellyttävä. Maussa tuntuu heikosti kirpakka punaherukkaisuus, mutta kaiken kaikkiaan maku on melko mieto. Kokonaisuutena viini on kuitenkin hyvin miellyttävä.
 Arvosana: 3 M 3.5 S
@@ -38,7 +38,7 @@ Maa: Chile
 Hinta: 10.59 € (0.75 l)
 Kuvaus: Makea, vähän hapokas, mansikkainen, sitruksinen, punainen, samea
 SopiiNautittavaksi: makea jälkiruoka, seurustelujuomana, aperitiivi
-url: https://www.alko.fi/tuotteet63967/Fresita
+url: https://www.alko.fi/tuotteet/63967/Fresita
 ArvosteluMika: Viinin tuoksu on makean mansikkainen ja miellyttävän kirpakka. Mansikan lisäksi olen tunnistavani raparperia. Ensivaikutelma on melko tasainen, pirskahteleva ja hennon mansikkainen. Viiniin kehittyy ensimaun jälkeen yllättäen lisää makeutta ja myös mansikkaisuus korostuu jälkimakua kohden. Makeudestaan ja vähäisestä alkoholistaan huolimatta viini ei ole liian pliisu, vaan siinä on jonkin verran kirpakkuutta ja hapokkuutta antamaan sille paljon tarvittua särmää. Kokonaisuutena miellyttävä ja erittäin helposti juotava kuohari, joka maistuu varmasti kaikille vauvasta vaariin.
 ArvosteluSalla: Tuoksu on erittäin makean mansikkainen, kuten makukin. Maussa tuntuu kuitenkin myös mukavaa kirpakkuutta, eikä viini ole ollenkaan liian mehu- tai limonadimainen. Kesäjuomien klassikko.
 Arvosana: 4 M 4.5 S
@@ -60,7 +60,7 @@ Maa: Espanja
 Hinta: 8.29 € (0.75 l)
 Kuvaus: Puolimakea, keskihapokas, sitruksinen, persikkainen, kevyen passionhedelmäinen, hennon yrttinen
 SopiiNautittavaksi: seurustelujuomana, salaatit ja kasvisruoka, kana ja kalkkuna, itämainen ruoka
-url: https://www.alko.fi/tuotteet00787/Jaume-Serra-Oodi-Vapaudelle-Cava-Semi-Seco 
+url: https://www.alko.fi/tuotteet/00787/Jaume-Serra-Oodi-Vapaudelle-Cava-Semi-Seco 
 ArvosteluMika: Viinissä on kirpakka, mineraalinen, hieman makea ja omenainen tuoksu. Viinin ensimaku on melko hapokas, jonkin verran mineraalinen mutta kuitenkin pehmeä. Jälkimaku on puolikuiva mutta kepeä ja aavistuksen sitruunainen. Maussa on mietoa hedelmäisyyttä, mutta viini on enemmän kuiva kuin makea. Varsin tasainen ja miellyttävä kokonaisuus.
 ArvosteluSalla: Makeahko, kevyen hedelmäinen tuoksu. Maku on melko tasainen, ja siinä on trooppista hedelmäisyyttä. Jälkimaussa esiin nousee myös kirpakkuutta. Tasapainoinen ja miellyttävä kokonaisuus.
 Arvosana: 4 M S
@@ -71,7 +71,7 @@ Maa: Ranska
 Hinta: 7.85 € (0.75 l)
 Kuvaus: Puolikuiva, keskihapokas, metsämansikkainen, vadelmainen, kevyen sitruksinen
 SopiiNautittavaksi: seurustelujuomana, makea jälkiruoka, itämainen ruoka, salaatit ja kasvisruoka
-url: http://www.alko.fi/tuotteet21767/ 
+url: http://www.alko.fi/tuotteet/21767/ 
 ArvosteluMika: Alussa maistuu hennon hapokkaalta, mutta happoisuus tasaantuu nopeasti. Varsin miedon ja tasaisen makuinen, maistuu kevyen mansikkaiselta. Hapokkuus tulee uudestaan esiin jälkimakuna mutta myös varsin kevyesti. Viinistä jää vaikutelmana lähinnä vain hento hapokkuus. Maku on hyvin mieto.
 ArvosteluSalla: Väri on hailakan persikkaisen vaaleanpunainen. Pehmeän marjainen ja kesäinen maku.
 Arvosana: 3.25 M 3.75 S
