@@ -622,7 +622,7 @@ Hinta: 7.49 € (0.75 l)
 Kuvaus: Mehevä ja hilloinen,
 keskitäyteläinen, keskitanniininen, tumman kirsikkainen, luumuinen, boysenmarjainen, mustikkainen, kevyen mausteinen, hennon savuinen
 SopiiNautittavaksi: porsas, grilliruoka, noutopöytä, nauta
-url: https://www.alko.fi/products/904447/ 
+url: https://www.alko.fi/tuotteet/904447/ 
 ArvosteluMika: Viinissä on syvän karpaloinen, mokkainen ja luultavasti boysenmarjainen tuoksu. Ensivaikutelma mausta on kitkerä, tanniininen ja hieman hapan. Viinin maussa on jokin kirpakka ja kitkerä maku (kenties boysenmarja?), joka nousee esiin muuten melko tasaisesta ja happamasta yleismausta. Kokonaisuutena viini maistuu tunkkaiselta, kitkerältä ja epämiellyttävän tanniiniselta. Erittäin huono seurustelujuomana, mutta toimi kohtalaisesti ruuan kanssa.
 ArvosteluSalla: Viinin tuoksu on kirsikkainen ja happamahko. Ensimaku on syvä ja melko tanniininen, ja myös siinä on kirsikkaisuutta ja happamuutta. Maku pehmenee kuitenkin pian. Kokonaisuutena viini on oikeastaan melko mitäänsanomaton. Viini on selkeästi parempi ruoka- kuin seurustelujuomana, ja se sopikin mainiosti lihapullavuoan kumppaniksi.
 Arvosana: 1.25 M 2.75 S
