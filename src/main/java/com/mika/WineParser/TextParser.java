@@ -3,6 +3,8 @@ package com.mika.WineParser;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -17,6 +19,11 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class TextParser {
+
+    // Flag that controls if wine's urls are validated
+    @Value("${parser.validate-url}")
+    private boolean validateUrl;
+
     // Wine attributes:
     private String name;
     private String country;
@@ -33,13 +40,14 @@ public class TextParser {
     private double ratingMika;
     private double ratingSalla;
 
-    private List<Wine> wines;
-    private List<Review> reviews;
+    @Getter
+    private final List<Wine> wines = new ArrayList<>();
+
+    @Getter
+    private final List<Review> reviews = new ArrayList<>();
 
     public TextParser() {
         initAttributes();
-        this.wines = new ArrayList<>();
-        this.reviews = new ArrayList<>();
     }
 
     /**
@@ -64,21 +72,13 @@ public class TextParser {
         ratingSalla = -1;
     }
 
-    public List<Wine> getWines() {
-        return wines;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
     /**
      * The method for parsing text files. Receives the texts in
      * a Scanner and parses it's contents line by line.
      * @param scanner containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
      */
-    public void parse(Scanner scanner, WineType wineType) {
+    public void parse(Scanner scanner, WineType wineType) throws IOException {
         String line = scanner.nextLine();
 
         // Parse each line:
@@ -122,10 +122,8 @@ public class TextParser {
 
             // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                // TODO: validate URL
-//                String urlStr = parseStringContent(line);
-//                url = validateUrl(urlStr);
-                url = parseStringContent(line);
+                String parsedUrl = parseStringContent(line);
+                url = validateUrl ? validateUrl(parsedUrl) : parsedUrl;
 
             // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {

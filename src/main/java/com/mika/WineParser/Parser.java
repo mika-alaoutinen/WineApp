@@ -3,7 +3,7 @@ package com.mika.WineParser;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import java.io.BufferedReader;
@@ -14,9 +14,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /** Driver class for TextParser. Gets Wines and Reviews as lists. */
-@Slf4j
 public class Parser {
+
+    @Getter
     private List<Wine> wines;
+
+    @Getter
     private List<Review> reviews;
 
     public Parser() {
@@ -32,7 +35,7 @@ public class Parser {
     private void parse() throws IOException {
         TextParser textParser = new TextParser();
 
-        List<WineType> types = List.of(
+        var types = List.of(
                 WineType.SPARKLING,
                 WineType.OTHER,
                 WineType.RED,
@@ -40,7 +43,7 @@ public class Parser {
                 WineType.WHITE
         );
 
-        List<String> files = List.of(
+        var files = List.of(
                 "kuohuviinit.txt",
                 "muut.txt",
                 "punaviinit.txt",
@@ -48,11 +51,15 @@ public class Parser {
                 "valkoviinit.txt"
         );
 
+        System.out.println("\nAttempting to parse the following files:");
+        System.out.println(files + "\n");
+
         for (int i = 0; i < files.size(); i++) {
             InputStream text = new DefaultResourceLoader()
                     .getResource("classpath:texts/" + files.get(i))
                     .getInputStream();
 
+            System.out.println("Parsing wines: " + types.get(i));
             var reader = new BufferedReader(new InputStreamReader(text));
             textParser.parse(new Scanner(reader), types.get(i));
         }
@@ -60,13 +67,5 @@ public class Parser {
         // Parsed wines and reviews:
         this.wines = textParser.getWines();
         this.reviews = textParser.getReviews();
-    }
-
-    public List<Wine> getWines() {
-        return wines;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
     }
 }
