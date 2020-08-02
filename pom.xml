@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -16,7 +17,7 @@
   <artifactId>WineApp</artifactId>
   <version>1.0.8-SNAPSHOT</version>
   <name>WineApp</name>
-  <description>REST back end for a wine tasting diary app</description>
+  <description>REST back end for a wine tasting notes app</description>
 
   <scm>
     <connection>scm:git:https://github.com/mika-alaoutinen/WineApp.git</connection>
@@ -30,7 +31,7 @@
     <h2database.version>1.4.200</h2database.version>
     <jjwt.version>0.9.1</jjwt.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-    <springdoc-openapi-ui.version>1.3.4</springdoc-openapi-ui.version>
+    <springdoc-openapi-ui.version>1.4.3</springdoc-openapi-ui.version>
   </properties>
 
   <dependencies>
