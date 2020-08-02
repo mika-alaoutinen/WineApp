@@ -7,8 +7,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.6.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <version>2.3.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.mika</groupId>
@@ -25,7 +25,7 @@
     </scm>
 
     <properties>
-        <java.version>13</java.version>
+        <java.version>14</java.version>
         <h2database.version>1.4.200</h2database.version>
         <jjwt.version>0.9.1</jjwt.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
