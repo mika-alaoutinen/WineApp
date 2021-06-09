@@ -26,7 +26,8 @@ public class TestConfig {
     }
 
     private List<UserDetails> buildUserDetails(List<User> users) {
-        return users.stream()
+        return users
+                .stream()
                 .map(UserPrincipal::build)
                 .collect(Collectors.toList());
     }
