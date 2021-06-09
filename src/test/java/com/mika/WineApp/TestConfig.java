@@ -1,4 +1,4 @@
-package com.mika.WineApp.configuration;
+package com.mika.WineApp;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.user.User;

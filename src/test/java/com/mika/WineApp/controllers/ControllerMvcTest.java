@@ -3,7 +3,7 @@ package com.mika.WineApp.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
-import com.mika.WineApp.configuration.TestConfig;
+import com.mika.WineApp.TestConfig;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
