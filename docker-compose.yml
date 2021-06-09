@@ -16,6 +16,7 @@ services:
     restart: unless-stopped
     volumes:
       - pg_data:/var/lib/postgres
+      - ./scripts:/docker-entrypoint-initdb.d
 
   # Backend API
   wineapp:
@@ -32,7 +33,7 @@ services:
       - 8080
     image: mikaalaoutinen/wineapp:latest
     ports:
-      - 8080:8080
+      - 8082:8080
     restart: unless-stopped
     
 volumes:
