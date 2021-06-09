@@ -18,7 +18,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-public class SecurityUtilitiesTest {
+class SecurityUtilitiesTest {
     private static final Wine wine = TestData.initWines().get(0);
     private static final List<User> testUsers = TestData.initTestUsers();
     private static final User user = testUsers.get(0);
@@ -28,7 +28,7 @@ public class SecurityUtilitiesTest {
     private final SecurityUtilitiesImpl securityUtils = new SecurityUtilitiesImpl();
 
     @BeforeEach
-    public void setupMocks() {
+    void setupMocks() {
         Authentication authentication = mock(Authentication.class);
         SecurityContext securityContext = mock(SecurityContext.class);
         UserPrincipal mockUserPrincipal = mock(UserPrincipal.class);
@@ -44,7 +44,7 @@ public class SecurityUtilitiesTest {
     }
 
     @Test
-    public void getUsernameFromSecurityContext() {
+    void getUsernameFromSecurityContext() {
         Mockito.when(userPrincipal.getUsername()).thenReturn(user.getUsername());
 
         String name = securityUtils.getUsernameFromSecurityContext();
@@ -52,28 +52,28 @@ public class SecurityUtilitiesTest {
     }
 
     @Test
-    public void validateUpdateRequestForOwner() {
+    void validateUpdateRequestForOwner() {
         wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
         securityUtils.isUserAllowedToEdit(wine, user);
     }
 
     @Test
-    public void shouldAllowAdminsToEdit() {
+    void shouldAllowAdminsToEdit() {
         wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(admin.getId());
         assertTrue(securityUtils.isUserAllowedToEdit(wine, admin));
     }
 
     @Test
-    public void shouldAllowOwnerToEdit() {
+    void shouldAllowOwnerToEdit() {
         wine.setUser(user);
         Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
         assertTrue(securityUtils.isUserAllowedToEdit(wine, user));
     }
 
     @Test
-    public void shouldNotAllowOtherUsersToEdit() {
+    void shouldNotAllowOtherUsersToEdit() {
         User nonOwner = new User();
         nonOwner.setId(123L);
         nonOwner.setRoles(Set.of(Role.ROLE_USER));
@@ -84,7 +84,7 @@ public class SecurityUtilitiesTest {
     }
 
     @Test
-    public void shouldHandleGetUserPrincipalWhenUserNotLoggedIn() {
+    void shouldHandleGetUserPrincipalWhenUserNotLoggedIn() {
         Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
                 .thenReturn("anonymousUser");
 

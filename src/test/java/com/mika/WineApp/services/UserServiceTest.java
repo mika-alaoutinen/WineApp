@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
     private final static List<User> users = TestData.initTestUsers();
     private final static User user = users.get(0);
     private final static String username = user.getUsername();
@@ -38,7 +38,7 @@ public class UserServiceTest {
     UserServiceImpl service;
 
     @BeforeEach
-    public void setupMocks() {
+    void setupMocks() {
         Mockito.lenient()
                 .when(securityUtils.getUsernameFromSecurityContext())
                 .thenReturn(user.getUsername());
@@ -49,20 +49,20 @@ public class UserServiceTest {
     }
 
     @Test
-    public void getUsername() {
+    void getUsername() {
         String username = service.getUsername();
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
         assertEquals(user.getUsername(), username);
     }
 
     @Test
-    public void isLoggedIn() {
+    void isLoggedIn() {
         assertTrue(service.isLoggedIn());
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
     }
 
     @Test
-    public void notLoggedIn() {
+    void notLoggedIn() {
         Mockito.when(securityUtils.getUsernameFromSecurityContext())
                .thenReturn(null);
 
@@ -71,7 +71,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void isUserAllowedToEdit() {
+    void isUserAllowedToEdit() {
         Mockito.when(securityUtils.getUsernameFromSecurityContext())
                .thenReturn(user.getUsername());
 
@@ -85,7 +85,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void userIsNotAllowedToEditWhenNotLoggedIn() {
+    void userIsNotAllowedToEditWhenNotLoggedIn() {
         Mockito.when(securityUtils.getUsernameFromSecurityContext())
                .thenReturn(null);
 
@@ -96,7 +96,7 @@ public class UserServiceTest {
     }
 
     @Test
-    public void setUser() {
+    void setUser() {
         EntityModel wineWithUser = service.setUser(wine);
         assertEquals(user, wineWithUser.getUser());
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();

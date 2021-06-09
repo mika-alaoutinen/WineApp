@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers.mvc;
+package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.review.Review;
