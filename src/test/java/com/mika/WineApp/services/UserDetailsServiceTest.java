@@ -21,7 +21,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class UserDetailsServiceTest {
+class UserDetailsServiceTest {
     private static final User user = TestData.initTestUsers().get(0);
 
     @Mock
@@ -31,7 +31,7 @@ public class UserDetailsServiceTest {
     private UserDetailsServiceImpl service;
 
     @Test
-    public void loadUserByUsername() {
+    void loadUserByUsername() {
         String username = user.getUsername();
 
         Mockito.when(repository.findByUsername(username))
@@ -44,7 +44,7 @@ public class UserDetailsServiceTest {
     }
 
     @Test
-    public void throwExceptionOnNonexistentUsername() {
+    void throwExceptionOnNonexistentUsername() {
         String username = "nonexistent user";
 
         Mockito.when(repository.findByUsername(username))

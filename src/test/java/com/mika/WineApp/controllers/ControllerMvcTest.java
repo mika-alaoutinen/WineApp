@@ -1,9 +1,9 @@
-package com.mika.WineApp.controllers.mvc;
+package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
-import com.mika.WineApp.configuration.TestConfig;
+import com.mika.WineApp.TestConfig;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -30,9 +31,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestConfig.class)
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 public abstract class ControllerMvcTest {
 
     @Autowired

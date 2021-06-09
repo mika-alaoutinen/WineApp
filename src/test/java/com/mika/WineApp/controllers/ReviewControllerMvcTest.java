@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers.mvc;
+package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.review.Review;
@@ -16,12 +16,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class ReviewControllerMvcTest extends ControllerMvcTest {
+class ReviewControllerMvcTest extends ControllerMvcTest {
     private final static String url = "/reviews";
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findAll() throws Exception {
+    void findAll() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByDateDesc())
                .thenReturn(reviews);
 
@@ -38,7 +38,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findOne() throws Exception {
+    void findOne() throws Exception {
         MvcResult result = mvc
             .perform(
                 get(url + "/{id}", review.getId())
@@ -52,7 +52,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void addReview() throws Exception {
+    void addReview() throws Exception {
         MvcResult result = mvc
             .perform(
                 post(url + "/{wineId}", wine.getId())
@@ -67,7 +67,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void editReview() throws Exception {
+    void editReview() throws Exception {
         MvcResult result = mvc
             .perform(
                 put(url + "/{id}", review.getId())
@@ -82,7 +82,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void deleteReview() throws Exception {
+    void deleteReview() throws Exception {
         mvc.perform(
                 delete(url + "/{id}", review.getId()))
             .andExpect(status().isNoContent());
@@ -90,7 +90,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void count() throws Exception {
+    void count() throws Exception {
         Mockito.when(reviewRepository.count()).thenReturn(2L);
 
         MvcResult result = mvc
@@ -105,7 +105,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void isAllowedToEdit() throws Exception {
+    void isAllowedToEdit() throws Exception {
         Review reviewWithUser = review;
         reviewWithUser.setUser(admin);
 
@@ -125,7 +125,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findNewest() throws Exception {
+    void findNewest() throws Exception {
         Mockito.when(reviewRepository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
@@ -135,7 +135,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findBest() throws Exception {
+    void findBest() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
@@ -145,7 +145,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findWorst() throws Exception {
+    void findWorst() throws Exception {
         Mockito.when(reviewRepository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
                .thenReturn(new PageImpl<>(reviews));
 
@@ -155,7 +155,7 @@ public class ReviewControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void search() throws Exception {
+    void search() throws Exception {
         mvc.perform(
                 get(url + "/search"))
            .andExpect(status().isOk());

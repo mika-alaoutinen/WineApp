@@ -24,7 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class AuthenticationServiceTest {
+class AuthenticationServiceTest {
     private final static String encodedPassword = "encoded_password";
     private final static User user = TestData.initTestUsers().get(0);
 
@@ -45,7 +45,7 @@ public class AuthenticationServiceTest {
 
     @Test
     @WithMockUser
-    public void loginReturnsJwtToken() {
+    void loginReturnsJwtToken() {
         Authentication authToken = mock(Authentication.class);
 
         Mockito.when(authenticationManager.authenticate(any(Authentication.class)))
@@ -63,7 +63,7 @@ public class AuthenticationServiceTest {
     }
 
     @Test
-    public void invalidLoginThrowsException() {
+    void invalidLoginThrowsException() {
         var authToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         String errorMessage = "Bad credentials";
 
@@ -77,7 +77,7 @@ public class AuthenticationServiceTest {
     }
 
     @Test
-    public void register() {
+    void register() {
         User newUser = new User(user.getUsername(), encodedPassword);
 
         Mockito.when(adminService.save(any(User.class)))

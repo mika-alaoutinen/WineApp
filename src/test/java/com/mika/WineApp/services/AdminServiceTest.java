@@ -25,7 +25,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class AdminServiceTest {
+class AdminServiceTest {
     private final static List<User> users = TestData.initTestUsers();
     private final static User user = users.get(0);
     private final static Long userId = user.getId();
@@ -39,7 +39,7 @@ public class AdminServiceTest {
     private AdminServiceImpl service;
 
     @BeforeEach
-    public void setupMocks() {
+    void setupMocks() {
         Mockito.lenient()
                 .when(repository.findById(userId))
                 .thenReturn(Optional.of(user));
@@ -58,7 +58,7 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void findAll() {
+    void findAll() {
         Mockito.when(repository.findAll())
                .thenReturn(users);
 
@@ -69,14 +69,14 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void findById() {
+    void findById() {
         User foundUser = service.findById(userId);
         verify(repository, times(1)).findById(userId);
         assertEquals(foundUser, user);
     }
 
     @Test
-    public void findByIdThrowsException() {
+    void findByIdThrowsException() {
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.findById(nonExistentUserId));
 
@@ -85,13 +85,13 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void findByUsername() {
+    void findByUsername() {
         assertEquals(user, service.findByUserName(username));
         verify(repository, times(1)).findByUsername(username);
     }
 
     @Test
-    public void findByUsernameThrowsException() {
+    void findByUsernameThrowsException() {
         String nonExistentName = "nonexistent";
 
         NotFoundException e = assertThrows(NotFoundException.class, () ->
@@ -102,7 +102,7 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void save() {
+    void save() {
         Mockito.when(repository.existsByUsername(username))
                .thenReturn(false);
 
@@ -114,7 +114,7 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void throwsExceptionIfUserNameIsTaken() {
+    void throwsExceptionIfUserNameIsTaken() {
         Mockito.when(repository.existsByUsername(username))
                .thenReturn(true);
 
@@ -126,7 +126,7 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void updateRoles() {
+    void updateRoles() {
         Mockito.when(repository.findById(userId))
                 .thenReturn(Optional.of(user));
 
@@ -142,7 +142,7 @@ public class AdminServiceTest {
     }
 
     @Test
-    public void updateRolesThrowsException() {
+    void updateRolesThrowsException() {
         Exception e = assertThrows(NotFoundException.class, () ->
                 service.updateRoles(nonExistentUserId, Set.of(Role.ROLE_ADMIN)));
 

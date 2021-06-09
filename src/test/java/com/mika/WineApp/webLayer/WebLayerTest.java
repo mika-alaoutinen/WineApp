@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
 
 /**
  * Smoke tests for the web layer.
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ActiveProfiles("test")
 class WebLayerTest {
 
     @Autowired
@@ -36,13 +38,13 @@ class WebLayerTest {
     }
 
     @Test
-    public void shouldReturnWines() {
+    void shouldReturnWines() {
         String wines = restTemplate.getForObject(url + port + "/api/wines", String.class);
 	    Assertions.assertThat(wines).isNotBlank();
     }
 
     @Test
-    public void shouldReturnReviews() {
+    void shouldReturnReviews() {
         String reviews = restTemplate.getForObject(url + port + "/api/reviews", String.class);
 	    Assertions.assertThat(reviews).isNotBlank();
     }

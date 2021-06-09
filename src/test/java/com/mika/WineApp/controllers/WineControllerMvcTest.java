@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers.mvc;
+package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.wine.Wine;
@@ -15,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class WineControllerMvcTest extends ControllerMvcTest {
+class WineControllerMvcTest extends ControllerMvcTest {
     private final static String url = "/wines";
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findAll() throws Exception {
+    void findAll() throws Exception {
         Mockito.when(wineRepository.findAllByOrderByNameAsc())
                .thenReturn(wines);
 
@@ -37,7 +37,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void findOne() throws Exception {
+    void findOne() throws Exception {
         MvcResult result = mvc
             .perform(
                 get(url + "/{id}", wine.getId())
@@ -51,7 +51,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void addWine() throws Exception {
+    void addWine() throws Exception {
         MvcResult result = mvc
             .perform(
                 post(url)
@@ -66,7 +66,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void editWine() throws Exception {
+    void editWine() throws Exception {
         Mockito.when(wineRepository.save(wine))
                .thenReturn(wine);
 
@@ -84,7 +84,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void deleteWine() throws Exception {
+    void deleteWine() throws Exception {
         mvc.perform(
                 delete(url + "/{id}", wine.getId()))
            .andExpect(status().isNoContent());
@@ -92,7 +92,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void count() throws Exception {
+    void count() throws Exception {
         Mockito.when(wineRepository.count()).thenReturn(1L);
 
         MvcResult result = mvc
@@ -107,7 +107,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void isAllowedToEdit() throws Exception {
+    void isAllowedToEdit() throws Exception {
         Wine wineWithUser = wine;
         wineWithUser.setUser(admin);
 
@@ -127,7 +127,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void getCountries() throws Exception {
+    void getCountries() throws Exception {
         var countries = List.of("Espanja", "Italia", "Ranska");
 
         Mockito.when(wineRepository.findAllCountries())
@@ -139,7 +139,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void getDescriptions() throws Exception {
+    void getDescriptions() throws Exception {
         var descriptions = List.of("puolikuiva", "sitruunainen", "yrttinen");
 
         Mockito.when(wineRepository.findAllDescriptions())
@@ -151,7 +151,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void getFoodPairings() throws Exception {
+    void getFoodPairings() throws Exception {
         var foodPairings = List.of("kana", "kala", "seurustelujuoma");
 
         Mockito.when(wineRepository.findAllFoodPairings())
@@ -163,7 +163,7 @@ public class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     @WithUserDetails(TEST_USER)
-    public void search() throws Exception {
+    void search() throws Exception {
         mvc.perform(
                 get(url + "/search"))
            .andExpect(status().isOk());
