@@ -1,6 +1,7 @@
 package com.mika.WineApp.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.time.LocalDate;
 import java.util.stream.IntStream;
@@ -27,8 +27,12 @@ class DateUtilsTest {
         assertDatesAreEqual(expectedDates, DateUtils.parseMonthRange(dates));
     }
 
+    @Test
+    void shouldReturnNullWithNullInput() {
+        assertNull(DateUtils.parseMonthRange(null));
+    }
+
     @ParameterizedTest
-    @NullAndEmptySource
     @MethodSource("createInvalidDates")
     void shouldThrowExceptionWhenNotGivenTwoDates(String[] dates) {
         assertThrows(InvalidDateException.class, () -> DateUtils.parseMonthRange(dates));

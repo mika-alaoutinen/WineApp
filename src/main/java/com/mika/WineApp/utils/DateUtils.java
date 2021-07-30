@@ -10,7 +10,11 @@ import java.time.format.DateTimeParseException;
 public abstract class DateUtils {
 
     public static LocalDate[] parseMonthRange(String[] dates) throws InvalidDateException {
-        if (dates == null || dates.length != 2) {
+        if (dates == null) {
+            return null;
+        }
+
+        if (dates.length != 2) {
             throw new InvalidDateException(dates);
         }
 
