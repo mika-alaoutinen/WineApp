@@ -10,14 +10,13 @@ import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.specifications.ReviewSpecification;
+import com.mika.WineApp.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -79,12 +78,14 @@ public class ReviewServiceImpl implements ReviewService {
         return userService.isUserAllowedToEdit(review);
     }
 
-    public List<Review> search(String author, String[] dateRange, Double[] ratingRange) {
+    public List<Review> search(String author, String[] dateRange, Double[] ratingRange)
+            throws InvalidDateException {
+
         if (author == null && dateRange == null && ratingRange == null) {
-            return List.of();
+            return Collections.emptyList();
         }
 
-        LocalDate[] dates = parseMonthRange(dateRange);
+        LocalDate[] dates = DateUtils.parseMonthRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
@@ -116,35 +117,5 @@ public class ReviewServiceImpl implements ReviewService {
         }
 
         return review;
-    }
-
-    private LocalDate[] parseMonthRange(String[] dates) throws InvalidDateException {
-        if (dates == null) {
-            return null;
-        }
-
-        if (dates.length != 2) {
-            throw new InvalidDateException(dates);
-        }
-
-        LocalDate[] parsedDates = new LocalDate[2];
-        String date = dates[0];
-
-        try {
-            parsedDates[0] = YearMonth
-                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atDay(1);
-
-            date = dates[1];
-
-            parsedDates[1] = YearMonth
-                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atEndOfMonth();
-
-        } catch (DateTimeParseException e) {
-            throw new InvalidDateException(date);
-        }
-
-        return parsedDates;
     }
 }
