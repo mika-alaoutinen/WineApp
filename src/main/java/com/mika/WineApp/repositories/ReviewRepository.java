@@ -11,19 +11,25 @@ import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "reviews", path = "reviews")
-public interface ReviewRepository extends PagingAndSortingRepository<Review, Long>,
-                                          JpaSpecificationExecutor<Review> {
+public interface ReviewRepository extends
+        PagingAndSortingRepository<Review, Long>,
+        JpaSpecificationExecutor<Review> {
 
     // Find reviews:
     Optional<Review> findById(Long id);
+
     List<Review> findAllByOrderByDateDesc();
+
     List<Review> findByWineId(Long wineId);
+
     List<Review> findByWineNameContainingIgnoreCase(String wineName);
 
     Review save(Review review);
 
     // Quick searches:
     Page<Review> findAllDistinctByOrderByDateDesc(Pageable limit);
+
     Page<Review> findAllByOrderByRatingDesc(Pageable limit);
+
     Page<Review> findAllByOrderByRatingAsc(Pageable limit);
 }
