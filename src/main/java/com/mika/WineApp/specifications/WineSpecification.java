@@ -2,6 +2,8 @@ package com.mika.WineApp.specifications;
 
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
+import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -9,23 +11,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class WineSpecification extends SuperSpecification implements Specification<Wine> {
     private final String name;
     private final WineType type;
-    private final Integer[] priceRange;
     private final List<String> countries;
     private final List<Double> volumes;
+    private final Integer[] priceRange;
 
-    public WineSpecification(String name, WineType type, List<String> countries, List<Double> volumes, Integer[] priceRange) {
-        super();
-        this.name = name;
-        this.type = type;
-        this.countries = countries;
-        this.volumes = volumes;
-        this.priceRange = priceRange;
-    }
-
-    public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+    public Predicate toPredicate(@NotNull Root<Wine> root, CriteriaQuery<?> query, @NotNull CriteriaBuilder builder) {
         namePredicate(root, builder);
         typePredicate(root, builder);
         priceRangePredicate(root, builder);
@@ -51,18 +45,12 @@ public class WineSpecification extends SuperSpecification implements Specificati
         }
     }
 
-    private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (priceRange != null && priceRange.length == 2) {
-            Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
-            super.predicates.add(predicate);
-        }
-    }
-
     private void countryPredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (countries != null && !countries.isEmpty()) {
             Expression<String> rootCountry = builder.lower(root.get("country"));
 
-            var countryPredicates = countries.stream()
+            var countryPredicates = countries
+                    .stream()
                     .filter(country -> !country.isBlank())
                     .map(super::formatString)
                     .map(country -> builder.like(rootCountry, country))
@@ -75,7 +63,8 @@ public class WineSpecification extends SuperSpecification implements Specificati
 
     private void volumePredicate(Root<Wine> root, CriteriaBuilder builder) {
         if (volumes != null && !volumes.isEmpty()) {
-            var volumePredicates = volumes.stream()
+            var volumePredicates = volumes
+                    .stream()
                     .filter(Objects::nonNull)
                     .map(volume -> builder.equal(root.get("volume"), volume))
                     .collect(Collectors.toList());
@@ -85,7 +74,14 @@ public class WineSpecification extends SuperSpecification implements Specificati
         }
     }
 
-    private  List<Order> createQueryOrder(Root<Wine> root, CriteriaBuilder builder) {
+    private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
+        if (priceRange != null && priceRange.length == 2) {
+            Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
+            super.predicates.add(predicate);
+        }
+    }
+
+    private List<Order> createQueryOrder(Root<Wine> root, CriteriaBuilder builder) {
         return List.of(
                 builder.asc(root.get("type")),
                 builder.asc(root.get("name"))

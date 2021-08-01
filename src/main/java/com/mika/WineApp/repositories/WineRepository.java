@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RepositoryRestResource(collectionResourceRel = "wines", path = "wines")
-public interface WineRepository extends PagingAndSortingRepository<Wine, Long>,
-                                        JpaSpecificationExecutor<Wine> {
+public interface WineRepository extends
+        PagingAndSortingRepository<Wine, Long>,
+        JpaSpecificationExecutor<Wine> {
 
     boolean existsByName(String name);
+
     Optional<Wine> findById(Long id);
+
     List<Wine> findAllByOrderByNameAsc();
+
     Wine save(Wine wine);
 
     @Query(value = "SELECT DISTINCT country FROM wine ORDER BY country ASC", nativeQuery = true)

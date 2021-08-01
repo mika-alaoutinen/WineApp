@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -86,14 +87,15 @@ public class WineServiceImpl implements WineService {
         return repository.findAllFoodPairings();
     }
 
-    public List<Wine> search(String name,
-                             String type,
-                             List<String> countries,
-                             List<Double> volumes,
-                             Integer[] priceRange) {
+    public List<Wine> search(
+            String name,
+            String type,
+            List<String> countries,
+            List<Double> volumes,
+            Integer[] priceRange) {
 
         if (name == null && type == null && countries == null && volumes == null && priceRange == null) {
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
 
         WineType wineType = null;

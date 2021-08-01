@@ -1,25 +1,21 @@
 package com.mika.WineApp.specifications;
 
 import com.mika.WineApp.models.review.Review;
+import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
     private final String author;
     private final LocalDate[] dateRange;
     private final Double[] ratingRange;
 
-    public ReviewSpecification(String author, LocalDate[] dateRange, Double[] ratingRange) {
-        super();
-        this.author = author;
-        this.dateRange = dateRange;
-        this.ratingRange = ratingRange;
-    }
-
-    public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
+    public Predicate toPredicate(@NotNull Root<Review> root, CriteriaQuery<?> query, @NotNull CriteriaBuilder builder) {
         authorPredicate(root, builder);
         datePredicate(root, builder);
         ratingPredicate(root, builder);
@@ -50,7 +46,7 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
         }
     }
 
-    private  List<Order> createQueryOrder(Root<Review> root, CriteriaBuilder builder) {
+    private List<Order> createQueryOrder(Root<Review> root, CriteriaBuilder builder) {
         return List.of(
                 builder.desc(root.get("date")),
                 builder.asc(root.get("author")),

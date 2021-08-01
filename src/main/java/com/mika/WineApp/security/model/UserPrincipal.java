@@ -8,12 +8,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
+
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -24,7 +27,9 @@ public class UserPrincipal implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserPrincipal build(User user) {
-        var authorities = user.getRoles().stream()
+        var authorities = user
+                .getRoles()
+                .stream()
                 .map(role -> new SimpleGrantedAuthority(role.name()))
                 .collect(Collectors.toList());
 
