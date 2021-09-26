@@ -8,13 +8,13 @@ modelPackage: model
 # Java settings
 booleanGetterPrefix: is
 dateLibrary: java8
-performBeanValidation: true
+performBeanValidation: false
 useOptional: true
 
 # code generation settings
-generateApiDocumentation: false
 implicitHeaders: true
 interfaceOnly: true
+openApiNullable: false
 modelNameSuffix: DTO
 skipDefaultInterface: true
 sourceFolder: openapi

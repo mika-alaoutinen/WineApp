@@ -57,6 +57,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+
     <!-- Database dependencies -->
     <dependency>
       <groupId>org.postgresql</groupId>
@@ -68,6 +69,7 @@
       <artifactId>h2</artifactId>
       <scope>test</scope>
     </dependency>
+
     <!-- Development utilities -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -80,23 +82,32 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
     </dependency>
+
     <!-- JWT for authentication -->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt</artifactId>
       <version>${jjwt.version}</version>
     </dependency>
+
     <!-- Testing -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-test</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- OpenAPI documentation -->
+
+    <!-- OpenAPI -->
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
       <version>${springdoc-openapi-ui.version}</version>
+    </dependency>
+    <!-- This is needed because OpenAPI generator's Spring profile has it as a dependency -->
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.6.2</version>
     </dependency>
   </dependencies>
 
@@ -129,6 +140,7 @@
                 https://raw.githubusercontent.com/mika-alaoutinen/maistissa-openapi/master/openapi.json
               </inputSpec>
               <generatorName>spring</generatorName>
+              <library>spring-boot</library>
             </configuration>
           </execution>
         </executions>
