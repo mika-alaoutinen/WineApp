@@ -2,7 +2,6 @@ package com.mika.WineApp.specifications;
 
 import com.mika.WineApp.models.review.Review;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -15,7 +14,7 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
     private final LocalDate[] dateRange;
     private final Double[] ratingRange;
 
-    public Predicate toPredicate(@NotNull Root<Review> root, CriteriaQuery<?> query, @NotNull CriteriaBuilder builder) {
+    public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         authorPredicate(root, builder);
         datePredicate(root, builder);
         ratingPredicate(root, builder);

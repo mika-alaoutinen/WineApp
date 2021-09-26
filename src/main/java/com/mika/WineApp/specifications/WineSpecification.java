@@ -3,7 +3,6 @@ package com.mika.WineApp.specifications;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -19,7 +18,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
     private final List<Double> volumes;
     private final Integer[] priceRange;
 
-    public Predicate toPredicate(@NotNull Root<Wine> root, CriteriaQuery<?> query, @NotNull CriteriaBuilder builder) {
+    public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         namePredicate(root, builder);
         typePredicate(root, builder);
         priceRangePredicate(root, builder);
