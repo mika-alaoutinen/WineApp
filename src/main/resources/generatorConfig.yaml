@@ -4,6 +4,7 @@ developerName: Mika Alaoutinen
 basePackage: openapi
 apiPackage: api
 modelPackage: model
+sourceFolder: openapi
 
 # Java settings
 booleanGetterPrefix: is
@@ -14,7 +15,7 @@ useOptional: true
 # code generation settings
 implicitHeaders: true
 interfaceOnly: true
-openApiNullable: false
 modelNameSuffix: DTO
+openApiNullable: false
 skipDefaultInterface: true
-sourceFolder: openapi
+useTags: true
