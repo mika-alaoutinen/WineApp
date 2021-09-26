@@ -36,8 +36,10 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtProvider jwtProvider;
     private final UserDetailsService service;
+
     @Value("${frontend.urls}")
     private List<String> allowedUrls;
+
     @Value("${spring.security.enabled}")
     private boolean securityEnabled;
 
@@ -52,9 +54,7 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
 
     @Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception {
-        authBuilder
-                .userDetailsService(service)
-                .passwordEncoder(passwordEncoder());
+        authBuilder.userDetailsService(service).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -65,7 +65,6 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
 
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
-        allowedUrls.forEach(url -> System.out.println("url " + url));
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(allowedUrls);
@@ -91,7 +90,7 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
         return new JwtTokenFilter(jwtProvider, service);
     }
 
-    // Private methods:
+    //@formatter:off
     private void configureSecurity(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
