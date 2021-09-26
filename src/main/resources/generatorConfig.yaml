@@ -1,0 +1,20 @@
+developerName: Mika Alaoutinen
+
+# packages
+basePackage: openapi
+apiPackage: api
+modelPackage: model
+
+# Java settings
+booleanGetterPrefix: is
+dateLibrary: java8
+performBeanValidation: true
+useOptional: true
+
+# code generation settings
+generateApiDocumentation: false
+implicitHeaders: true
+interfaceOnly: true
+modelNameSuffix: DTO
+skipDefaultInterface: true
+sourceFolder: openapi
