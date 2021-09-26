@@ -103,11 +103,16 @@
       <artifactId>springdoc-openapi-ui</artifactId>
       <version>${springdoc-openapi-ui.version}</version>
     </dependency>
-    <!-- This is needed because OpenAPI generator's Spring profile has it as a dependency -->
+    <!-- These are needed because OpenAPI generator's Spring profile has them as dependenies -->
     <dependency>
       <groupId>io.swagger</groupId>
       <artifactId>swagger-annotations</artifactId>
       <version>1.6.2</version>
+    </dependency>
+    <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
+        <version>3.0.0</version>
     </dependency>
   </dependencies>
 
