@@ -4,7 +4,7 @@ developerName: Mika Alaoutinen
 basePackage: openapi
 apiPackage: api
 modelPackage: model
-sourceFolder: openapi
+sourceFolder: src
 
 # Java settings
 booleanGetterPrefix: is

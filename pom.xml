@@ -28,6 +28,7 @@
   <properties>
     <java.version>16</java.version>
     <jjwt.version>0.9.1</jjwt.version>
+    <mapstruct.version>1.4.2.Final</mapstruct.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <openapi-generator-version>5.2.1</openapi-generator-version>
     <!-- delete this -->
@@ -110,9 +111,16 @@
       <version>1.6.2</version>
     </dependency>
     <dependency>
-        <groupId>io.springfox</groupId>
-        <artifactId>springfox-swagger2</artifactId>
-        <version>3.0.0</version>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!-- DTO mapping -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
     </dependency>
   </dependencies>
 
@@ -162,6 +170,19 @@
         <configuration>
           <source>16</source>
           <target>16</target>
+          <annotationProcessorPaths>
+            <!-- Setup MapStruct -->
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
+            </path>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.20</version>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
     </plugins>
