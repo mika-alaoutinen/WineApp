@@ -33,15 +33,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
 
-    @Value("${frontend.url}")
-    private String allowedUrl;
-
-    @Value("${spring.security.enabled}")
-    private boolean securityEnabled;
-
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtProvider jwtProvider;
     private final UserDetailsService service;
+    @Value("${frontend.urls}")
+    private List<String> allowedUrls;
+    @Value("${spring.security.enabled}")
+    private boolean securityEnabled;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -67,9 +65,10 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
 
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
+        allowedUrls.forEach(url -> System.out.println("url " + url));
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOrigins(List.of(allowedUrl));
+        config.setAllowedOrigins(allowedUrls);
         config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH"));
         config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
 
