@@ -149,6 +149,15 @@
               <goal>generate</goal>
             </goals>
             <configuration>
+              <!--
+              At least some of these are needed to get MapStruct working with the OpenAPI generated classes.
+              Without these, the Entity -> DTO mapping fails because the DTO classes do not have normal setters.
+              -->
+              <configOptions>
+                <additionalModelTypeAnnotations>
+                  @lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor
+                </additionalModelTypeAnnotations>
+              </configOptions>
               <configurationFile>${project.basedir}/src/main/resources/generatorConfig.yaml</configurationFile>
               <inputSpec>
                 https://raw.githubusercontent.com/mika-alaoutinen/maistissa-openapi/master/openapi.json

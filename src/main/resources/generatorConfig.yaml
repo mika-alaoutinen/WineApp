@@ -18,7 +18,3 @@ modelNameSuffix: DTO
 openApiNullable: false
 skipDefaultInterface: true
 useTags: true
-
-# At least some of these are needed to get MapStruct working with the OpenAPI generated classes.
-# Without these, the Entity -> DTO mapping fails because the DTO classes do not have normal setters.
-additionalModelTypeAnnotations: @lombok.Builder @lombok.NoArgsConstructor @lombok.AllArgsConstructor
