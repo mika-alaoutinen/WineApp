@@ -149,13 +149,6 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <configOptions>
-                <additionalModelTypeAnnotations>
-                  @lombok.Builder
-                  @lombok.NoArgsConstructor
-                  @lombok.AllArgsConstructor
-                </additionalModelTypeAnnotations>
-              </configOptions>
               <configurationFile>${project.basedir}/src/main/resources/generatorConfig.yaml</configurationFile>
               <inputSpec>
                 https://raw.githubusercontent.com/mika-alaoutinen/maistissa-openapi/master/openapi.json
