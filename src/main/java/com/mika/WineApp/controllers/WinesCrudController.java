@@ -1,10 +1,10 @@
 package com.mika.WineApp.controllers;
 
-import api.WinesCrudApi;
 import com.mika.WineApp.mappers.WineMapper;
 import com.mika.WineApp.services.WineService;
+import com.mika.api.WinesCrudApi;
+import com.mika.model.WineDTO;
 import lombok.RequiredArgsConstructor;
-import model.WineDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

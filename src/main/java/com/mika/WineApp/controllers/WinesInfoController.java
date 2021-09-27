@@ -1,7 +1,7 @@
 package com.mika.WineApp.controllers;
 
-import api.WinesInfoApi;
 import com.mika.WineApp.services.WineService;
+import com.mika.api.WinesInfoApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

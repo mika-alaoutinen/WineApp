@@ -1,7 +1,7 @@
 package com.mika.WineApp.mappers;
 
 import com.mika.WineApp.models.wine.Wine;
-import model.WineDTO;
+import com.mika.model.WineDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

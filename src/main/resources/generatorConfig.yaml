@@ -1,10 +1,9 @@
 developerName: Mika Alaoutinen
 
-# packages
-basePackage: openapi
-apiPackage: api
-modelPackage: model
-sourceFolder: src
+# The api and model packages have to be prefixed with com.mika or the build breaks.
+apiPackage: com.mika.api
+modelPackage: com.mika.model
+sourcePackage: src
 
 # Java settings
 booleanGetterPrefix: is
