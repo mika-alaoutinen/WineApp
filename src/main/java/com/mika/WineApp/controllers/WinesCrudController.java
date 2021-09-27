@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class WineController implements WinesCrudApi {
+public class WinesCrudController implements WinesCrudApi {
     private final WineMapper mapper;
     private final WineService service;
 

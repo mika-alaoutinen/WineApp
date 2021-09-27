@@ -1,7 +1,7 @@
 package com.mika.WineApp.webLayer;
 
 import com.mika.WineApp.controllers.ReviewController;
-import com.mika.WineApp.controllers.WineController;
+import com.mika.WineApp.controllers.WinesCrudController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ class WebLayerTest {
     private ReviewController reviewController;
 
     @Autowired
-    private WineController wineController;
+    private WinesCrudController wineController;
 
     @LocalServerPort
     private int port;
@@ -31,21 +31,29 @@ class WebLayerTest {
 
     private static final String url = "http://localhost:";
 
-	@Test
-	void contextLoads() {
-        Assertions.assertThat(wineController).isNotNull();
-        Assertions.assertThat(reviewController).isNotNull();
+    @Test
+    void contextLoads() {
+        Assertions
+                .assertThat(wineController)
+                .isNotNull();
+        Assertions
+                .assertThat(reviewController)
+                .isNotNull();
     }
 
     @Test
     void shouldReturnWines() {
         String wines = restTemplate.getForObject(url + port + "/api/wines", String.class);
-	    Assertions.assertThat(wines).isNotBlank();
+        Assertions
+                .assertThat(wines)
+                .isNotBlank();
     }
 
     @Test
     void shouldReturnReviews() {
         String reviews = restTemplate.getForObject(url + port + "/api/reviews", String.class);
-	    Assertions.assertThat(reviews).isNotBlank();
+        Assertions
+                .assertThat(reviews)
+                .isNotBlank();
     }
 }
