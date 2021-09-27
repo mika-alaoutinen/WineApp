@@ -10,7 +10,6 @@ sourceFolder: src
 booleanGetterPrefix: is
 dateLibrary: java8
 performBeanValidation: false
-useOptional: true
 
 # code generation settings
 implicitHeaders: true
