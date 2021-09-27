@@ -12,7 +12,6 @@ import com.mika.WineApp.specifications.WineSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,13 +21,14 @@ public class WineServiceImpl implements WineService {
     private final WineRepository repository;
     private final UserService userService;
 
-// --- CRUD methods ---
+    // --- CRUD methods ---
     public List<Wine> findAll() {
         return repository.findAllByOrderByNameAsc();
     }
 
     public Wine findById(Long id) {
-        return repository.findById(id)
+        return repository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(new Wine(), id));
     }
 
@@ -61,9 +61,9 @@ public class WineServiceImpl implements WineService {
         repository.deleteById(id);
     }
 
-// --- Other methods ---
-    public long count() {
-        return repository.count();
+    // --- Other methods ---
+    public int count() {
+        return (int) repository.count();
     }
 
     public boolean isAllowedToEdit(Long id) {
@@ -92,7 +92,7 @@ public class WineServiceImpl implements WineService {
             String type,
             List<String> countries,
             List<Double> volumes,
-            Integer[] priceRange) {
+            List<Double> priceRange) {
 
         if (name == null && type == null && countries == null && volumes == null && priceRange == null) {
             return Collections.emptyList();
@@ -106,7 +106,7 @@ public class WineServiceImpl implements WineService {
         return repository.findAll(new WineSpecification(name, wineType, countries, volumes, priceRange));
     }
 
-// Utility methods:
+    // Utility methods:
     private Wine findAndValidateWine(Long id) {
         Wine wine = findById(id);
 

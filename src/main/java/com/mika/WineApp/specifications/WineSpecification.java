@@ -16,7 +16,7 @@ public class WineSpecification extends SuperSpecification implements Specificati
     private final WineType type;
     private final List<String> countries;
     private final List<Double> volumes;
-    private final Integer[] priceRange;
+    private final List<Double> priceRange;
 
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         namePredicate(root, builder);
@@ -74,8 +74,8 @@ public class WineSpecification extends SuperSpecification implements Specificati
     }
 
     private void priceRangePredicate(Root<Wine> root, CriteriaBuilder builder) {
-        if (priceRange != null && priceRange.length == 2) {
-            Predicate predicate = builder.between(root.get("price"), priceRange[0], priceRange[1]);
+        if (priceRange != null && priceRange.size() == 2) {
+            Predicate predicate = builder.between(root.get("price"), priceRange.get(0), priceRange.get(1));
             super.predicates.add(predicate);
         }
     }
