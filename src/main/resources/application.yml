@@ -33,11 +33,11 @@ jwt:
 # Used in LoadDatabase to create an initial admin user
 admin:
   username: admin
-  password: password
+  password: admin
 
-# Allow connections from this URL:
+# Allow connections from these URLs:
 frontend:
-  url: http://localhost:8081
+  urls: http://localhost:8081,http://localhost:3000
 
 
 # Wine parser settings:
