@@ -18,3 +18,5 @@ modelNameSuffix: DTO
 openApiNullable: false
 skipDefaultInterface: true
 useTags: true
+
+additionalModelTypeAnnotations: "@lombok.NoArgsConstructor @lombok.AllArgsConstructor"
