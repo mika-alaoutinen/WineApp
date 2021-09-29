@@ -13,12 +13,18 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class WinesSearchController implements WinesSearchApi {
+public class WineSearchController implements WinesSearchApi {
     private final WineMapper mapper;
     private final WineService service;
 
     @Override
-    public ResponseEntity<List<WineDTO>> search(String name, String type, List<String> countries, List<Double> volumes, List<Double> priceRange) {
+    public ResponseEntity<List<WineDTO>> wineSearch(
+            String name,
+            String type,
+            List<String> countries,
+            List<Double> volumes,
+            List<Double> priceRange
+    ) {
         var wines = service
                 .search(name, type, countries, volumes, priceRange)
                 .stream()

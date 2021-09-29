@@ -14,18 +14,18 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class WinesCrudController implements WinesCrudApi {
+public class WineCrudController implements WinesCrudApi {
     private final WineMapper mapper;
     private final WineService service;
 
     @Override
-    public ResponseEntity<WineDTO> add(WineDTO wineDTO) {
+    public ResponseEntity<WineDTO> addWine(WineDTO wineDTO) {
         var newWine = service.add(mapper.toModel(wineDTO));
         return new ResponseEntity<>(mapper.toDTO(newWine), HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<Void> delete(Long id) {
+    public ResponseEntity<Void> deleteWine(Long id) {
         service.delete(id);
         return ResponseEntity
                 .noContent()
@@ -33,13 +33,13 @@ public class WinesCrudController implements WinesCrudApi {
     }
 
     @Override
-    public ResponseEntity<WineDTO> find(Long id) {
+    public ResponseEntity<WineDTO> findWine(Long id) {
         var wine = mapper.toDTO(service.findById(id));
         return ResponseEntity.ok(wine);
     }
 
     @Override
-    public ResponseEntity<List<WineDTO>> findAll() {
+    public ResponseEntity<List<WineDTO>> getWines() {
         var wines = service
                 .findAll()
                 .stream()
@@ -50,12 +50,12 @@ public class WinesCrudController implements WinesCrudApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> isEditable(Long id) {
+    public ResponseEntity<Boolean> isWineEditable(Long id) {
         return ResponseEntity.ok(service.isAllowedToEdit(id));
     }
 
     @Override
-    public ResponseEntity<WineDTO> update(Long id, WineDTO wineDTO) {
+    public ResponseEntity<WineDTO> updateWine(Long id, WineDTO wineDTO) {
         var edited = service.edit(id, mapper.toModel(wineDTO));
         return ResponseEntity.ok(mapper.toDTO(edited));
     }
