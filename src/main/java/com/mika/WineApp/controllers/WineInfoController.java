@@ -10,13 +10,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class WinesInfoController implements WinesInfoApi {
+public class WineInfoController implements WinesInfoApi {
     private final WineService service;
-
-    @Override
-    public ResponseEntity<Integer> count() {
-        return ResponseEntity.ok(service.count());
-    }
 
     @Override
     public ResponseEntity<List<String>> findCountries() {
@@ -34,7 +29,12 @@ public class WinesInfoController implements WinesInfoApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> validateName(String name) {
+    public ResponseEntity<Boolean> validateWineName(String name) {
         return ResponseEntity.ok(service.isValid(name));
+    }
+
+    @Override
+    public ResponseEntity<Integer> wineCount() {
+        return ResponseEntity.ok(service.count());
     }
 }

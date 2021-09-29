@@ -11,8 +11,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
     private final String author;
-    private final LocalDate[] dateRange;
-    private final Double[] ratingRange;
+    private final List<LocalDate> dateRange;
+    private final List<Double> ratingRange;
 
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         authorPredicate(root, builder);
@@ -32,15 +32,15 @@ public class ReviewSpecification extends SuperSpecification implements Specifica
     }
 
     private void datePredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (dateRange != null && dateRange.length == 2) {
-            Predicate predicate = builder.between(root.get("date"), dateRange[0], dateRange[1]);
+        if (dateRange != null && dateRange.size() == 2) {
+            Predicate predicate = builder.between(root.get("date"), dateRange.get(0), dateRange.get(1));
             super.predicates.add(predicate);
         }
     }
 
     private void ratingPredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (ratingRange != null && ratingRange.length == 2) {
-            Predicate predicate = builder.between(root.get("rating"), ratingRange[0], ratingRange[1]);
+        if (ratingRange != null && ratingRange.size() == 2) {
+            Predicate predicate = builder.between(root.get("rating"), ratingRange.get(0), ratingRange.get(1));
             super.predicates.add(predicate);
         }
     }

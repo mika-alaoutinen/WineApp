@@ -1,7 +1,7 @@
 package com.mika.WineApp.webLayer;
 
-import com.mika.WineApp.controllers.ReviewController;
-import com.mika.WineApp.controllers.WinesCrudController;
+import com.mika.WineApp.controllers.ReviewCrudController;
+import com.mika.WineApp.controllers.WineCrudController;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import org.springframework.test.context.ActiveProfiles;
 class WebLayerTest {
 
     @Autowired
-    private ReviewController reviewController;
+    private ReviewCrudController reviewController;
 
     @Autowired
-    private WinesCrudController wineController;
+    private WineCrudController wineController;
 
     @LocalServerPort
     private int port;
