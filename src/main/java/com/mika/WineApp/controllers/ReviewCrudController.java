@@ -5,6 +5,7 @@ import com.mika.WineApp.services.ReviewService;
 import com.mika.api.ReviewsCrudApi;
 import com.mika.model.ReviewDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,7 @@ public class ReviewCrudController implements ReviewsCrudApi {
     @Override
     public ResponseEntity<ReviewDTO> addReview(Long wineId, ReviewDTO reviewDTO) {
         var newReview = service.add(wineId, mapper.toModel(reviewDTO));
-        return ResponseEntity.ok(mapper.toDTO(newReview));
+        return new ResponseEntity<>(mapper.toDTO(newReview), HttpStatus.CREATED);
     }
 
     @Override
