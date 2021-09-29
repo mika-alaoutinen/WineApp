@@ -1,9 +1,5 @@
 package com.mika.WineApp.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import com.mika.WineApp.errors.invaliddate.InvalidDateException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,19 +7,23 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class DateUtilsTest {
 
     @Test
     void shouldParseValidDates() {
-        LocalDate[] expectedDates = {
+        List<LocalDate> expectedDates = List.of(
                 LocalDate.of(2021, 1, 1),
                 LocalDate.of(2021, 2, 28)
-        };
+        );
 
-        String[] dates = { "2021-01", "2021-02" };
+        List<String> dates = List.of("2021-01", "2021-02");
         assertDatesAreEqual(expectedDates, DateUtils.parseMonthRange(dates));
     }
 
@@ -34,20 +34,21 @@ class DateUtilsTest {
 
     @ParameterizedTest
     @MethodSource("createInvalidDates")
-    void shouldThrowExceptionWhenNotGivenTwoDates(String[] dates) {
+    void shouldThrowExceptionWhenNotGivenTwoDates(List<String> dates) {
         assertThrows(InvalidDateException.class, () -> DateUtils.parseMonthRange(dates));
     }
 
     private static Stream<Arguments> createInvalidDates() {
         return Stream.of(
-                Arguments.of((Object) new String[] { "2020-01" }),
-                Arguments.of((Object) new String[] { "2020-01", "2020-02", "2020-03" })
+                Arguments.of((Object) Collections.emptyList()),
+                Arguments.of((Object) List.of("2020-01")),
+                Arguments.of((Object) List.of("2020-01", "2020-02", "2020-03"))
         );
     }
 
-    private void assertDatesAreEqual(LocalDate[] expected, LocalDate[] parsed) {
+    private void assertDatesAreEqual(List<LocalDate> expected, List<LocalDate> parsed) {
         IntStream
-                .range(0, parsed.length)
-                .forEach(i -> assertEquals(expected[i], parsed[i]));
+                .range(0, parsed.size())
+                .forEach(i -> assertEquals(expected.get(i), parsed.get(i)));
     }
 }

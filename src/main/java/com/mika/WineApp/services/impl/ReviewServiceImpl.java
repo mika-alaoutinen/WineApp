@@ -79,14 +79,14 @@ public class ReviewServiceImpl implements ReviewService {
         return userService.isUserAllowedToEdit(review);
     }
 
-    public List<Review> search(String author, String[] dateRange, Double[] ratingRange)
+    public List<Review> search(String author, List<String> dateRange, List<Double> ratingRange)
             throws InvalidDateException {
 
         if (author == null && dateRange == null && ratingRange == null) {
             return Collections.emptyList();
         }
 
-        LocalDate[] dates = DateUtils.parseMonthRange(dateRange);
+        List<LocalDate> dates = DateUtils.parseMonthRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 

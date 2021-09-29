@@ -25,37 +25,49 @@ import static org.mockito.Mockito.verify;
 
 class ReviewServiceTest extends ServiceTest {
     private static final String author = "Mika";
-    private static final Double[] ratingRange = { 1.0, 5.0 };
+    private static final List<Double> ratingRange = List.of(1.0, 5.0);
 
     @InjectMocks
     private ReviewServiceImpl service;
 
     @BeforeEach
     void setupTests() {
-        this.review = reviews.stream().findAny().orElse(null);
-        this.wine = wines.stream().findAny().orElse(null);
+        this.review = reviews
+                .stream()
+                .findAny()
+                .orElse(null);
 
-        Mockito.lenient()
+        this.wine = wines
+                .stream()
+                .findAny()
+                .orElse(null);
+
+        Mockito
+                .lenient()
                 .when(reviewRepository.findById(review.getId()))
                 .thenReturn(Optional.ofNullable(review));
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(reviewRepository.findById(nonExistingReviewId))
                 .thenReturn(Optional.empty());
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(reviewRepository.save(review))
                 .thenReturn(review);
     }
 
     @Test
     void findAll() {
-        var sortedReviews = reviews.stream()
+        var sortedReviews = reviews
+                .stream()
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
 
-        Mockito.when(reviewRepository.findAllByOrderByDateDesc())
-               .thenReturn(sortedReviews);
+        Mockito
+                .when(reviewRepository.findAllByOrderByDateDesc())
+                .thenReturn(sortedReviews);
 
         var foundReviews = service.findAll();
 
@@ -81,8 +93,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void findByWineId() {
-        Mockito.when(reviewRepository.findByWineId(review.getId()))
-               .thenReturn(reviews);
+        Mockito
+                .when(reviewRepository.findByWineId(review.getId()))
+                .thenReturn(reviews);
 
         var foundReviews = service.findByWineId(review.getId());
         assertEquals(2, foundReviews.size());
@@ -92,8 +105,9 @@ class ReviewServiceTest extends ServiceTest {
     void findByWineIdReturnsEmptyList() {
         long id = 1L;
 
-        Mockito.when(reviewRepository.findByWineId(id))
-               .thenReturn(List.of());
+        Mockito
+                .when(reviewRepository.findByWineId(id))
+                .thenReturn(List.of());
 
         var foundReviews = service.findByWineId(id);
         assertTrue(foundReviews.isEmpty());
@@ -102,7 +116,8 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void findByWineName() {
         String wineName = "Valkoviini 1";
-        Mockito.when(reviewRepository.findByWineNameContainingIgnoreCase(wineName))
+        Mockito
+                .when(reviewRepository.findByWineNameContainingIgnoreCase(wineName))
                 .thenReturn(reviews);
 
         var foundReviews = service.findByWineName(wineName);
@@ -111,11 +126,13 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void addReview() {
-        Mockito.when(userService.setUser(review))
-               .thenReturn(review);
+        Mockito
+                .when(userService.setUser(review))
+                .thenReturn(review);
 
-        Mockito.when(reviewRepository.save(review))
-               .thenReturn(review);
+        Mockito
+                .when(reviewRepository.save(review))
+                .thenReturn(review);
 
         Review savedReview = service.add(wine.getId(), review);
 
@@ -127,8 +144,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void addReviewForNonExistingWine() {
-        Mockito.when(wineService.findById(nonExistingWineId))
-               .thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
+        Mockito
+                .when(wineService.findById(nonExistingWineId))
+                .thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
 
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.add(nonExistingWineId, review));
@@ -140,8 +158,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void editReview() {
-        Mockito.when(userService.isUserAllowedToEdit(review))
-               .thenReturn(true);
+        Mockito
+                .when(userService.isUserAllowedToEdit(review))
+                .thenReturn(true);
 
         Review editedReview = service.edit(review.getId(), review);
         verify(reviewRepository, times(1)).findById(review.getId());
@@ -173,8 +192,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void deleteReview() {
-        Mockito.when(userService.isUserAllowedToEdit(review))
-               .thenReturn(true);
+        Mockito
+                .when(userService.isUserAllowedToEdit(review))
+                .thenReturn(true);
 
         service.delete(review.getId());
         verify(userService, times(1)).isUserAllowedToEdit(review);
@@ -189,8 +209,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void count() {
-        Mockito.when(reviewRepository.count())
-               .thenReturn((long) reviews.size());
+        Mockito
+                .when(reviewRepository.count())
+                .thenReturn((long) reviews.size());
 
         long reviewCount = service.count();
 
@@ -216,7 +237,7 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void validDateRangeIsParsed() {
-        String[] monthRange = { "2020-01", "2020-02" };
+        List<String> monthRange = List.of("2020-01", "2020-02");
         service.search(author, monthRange, ratingRange);
         verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
     }
@@ -229,19 +250,19 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void invalidDateRangeThrowsException1() {
-        String[] monthRange = { "2020-01-01", "2020-02" };
+        List<String> monthRange = List.of("2020-01-01", "2020-02");
         String expectedErrorMessage = "Error: could not parse date 2020-01-01";
         testInvalidDates(monthRange, expectedErrorMessage);
     }
 
     @Test
     void invalidDateRangeThrowsException2() {
-        String[] monthRange = { "2020-01" };
+        List<String> monthRange = List.of("2020-01");
         String expectedErrorMessage = "Error: date range must have a start date and an end date. Given [2020-01]";
         testInvalidDates(monthRange, expectedErrorMessage);
     }
 
-    private void testInvalidDates(String[] monthRange, String expectedErrorMessage) {
+    private void testInvalidDates(List<String> monthRange, String expectedErrorMessage) {
         Exception e = assertThrows(InvalidDateException.class, () ->
                 service.search(author, monthRange, ratingRange));
 
@@ -251,7 +272,8 @@ class ReviewServiceTest extends ServiceTest {
 
     // Private methods:
     private void isAllowedToEdit(boolean isAllowed) {
-        Mockito.when(userService.isUserAllowedToEdit(review))
+        Mockito
+                .when(userService.isUserAllowedToEdit(review))
                 .thenReturn(isAllowed);
 
         assertEquals(service.isAllowedToEdit(review.getId()), isAllowed);
