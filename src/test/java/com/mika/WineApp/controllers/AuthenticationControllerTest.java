@@ -66,15 +66,7 @@ class AuthenticationControllerTest {
                 .when(authManager.authenticate(any(Authentication.class)))
                 .thenReturn(new TestingAuthenticationToken(principal, credentials));
 
-        MvcResult result = mvc
-                .perform(
-                        post("/auth/login")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(USER_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
+        String response = doPost("/auth/login");
         JwtToken token = objectMapper.readValue(response, JwtToken.class);
 
         assertFalse(token
@@ -97,15 +89,7 @@ class AuthenticationControllerTest {
                 .when(repository.save(any(User.class)))
                 .thenReturn(savedUser);
 
-        MvcResult result = mvc
-                .perform(
-                        post("/auth/register")
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(USER_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
+        String response = doPost("/auth/register");
         User newUser = objectMapper.readValue(response, User.class);
 
         assertEquals(1L, newUser.getId());
@@ -114,5 +98,17 @@ class AuthenticationControllerTest {
         Mockito
                 .verify(repository)
                 .save(any(User.class));
+    }
+
+    private String doPost(String url) throws Exception {
+        MvcResult result = mvc
+                .perform(
+                        post(url)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(USER_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        return TestUtilities.getResponseString(result);
     }
 }
