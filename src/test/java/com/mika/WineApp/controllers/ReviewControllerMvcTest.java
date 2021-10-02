@@ -12,15 +12,16 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Optional;
 
+import static com.mika.WineApp.controllers.ControllerMvcTest.TEST_USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WithUserDetails(TEST_USER)
 class ReviewControllerMvcTest extends ControllerMvcTest {
     private final static String url = "/reviews";
 
     @Test
-    @WithUserDetails(TEST_USER)
     void findAll() throws Exception {
         Mockito
                 .when(reviewRepository.findAllByOrderByDateDesc())
@@ -36,7 +37,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void findOne() throws Exception {
         MvcResult result = mvc
                 .perform(get(url + "/{id}", review.getId()))
@@ -48,7 +48,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void addReview() throws Exception {
         MvcResult result = mvc
                 .perform(
@@ -63,7 +62,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void editReview() throws Exception {
         MvcResult result = mvc
                 .perform(
@@ -78,7 +76,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void deleteReview() throws Exception {
         mvc
                 .perform(delete(url + "/{id}", review.getId()))
@@ -86,7 +83,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void count() throws Exception {
         Mockito
                 .when(reviewRepository.count())
@@ -102,7 +98,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void isAllowedToEdit() throws Exception {
         Mockito
                 .when(reviewRepository.findById(review.getId()))
@@ -118,7 +113,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void findNewest() throws Exception {
         Mockito
                 .when(reviewRepository.findAllDistinctByOrderByDateDesc(PageRequest.of(0, 10)))
@@ -129,7 +123,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void findBest() throws Exception {
         Mockito
                 .when(reviewRepository.findAllByOrderByRatingDesc(PageRequest.of(0, 10)))
@@ -140,7 +133,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void findWorst() throws Exception {
         Mockito
                 .when(reviewRepository.findAllByOrderByRatingAsc(PageRequest.of(0, 10)))
@@ -151,7 +143,6 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
-    @WithUserDetails(TEST_USER)
     void search() throws Exception {
         mvc
                 .perform(get(url + "/search"))
