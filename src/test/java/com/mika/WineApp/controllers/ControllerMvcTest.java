@@ -56,7 +56,6 @@ public abstract class ControllerMvcTest {
     protected SecurityUtilities securityUtilities;
 
     protected static final String TEST_USER = "test_user";
-    protected static final String ADMIN_USER = "test_admin";
 
     protected final List<Review> reviews = TestData.initReviews();
     protected final List<Wine> wines = TestData.initWines();
@@ -65,7 +64,6 @@ public abstract class ControllerMvcTest {
     protected Review review;
     protected Wine wine;
     protected User user = users.get(0);
-    protected User admin = users.get(1);
 
     @BeforeEach
     void setupTests() {
@@ -99,10 +97,6 @@ public abstract class ControllerMvcTest {
                 .thenReturn(wine);
 
         // User repository mocks:
-        Mockito
-                .when(userRepository.findByUsername(ADMIN_USER))
-                .thenReturn(Optional.ofNullable(admin));
-
         Mockito
                 .when(userRepository.findByUsername(TEST_USER))
                 .thenReturn(Optional.ofNullable(user));
