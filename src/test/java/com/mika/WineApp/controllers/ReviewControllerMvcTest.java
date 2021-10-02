@@ -48,6 +48,36 @@ class ReviewControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
+    void findByWineId() throws Exception {
+        Long wineId = review
+                .getWine()
+                .getId();
+
+        mvc
+                .perform(get(url + "/wine/id/{wineId}", wineId))
+                .andExpect(status().isOk());
+
+        Mockito
+                .verify(reviewRepository)
+                .findByWineId(wineId);
+    }
+
+    @Test
+    void findByWineName() throws Exception {
+        String wineName = review
+                .getWine()
+                .getName();
+
+        mvc
+                .perform(get(url + "/wine/name/{wineName}", wineName))
+                .andExpect(status().isOk());
+
+        Mockito
+                .verify(reviewRepository)
+                .findByWineNameContainingIgnoreCase(wineName);
+    }
+
+    @Test
     void addReview() throws Exception {
         MvcResult result = mvc
                 .perform(
