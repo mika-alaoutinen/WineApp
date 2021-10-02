@@ -1,25 +1,17 @@
 package com.mika.WineApp.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
@@ -31,10 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-class AuthenticationControllerTest {
+class AuthenticationControllerTest extends ControllerMvcTest {
 
     private static final String USERNAME = "test_user";
     private static final String PASSWORD = "test_user_password";
@@ -47,15 +36,6 @@ class AuthenticationControllerTest {
 
     @MockBean
     private AuthenticationManager authManager;
-
-    @MockBean
-    private UserRepository repository;
-
-    @Autowired
-    private MockMvc mvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     void loginShouldReturnToken() throws Exception {
@@ -86,7 +66,7 @@ class AuthenticationControllerTest {
         savedUser.setId(1L);
 
         Mockito
-                .when(repository.save(any(User.class)))
+                .when(userRepository.save(any(User.class)))
                 .thenReturn(savedUser);
 
         String response = doPost("/auth/register");
@@ -96,7 +76,7 @@ class AuthenticationControllerTest {
         assertEquals(USERNAME, newUser.getUsername());
         assertEquals(Set.of(Role.ROLE_USER), newUser.getRoles());
         Mockito
-                .verify(repository)
+                .verify(userRepository)
                 .save(any(User.class));
     }
 
