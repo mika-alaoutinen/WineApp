@@ -103,16 +103,13 @@ class WineControllerMvcTest extends ControllerMvcTest {
 
     @Test
     void isAllowedToEdit() throws Exception {
-        Wine wineWithUser = wine;
-        wineWithUser.setUser(admin);
-
         Mockito
-                .when(wineRepository.findById(wineWithUser.getId()))
-                .thenReturn(Optional.of(wineWithUser));
+                .when(wineRepository.findById(wine.getId()))
+                .thenReturn(Optional.of(wine));
 
         MvcResult result = mvc
                 .perform(
-                        get(url + "/{id}/editable", wineWithUser.getId())
+                        get(url + "/{id}/editable", wine.getId())
                 )
                 .andExpect(status().isOk())
                 .andReturn();
