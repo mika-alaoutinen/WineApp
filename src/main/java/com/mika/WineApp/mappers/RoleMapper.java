@@ -2,19 +2,22 @@ package com.mika.WineApp.mappers;
 
 import com.mika.WineApp.models.user.Role;
 import com.mika.model.UserDTO;
+import org.mapstruct.EnumMapping;
 import org.mapstruct.Mapper;
-import org.mapstruct.ValueMapping;
+import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = "spring")
 public interface RoleMapper {
 
-    @ValueMapping(source = "GUEST", target = "ROLE_GUEST")
-    @ValueMapping(source = "USER", target = "ROLE_USER")
-    @ValueMapping(source = "ADMIN", target = "ROLE_ADMIN")
+    @EnumMapping(
+            configuration = "ROLE_",
+            nameTransformationStrategy = MappingConstants.PREFIX_TRANSFORMATION
+    )
     Role toModel(UserDTO.RolesEnum dto);
 
-    @ValueMapping(source = "ROLE_GUEST", target = "GUEST")
-    @ValueMapping(source = "ROLE_USER", target = "USER")
-    @ValueMapping(source = "ROLE_ADMIN", target = "ADMIN")
+    @EnumMapping(
+            configuration = "ROLE_",
+            nameTransformationStrategy = MappingConstants.STRIP_PREFIX_TRANSFORMATION
+    )
     UserDTO.RolesEnum toDTO(Role model);
 }
