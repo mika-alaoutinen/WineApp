@@ -14,6 +14,7 @@ public interface AdminService extends UserRepositoryReader {
 
     /**
      * Saves a new user. User's password must be encoded before saving it.
+     *
      * @param user to save
      * @return saved user
      * @throws BadRequestException e
@@ -22,10 +23,11 @@ public interface AdminService extends UserRepositoryReader {
 
     /**
      * Update user's roles. New roles override possible old roles.
-     * @param username for user to give role to
+     *
+     * @param id    for user to give role to
      * @param roles new set of roles for the user.
      * @return updated user
      * @throws NotFoundException e
      */
-    User updateRoles(Long username, Set<Role> roles) throws NotFoundException;
+    User updateRoles(Long id, Set<Role> roles) throws NotFoundException;
 }

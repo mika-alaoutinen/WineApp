@@ -61,7 +61,7 @@ public class Wine extends EntityModel {
                 double price,
                 double volume,
                 List<String> description,
-                List<String>foodPairings,
+                List<String> foodPairings,
                 String url) {
 
         this.name = name;

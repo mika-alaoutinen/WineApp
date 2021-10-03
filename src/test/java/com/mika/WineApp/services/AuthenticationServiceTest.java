@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.models.user.UserCredentials;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.services.impl.AuthenticationServiceImpl;
@@ -25,8 +25,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceTest {
-    private final static String encodedPassword = "encoded_password";
-    private final static User user = TestData.initTestUsers().get(0);
+    private static final String encodedPassword = "encoded_password";
+    private static final UserCredentials CREDENTIALS = new UserCredentials("username", "password");
 
     @Mock
     private AuthenticationManager authenticationManager;
@@ -48,13 +48,15 @@ class AuthenticationServiceTest {
     void loginReturnsJwtToken() {
         Authentication authToken = mock(Authentication.class);
 
-        Mockito.when(authenticationManager.authenticate(any(Authentication.class)))
+        Mockito
+                .when(authenticationManager.authenticate(any(Authentication.class)))
                 .thenReturn(authToken);
 
-        Mockito.when(jwtProvider.generateJwtToken(authToken))
+        Mockito
+                .when(jwtProvider.generateJwtToken(authToken))
                 .thenReturn("Bearer jwt-token");
 
-        JwtToken token = service.login(user);
+        JwtToken token = service.login(CREDENTIALS);
 
         verify(authenticationManager, times(1)).authenticate(any(Authentication.class));
         verify(jwtProvider, times(1)).generateJwtToken(any(Authentication.class));
@@ -64,13 +66,14 @@ class AuthenticationServiceTest {
 
     @Test
     void invalidLoginThrowsException() {
-        var authToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        var authToken = new UsernamePasswordAuthenticationToken(CREDENTIALS.username(), CREDENTIALS.password());
         String errorMessage = "Bad credentials";
 
-        Mockito.when(authenticationManager.authenticate(authToken))
+        Mockito
+                .when(authenticationManager.authenticate(authToken))
                 .thenThrow(new BadCredentialsException(errorMessage));
 
-        Exception e = assertThrows(BadCredentialsException.class, () -> service.login(user));
+        Exception e = assertThrows(BadCredentialsException.class, () -> service.login(CREDENTIALS));
         assertEquals(errorMessage, e.getMessage());
         verify(authenticationManager, times(1)).authenticate(any(Authentication.class));
         verify(jwtProvider, times(0)).generateJwtToken(any(Authentication.class));
@@ -78,17 +81,19 @@ class AuthenticationServiceTest {
 
     @Test
     void register() {
-        User newUser = new User(user.getUsername(), encodedPassword);
+        User newUser = new User(CREDENTIALS.username(), encodedPassword);
 
-        Mockito.when(adminService.save(any(User.class)))
-               .thenReturn(newUser);
+        Mockito
+                .when(adminService.save(any(User.class)))
+                .thenReturn(newUser);
 
-        Mockito.when(passwordEncoder.encode(user.getPassword()))
+        Mockito
+                .when(passwordEncoder.encode(CREDENTIALS.password()))
                 .thenReturn(encodedPassword);
 
-        User registeredUser = service.register(user);
+        User registeredUser = service.register(CREDENTIALS);
 
-        verify(passwordEncoder, times(1)).encode(user.getPassword());
+        verify(passwordEncoder, times(1)).encode(CREDENTIALS.password());
         verify(adminService, times(1)).save(newUser);
         assertEquals(encodedPassword, registeredUser.getPassword());
     }

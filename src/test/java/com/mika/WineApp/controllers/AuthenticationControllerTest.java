@@ -3,7 +3,6 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -17,10 +16,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.List;
 import java.util.Set;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class AuthenticationControllerTest extends ControllerMvcTest {
@@ -46,14 +46,13 @@ class AuthenticationControllerTest extends ControllerMvcTest {
                 .when(authManager.authenticate(any(Authentication.class)))
                 .thenReturn(new TestingAuthenticationToken(principal, credentials));
 
-        String response = doPost("/auth/login");
-        JwtToken token = objectMapper.readValue(response, JwtToken.class);
-
-        assertFalse(token
-                .getToken()
-                .isBlank());
-
-        assertEquals("Bearer", token.getType());
+        mvc
+                .perform(
+                        post("/auth/login")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(USER_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Bearer")));
 
         Mockito
                 .verify(authManager)
@@ -69,7 +68,15 @@ class AuthenticationControllerTest extends ControllerMvcTest {
                 .when(userRepository.save(any(User.class)))
                 .thenReturn(savedUser);
 
-        String response = doPost("/auth/register");
+        MvcResult result = mvc
+                .perform(
+                        post("/auth/register")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(USER_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
         User newUser = objectMapper.readValue(response, User.class);
 
         assertEquals(1L, newUser.getId());
@@ -78,17 +85,5 @@ class AuthenticationControllerTest extends ControllerMvcTest {
         Mockito
                 .verify(userRepository)
                 .save(any(User.class));
-    }
-
-    private String doPost(String url) throws Exception {
-        MvcResult result = mvc
-                .perform(
-                        post(url)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(USER_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        return TestUtilities.getResponseString(result);
     }
 }

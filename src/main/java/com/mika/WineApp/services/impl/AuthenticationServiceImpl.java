@@ -2,6 +2,7 @@ package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.badrequest.BadRequestException;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.models.user.UserCredentials;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.services.AdminService;
@@ -22,21 +23,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
 
-    public JwtToken login(User user) {
-        Authentication authentication = getAuthentication(user);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+    public JwtToken login(UserCredentials credentials) {
+        Authentication authentication = getAuthentication(credentials);
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(authentication);
         String jwt = jwtProvider.generateJwtToken(authentication);
         return new JwtToken(jwt);
     }
 
-    public User register(User user) throws BadRequestException {
-        String username = user.getUsername();
-        String password = passwordEncoder.encode(user.getPassword());
+    public User register(UserCredentials credentials) throws BadRequestException {
+        String username = credentials.username();
+        String password = passwordEncoder.encode(credentials.password());
         return service.save(new User(username, password));
     }
 
-    private Authentication getAuthentication(User user) {
-        var token = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+    private Authentication getAuthentication(UserCredentials credentials) {
+        var token = new UsernamePasswordAuthenticationToken(credentials.username(), credentials.password());
         return authenticationManager.authenticate(token);
     }
 }
