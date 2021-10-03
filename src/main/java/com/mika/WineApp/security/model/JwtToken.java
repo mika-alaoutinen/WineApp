@@ -1,13 +1,11 @@
 package com.mika.WineApp.security.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
-@AllArgsConstructor
+@Getter
 public class JwtToken {
-    private String token;
-    private String type = "Bearer";
+    private final String token;
+    private final String type = "Bearer";
 
     public JwtToken(String token) {
         this.token = token;
