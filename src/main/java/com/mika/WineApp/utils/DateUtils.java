@@ -6,36 +6,29 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 public abstract class DateUtils {
 
-    public static LocalDate[] parseMonthRange(String[] dates) throws InvalidDateException {
+    public static List<LocalDate> parseMonthRange(List<String> dates) throws InvalidDateException {
         if (dates == null) {
             return null;
         }
 
-        if (dates.length != 2) {
+        if (dates.size() != 2) {
             throw new InvalidDateException(dates);
         }
 
-        LocalDate[] parsedDates = new LocalDate[2];
-        String date = dates[0];
+        var startDate = parseYeahMonthString(dates.get(0)).atDay(1);
+        var endDate = parseYeahMonthString(dates.get(1)).atEndOfMonth();
+        return List.of(startDate, endDate);
+    }
 
+    private static YearMonth parseYeahMonthString(String date) {
         try {
-            parsedDates[0] = YearMonth
-                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atDay(1);
-
-            date = dates[1];
-
-            parsedDates[1] = YearMonth
-                    .parse(date, DateTimeFormatter.ofPattern("yyyy-MM"))
-                    .atEndOfMonth();
-
+            return YearMonth.parse(date, DateTimeFormatter.ofPattern("yyyy-MM"));
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(date);
         }
-
-        return parsedDates;
     }
 }

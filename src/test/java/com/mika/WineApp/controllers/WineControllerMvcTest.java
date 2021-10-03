@@ -152,6 +152,21 @@ class WineControllerMvcTest extends ControllerMvcTest {
     }
 
     @Test
+    void validateWineName() throws Exception {
+        Mockito
+                .when(wineRepository.existsByName(Mockito.anyString()))
+                .thenReturn(false);
+
+        MvcResult result = mvc
+                .perform(get(url + "/validate?name=wine name"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        String response = TestUtilities.getResponseString(result);
+        assertTrue(Boolean.parseBoolean(response));
+    }
+
+    @Test
     void search() throws Exception {
         mvc
                 .perform(get(url + "/search"))

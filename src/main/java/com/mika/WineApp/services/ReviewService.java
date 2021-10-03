@@ -11,6 +11,7 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Find all reviews for a given wine.
+     *
      * @param wineId to find
      * @return reviews for wine with given id
      * @throws NotFoundException e
@@ -19,6 +20,7 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Find all reviews for wines that match given name.
+     *
      * @param name of wine
      * @return reviews for wine(s) that match given name
      */
@@ -26,7 +28,8 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Save new review to repository.
-     * @param wineId to identify what wine the review is about
+     *
+     * @param wineId    to identify what wine the review is about
      * @param newReview to be added
      * @return saved review
      */
@@ -34,6 +37,7 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Checks if the logged in user is allowed to edit or delete a review.
+     *
      * @param id of review
      * @return boolean
      * @throws NotFoundException e
@@ -42,18 +46,20 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Find reviews that match the given criteria. One or many criteria may be given.
-     * @param author of review
-     * @param dateRange to find
+     *
+     * @param author      of review
+     * @param dateRange   to find
      * @param ratingRange to find
      * @return list of reviews matching given criteria
      * @throws InvalidDateException e
      */
-    List<Review> search(String author, String[] dateRange, Double[] ratingRange) throws InvalidDateException;
+    List<Review> search(String author, List<String> dateRange, List<Double> ratingRange) throws InvalidDateException;
 
 // Quick searches:
 
     /**
      * Find newest reviews. Default limit is 10.
+     *
      * @param limit for returned reviews
      * @return list of found reviews
      */
@@ -61,6 +67,7 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Find best rated reviews. Default limit is 10.
+     *
      * @param limit for returned reviews
      * @return list of found reviews
      */
@@ -68,6 +75,7 @@ public interface ReviewService extends CrudService<Review> {
 
     /**
      * Find worst rated reviews. Default limit is 10.
+     *
      * @param limit for returned reviews
      * @return list of found reviews
      */

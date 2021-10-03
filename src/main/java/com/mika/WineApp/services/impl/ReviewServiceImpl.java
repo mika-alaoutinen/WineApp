@@ -26,13 +26,14 @@ public class ReviewServiceImpl implements ReviewService {
     private final UserService userService;
     private final WineService wineService;
 
-// --- Find reviews ---
+    // --- Find reviews ---
     public List<Review> findAll() {
         return repository.findAllByOrderByDateDesc();
     }
 
     public Review findById(Long id) {
-        return repository.findById(id)
+        return repository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(new Review(), id));
     }
 
@@ -44,7 +45,7 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.findByWineNameContainingIgnoreCase(wineName);
     }
 
-// --- Add, edit and delete ---
+    // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
         Review review = (Review) userService.setUser(newReview);
         Wine wine = wineService.findById(wineId);
@@ -68,9 +69,9 @@ public class ReviewServiceImpl implements ReviewService {
         repository.deleteById(id);
     }
 
-// --- Other methods ---
-    public long count() {
-        return repository.count();
+    // --- Other methods ---
+    public int count() {
+        return (int) repository.count();
     }
 
     public boolean isAllowedToEdit(Long id) {
@@ -78,18 +79,18 @@ public class ReviewServiceImpl implements ReviewService {
         return userService.isUserAllowedToEdit(review);
     }
 
-    public List<Review> search(String author, String[] dateRange, Double[] ratingRange)
+    public List<Review> search(String author, List<String> dateRange, List<Double> ratingRange)
             throws InvalidDateException {
 
         if (author == null && dateRange == null && ratingRange == null) {
             return Collections.emptyList();
         }
 
-        LocalDate[] dates = DateUtils.parseMonthRange(dateRange);
+        List<LocalDate> dates = DateUtils.parseMonthRange(dateRange);
         return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
     }
 
-// --- Quick searches ---
+    // --- Quick searches ---
     public List<Review> findNewest(int limit) {
         return repository
                 .findAllDistinctByOrderByDateDesc(PageRequest.of(0, limit))
@@ -108,7 +109,7 @@ public class ReviewServiceImpl implements ReviewService {
                 .getContent();
     }
 
-// --- Utility methods ---
+    // --- Utility methods ---
     private Review findAndValidateReview(Long id) {
         Review review = findById(id);
 

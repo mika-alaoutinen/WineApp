@@ -1,7 +1,6 @@
-version: '3.5'
+version: '3.8'
 
 services:
-  # Database
   postgres:
     container_name: postgres
     environment:
@@ -18,7 +17,6 @@ services:
       - pg_data:/var/lib/postgres
       - ./scripts:/docker-entrypoint-initdb.d
 
-  # Backend API
   wineapp:
     container_name: wineapp
     depends_on:
@@ -35,6 +33,6 @@ services:
     ports:
       - 8082:8080
     restart: unless-stopped
-    
+
 volumes:
   pg_data:
