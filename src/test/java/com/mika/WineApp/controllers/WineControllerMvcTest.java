@@ -92,8 +92,7 @@ class WineControllerMvcTest extends ControllerMvcTest {
                 .thenReturn(1L);
 
         MvcResult result = mvc
-                .perform(
-                        get(url + "/count"))
+                .perform(get(url + "/count"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -108,9 +107,7 @@ class WineControllerMvcTest extends ControllerMvcTest {
                 .thenReturn(Optional.of(wine));
 
         MvcResult result = mvc
-                .perform(
-                        get(url + "/{id}/editable", wine.getId())
-                )
+                .perform(get(url + "/{id}/editable", wine.getId()))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -161,8 +158,7 @@ class WineControllerMvcTest extends ControllerMvcTest {
                 .thenReturn(false);
 
         MvcResult result = mvc
-                .perform(
-                        get(url + "/validate?name=wine name"))
+                .perform(get(url + "/validate?name=wine name"))
                 .andExpect(status().isOk())
                 .andReturn();
 
