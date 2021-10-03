@@ -18,4 +18,5 @@ openApiNullable: false
 skipDefaultInterface: true
 useTags: true
 
+# Needed to make MapStruct work with OpenAPI generator
 additionalModelTypeAnnotations: "@lombok.NoArgsConstructor @lombok.AllArgsConstructor"

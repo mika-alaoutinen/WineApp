@@ -17,7 +17,7 @@ admin:
 
 # Allow connections from this URL:
 frontend:
-  url: https://maistissa.herokuapp.com
+  urls: https://maistissa.herokuapp.com
 
 jwt:
   secret: ${JWT_SECRET}
