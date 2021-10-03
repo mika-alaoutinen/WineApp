@@ -1,35 +1,32 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.security.model.JwtToken;
+import com.mika.WineApp.mappers.AuthenticationMapper;
+import com.mika.WineApp.mappers.UserMapper;
 import com.mika.WineApp.services.AuthenticationService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.mika.api.AuthenticationApi;
+import com.mika.model.JwtTokenDTO;
+import com.mika.model.UserCredentialsDTO;
+import com.mika.model.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
-@RequestMapping(value = "auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-@Tag(name = "Authentication API", description = "Contains operations for login and registering a new user. Both are public operations available to everyone")
-public class AuthenticationController {
+public class AuthenticationController implements AuthenticationApi {
+    private final AuthenticationMapper authMapper;
+    private final UserMapper userMapper;
     private final AuthenticationService service;
 
-    @Operation(summary = "Login to receive JWT token", description = "Login with valid username and password. On successful login, API returns a JWT token.")
-    @PostMapping("login")
-    public JwtToken login(@Valid @RequestBody User user) {
-        return service.login(user);
+    @Override
+    public ResponseEntity<JwtTokenDTO> login(UserCredentialsDTO userCredentialsDTO) {
+        var token = service.login(authMapper.toCredentials(userCredentialsDTO));
+        return ResponseEntity.ok(authMapper.toTokenDTO(token));
     }
 
-    @Operation(summary = "New user registration", description = "Register a new user.")
-    @PostMapping("register")
-    public User register(@Valid @RequestBody User newUser) {
-        return service.register(newUser);
+    @Override
+    public ResponseEntity<UserDTO> register(UserCredentialsDTO userCredentialsDTO) {
+        var newUser = service.register(authMapper.toCredentials(userCredentialsDTO));
+        return ResponseEntity.ok(userMapper.toUserDTO(newUser));
     }
 }
