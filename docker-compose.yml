@@ -7,11 +7,9 @@ services:
       POSTGRES_DATABASE: wine_app
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-    expose:
-      - 5432
     image: postgres:11.6
     ports:
-      - 5432:5432
+      - "5432:5432"
     restart: unless-stopped
     volumes:
       - pg_data:/var/lib/postgres
@@ -31,7 +29,7 @@ services:
       - 8080
     image: mikaalaoutinen/wineapp:latest
     ports:
-      - 8082:8080
+      - "8082:8080"
     restart: unless-stopped
 
 volumes:
