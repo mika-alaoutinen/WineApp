@@ -2,6 +2,7 @@ package com.mika.WineApp.controllers;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WithMockUser
 public class UserControllerTest extends ControllerMvcTest {
 
     @Test

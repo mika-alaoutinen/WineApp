@@ -3,6 +3,7 @@ package com.mika.WineApp.controllers;
 import com.mika.WineApp.mappers.WineMapper;
 import com.mika.WineApp.services.WineService;
 import com.mika.api.WinesCrudApi;
+import com.mika.model.NewWineDTO;
 import com.mika.model.WineDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,9 @@ public class WineCrudController implements WinesCrudApi {
     private final WineService service;
 
     @Override
-    public ResponseEntity<WineDTO> addWine(WineDTO wineDTO) {
-        var newWine = service.add(mapper.toModel(wineDTO));
-        return new ResponseEntity<>(mapper.toDTO(newWine), HttpStatus.CREATED);
+    public ResponseEntity<WineDTO> addWine(NewWineDTO newWine) {
+        var savedWine = service.add(mapper.toModel(newWine));
+        return new ResponseEntity<>(mapper.toDTO(savedWine), HttpStatus.CREATED);
     }
 
     @Override
