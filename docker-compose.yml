@@ -24,7 +24,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/
       SPRING_DATASOURCE_USERNAME: admin
       SPRING_DATASOURCE_PASSWORD: admin
-      SPRINGDOC_SWAGGER_UI_PATH: /swagger
     expose:
       - 8080
     image: mikaalaoutinen/wineapp:latest
