@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.jwt;
+package com.mika.WineApp.errors;
 
 import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;

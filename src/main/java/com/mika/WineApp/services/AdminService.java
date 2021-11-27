@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.BadRequestException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 

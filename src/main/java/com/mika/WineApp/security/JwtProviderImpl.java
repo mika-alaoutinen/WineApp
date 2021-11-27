@@ -1,6 +1,6 @@
 package com.mika.WineApp.security;
 
-import com.mika.WineApp.errors.jwt.JwtExpiredException;
+import com.mika.WineApp.errors.JwtExpiredException;
 import com.mika.WineApp.security.model.UserPrincipal;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,8 @@ public class JwtProviderImpl implements JwtProvider {
     public String generateJwtToken(Authentication authentication) {
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
-        return Jwts.builder()
+        return Jwts
+                .builder()
                 .setSubject(principal.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(getExpirationDate())
@@ -32,15 +33,20 @@ public class JwtProviderImpl implements JwtProvider {
     }
 
     public String getUserNameFromToken(String token) {
-        return Jwts.parser()
+        return Jwts
+                .parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
-                .getBody().getSubject();
+                .getBody()
+                .getSubject();
     }
 
     public boolean validateJwtToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts
+                    .parser()
+                    .setSigningKey(jwtSecret)
+                    .parseClaimsJws(authToken);
             return true;
         } catch (SignatureException e) {
             log.error("Invalid JWT signature: " + e.getMessage());

@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.invaliddate;
+package com.mika.WineApp.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -9,10 +9,10 @@ import java.util.List;
 public class InvalidDateException extends RuntimeException {
 
     public InvalidDateException(String date) {
-        super("Error: could not parse date " + date);
+        super("Could not parse date " + date);
     }
 
     public InvalidDateException(List<String> dates) {
-        super("Error: date range must have a start date and an end date. Given " + dates);
+        super("Date range must have a start date and an end date. Given " + dates);
     }
 }

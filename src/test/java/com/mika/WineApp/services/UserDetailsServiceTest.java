@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.services.impl.UserDetailsServiceImpl;
@@ -22,7 +22,9 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceTest {
-    private static final User user = TestData.initTestUsers().get(0);
+    private static final User user = TestData
+            .initTestUsers()
+            .get(0);
 
     @Mock
     private UserRepository repository;
@@ -34,8 +36,9 @@ class UserDetailsServiceTest {
     void loadUserByUsername() {
         String username = user.getUsername();
 
-        Mockito.when(repository.findByUsername(username))
-               .thenReturn(Optional.of(user));
+        Mockito
+                .when(repository.findByUsername(username))
+                .thenReturn(Optional.of(user));
 
         UserDetails userDetails = service.loadUserByUsername(user.getUsername());
 
@@ -47,11 +50,12 @@ class UserDetailsServiceTest {
     void throwExceptionOnNonexistentUsername() {
         String username = "nonexistent user";
 
-        Mockito.when(repository.findByUsername(username))
-               .thenReturn(Optional.empty());
+        Mockito
+                .when(repository.findByUsername(username))
+                .thenReturn(Optional.empty());
 
         Exception e = assertThrows(NotFoundException.class, () -> service.loadUserByUsername(username));
         verify(repository, times(1)).findByUsername(username);
-        assertEquals("Error: could not find user with username " + username, e.getMessage());
+        assertEquals("Could not find user with username " + username, e.getMessage());
     }
 }

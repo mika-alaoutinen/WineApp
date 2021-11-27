@@ -1,8 +1,8 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.forbidden.ForbiddenException;
-import com.mika.WineApp.errors.invaliddate.InvalidDateException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.ForbiddenException;
+import com.mika.WineApp.errors.InvalidDateException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.impl.ReviewServiceImpl;
@@ -87,7 +87,7 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void findByNonExistingId() {
         Exception e = assertThrows(NotFoundException.class, () -> service.findById(nonExistingReviewId));
-        assertEquals(e.getMessage(), "Error: could not find review with id " + nonExistingReviewId);
+        assertEquals(e.getMessage(), "Could not find review with id " + nonExistingReviewId);
         verify(reviewRepository, times(1)).findById(nonExistingReviewId);
     }
 
@@ -151,7 +151,7 @@ class ReviewServiceTest extends ServiceTest {
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.add(nonExistingWineId, review));
 
-        assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
+        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
         verify(wineService, times(1)).findById(nonExistingWineId);
         verify(reviewRepository, times(0)).save(review);
     }
@@ -174,7 +174,7 @@ class ReviewServiceTest extends ServiceTest {
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.edit(nonExistingReviewId, review));
 
-        assertEquals(e.getMessage(), "Error: could not find review with id " + nonExistingReviewId);
+        assertEquals(e.getMessage(), "Could not find review with id " + nonExistingReviewId);
         verify(reviewRepository, times(1)).findById(nonExistingReviewId);
         verify(reviewRepository, times(0)).save(review);
     }
@@ -184,7 +184,7 @@ class ReviewServiceTest extends ServiceTest {
         ForbiddenException e = assertThrows(ForbiddenException.class, () ->
                 service.edit(review.getId(), review));
 
-        assertEquals("Error: tried to modify a review that you do not own!", e.getMessage());
+        assertEquals("Tried to modify a review that you do not own!", e.getMessage());
         verify(reviewRepository, times(1)).findById(review.getId());
         verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(reviewRepository, times(0)).save(any(Review.class));
@@ -204,7 +204,7 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void shouldThrowErrorWhenWrongUserTriesToDelete() {
         Exception e = assertThrows(ForbiddenException.class, () -> service.delete(review.getId()));
-        assertEquals("Error: tried to modify a review that you do not own!", e.getMessage());
+        assertEquals("Tried to modify a review that you do not own!", e.getMessage());
     }
 
     @Test
@@ -251,14 +251,14 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void invalidDateRangeThrowsException1() {
         List<String> monthRange = List.of("2020-01-01", "2020-02");
-        String expectedErrorMessage = "Error: could not parse date 2020-01-01";
+        String expectedErrorMessage = "Could not parse date 2020-01-01";
         testInvalidDates(monthRange, expectedErrorMessage);
     }
 
     @Test
     void invalidDateRangeThrowsException2() {
         List<String> monthRange = List.of("2020-01");
-        String expectedErrorMessage = "Error: date range must have a start date and an end date. Given [2020-01]";
+        String expectedErrorMessage = "Date range must have a start date and an end date. Given [2020-01]";
         testInvalidDates(monthRange, expectedErrorMessage);
     }
 

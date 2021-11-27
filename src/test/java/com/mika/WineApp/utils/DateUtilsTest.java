@@ -1,6 +1,6 @@
 package com.mika.WineApp.utils;
 
-import com.mika.WineApp.errors.invaliddate.InvalidDateException;
+import com.mika.WineApp.errors.InvalidDateException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

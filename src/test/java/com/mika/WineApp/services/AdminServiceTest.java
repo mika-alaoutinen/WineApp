@@ -1,8 +1,8 @@
 package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.BadRequestException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -40,27 +40,32 @@ class AdminServiceTest {
 
     @BeforeEach
     void setupMocks() {
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(repository.findById(userId))
                 .thenReturn(Optional.of(user));
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(repository.findById(nonExistentUserId))
                 .thenReturn(Optional.empty());
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(repository.findByUsername(username))
                 .thenReturn(Optional.of(user));
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(repository.save(user))
                 .thenReturn(user);
     }
 
     @Test
     void findAll() {
-        Mockito.when(repository.findAll())
-               .thenReturn(users);
+        Mockito
+                .when(repository.findAll())
+                .thenReturn(users);
 
         var foundUsers = service.findAll();
 
@@ -81,7 +86,7 @@ class AdminServiceTest {
                 service.findById(nonExistentUserId));
 
         verify(repository, times(1)).findById(nonExistentUserId);
-        assertEquals("Error: could not find user with id " + nonExistentUserId, e.getMessage());
+        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
     }
 
     @Test
@@ -98,13 +103,14 @@ class AdminServiceTest {
                 service.findByUserName(nonExistentName));
 
         verify(repository, times(1)).findByUsername(nonExistentName);
-        assertEquals("Error: could not find user with username " + nonExistentName, e.getMessage());
+        assertEquals("Could not find user with username " + nonExistentName, e.getMessage());
     }
 
     @Test
     void save() {
-        Mockito.when(repository.existsByUsername(username))
-               .thenReturn(false);
+        Mockito
+                .when(repository.existsByUsername(username))
+                .thenReturn(false);
 
         User savedUser = service.save(user);
 
@@ -115,19 +121,21 @@ class AdminServiceTest {
 
     @Test
     void throwsExceptionIfUserNameIsTaken() {
-        Mockito.when(repository.existsByUsername(username))
-               .thenReturn(true);
+        Mockito
+                .when(repository.existsByUsername(username))
+                .thenReturn(true);
 
         BadRequestException e = assertThrows(BadRequestException.class, () -> service.save(user));
 
-        assertEquals("Error: username " + username + " already exists!", e.getMessage());
+        assertEquals("Username " + username + " already exists!", e.getMessage());
         verify(repository, times(1)).existsByUsername(username);
         verify(repository, times(0)).save(any(User.class));
     }
 
     @Test
     void updateRoles() {
-        Mockito.when(repository.findById(userId))
+        Mockito
+                .when(repository.findById(userId))
                 .thenReturn(Optional.of(user));
 
         assertUserRoles(user, Role.ROLE_USER);
@@ -149,11 +157,15 @@ class AdminServiceTest {
         verify(repository, times(1)).findById(nonExistentUserId);
         verify(repository, times(0)).save(any(User.class));
 
-        assertEquals("Error: could not find user with id " + nonExistentUserId, e.getMessage());
+        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
     }
 
     private void assertUserRoles(User user, Role role) {
-        assertTrue(user.getRoles().contains(role));
-        assertEquals(1, user.getRoles().size());
+        assertTrue(user
+                .getRoles()
+                .contains(role));
+        assertEquals(1, user
+                .getRoles()
+                .size());
     }
 }
