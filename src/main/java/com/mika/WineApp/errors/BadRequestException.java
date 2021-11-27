@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.badrequest;
+package com.mika.WineApp.errors;
 
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;

@@ -1,6 +1,6 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.NotFoundException;
 
 import java.util.List;
 

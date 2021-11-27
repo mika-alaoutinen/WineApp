@@ -1,6 +1,6 @@
 package com.mika.WineApp.utils;
 
-import com.mika.WineApp.errors.invaliddate.InvalidDateException;
+import com.mika.WineApp.errors.InvalidDateException;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

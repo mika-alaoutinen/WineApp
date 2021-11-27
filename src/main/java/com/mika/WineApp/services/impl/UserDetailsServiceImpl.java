@@ -1,6 +1,6 @@
 package com.mika.WineApp.services.impl;
 
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
@@ -18,6 +18,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     /**
      * Find user by username from repository.
+     *
      * @param username as string
      * @return UserDetails
      * @throws UsernameNotFoundException e
@@ -25,7 +26,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repository.findByUsername(username)
+        User user = repository
+                .findByUsername(username)
                 .orElseThrow(() -> new NotFoundException(new User(), username));
 
         return UserPrincipal.build(user);

@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.notfound;
+package com.mika.WineApp.errors;
 
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class NotFoundException extends RuntimeException {
 
     public NotFoundException(Wine wine, Long id) {
-        super("Error: could not find wine with id " + id);
+        super("Could not find wine with id " + id);
     }
 
     public NotFoundException(Review review, Long id) {
-        super("Error: could not find review with id " + id);
+        super("Could not find review with id " + id);
     }
 
     public NotFoundException(User user, Long id) {
-        super("Error: could not find user with id " + id);
+        super("Could not find user with id " + id);
     }
 
     public NotFoundException(User user, String username) {
-        super("Error: could not find user with username " + username);
+        super("Could not find user with username " + username);
     }
 }

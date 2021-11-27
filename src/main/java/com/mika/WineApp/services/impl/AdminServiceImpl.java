@@ -1,7 +1,7 @@
 package com.mika.WineApp.services.impl;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.BadRequestException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -22,12 +22,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     public User findById(Long id) {
-        return repository.findById(id)
+        return repository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(new User(), id));
     }
 
     public User findByUserName(String username) {
-        return repository.findByUsername(username)
+        return repository
+                .findByUsername(username)
                 .orElseThrow(() -> new NotFoundException(new User(), username));
     }
 

@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.invaliddate;
+package com.mika.WineApp.errors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

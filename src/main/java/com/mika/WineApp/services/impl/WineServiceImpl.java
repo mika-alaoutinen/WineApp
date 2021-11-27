@@ -1,8 +1,8 @@
 package com.mika.WineApp.services.impl;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
-import com.mika.WineApp.errors.forbidden.ForbiddenException;
-import com.mika.WineApp.errors.notfound.NotFoundException;
+import com.mika.WineApp.errors.BadRequestException;
+import com.mika.WineApp.errors.ForbiddenException;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.repositories.WineRepository;

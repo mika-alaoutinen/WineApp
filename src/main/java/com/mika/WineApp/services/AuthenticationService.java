@@ -1,6 +1,6 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.badrequest.BadRequestException;
+import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.user.UserCredentials;
 import com.mika.WineApp.security.model.JwtToken;

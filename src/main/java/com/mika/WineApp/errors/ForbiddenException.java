@@ -1,4 +1,4 @@
-package com.mika.WineApp.errors.forbidden;
+package com.mika.WineApp.errors;
 
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.wine.Wine;
