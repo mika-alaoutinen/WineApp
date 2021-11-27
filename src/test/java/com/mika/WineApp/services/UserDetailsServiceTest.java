@@ -56,6 +56,6 @@ class UserDetailsServiceTest {
 
         Exception e = assertThrows(NotFoundException.class, () -> service.loadUserByUsername(username));
         verify(repository, times(1)).findByUsername(username);
-        assertEquals("Error: could not find user with username " + username, e.getMessage());
+        assertEquals("Could not find user with username " + username, e.getMessage());
     }
 }

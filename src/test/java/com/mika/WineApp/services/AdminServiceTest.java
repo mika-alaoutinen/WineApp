@@ -86,7 +86,7 @@ class AdminServiceTest {
                 service.findById(nonExistentUserId));
 
         verify(repository, times(1)).findById(nonExistentUserId);
-        assertEquals("Error: could not find user with id " + nonExistentUserId, e.getMessage());
+        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
     }
 
     @Test
@@ -103,7 +103,7 @@ class AdminServiceTest {
                 service.findByUserName(nonExistentName));
 
         verify(repository, times(1)).findByUsername(nonExistentName);
-        assertEquals("Error: could not find user with username " + nonExistentName, e.getMessage());
+        assertEquals("Could not find user with username " + nonExistentName, e.getMessage());
     }
 
     @Test
@@ -127,7 +127,7 @@ class AdminServiceTest {
 
         BadRequestException e = assertThrows(BadRequestException.class, () -> service.save(user));
 
-        assertEquals("Error: username " + username + " already exists!", e.getMessage());
+        assertEquals("Username " + username + " already exists!", e.getMessage());
         verify(repository, times(1)).existsByUsername(username);
         verify(repository, times(0)).save(any(User.class));
     }
@@ -157,7 +157,7 @@ class AdminServiceTest {
         verify(repository, times(1)).findById(nonExistentUserId);
         verify(repository, times(0)).save(any(User.class));
 
-        assertEquals("Error: could not find user with id " + nonExistentUserId, e.getMessage());
+        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
     }
 
     private void assertUserRoles(User user, Role role) {

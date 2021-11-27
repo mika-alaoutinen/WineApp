@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class BadRequestException extends RuntimeException {
 
     public BadRequestException(WineType type, String givenType) {
-        super("Error: requested wine type " + givenType + " does not exist.");
+        super("Requested wine type " + givenType + " does not exist.");
     }
 
     public BadRequestException(Wine wine, String wineName) {
-        super("Error: wine with name " + wineName + " already exists!");
+        super("Wine with name " + wineName + " already exists!");
     }
 
     public BadRequestException(User user, String username) {
-        super("Error: username " + username + " already exists!");
+        super("Username " + username + " already exists!");
     }
 }

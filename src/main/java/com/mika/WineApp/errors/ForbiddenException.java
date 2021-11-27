@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ForbiddenException extends RuntimeException {
 
     public ForbiddenException(Review review) {
-        super("Error: tried to modify a review that you do not own!");
+        super("Tried to modify a review that you do not own!");
     }
 
     public ForbiddenException(Wine wine) {
-        super("Error: tried to modify a wine that you do not own!");
+        super("Tried to modify a wine that you do not own!");
     }
 }

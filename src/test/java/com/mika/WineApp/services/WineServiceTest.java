@@ -78,7 +78,7 @@ class WineServiceTest extends ServiceTest {
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.findById(nonExistingWineId));
 
-        assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
+        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
         verify(wineRepository, times(1)).findById(nonExistingWineId);
     }
 
@@ -111,7 +111,7 @@ class WineServiceTest extends ServiceTest {
         BadRequestException e = assertThrows(BadRequestException.class, () ->
                 service.add(wine));
 
-        assertEquals(e.getMessage(), "Error: wine with name " + name + " already exists!");
+        assertEquals(e.getMessage(), "Wine with name " + name + " already exists!");
         verify(wineRepository, times(1)).existsByName(name);
     }
 
@@ -133,7 +133,7 @@ class WineServiceTest extends ServiceTest {
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.edit(nonExistingWineId, wine));
 
-        assertEquals(e.getMessage(), "Error: could not find wine with id " + nonExistingWineId);
+        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
         verify(wineRepository, times(1)).findById(nonExistingWineId);
         verify(wineRepository, times(0)).save(wine);
     }
@@ -143,7 +143,7 @@ class WineServiceTest extends ServiceTest {
         ForbiddenException e = assertThrows(ForbiddenException.class, () ->
                 service.edit(wine.getId(), wine));
 
-        assertEquals("Error: tried to modify a wine that you do not own!", e.getMessage());
+        assertEquals("Tried to modify a wine that you do not own!", e.getMessage());
         verify(wineRepository, times(1)).findById(wine.getId());
         verify(userService, times(1)).isUserAllowedToEdit(wine);
         verify(wineRepository, times(0)).save(any(Wine.class));
@@ -165,7 +165,7 @@ class WineServiceTest extends ServiceTest {
         ForbiddenException e = assertThrows(ForbiddenException.class, () ->
                 service.delete(wine.getId()));
 
-        assertEquals("Error: tried to modify a wine that you do not own!", e.getMessage());
+        assertEquals("Tried to modify a wine that you do not own!", e.getMessage());
     }
 
     @Test
@@ -266,7 +266,7 @@ class WineServiceTest extends ServiceTest {
         BadRequestException e = assertThrows(BadRequestException.class, () ->
                 service.search(null, wineType, null, null, null));
 
-        assertEquals("Error: requested wine type " + wineType + " does not exist.", e.getMessage());
+        assertEquals("Requested wine type " + wineType + " does not exist.", e.getMessage());
     }
 
     private void isAllowedToEdit(boolean isAllowed) {
