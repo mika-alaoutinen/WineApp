@@ -1,5 +1,5 @@
 # Build jar package with Maven:
-FROM maven:3.8-adoptopenjdk-16 as build
+FROM maven:3.8-openjdk-17-slim as build
 WORKDIR /app
 
 COPY pom.xml .
@@ -9,7 +9,7 @@ RUN mvn clean package -f /app/pom.xml -B -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 # Create the Docker image:
-FROM adoptopenjdk/openjdk16:alpine-slim
+FROM openjdk:17-alpine
 
 # Run application as user "spring"
 RUN addgroup -S spring && adduser -S spring -G spring
