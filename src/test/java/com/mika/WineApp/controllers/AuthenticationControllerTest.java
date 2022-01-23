@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AuthenticationControllerTest extends ControllerMvcTest {
 
     private static final String USERNAME = "test_user";
-    private static final String PASSWORD = "test_user_password";
+    private static final String PASSWORD = "password";
     private static final String USER_JSON = String.format("""
             {
                 "username": "%1$s",
