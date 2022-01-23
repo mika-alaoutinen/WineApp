@@ -8,7 +8,7 @@ sourcePackage: src
 # Java settings
 booleanGetterPrefix: is
 dateLibrary: java8
-performBeanValidation: false
+performBeanValidation: true
 
 # code generation settings
 implicitHeaders: true
