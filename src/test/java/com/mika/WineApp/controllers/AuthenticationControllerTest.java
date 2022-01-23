@@ -1,16 +1,25 @@
 package com.mika.WineApp.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mika.WineApp.TestConfig;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
@@ -23,7 +32,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class AuthenticationControllerTest extends ControllerMvcTest {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestConfig.class)
+@AutoConfigureMockMvc
+class AuthenticationControllerTest {
 
     private static final String USERNAME = "test_user";
     private static final String PASSWORD = "password";
@@ -36,6 +48,15 @@ class AuthenticationControllerTest extends ControllerMvcTest {
 
     @MockBean
     private AuthenticationManager authManager;
+
+    @MockBean
+    protected UserRepository userRepository;
+
+    @Autowired
+    protected ObjectMapper objectMapper;
+
+    @Autowired
+    protected MockMvc mvc;
 
     @Test
     void loginShouldReturnToken() throws Exception {
