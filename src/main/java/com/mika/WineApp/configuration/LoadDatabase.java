@@ -45,7 +45,8 @@ class LoadDatabase {
         }
 
         // Get admin to set as owner for parsed reviews and wines:
-        User admin = userRepository.findByUsername(adminUsername)
+        User admin = userRepository
+                .findByUsername(adminUsername)
                 .orElse(initAdminUser(userRepository));
 
         // Try to parse wines and reviews into database:
