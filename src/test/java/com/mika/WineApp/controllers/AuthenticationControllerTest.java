@@ -44,13 +44,13 @@ class AuthenticationControllerTest {
     private AuthenticationManager authManager;
 
     @MockBean
-    protected UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    protected ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    protected MockMvc mvc;
+    private MockMvc mvc;
 
     @Test
     void loginShouldReturnToken() throws Exception {

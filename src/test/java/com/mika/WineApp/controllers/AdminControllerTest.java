@@ -28,10 +28,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AdminControllerTest {
 
     @MockBean
-    protected UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    protected MockMvc mvc;
+    private MockMvc mvc;
 
     @Test
     void findAll() throws Exception {
