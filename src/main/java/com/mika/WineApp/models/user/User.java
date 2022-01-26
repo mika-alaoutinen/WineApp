@@ -42,11 +42,11 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<@NotNull Wine> wines;
+    private List<@NotNull Wine> wines = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<@NotNull Review> reviews;
+    private List<@NotNull Review> reviews = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
