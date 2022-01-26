@@ -46,12 +46,12 @@ public class Wine implements EntityModel {
 
     @ElementCollection
     @CollectionTable(name = "wine_descriptions", joinColumns = @JoinColumn(name = "id"))
-    private List<@NotBlank String> description;
+    private List<@NotBlank String> description = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(name = "wine_food_pairings", joinColumns = @JoinColumn(name = "id"))
     @Column(name = "food_pairings")
-    private List<@NotBlank String> foodPairings;
+    private List<@NotBlank String> foodPairings = new ArrayList<>();
 
     private String url;
 
@@ -63,7 +63,7 @@ public class Wine implements EntityModel {
 
     @JsonIgnore
     @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
-    private List<@NotNull Review> reviews;
+    private List<@NotNull Review> reviews = new ArrayList<>();
 
     public Wine(
             String name,
