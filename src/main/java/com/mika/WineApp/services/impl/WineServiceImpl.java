@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,10 +27,8 @@ public class WineServiceImpl implements WineService {
         return repository.findAllByOrderByNameAsc();
     }
 
-    public Wine findById(Long id) {
-        return repository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException(new Wine(), id));
+    public Optional<Wine> findById(Long id) {
+        return repository.findById(id);
     }
 
     public Wine add(Wine newWine) {
@@ -67,8 +66,9 @@ public class WineServiceImpl implements WineService {
     }
 
     public boolean isAllowedToEdit(Long id) {
-        Wine wine = findById(id);
-        return userService.isUserAllowedToEdit(wine);
+        return findById(id)
+                .map(userService::isUserAllowedToEdit)
+                .orElse(false);
     }
 
     public boolean isValid(String name) {
@@ -108,7 +108,7 @@ public class WineServiceImpl implements WineService {
 
     // Utility methods:
     private Wine findAndValidateWine(Long id) {
-        Wine wine = findById(id);
+        Wine wine = findById(id).orElseThrow(() -> new NotFoundException(new Wine(), id));
 
         if (!userService.isUserAllowedToEdit(wine)) {
             throw new ForbiddenException(wine);

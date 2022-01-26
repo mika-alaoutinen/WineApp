@@ -1,17 +1,35 @@
 package com.mika.WineApp.controllers;
 
+import com.mika.WineApp.security.SecurityUtilities;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@IntegrationTest
 @WithMockUser
-public class UserControllerTest extends ControllerMvcTest {
+class UserControllerIT {
+
+    @MockBean
+    private SecurityUtilities securityUtilities;
+
+    @Autowired
+    private MockMvc mvc;
+
+    @BeforeEach
+    void setupSecurityUtils() {
+        when(securityUtilities.getUsernameFromSecurityContext()).thenReturn("test_user");
+    }
 
     @Test
     void getUsername() throws Exception {
@@ -20,9 +38,7 @@ public class UserControllerTest extends ControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("test_user")));
 
-        Mockito
-                .verify(securityUtilities)
-                .getUsernameFromSecurityContext();
+        verify(securityUtilities).getUsernameFromSecurityContext();
     }
 
     @Test
@@ -32,8 +48,6 @@ public class UserControllerTest extends ControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(is("true")));
 
-        Mockito
-                .verify(securityUtilities)
-                .getUsernameFromSecurityContext();
+        verify(securityUtilities).getUsernameFromSecurityContext();
     }
 }

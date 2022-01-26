@@ -35,8 +35,10 @@ public class WineCrudController implements WinesCrudApi {
 
     @Override
     public ResponseEntity<WineDTO> findWine(Long id) {
-        var wine = mapper.toDTO(service.findById(id));
-        return ResponseEntity.ok(wine);
+        var wine = service
+                .findById(id)
+                .map(mapper::toDTO);
+        return ResponseEntity.of(wine);
     }
 
     @Override

@@ -35,8 +35,10 @@ public class ReviewCrudController implements ReviewsCrudApi {
 
     @Override
     public ResponseEntity<ReviewDTO> findReview(Long id) {
-        var review = service.findById(id);
-        return ResponseEntity.ok(mapper.toDTO(review));
+        var review = service
+                .findById(id)
+                .map(mapper::toDTO);
+        return ResponseEntity.of(review);
     }
 
     @Override

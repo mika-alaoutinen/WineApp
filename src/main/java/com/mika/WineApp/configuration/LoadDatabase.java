@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
@@ -22,8 +23,9 @@ import java.util.Set;
  * An admin user is set as the owner for all parsed wines and reviews.
  */
 @Configuration
-@Slf4j
+@Profile("!test")
 @RequiredArgsConstructor
+@Slf4j
 class LoadDatabase {
 
     @Value("${admin.username}")
@@ -45,7 +47,8 @@ class LoadDatabase {
         }
 
         // Get admin to set as owner for parsed reviews and wines:
-        User admin = userRepository.findByUsername(adminUsername)
+        User admin = userRepository
+                .findByUsername(adminUsername)
                 .orElse(initAdminUser(userRepository));
 
         // Try to parse wines and reviews into database:

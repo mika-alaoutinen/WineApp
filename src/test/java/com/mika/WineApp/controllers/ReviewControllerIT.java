@@ -12,13 +12,13 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Optional;
 
-import static com.mika.WineApp.controllers.ControllerMvcTest.TEST_USER;
+import static com.mika.WineApp.controllers.ControllerIT.TEST_USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WithUserDetails(TEST_USER)
-class ReviewControllerMvcTest extends ControllerMvcTest {
+class ReviewControllerIT extends ControllerIT {
     private final static String url = "/reviews";
 
     @Test

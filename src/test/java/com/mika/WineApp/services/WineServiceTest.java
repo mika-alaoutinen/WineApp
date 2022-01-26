@@ -68,17 +68,18 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void findById() {
-        Wine foundWine = service.findById(wine.getId());
+        Wine foundWine = service
+                .findById(wine.getId())
+                .get();
         verify(wineRepository, times(1)).findById(wine.getId());
         assertEquals(wine, foundWine);
     }
 
     @Test
     void findByNonExistingId() {
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.findById(nonExistingWineId));
-
-        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
+        assertTrue(service
+                .findById(nonExistingWineId)
+                .isEmpty());
         verify(wineRepository, times(1)).findById(nonExistingWineId);
     }
 

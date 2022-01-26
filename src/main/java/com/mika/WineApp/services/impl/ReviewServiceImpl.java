@@ -4,7 +4,6 @@ import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
         return repository.findAllByOrderByDateDesc();
     }
 
-    public Review findById(Long id) {
-        return repository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException(new Review(), id));
+    public Optional<Review> findById(Long id) {
+        return repository.findById(id);
     }
 
     public List<Review> findByWineId(Long wineId) {
@@ -48,9 +46,15 @@ public class ReviewServiceImpl implements ReviewService {
     // --- Add, edit and delete ---
     public Review add(Long wineId, Review newReview) {
         Review review = (Review) userService.setUser(newReview);
-        Wine wine = wineService.findById(wineId);
-        review.setWine(wine);
-        return repository.save(review);
+        
+        return wineService
+                .findById(wineId)
+                .map(wine -> {
+                    review.setWine(wine);
+                    return review;
+                })
+                .map(repository::save)
+                .orElse(review);
     }
 
     public Review edit(Long id, Review editedReview) {
@@ -75,8 +79,9 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public boolean isAllowedToEdit(Long id) {
-        Review review = findById(id);
-        return userService.isUserAllowedToEdit(review);
+        return findById(id)
+                .map(userService::isUserAllowedToEdit)
+                .orElse(false);
     }
 
     public List<Review> search(String author, List<String> dateRange, List<Double> ratingRange)
@@ -111,7 +116,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     // --- Utility methods ---
     private Review findAndValidateReview(Long id) {
-        Review review = findById(id);
+        Review review = findById(id).orElseThrow(() -> new NotFoundException(new Review(), id));
 
         if (!userService.isUserAllowedToEdit(review)) {
             throw new ForbiddenException(review);

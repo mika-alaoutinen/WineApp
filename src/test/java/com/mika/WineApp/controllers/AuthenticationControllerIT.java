@@ -1,16 +1,19 @@
 package com.mika.WineApp.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.TestingAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
@@ -19,14 +22,17 @@ import java.util.Set;
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class AuthenticationControllerTest extends ControllerMvcTest {
+@IntegrationTest
+class AuthenticationControllerIT {
 
     private static final String USERNAME = "test_user";
-    private static final String PASSWORD = "test_user_password";
+    private static final String PASSWORD = "password";
     private static final String USER_JSON = String.format("""
             {
                 "username": "%1$s",
@@ -37,13 +43,21 @@ class AuthenticationControllerTest extends ControllerMvcTest {
     @MockBean
     private AuthenticationManager authManager;
 
+    @MockBean
+    private UserRepository userRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private MockMvc mvc;
+
     @Test
     void loginShouldReturnToken() throws Exception {
         UserPrincipal principal = new UserPrincipal(1L, USERNAME, PASSWORD, List.of());
         Object credentials = new Object();
 
-        Mockito
-                .when(authManager.authenticate(any(Authentication.class)))
+        when(authManager.authenticate(any(Authentication.class)))
                 .thenReturn(new TestingAuthenticationToken(principal, credentials));
 
         mvc
@@ -54,9 +68,7 @@ class AuthenticationControllerTest extends ControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Bearer")));
 
-        Mockito
-                .verify(authManager)
-                .authenticate(any(Authentication.class));
+        verify(authManager).authenticate(any(Authentication.class));
     }
 
     @Test
@@ -64,9 +76,7 @@ class AuthenticationControllerTest extends ControllerMvcTest {
         User savedUser = new User(USERNAME, PASSWORD);
         savedUser.setId(1L);
 
-        Mockito
-                .when(userRepository.save(any(User.class)))
-                .thenReturn(savedUser);
+        when(userRepository.save(any(User.class))).thenReturn(savedUser);
 
         MvcResult result = mvc
                 .perform(
@@ -82,8 +92,6 @@ class AuthenticationControllerTest extends ControllerMvcTest {
         assertEquals(1L, newUser.getId());
         assertEquals(USERNAME, newUser.getUsername());
         assertEquals(Set.of(Role.ROLE_USER), newUser.getRoles());
-        Mockito
-                .verify(userRepository)
-                .save(any(User.class));
+        verify(userRepository).save(any(User.class));
     }
 }

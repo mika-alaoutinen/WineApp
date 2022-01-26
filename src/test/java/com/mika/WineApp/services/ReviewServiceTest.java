@@ -77,17 +77,18 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void findById() {
-        System.out.println(review.getId());
-        Review foundReview = service.findById(review.getId());
-
+        Review foundReview = service
+                .findById(review.getId())
+                .get();
         verify(reviewRepository, times(1)).findById(review.getId());
         assertEquals(review, foundReview);
     }
 
     @Test
     void findByNonExistingId() {
-        Exception e = assertThrows(NotFoundException.class, () -> service.findById(nonExistingReviewId));
-        assertEquals(e.getMessage(), "Could not find review with id " + nonExistingReviewId);
+        assertTrue(service
+                .findById(nonExistingReviewId)
+                .isEmpty());
         verify(reviewRepository, times(1)).findById(nonExistingReviewId);
     }
 
@@ -127,11 +128,15 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void addReview() {
         Mockito
-                .when(userService.setUser(review))
+                .when(userService.setUser(any(Review.class)))
                 .thenReturn(review);
 
         Mockito
-                .when(reviewRepository.save(review))
+                .when(wineService.findById(wine.getId()))
+                .thenReturn(Optional.of(wine));
+        
+        Mockito
+                .when(reviewRepository.save(any(Review.class)))
                 .thenReturn(review);
 
         Review savedReview = service.add(wine.getId(), review);

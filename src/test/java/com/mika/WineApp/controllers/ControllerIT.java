@@ -1,7 +1,6 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestConfig;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.EntityModel;
@@ -13,14 +12,9 @@ import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -31,39 +25,36 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestConfig.class)
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-public abstract class ControllerMvcTest {
+@IntegrationTest
+abstract class ControllerIT {
 
     @Autowired
-    protected MockMvc mvc;
+    MockMvc mvc;
 
     @Autowired
-    protected ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
     @MockBean
-    protected ReviewRepository reviewRepository;
+    ReviewRepository reviewRepository;
 
     @MockBean
-    protected WineRepository wineRepository;
+    WineRepository wineRepository;
 
     @MockBean
-    protected UserRepository userRepository;
+    UserRepository userRepository;
 
     @MockBean
-    protected SecurityUtilities securityUtilities;
+    SecurityUtilities securityUtilities;
 
-    protected static final String TEST_USER = "test_user";
+    static final String TEST_USER = "test_user";
 
-    protected final List<Review> reviews = TestData.initReviews();
-    protected final List<Wine> wines = TestData.initWines();
-    protected final List<User> users = TestData.initTestUsers();
+    final List<Review> reviews = TestData.initReviews();
+    final List<Wine> wines = TestData.initWines();
+    final List<User> users = TestData.initTestUsers();
 
-    protected Review review;
-    protected Wine wine;
-    protected User user = users.get(0);
+    Review review;
+    Wine wine;
+    User user = users.get(0);
 
     @BeforeEach
     void setupTests() {
@@ -120,7 +111,7 @@ public abstract class ControllerMvcTest {
      * @return Review.
      * @throws Exception ex.
      */
-    protected Review getReviewFromResult(MvcResult result) throws Exception {
+    Review getReviewFromResult(MvcResult result) throws Exception {
         String response = TestUtilities.getResponseString(result);
         return objectMapper.readValue(response, Review.class);
     }
@@ -132,7 +123,7 @@ public abstract class ControllerMvcTest {
      * @return Wine.
      * @throws Exception ex.
      */
-    protected Wine getWineFromResults(MvcResult result) throws Exception {
+    Wine getWineFromResults(MvcResult result) throws Exception {
         String response = TestUtilities.getResponseString(result);
         return objectMapper.readValue(response, Wine.class);
     }
@@ -144,7 +135,7 @@ public abstract class ControllerMvcTest {
      * @return List of reviews.
      * @throws Exception ex.
      */
-    protected List<Review> quickSearches(String url) throws Exception {
+    List<Review> quickSearches(String url) throws Exception {
         MvcResult result = doGetRequest(url);
         String response = TestUtilities.getResponseString(result);
         return List.of(objectMapper.readValue(response, Review[].class));
@@ -158,8 +149,7 @@ public abstract class ControllerMvcTest {
      * @return List of distinct keywords used in wines.
      * @throws Exception ex.
      */
-    protected List<String> testKeywordSearch(String url) throws Exception {
-        System.out.println(url);
+    List<String> testKeywordSearch(String url) throws Exception {
         MvcResult result = doGetRequest(url);
         return TestUtilities.parseWordsFromResponse(result);
     }

@@ -3,12 +3,15 @@ package com.mika.WineApp.models.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.models.wine.Wine;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -39,12 +42,17 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
-    private List<Review> reviews = List.of();
+    private List<@NotNull Wine> wines = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<@NotNull Review> reviews = new ArrayList<>();
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.roles = Set.of(Role.ROLE_USER);
-        this.reviews = List.of();
+        this.wines = new ArrayList<>();
+        this.reviews = new ArrayList<>();
     }
 }

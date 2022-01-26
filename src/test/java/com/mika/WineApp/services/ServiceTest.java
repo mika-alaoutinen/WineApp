@@ -15,13 +15,15 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 public abstract class ServiceTest {
 
-    protected static final Long nonExistingReviewId = 3L;
-    protected static final Long nonExistingWineId = 4L;
-    protected static final List<Review> reviews = TestData.initReviews();
-    protected static final List<Wine> wines = TestData.initWines();
-    protected static final User user = TestData.initTestUsers().get(0);
-    protected Review review;
-    protected Wine wine;
+    static final Long nonExistingReviewId = 3L;
+    static final Long nonExistingWineId = 4L;
+    static final List<Review> reviews = TestData.initReviews();
+    static final List<Wine> wines = TestData.initWines();
+    static final User user = TestData
+            .initTestUsers()
+            .get(0);
+    Review review;
+    Wine wine;
 
     @Mock
     protected ReviewRepository reviewRepository;

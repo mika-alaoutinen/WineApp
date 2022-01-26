@@ -2,24 +2,36 @@ package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Optional;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@IntegrationTest
 @WithMockUser(roles = {"ADMIN"})
-class AdminControllerTest extends ControllerMvcTest {
+class AdminControllerIT {
+
+    @MockBean
+    private UserRepository userRepository;
+
+    @Autowired
+    private MockMvc mvc;
 
     @Test
     void findAll() throws Exception {
@@ -27,41 +39,31 @@ class AdminControllerTest extends ControllerMvcTest {
                 .perform(get("/admin/users"))
                 .andExpect(status().isOk());
 
-        Mockito
-                .verify(userRepository)
-                .findAll();
+        verify(userRepository).findAll();
     }
 
     @Test
     void findById() throws Exception {
         Long userId = 1L;
-        Mockito
-                .when(userRepository.findById(userId))
-                .thenReturn(Optional.of(new User()));
+        when(userRepository.findById(userId)).thenReturn(Optional.of(new User()));
 
         mvc
                 .perform(get("/admin/users/id/{id}", userId))
                 .andExpect(status().isOk());
 
-        Mockito
-                .verify(userRepository)
-                .findById(userId);
+        verify(userRepository).findById(userId);
     }
 
     @Test
     void findByUserName() throws Exception {
         String username = "username";
-        Mockito
-                .when(userRepository.findByUsername(username))
-                .thenReturn(Optional.of(new User()));
+        when(userRepository.findByUsername(username)).thenReturn(Optional.of(new User()));
 
         mvc
                 .perform(get("/admin/users/username/{username}", username))
                 .andExpect(status().isOk());
 
-        Mockito
-                .verify(userRepository)
-                .findByUsername(username);
+        verify(userRepository).findByUsername(username);
     }
 
     @Test
@@ -71,12 +73,8 @@ class AdminControllerTest extends ControllerMvcTest {
         newUser.setId(userId);
         newUser.setRoles(Set.of(Role.ROLE_ADMIN));
 
-        Mockito
-                .when(userRepository.findById(userId))
-                .thenReturn(Optional.of(newUser));
-        Mockito
-                .when(userRepository.save(newUser))
-                .thenReturn(newUser);
+        when(userRepository.findById(userId)).thenReturn(Optional.of(newUser));
+        when(userRepository.save(newUser)).thenReturn(newUser);
 
         mvc
                 .perform(
@@ -87,9 +85,7 @@ class AdminControllerTest extends ControllerMvcTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("ROLE_ADMIN")));
 
-        Mockito
-                .verify(userRepository)
-                .save(newUser);
+        verify(userRepository).save(newUser);
     }
 
     @WithMockUser(roles = {"USER", "GUEST"})
