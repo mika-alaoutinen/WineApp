@@ -1,4 +1,4 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.controllers;
 
 import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.BeforeEach;
