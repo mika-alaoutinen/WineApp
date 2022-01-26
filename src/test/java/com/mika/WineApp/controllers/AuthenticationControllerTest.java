@@ -5,9 +5,7 @@ import com.mika.WineApp.TestConfig;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
-import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -52,12 +50,6 @@ class AuthenticationControllerTest {
 
     @MockBean
     private AuthenticationManager authManager;
-
-    @MockBean
-    protected ReviewRepository reviewRepository;
-
-    @MockBean
-    protected WineRepository wineRepository;
 
     @MockBean
     protected UserRepository userRepository;
