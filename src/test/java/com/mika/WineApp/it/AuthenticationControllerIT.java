@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestUtilities;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTest
-class AuthenticationControllerTest {
+class AuthenticationControllerIT {
 
     private static final String USERNAME = "test_user";
     private static final String PASSWORD = "password";

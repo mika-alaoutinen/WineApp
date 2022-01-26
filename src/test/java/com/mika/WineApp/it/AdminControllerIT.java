@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTest
 @WithMockUser(roles = {"ADMIN"})
-class AdminControllerTest {
+class AdminControllerIT {
 
     @MockBean
     private UserRepository userRepository;

@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
 import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTest
 @WithMockUser
-class UserControllerTest {
+class UserControllerIT {
 
     @MockBean
     private SecurityUtilities securityUtilities;
