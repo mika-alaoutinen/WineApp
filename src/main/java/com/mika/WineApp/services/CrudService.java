@@ -1,8 +1,7 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.errors.NotFoundException;
-
 import java.util.List;
+import java.util.Optional;
 
 public interface CrudService<EntityModel> {
     // Add operation is missing because it is different for wines and reviews.
@@ -19,9 +18,8 @@ public interface CrudService<EntityModel> {
      *
      * @param id of entity
      * @return wine or review
-     * @throws NotFoundException e
      */
-    EntityModel findById(Long id) throws NotFoundException;
+    Optional<EntityModel> findById(Long id);
 
     /**
      * Edit wine or review.
@@ -29,9 +27,8 @@ public interface CrudService<EntityModel> {
      * @param id of persisted entity to edit
      * @param em edited wine or review
      * @return persisted entity model
-     * @throws NotFoundException e
      */
-    EntityModel edit(Long id, EntityModel em) throws NotFoundException;
+    EntityModel edit(Long id, EntityModel em);
 
     /**
      * Delete wine or review.
