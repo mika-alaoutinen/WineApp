@@ -10,12 +10,10 @@ import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -28,11 +26,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ContextConfiguration(classes = {TestSecurityConfig.class, WineMapperImpl.class, WineCrudController.class})
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(WineCrudController.class)
+@WebMvcTest
 class WineControllerTest {
     private static final String ENDPOINT = "/wines";
-    private final static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @MockBean
     private WineService service;
