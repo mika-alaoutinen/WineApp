@@ -64,6 +64,7 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     }
 
     @Bean
+    @Override
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         var config = new CorsConfiguration();
         config.setAllowCredentials(true);
@@ -81,11 +82,13 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
     }
 
     @Bean
+    @Override
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
+    @Override
     public JwtTokenFilter tokenFilter() {
         return new JwtTokenFilter(jwtProvider, service);
     }
