@@ -1,6 +1,5 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
-import com.mika.WineApp.TestConfig;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;

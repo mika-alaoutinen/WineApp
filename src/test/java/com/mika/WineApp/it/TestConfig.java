@@ -1,4 +1,4 @@
-package com.mika.WineApp;
+package com.mika.WineApp.it;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.user.User;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @TestConfiguration
-public class TestConfig {
+class TestConfig {
 
     @Bean
     @Primary
