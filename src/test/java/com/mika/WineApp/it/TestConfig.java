@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @TestConfiguration
-public class TestConfig {
+class TestConfig {
 
     @Bean
     @Primary
