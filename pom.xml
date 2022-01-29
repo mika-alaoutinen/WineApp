@@ -71,20 +71,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Development utilities -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <scope>runtime</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
-      <scope>provided</scope>
-    </dependency>
-
     <!-- JWT for authentication -->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
@@ -104,11 +90,17 @@
       <version>3.0.0</version>
     </dependency>
 
-    <!-- DTO mapping -->
+    <!-- DTOs and POJOs -->
     <dependency>
       <groupId>org.mapstruct</groupId>
       <artifactId>mapstruct</artifactId>
       <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
