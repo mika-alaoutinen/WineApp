@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.it;
 
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.review.Review;
@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Optional;
 
-import static com.mika.WineApp.controllers.ControllerIT.TEST_USER;
+import static com.mika.WineApp.it.ControllerIT.TEST_USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

@@ -3,7 +3,6 @@ package com.mika.WineApp.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestSecurityConfig;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.mappers.WineMapperImpl;
@@ -25,7 +24,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ContextConfiguration(classes = {TestSecurityConfig.class, WineMapperImpl.class, WineCrudController.class})
+@ContextConfiguration(classes = {WebSecurityConfig.class, WineMapperImpl.class, WineCrudController.class})
 @WebMvcTest
 class WineControllerTest {
     private static final String ENDPOINT = "/wines";
