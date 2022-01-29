@@ -92,13 +92,6 @@
       <version>${jjwt.version}</version>
     </dependency>
 
-    <!-- Testing -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-
     <!-- These are needed because OpenAPI generator's Spring profile has them as dependencies -->
     <dependency>
       <groupId>io.swagger</groupId>
