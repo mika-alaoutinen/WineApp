@@ -16,7 +16,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -44,7 +43,6 @@ class AuthenticationServiceTest {
     private AuthenticationServiceImpl service;
 
     @Test
-    @WithMockUser
     void loginReturnsJwtToken() {
         Authentication authToken = mock(Authentication.class);
 
