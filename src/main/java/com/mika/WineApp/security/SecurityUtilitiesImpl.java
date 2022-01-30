@@ -24,19 +24,14 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
 
     @Override
     public boolean isUserAllowedToEdit(EntityModel model, User user) {
-        Long userId = getUserPrincipal().getId();
-
-        boolean isAdmin = isUserAdmin(user);
-        boolean isOwner = isUserOwnerOfEntity(model, userId);
-
-        return isAdmin || isOwner;
+        return isUserAdmin(user) || isUserOwnerOfEntity(model, getUserPrincipal());
     }
 
-    private static boolean isUserOwnerOfEntity(EntityModel model, Long userId) {
+    private static boolean isUserOwnerOfEntity(EntityModel model, UserPrincipal principal) {
         return model
                 .getUser()
                 .getId()
-                .equals(userId);
+                .equals(principal.getId());
     }
 
     private static UserPrincipal getUserPrincipal() {
