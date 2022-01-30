@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     @ElementCollection
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    private Set<Role> roles = Set.of(Role.ROLE_USER);
+    private Set<Role> roles = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
