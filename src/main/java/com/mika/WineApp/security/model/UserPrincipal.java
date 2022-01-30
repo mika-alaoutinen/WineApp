@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 public class UserPrincipal implements UserDetails {
@@ -24,6 +23,10 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean accountNonExpired = true;
+    private final boolean accountNonLocked = true;
+    private final boolean credentialsNonExpired = true;
+    private final boolean enabled = true;
 
     public UserPrincipal(User user) {
         this.id = user.getId();
@@ -32,32 +35,12 @@ public class UserPrincipal implements UserDetails {
         this.authorities = mapAuthorities(user);
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    private static List<GrantedAuthority> mapAuthorities(User user) {
+    private static List<SimpleGrantedAuthority> mapAuthorities(User user) {
         return user
                 .getRoles()
                 .stream()
                 .map(Role::name)
                 .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
