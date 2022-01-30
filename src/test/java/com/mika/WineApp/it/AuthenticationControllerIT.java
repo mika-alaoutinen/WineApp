@@ -16,7 +16,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.containsString;
@@ -54,7 +53,7 @@ class AuthenticationControllerIT {
 
     @Test
     void loginShouldReturnToken() throws Exception {
-        UserPrincipal principal = new UserPrincipal(1L, USERNAME, PASSWORD, List.of());
+        UserPrincipal principal = new UserPrincipal(new User(USERNAME, PASSWORD));
         Object credentials = new Object();
 
         when(authManager.authenticate(any(Authentication.class)))

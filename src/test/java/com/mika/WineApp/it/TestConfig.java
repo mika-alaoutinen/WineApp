@@ -28,7 +28,7 @@ class TestConfig {
     private List<UserDetails> buildUserDetails(List<User> users) {
         return users
                 .stream()
-                .map(UserPrincipal::build)
+                .map(UserPrincipal::new)
                 .collect(Collectors.toList());
     }
 }

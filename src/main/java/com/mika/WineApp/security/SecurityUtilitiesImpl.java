@@ -10,14 +10,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityUtilitiesImpl implements SecurityUtilities {
 
+    @Override
     public String getUsernameFromSecurityContext() {
-        return getUserPrincipal().getUsername();
+        UserPrincipal principal = getUserPrincipal();
+        return principal.getUsername();
     }
 
+    @Override
     public boolean isUserAdmin(User user) {
-        return user.getRoles().contains(Role.ROLE_ADMIN);
+        return user
+                .getRoles()
+                .contains(Role.ROLE_ADMIN);
     }
 
+    @Override
     public boolean isUserAllowedToEdit(EntityModel model, User user) {
         Long userId = getUserPrincipal().getId();
 
@@ -41,7 +47,7 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
                 .getPrincipal();
 
         return principal.equals("anonymousUser")
-                ? UserPrincipal.build(new User())
-                : (UserPrincipal) principal;
+               ? new UserPrincipal(new User())
+               : (UserPrincipal) principal;
     }
 }

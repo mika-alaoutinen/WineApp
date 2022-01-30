@@ -1,39 +1,35 @@
 package com.mika.WineApp.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@AllArgsConstructor
+@Getter
 public class UserPrincipal implements UserDetails {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String username;
+    private final Long id;
+    private final String username;
     @JsonIgnore
-    private String password;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    private Collection<? extends GrantedAuthority> authorities;
-
-    public static UserPrincipal build(User user) {
-        var authorities = user
-                .getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .collect(Collectors.toList());
-
-        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), authorities);
+    public UserPrincipal(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.authorities = mapAuthorities(user);
     }
 
     @Override
@@ -54,5 +50,14 @@ public class UserPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    private static List<GrantedAuthority> mapAuthorities(User user) {
+        return user
+                .getRoles()
+                .stream()
+                .map(Role::name)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 }
