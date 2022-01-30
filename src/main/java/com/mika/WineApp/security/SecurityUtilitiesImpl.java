@@ -12,8 +12,7 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
 
     @Override
     public String getUsernameFromSecurityContext() {
-        UserPrincipal principal = getUserPrincipal();
-        return principal.getUsername();
+        return getUserPrincipal().getUsername();
     }
 
     @Override
@@ -28,19 +27,19 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
         Long userId = getUserPrincipal().getId();
 
         boolean isAdmin = isUserAdmin(user);
-        boolean isOwner = isUserOwnerOfModel(model, userId);
+        boolean isOwner = isUserOwnerOfEntity(model, userId);
 
         return isAdmin || isOwner;
     }
 
-    private boolean isUserOwnerOfModel(EntityModel model, Long userId) {
+    private static boolean isUserOwnerOfEntity(EntityModel model, Long userId) {
         return model
                 .getUser()
                 .getId()
                 .equals(userId);
     }
 
-    private UserPrincipal getUserPrincipal() {
+    private static UserPrincipal getUserPrincipal() {
         Object principal = SecurityContextHolder
                 .getContext()
                 .getAuthentication()
