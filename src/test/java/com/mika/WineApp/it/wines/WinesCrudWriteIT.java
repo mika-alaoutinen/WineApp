@@ -1,8 +1,9 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.it.wines;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
+import com.mika.WineApp.it.IntegrationTest;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;

@@ -1,6 +1,7 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.it.wines;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.it.IntegrationTest;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
@@ -62,7 +63,7 @@ class WinesCrudReadIT {
     @Test
     void isWineEditable() throws Exception {
         UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
-        
+
         mvc
                 .perform(get(ENDPOINT + "/1/editable").with(user(user)))
                 .andExpect(status().isOk())
