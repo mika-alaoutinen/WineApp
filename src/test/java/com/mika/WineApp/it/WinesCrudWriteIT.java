@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -51,11 +52,20 @@ class WinesCrudWriteIT {
 
     @Test
     void addWine() throws Exception {
+        WineDTO newWine = new WineDTO()
+                .name("New Wine")
+                .type(WineDTO.TypeEnum.RED)
+                .country("France")
+                .price(12.50)
+                .volume(0.75)
+                .description(List.of("delicious"))
+                .foodPairings(List.of("goes with everything"));
+
         mvc
                 .perform(
                         post(ENDPOINT)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(createWine()))
+                                .content(objectMapper.writeValueAsString(newWine))
                                 .with(user(USER)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(5))
@@ -84,14 +94,12 @@ class WinesCrudWriteIT {
 
     }
 
-    private static WineDTO createWine() {
-        return new WineDTO()
-                .name("New Wine")
-                .type(WineDTO.TypeEnum.RED)
-                .country("France")
-                .price(12.50)
-                .volume(0.75)
-                .description(List.of("delicious"))
-                .foodPairings(List.of("goes with everything"));
+    @Test
+    void deleteWine() throws Exception {
+        mvc
+                .perform(delete(ENDPOINT + "/1").with(user(USER)))
+                .andExpect(status().isNoContent());
+
+        assertFalse(wineRepository.existsById(1L));
     }
 }

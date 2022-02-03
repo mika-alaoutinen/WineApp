@@ -1,8 +1,10 @@
 package com.mika.WineApp.it;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,5 +57,15 @@ class WinesCrudReadIT {
                 .perform(get(ENDPOINT + "/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Valkoviini 1"));
+    }
+
+    @Test
+    void isWineEditable() throws Exception {
+        UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
+        
+        mvc
+                .perform(get(ENDPOINT + "/1/editable").with(user(user)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(true));
     }
 }
