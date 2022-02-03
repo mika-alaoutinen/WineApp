@@ -57,7 +57,7 @@ public class Wine implements EntityModel {
 
     @JsonIgnore
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
