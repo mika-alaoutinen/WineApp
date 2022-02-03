@@ -30,8 +30,8 @@ public class SecurityUtilitiesImpl implements SecurityUtilities {
     private static boolean isUserOwnerOfEntity(EntityModel model, UserPrincipal principal) {
         return model
                 .getUser()
-                .getId()
-                .equals(principal.getId());
+                .getUsername()
+                .equals(principal.getUsername());
     }
 
     private static UserPrincipal getUserPrincipal() {

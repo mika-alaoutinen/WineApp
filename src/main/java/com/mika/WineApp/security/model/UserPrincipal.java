@@ -18,7 +18,6 @@ public class UserPrincipal implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private final Long id;
     private final String username;
     @JsonIgnore
     private final String password;
@@ -29,7 +28,6 @@ public class UserPrincipal implements UserDetails {
     private final boolean enabled = true;
 
     public UserPrincipal(User user) {
-        this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.authorities = mapAuthorities(user);
