@@ -3,7 +3,6 @@ package com.mika.WineApp.it;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -39,12 +38,6 @@ class WinesCrudReadIT {
         System.out.println("before " + wineRepository.count());
         userRepository.saveAll(TestData.initTestUsers());
         wineRepository.saveAll(TestData.initWines());
-    }
-
-    @AfterAll
-    void resetRepositories() {
-        System.out.println("after " + wineRepository.count());
-        wineRepository.deleteAll();
     }
 
     @Test

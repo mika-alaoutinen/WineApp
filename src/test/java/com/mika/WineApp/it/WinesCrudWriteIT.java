@@ -2,6 +2,7 @@ package com.mika.WineApp.it;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
@@ -13,11 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -30,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class WinesCrudWriteIT {
     private static final String ENDPOINT = "/wines";
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
 
     @Autowired
     private UserRepository userRepository;
@@ -48,17 +51,37 @@ class WinesCrudWriteIT {
 
     @Test
     void addWine() throws Exception {
-        UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
-
         mvc
                 .perform(
                         post(ENDPOINT)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(createWine()))
-                                .with(user(user)))
+                                .with(user(USER)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(5))
                 .andExpect(jsonPath("$.name").value("New Wine"));
+    }
+
+    @Test
+    void editWine() throws Exception {
+        MvcResult result = mvc
+                .perform(get(ENDPOINT + "/1"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        WineDTO existingWine = objectMapper.readValue(TestUtilities.getResponseString(result), WineDTO.class);
+        existingWine.setName("Edited");
+        existingWine.setCountry("Edited");
+
+        mvc
+                .perform(put(ENDPOINT + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(existingWine))
+                        .with(user(USER)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Edited"))
+                .andExpect(jsonPath("$.country").value("Edited"));
+
     }
 
     private static WineDTO createWine() {
