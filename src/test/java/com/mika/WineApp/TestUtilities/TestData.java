@@ -35,7 +35,7 @@ public interface TestData {
 
     static List<Wine> initWines() {
         var description1 = List.of("puolikuiva", "sitruunainen", "yrttinen");
-        var description2 = List.of("Kuiva", "sitruunainen", "pirskahteleva");
+        var description2 = List.of("kuiva", "sitruunainen", "pirskahteleva");
         var description3 = List.of("tanniininen", "mokkainen", "täyteläinen", "tamminen");
 
         var foodPairings1 = List.of("kala", "kasvisruoka", "seurustelujuoma");

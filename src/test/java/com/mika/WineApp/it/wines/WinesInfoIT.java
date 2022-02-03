@@ -2,10 +2,8 @@ package com.mika.WineApp.it.wines;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTest;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
-import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -13,19 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.hasItems;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Tests that only read the DB. The DB is populated once before running the tests, and it's state
- * persists between tests.
- */
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @IntegrationTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class WinesCrudReadIT {
+class WinesInfoIT {
     private static final String ENDPOINT = "/wines";
 
     @Autowired
@@ -38,34 +33,51 @@ class WinesCrudReadIT {
     private MockMvc mvc;
 
     @BeforeAll
-    void setupRepositories() {
+    void setupRepository() {
         userRepository.saveAll(TestData.initTestUsers());
         wineRepository.saveAll(TestData.initWines());
     }
 
     @Test
-    void getAllWines() throws Exception {
+    void getWineCount() throws Exception {
         mvc
-                .perform(get(ENDPOINT))
+                .perform(get(ENDPOINT + "/count"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size()").value(4));
+                .andExpect(jsonPath("$").value(4));
     }
 
     @Test
-    void findWineById() throws Exception {
+    void getCountries() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/countries"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Valkoviini 1"));
+                .andExpect(jsonPath("$.size()").value(3))
+                .andExpect(jsonPath("$", contains("Espanja", "Italia", "Ranska")));
     }
 
     @Test
-    void isWineEditable() throws Exception {
-        UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
-
+    void getDescriptions() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1/editable").with(user(user)))
+                .perform(get(ENDPOINT + "/descriptions"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").value(true));
+                .andExpect(jsonPath("$.size()").value(9))
+                .andExpect(jsonPath("$", hasItems("puolikuiva", "kuiva", "tanniininen")));
+    }
+
+    @Test
+    void getFoodPairings() throws Exception {
+        mvc
+                .perform(get(ENDPOINT + "/food-pairings"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.size()").value(8))
+                .andExpect(jsonPath("$", hasItems("kala", "kana", "nauta")));
+    }
+
+    @Test
+    void doesWineNameAlreadyExist() throws Exception {
+        mvc
+                .perform(get(ENDPOINT + "/validate?name=Punaviini 1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(false));
     }
 }
