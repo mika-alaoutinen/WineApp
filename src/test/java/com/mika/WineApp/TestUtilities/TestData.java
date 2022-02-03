@@ -14,21 +14,19 @@ public interface TestData {
 
     static List<Review> initReviews() {
         var wines = initWines();
+        User user = initTestUsers().get(0);
 
         Wine wine1 = wines.get(0);
         Wine wine2 = wines.get(1);
 
-        // New reviews:
         var date1 = LocalDate.of(2019, 11, 14);
         var date2 = LocalDate.of(2019, 11, 15);
 
         Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine1);
-        r1.setId(21L);
-        r1.setWine(wine1);
+        r1.setUser(user);
 
         Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine2);
-        r2.setId(22L);
-        r2.setWine(wine2);
+        r2.setUser(user);
 
         return List.of(r1, r2);
     }
