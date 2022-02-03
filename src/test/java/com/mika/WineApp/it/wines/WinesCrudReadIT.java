@@ -1,16 +1,14 @@
 package com.mika.WineApp.it.wines;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.it.IntegrationTest;
+import com.mika.WineApp.it.IntegrationTestRead;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -22,9 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Tests that only read the DB. The DB is populated once before running the tests, and it's state
  * persists between tests.
  */
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
-@IntegrationTest
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@IntegrationTestRead
 class WinesCrudReadIT {
     private static final String ENDPOINT = "/wines";
 
