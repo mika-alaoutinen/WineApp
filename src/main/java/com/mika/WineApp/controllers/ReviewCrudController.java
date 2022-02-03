@@ -58,8 +58,8 @@ public class ReviewCrudController implements ReviewsCrudApi {
     }
 
     @Override
-    public ResponseEntity<ReviewDTO> updateReview(Long id, ReviewDTO reviewDTO) {
-        var edited = service.edit(id, mapper.toModel(reviewDTO));
+    public ResponseEntity<ReviewDTO> updateReview(Long id, NewReviewDTO updatedReview) {
+        var edited = service.edit(id, mapper.toModel(updatedReview));
         return ResponseEntity.ok(mapper.toDTO(edited));
     }
 }
