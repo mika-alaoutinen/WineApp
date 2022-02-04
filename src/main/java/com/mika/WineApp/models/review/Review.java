@@ -41,6 +41,7 @@ public class Review implements EntityModel {
     @JoinColumn(name = "wine_id")
     private Wine wine;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

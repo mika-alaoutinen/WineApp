@@ -33,7 +33,7 @@ class WinesSearchIT {
     }
 
     @Test
-    void searchWineByName() throws Exception {
+    void searchWinesByName() throws Exception {
         mvc
                 .perform(get(ENDPOINT + "/search?name=Valkoviini 1"))
                 .andExpect(status().isOk())
