@@ -16,10 +16,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * Tests that only read the DB. The DB is populated once before running the tests, and it's state
- * persists between tests.
- */
 @IntegrationTestRead
 class WinesCrudReadIT {
     private static final String ENDPOINT = "/wines";

@@ -27,7 +27,7 @@ class WinesSearchIT {
     private MockMvc mvc;
 
     @BeforeAll
-    void setupRepository() {
+    void setupRepositories() {
         userRepository.saveAll(TestData.initTestUsers());
         wineRepository.saveAll(TestData.initWines());
     }
@@ -35,10 +35,11 @@ class WinesSearchIT {
     @Test
     void searchWinesByName() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/search?name=Valkoviini 1"))
+                .perform(get(ENDPOINT + "/search?name=Valkoviini"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.size()").value(1))
+                .andExpect(jsonPath("$.size()").value(2))
                 .andExpect(jsonPath("$[0].id").value(1))
-                .andExpect(jsonPath("$[0].name").value("Valkoviini 1"));
+                .andExpect(jsonPath("$[0].name").value("Valkoviini 1"))
+                .andExpect(jsonPath("$[1].name").value("Valkoviini 2"));
     }
 }
