@@ -1,36 +1,13 @@
 package com.mika.WineApp.it.wines;
 
-import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.it.IntegrationTestRead;
-import com.mika.WineApp.repositories.UserRepository;
-import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IntegrationTestRead
-class WinesSearchIT {
+class WinesSearchIT extends WineTest {
     private static final String ENDPOINT = "/wines/search";
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private WineRepository wineRepository;
-
-    @Autowired
-    private MockMvc mvc;
-
-    @BeforeAll
-    void setupRepositories() {
-        userRepository.saveAll(TestData.initTestUsers());
-        wineRepository.saveAll(TestData.initWines());
-    }
 
     @Test
     void searchWinesByName() throws Exception {
