@@ -1,7 +1,8 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.it.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestUtilities;
+import com.mika.WineApp.it.IntegrationTest;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
@@ -16,7 +17,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.containsString;
@@ -54,7 +54,7 @@ class AuthenticationControllerIT {
 
     @Test
     void loginShouldReturnToken() throws Exception {
-        UserPrincipal principal = new UserPrincipal(1L, USERNAME, PASSWORD, List.of());
+        UserPrincipal principal = new UserPrincipal(new User(USERNAME, PASSWORD));
         Object credentials = new Object();
 
         when(authManager.authenticate(any(Authentication.class)))

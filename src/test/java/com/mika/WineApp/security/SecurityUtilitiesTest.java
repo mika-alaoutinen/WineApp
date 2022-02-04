@@ -7,7 +7,6 @@ import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +16,12 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class SecurityUtilitiesTest {
-    private static final Wine wine = TestData.initWines().get(0);
+    private static final Wine wine = TestData
+            .initWines()
+            .get(0);
     private static final List<User> testUsers = TestData.initTestUsers();
     private static final User user = testUsers.get(0);
     private static final User admin = testUsers.get(1);
@@ -34,18 +36,20 @@ class SecurityUtilitiesTest {
         UserPrincipal mockUserPrincipal = mock(UserPrincipal.class);
         SecurityContextHolder.setContext(securityContext);
 
-        Mockito.when(securityContext.getAuthentication())
-               .thenReturn(authentication);
+        when(securityContext.getAuthentication()).thenReturn(authentication);
 
-        Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
-               .thenReturn(mockUserPrincipal);
+        when(SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
+                .thenReturn(mockUserPrincipal);
 
         userPrincipal = mockUserPrincipal;
     }
 
     @Test
     void getUsernameFromSecurityContext() {
-        Mockito.when(userPrincipal.getUsername()).thenReturn(user.getUsername());
+        when(userPrincipal.getUsername()).thenReturn(user.getUsername());
 
         String name = securityUtils.getUsernameFromSecurityContext();
         assertEquals(user.getUsername(), name);
@@ -54,21 +58,21 @@ class SecurityUtilitiesTest {
     @Test
     void validateUpdateRequestForOwner() {
         wine.setUser(user);
-        Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
+        when(userPrincipal.getUsername()).thenReturn(user.getUsername());
         securityUtils.isUserAllowedToEdit(wine, user);
     }
 
     @Test
     void shouldAllowAdminsToEdit() {
         wine.setUser(user);
-        Mockito.when(userPrincipal.getId()).thenReturn(admin.getId());
+        when(userPrincipal.getUsername()).thenReturn(admin.getUsername());
         assertTrue(securityUtils.isUserAllowedToEdit(wine, admin));
     }
 
     @Test
     void shouldAllowOwnerToEdit() {
         wine.setUser(user);
-        Mockito.when(userPrincipal.getId()).thenReturn(user.getId());
+        when(userPrincipal.getUsername()).thenReturn(user.getUsername());
         assertTrue(securityUtils.isUserAllowedToEdit(wine, user));
     }
 
@@ -79,13 +83,17 @@ class SecurityUtilitiesTest {
         nonOwner.setRoles(Set.of(Role.ROLE_USER));
         wine.setUser(user);
 
-        Mockito.when(userPrincipal.getId()).thenReturn(nonOwner.getId());
+        when(userPrincipal.getUsername()).thenReturn(nonOwner.getUsername());
         assertFalse(securityUtils.isUserAllowedToEdit(wine, user));
     }
 
     @Test
     void shouldHandleGetUserPrincipalWhenUserNotLoggedIn() {
-        Mockito.when(SecurityContextHolder.getContext().getAuthentication().getPrincipal())
+
+        when(SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal())
                 .thenReturn("anonymousUser");
 
         String usernameOfLoggedInUser = securityUtils.getUsernameFromSecurityContext();

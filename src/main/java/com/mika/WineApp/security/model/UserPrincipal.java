@@ -1,58 +1,44 @@
 package com.mika.WineApp.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.List;
 
-@Data
-@AllArgsConstructor
+@Getter
 public class UserPrincipal implements UserDetails {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-    private String username;
+    private final String username;
     @JsonIgnore
-    private String password;
+    private final String password;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private final boolean accountNonExpired = true;
+    private final boolean accountNonLocked = true;
+    private final boolean credentialsNonExpired = true;
+    private final boolean enabled = true;
 
-    private Collection<? extends GrantedAuthority> authorities;
+    public UserPrincipal(User user) {
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.authorities = mapAuthorities(user);
+    }
 
-    public static UserPrincipal build(User user) {
-        var authorities = user
+    private static List<SimpleGrantedAuthority> mapAuthorities(User user) {
+        return user
                 .getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))
-                .collect(Collectors.toList());
-
-        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), authorities);
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+                .map(Role::name)
+                .map(SimpleGrantedAuthority::new)
+                .toList();
     }
 }
