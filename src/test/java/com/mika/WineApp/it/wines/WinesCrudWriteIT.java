@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTestWrite
 class WinesCrudWriteIT {
     private static final String ENDPOINT = "/wines";
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
 
     @Autowired
@@ -64,7 +64,7 @@ class WinesCrudWriteIT {
                 .perform(
                         post(ENDPOINT)
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsString(newWine))
+                                .content(MAPPER.writeValueAsString(newWine))
                                 .with(user(USER)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(5))
@@ -78,14 +78,14 @@ class WinesCrudWriteIT {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        WineDTO existingWine = objectMapper.readValue(TestUtilities.getResponseString(result), WineDTO.class);
+        WineDTO existingWine = MAPPER.readValue(TestUtilities.getResponseString(result), WineDTO.class);
         existingWine.setName("Edited");
         existingWine.setCountry("Edited");
 
         mvc
                 .perform(put(ENDPOINT + "/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(existingWine))
+                        .content(MAPPER.writeValueAsString(existingWine))
                         .with(user(USER)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Edited"))
