@@ -1,5 +1,6 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.it.users;
 
+import com.mika.WineApp.it.IntegrationTest;
 import com.mika.WineApp.security.SecurityUtilities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

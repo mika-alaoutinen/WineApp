@@ -1,5 +1,6 @@
-package com.mika.WineApp.it;
+package com.mika.WineApp.it.users;
 
+import com.mika.WineApp.it.IntegrationTest;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
