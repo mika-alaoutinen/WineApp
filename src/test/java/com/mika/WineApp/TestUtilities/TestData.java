@@ -16,16 +16,15 @@ public interface TestData {
         var wines = initWines();
         User user = initTestUsers().get(0);
 
-        Wine wine1 = wines.get(0);
-        Wine wine2 = wines.get(1);
+        Wine wine = wines.get(0);
 
         var date1 = LocalDate.of(2019, 11, 14);
         var date2 = LocalDate.of(2019, 11, 15);
 
-        Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine1);
+        Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine);
         r1.setUser(user);
 
-        Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine2);
+        Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine);
         r2.setUser(user);
 
         return List.of(r1, r2);
