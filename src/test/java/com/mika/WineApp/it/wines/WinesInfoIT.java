@@ -1,13 +1,6 @@
 package com.mika.WineApp.it.wines;
 
-import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.it.IntegrationTestRead;
-import com.mika.WineApp.repositories.UserRepository;
-import com.mika.WineApp.repositories.WineRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
@@ -15,24 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@IntegrationTestRead
-class WinesInfoIT {
+class WinesInfoIT extends WineTest {
     private static final String ENDPOINT = "/wines";
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private WineRepository wineRepository;
-
-    @Autowired
-    private MockMvc mvc;
-
-    @BeforeAll
-    void setupRepository() {
-        userRepository.saveAll(TestData.initTestUsers());
-        wineRepository.saveAll(TestData.initWines());
-    }
 
     @Test
     void getWineCount() throws Exception {
