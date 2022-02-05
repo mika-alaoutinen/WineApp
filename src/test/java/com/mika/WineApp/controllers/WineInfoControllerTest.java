@@ -1,6 +1,5 @@
 package com.mika.WineApp.controllers;
 
-import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ContextConfiguration(classes = {WebSecurityConfig.class, WineMapperImpl.class, WineInfoController.class})
+@ContextConfiguration(classes = {WebSecurityConfig.class, WineInfoController.class})
 @WebMvcTest
 class WineInfoControllerTest {
     private static final String ENDPOINT = "/wines";
