@@ -2,7 +2,6 @@ package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.services.ReviewService;
@@ -27,26 +26,30 @@ public class ReviewServiceImpl implements ReviewService {
     private final WineService wineService;
 
     // --- Find reviews ---
+    @Override
     public List<Review> findAll() {
         return repository.findAllByOrderByDateDesc();
     }
 
+    @Override
     public Optional<Review> findById(Long id) {
         return repository.findById(id);
     }
 
+    @Override
     public List<Review> findByWineId(Long wineId) {
         return repository.findByWineId(wineId);
     }
 
+    @Override
     public List<Review> findByWineName(String wineName) {
         return repository.findByWineNameContainingIgnoreCase(wineName);
     }
 
     // --- Add, edit and delete ---
+    @Override
     public Review add(Long wineId, Review newReview) {
         Review review = (Review) userService.setUser(newReview);
-        
         return wineService
                 .findById(wineId)
                 .map(wine -> {
@@ -57,33 +60,44 @@ public class ReviewServiceImpl implements ReviewService {
                 .orElse(review);
     }
 
-    public Review edit(Long id, Review editedReview) {
-        Review review = findAndValidateReview(id);
+    @Override
+    public Optional<Review> edit(Long id, Review editedReview) {
+        Optional<Review> reviewOpt = findById(id);
+        if (reviewOpt.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Review review = reviewOpt.get();
+        validateEditPermission(review);
 
         review.setAuthor(editedReview.getAuthor());
         review.setDate(editedReview.getDate());
         review.setReviewText(editedReview.getReviewText());
         review.setRating(editedReview.getRating());
 
-        return repository.save(review);
+        return Optional.of(repository.save(review));
     }
 
+    @Override
     public void delete(Long id) {
-        findAndValidateReview(id);
+        findById(id).ifPresent(this::validateEditPermission);
         repository.deleteById(id);
     }
 
     // --- Other methods ---
+    @Override
     public int count() {
         return (int) repository.count();
     }
 
+    @Override
     public boolean isAllowedToEdit(Long id) {
         return findById(id)
                 .map(userService::isUserAllowedToEdit)
                 .orElse(false);
     }
 
+    @Override
     public List<Review> search(String author, List<String> dateRange, List<Double> ratingRange)
             throws InvalidDateException {
 
@@ -96,32 +110,30 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     // --- Quick searches ---
+    @Override
     public List<Review> findNewest(int limit) {
         return repository
                 .findAllDistinctByOrderByDateDesc(PageRequest.of(0, limit))
                 .getContent();
     }
 
+    @Override
     public List<Review> findBestRated(int limit) {
         return repository
                 .findAllByOrderByRatingDesc(PageRequest.of(0, limit))
                 .getContent();
     }
 
+    @Override
     public List<Review> findWorstRated(int limit) {
         return repository
                 .findAllByOrderByRatingAsc(PageRequest.of(0, limit))
                 .getContent();
     }
 
-    // --- Utility methods ---
-    private Review findAndValidateReview(Long id) {
-        Review review = findById(id).orElseThrow(() -> new NotFoundException(new Review(), id));
-
+    private void validateEditPermission(Review review) {
         if (!userService.isUserAllowedToEdit(review)) {
             throw new ForbiddenException(review);
         }
-
-        return review;
     }
 }

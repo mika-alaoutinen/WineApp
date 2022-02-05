@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.services.impl.WineServiceImpl;
 import com.mika.WineApp.specifications.WineSpecification;
@@ -122,7 +121,9 @@ class WineServiceTest extends ServiceTest {
                 .when(userService.isUserAllowedToEdit(wine))
                 .thenReturn(true);
 
-        Wine editedWine = service.edit(wine.getId(), wine);
+        Wine editedWine = service
+                .edit(wine.getId(), wine)
+                .get();
         verify(wineRepository, times(1)).findById(wine.getId());
         verify(userService, times(1)).isUserAllowedToEdit(wine);
         verify(wineRepository, times(1)).save(wine);
@@ -131,10 +132,9 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void editNonExistingWine() {
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.edit(nonExistingWineId, wine));
-
-        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
+        assertTrue(service
+                .edit(nonExistingWineId, wine)
+                .isEmpty());
         verify(wineRepository, times(1)).findById(nonExistingWineId);
         verify(wineRepository, times(0)).save(wine);
     }
