@@ -1,13 +1,13 @@
 package com.mika.WineApp.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestUtilities;
+import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.services.WineService;
+import com.mika.model.NewWineDTO;
 import com.mika.model.WineDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +24,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -111,26 +108,70 @@ class WineControllerTest {
         mvc
                 .perform(post(ENDPOINT)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(MAPPER.writeValueAsString(createWine())))
+                        .content(createWinePayload()))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").value(99L));
     }
 
-    private List<WineDTO> parseResponse(MvcResult result) throws UnsupportedEncodingException, JsonProcessingException {
-        String response = TestUtilities.getResponseString(result);
-        return MAPPER.readValue(response, new TypeReference<>() {
-        });
+    @Test
+    void addWineReturns400() throws Exception {
+        mvc
+                .perform(post(ENDPOINT)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(createInvalidPayload()))
+                .andExpect(status().isBadRequest());
     }
 
-    private static WineDTO createWine() {
-        return new WineDTO()
-                .id(99L)
+    @Test
+    void editWine() throws Exception {
+        when(service.edit(anyLong(), any(Wine.class))).thenReturn(WINE);
+        mvc
+                .perform(put(ENDPOINT + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(createWinePayload()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(DTO));
+    }
+
+    @Test
+    void editWineReturns400() throws Exception {
+        mvc
+                .perform(put(ENDPOINT + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(createInvalidPayload()))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void editWineReturns404() throws Exception {
+        when(service.edit(anyLong(), any(Wine.class))).thenThrow(new NotFoundException(WINE, 1L));
+        mvc
+                .perform(put(ENDPOINT + "/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(createWinePayload()))
+                .andExpect(status().isNotFound());
+    }
+
+    private static String createWinePayload() throws JsonProcessingException {
+        return MAPPER.writeValueAsString(new NewWineDTO()
                 .name("New Wine")
-                .type(WineDTO.TypeEnum.RED)
+                .type(NewWineDTO.TypeEnum.RED)
                 .country("France")
                 .price(12.50)
                 .volume(0.75)
                 .description(List.of("delicious"))
-                .foodPairings(List.of("goes with everything"));
+                .foodPairings(List.of("goes with everything"))
+        );
+    }
+
+    private static String createInvalidPayload() throws JsonProcessingException {
+        return MAPPER.writeValueAsString(new NewWineDTO()
+                .name("New Wine")
+                .type(NewWineDTO.TypeEnum.RED)
+                .country("France")
+                .price(-1.00)
+                .volume(0.0)
+                .description(Collections.emptyList())
+                .foodPairings(Collections.emptyList()));
     }
 }
