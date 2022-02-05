@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +17,10 @@ import javax.validation.constraints.PositiveOrZero;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Data
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 public class Wine implements EntityModel {
 

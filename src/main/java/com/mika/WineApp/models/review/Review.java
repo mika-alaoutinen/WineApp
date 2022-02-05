@@ -3,6 +3,8 @@ package com.mika.WineApp.models.review;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,8 +12,10 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Builder
 @Data
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 public class Review implements EntityModel {
 

@@ -6,6 +6,7 @@ import com.mika.WineApp.models.review.Review;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReviewService extends CrudService<Review> {
 
@@ -33,7 +34,7 @@ public interface ReviewService extends CrudService<Review> {
      * @param newReview to be added
      * @return saved review
      */
-    Review add(Long wineId, Review newReview);
+    Optional<Review> add(Long wineId, Review newReview);
 
     /**
      * Checks if the logged in user is allowed to edit or delete a review.

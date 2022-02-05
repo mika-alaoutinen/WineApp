@@ -28,7 +28,7 @@ public interface CrudService<EntityModel> {
      * @param em edited wine or review
      * @return persisted entity model
      */
-    EntityModel edit(Long id, EntityModel em);
+    Optional<EntityModel> edit(Long id, EntityModel em);
 
     /**
      * Delete wine or review.

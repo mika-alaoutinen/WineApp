@@ -134,12 +134,14 @@ class ReviewServiceTest extends ServiceTest {
         Mockito
                 .when(wineService.findById(wine.getId()))
                 .thenReturn(Optional.of(wine));
-        
+
         Mockito
                 .when(reviewRepository.save(any(Review.class)))
                 .thenReturn(review);
 
-        Review savedReview = service.add(wine.getId(), review);
+        Review savedReview = service
+                .add(wine.getId(), review)
+                .get();
 
         verify(wineService, times(1)).findById(wine.getId());
         verify(userService, times(1)).setUser(review);
@@ -167,7 +169,9 @@ class ReviewServiceTest extends ServiceTest {
                 .when(userService.isUserAllowedToEdit(review))
                 .thenReturn(true);
 
-        Review editedReview = service.edit(review.getId(), review);
+        Review editedReview = service
+                .edit(review.getId(), review)
+                .get();
         verify(reviewRepository, times(1)).findById(review.getId());
         verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(reviewRepository, times(1)).save(review);
@@ -176,10 +180,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void editNonExistingReview() {
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.edit(nonExistingReviewId, review));
-
-        assertEquals(e.getMessage(), "Could not find review with id " + nonExistingReviewId);
+        assertTrue(service
+                .edit(nonExistingReviewId, review)
+                .isEmpty());
         verify(reviewRepository, times(1)).findById(nonExistingReviewId);
         verify(reviewRepository, times(0)).save(review);
     }
