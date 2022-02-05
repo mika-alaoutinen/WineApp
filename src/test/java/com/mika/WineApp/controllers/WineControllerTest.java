@@ -3,10 +3,10 @@ package com.mika.WineApp.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.services.WineService;
 import com.mika.model.WineDTO;
 import org.junit.jupiter.api.Test;
@@ -19,10 +19,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,7 +35,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 class WineControllerTest {
     private static final String ENDPOINT = "/wines";
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
+
+    private static final Wine WINE = Wine
+            .builder()
+            .name("Name")
+            .type(WineType.WHITE)
+            .country("Country")
+            .price(8.75)
+            .volume(0.75)
+            .description(List.of("description"))
+            .foodPairings(List.of("food pairing"))
+            .url("url")
+            .reviews(Collections.emptyList())
+            .build();
+
+    private static final WineDTO DTO = new WineDTO()
+            .name("Name")
+            .type(WineDTO.TypeEnum.WHITE)
+            .country("Country")
+            .price(8.75)
+            .volume(0.75)
+            .description(List.of("description"))
+            .foodPairings(List.of("food pairing"))
+            .url("url");
 
     @MockBean
     private WineService service;
@@ -42,16 +67,39 @@ class WineControllerTest {
     private MockMvc mvc;
 
     @Test
-    void findAll() throws Exception {
-        when(service.findAll()).thenReturn(TestData.initWines());
-
-        MvcResult result = mvc
+    void findAllReturnsListOfWines() throws Exception {
+        when(service.findAll()).thenReturn(List.of(WINE));
+        mvc
                 .perform(get(ENDPOINT))
                 .andExpect(status().isOk())
-                .andReturn();
+                .andExpect(jsonPath("$[0]").value(DTO));
+    }
 
-        var wines = parseResponse(result);
-        assertEquals(4, wines.size());
+    @Test
+    void findAllReturnsEmptyList() throws Exception {
+        when(service.findAll()).thenReturn(Collections.emptyList());
+        mvc
+                .perform(get(ENDPOINT))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
+    }
+
+    @Test
+    void findByIdReturnsOneWine() throws Exception {
+        when(service.findById(anyLong())).thenReturn(Optional.of(WINE));
+        mvc
+                .perform(get(ENDPOINT + "/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").value(DTO));
+    }
+
+    @Test
+    void findByIdReturns404WithNoBody() throws Exception {
+        when(service.findById(anyLong())).thenReturn(Optional.empty());
+        mvc
+                .perform(get(ENDPOINT + "/1"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$").doesNotExist());
     }
 
     @Test
@@ -63,14 +111,14 @@ class WineControllerTest {
         mvc
                 .perform(post(ENDPOINT)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(createWine())))
+                        .content(MAPPER.writeValueAsString(createWine())))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").value(99L));
     }
 
-    private List<Wine> parseResponse(MvcResult result) throws UnsupportedEncodingException, JsonProcessingException {
+    private List<WineDTO> parseResponse(MvcResult result) throws UnsupportedEncodingException, JsonProcessingException {
         String response = TestUtilities.getResponseString(result);
-        return objectMapper.readValue(response, new TypeReference<>() {
+        return MAPPER.readValue(response, new TypeReference<>() {
         });
     }
 

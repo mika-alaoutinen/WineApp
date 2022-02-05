@@ -3,6 +3,7 @@ package com.mika.WineApp.TestUtilities;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Library containing common utility methods for test classes.
@@ -19,6 +20,6 @@ public interface TestUtilities {
     static String getResponseString(MvcResult result) throws UnsupportedEncodingException {
         return result
                 .getResponse()
-                .getContentAsString();
+                .getContentAsString(StandardCharsets.UTF_8);
     }
 }
