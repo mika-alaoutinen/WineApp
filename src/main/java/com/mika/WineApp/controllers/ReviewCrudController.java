@@ -21,8 +21,13 @@ public class ReviewCrudController implements ReviewsCrudApi {
 
     @Override
     public ResponseEntity<ReviewDTO> addReview(Long wineId, NewReviewDTO newReview) {
-        var savedReview = service.add(wineId, mapper.toModel(newReview));
-        return new ResponseEntity<>(mapper.toDTO(savedReview), HttpStatus.CREATED);
+        return service
+                .add(wineId, mapper.toModel(newReview))
+                .map(mapper::toDTO)
+                .map(reviewDTO -> new ResponseEntity<>(reviewDTO, HttpStatus.CREATED))
+                .orElseGet(() -> ResponseEntity
+                        .notFound()
+                        .build());
     }
 
     @Override

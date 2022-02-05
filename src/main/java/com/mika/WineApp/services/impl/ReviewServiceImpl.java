@@ -48,7 +48,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     // --- Add, edit and delete ---
     @Override
-    public Review add(Long wineId, Review newReview) {
+    public Optional<Review> add(Long wineId, Review newReview) {
         Review review = (Review) userService.setUser(newReview);
         return wineService
                 .findById(wineId)
@@ -56,8 +56,7 @@ public class ReviewServiceImpl implements ReviewService {
                     review.setWine(wine);
                     return review;
                 })
-                .map(repository::save)
-                .orElse(review);
+                .map(repository::save);
     }
 
     @Override

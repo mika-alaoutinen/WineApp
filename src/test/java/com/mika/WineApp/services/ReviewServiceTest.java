@@ -139,7 +139,9 @@ class ReviewServiceTest extends ServiceTest {
                 .when(reviewRepository.save(any(Review.class)))
                 .thenReturn(review);
 
-        Review savedReview = service.add(wine.getId(), review);
+        Review savedReview = service
+                .add(wine.getId(), review)
+                .get();
 
         verify(wineService, times(1)).findById(wine.getId());
         verify(userService, times(1)).setUser(review);
