@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ContextConfiguration(classes = {WebSecurityConfig.class, WineMapperImpl.class, WineInfoController.class})
 @WebMvcTest
-public class WineInfoControllerTest {
+class WineInfoControllerTest {
     private static final String ENDPOINT = "/wines";
 
     @MockBean

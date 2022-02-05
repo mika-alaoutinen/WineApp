@@ -1,7 +1,6 @@
 package com.mika.WineApp.it.reviews;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.it.IntegrationTestWrite;
@@ -29,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTestWrite
 public class ReviewsCrudWriteIT {
     private static final String ENDPOINT = "/reviews";
-    private static final ObjectMapper MAPPER = createMapper();
+    private static final ObjectMapper MAPPER = TestUtilities.getObjectMapper();
     private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
 
     @Autowired
@@ -102,11 +101,5 @@ public class ReviewsCrudWriteIT {
                 .andExpect(status().isNoContent());
 
         assertFalse(reviewRepository.existsById(1L));
-    }
-
-    private static ObjectMapper createMapper() {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule()); // Needed to handle LocalDates
-        return mapper;
     }
 }

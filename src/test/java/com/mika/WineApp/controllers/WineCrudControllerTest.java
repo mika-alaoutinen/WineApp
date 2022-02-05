@@ -102,14 +102,17 @@ class WineCrudControllerTest {
 
     @Test
     void addWine() throws Exception {
-        Wine savedWine = new Wine();
-        savedWine.setId(99L);
+        Wine savedWine = Wine
+                .builder()
+                .id(99L)
+                .build();
+
         when(service.add(any(Wine.class))).thenReturn(savedWine);
 
         mvc
                 .perform(post(ENDPOINT)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createWinePayload()))
+                        .content(createPayload()))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("id").value(99L));
     }
@@ -129,7 +132,7 @@ class WineCrudControllerTest {
         mvc
                 .perform(put(ENDPOINT + "/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createWinePayload()))
+                        .content(createPayload()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(DTO));
     }
@@ -149,7 +152,7 @@ class WineCrudControllerTest {
         mvc
                 .perform(put(ENDPOINT + "/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(createWinePayload()))
+                        .content(createPayload()))
                 .andExpect(status().isNotFound());
     }
 
@@ -170,7 +173,7 @@ class WineCrudControllerTest {
                 .andExpect(jsonPath("$").value(isAllowedToEdit));
     }
 
-    private static String createWinePayload() throws JsonProcessingException {
+    private static String createPayload() throws JsonProcessingException {
         return MAPPER.writeValueAsString(new NewWineDTO()
                 .name("New Wine")
                 .type(NewWineDTO.TypeEnum.RED)
