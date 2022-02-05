@@ -58,7 +58,7 @@ public class WineCrudController implements WinesCrudApi {
     }
 
     @Override
-    public ResponseEntity<WineDTO> updateWine(Long id, WineDTO wineDTO) {
+    public ResponseEntity<WineDTO> updateWine(Long id, NewWineDTO wineDTO) {
         var edited = service.edit(id, mapper.toModel(wineDTO));
         return ResponseEntity.ok(mapper.toDTO(edited));
     }
