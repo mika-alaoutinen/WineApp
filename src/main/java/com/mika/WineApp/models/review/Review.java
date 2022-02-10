@@ -41,7 +41,7 @@ public class Review implements EntityModel {
     private double rating;
 
     @NotNull
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinColumn(name = "wine_id")
     private Wine wine;
 

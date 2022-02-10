@@ -66,7 +66,7 @@ public class Wine implements EntityModel {
     private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "wine", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "wine", cascade = CascadeType.MERGE)
     private List<@NotNull Review> reviews = new ArrayList<>();
 
     public Wine(
