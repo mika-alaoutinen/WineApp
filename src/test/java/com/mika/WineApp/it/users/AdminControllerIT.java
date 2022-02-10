@@ -27,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 @WithMockUser(roles = {"ADMIN"})
 class AdminControllerIT {
+    private static final String ENDPOINT = "/admin/users";
 
     @MockBean
     private UserRepository userRepository;
@@ -37,7 +38,7 @@ class AdminControllerIT {
     @Test
     void findAll() throws Exception {
         mvc
-                .perform(get("/admin/users"))
+                .perform(get(ENDPOINT))
                 .andExpect(status().isOk());
 
         verify(userRepository).findAll();
@@ -49,7 +50,7 @@ class AdminControllerIT {
         when(userRepository.findById(userId)).thenReturn(Optional.of(new User()));
 
         mvc
-                .perform(get("/admin/users/id/{id}", userId))
+                .perform(get(ENDPOINT + "/id/1"))
                 .andExpect(status().isOk());
 
         verify(userRepository).findById(userId);
@@ -61,7 +62,7 @@ class AdminControllerIT {
         when(userRepository.findByUsername(username)).thenReturn(Optional.of(new User()));
 
         mvc
-                .perform(get("/admin/users/username/{username}", username))
+                .perform(get(ENDPOINT + "/username/username"))
                 .andExpect(status().isOk());
 
         verify(userRepository).findByUsername(username);
@@ -79,7 +80,7 @@ class AdminControllerIT {
 
         mvc
                 .perform(
-                        put("/admin/users/{id}/roles", userId)
+                        put(ENDPOINT + "/{id}/roles", userId)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("[\"ROLE_ADMIN\"]")
                 )
@@ -91,7 +92,7 @@ class AdminControllerIT {
 
     @WithMockUser(roles = {"USER", "GUEST"})
     @ParameterizedTest
-    @ValueSource(strings = {"/admin/users", "/admin/users/id/1", "/admin/users/username/name"})
+    @ValueSource(strings = {ENDPOINT, ENDPOINT + "/id/1", ENDPOINT + "/username/name"})
     void shouldThrowHTTP403ForNonAdmins(String endpoint) throws Exception {
         mvc
                 .perform(get(endpoint))
@@ -102,7 +103,7 @@ class AdminControllerIT {
     @WithMockUser(roles = {"USER", "GUEST"})
     void shouldThrowHTTP403WhenNonAdminUpdates() throws Exception {
         mvc
-                .perform(put("/admin/users/1/roles")
+                .perform(put(ENDPOINT + "/1/roles")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("[\"ROLE_ADMIN\"]"))
                 .andExpect(status().isForbidden());

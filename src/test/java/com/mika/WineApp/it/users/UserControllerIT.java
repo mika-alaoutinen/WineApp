@@ -20,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTest
 @WithMockUser
 class UserControllerIT {
+    private static final String ENDPOINT = "/users";
 
     @MockBean
     private SecurityUtilities securityUtilities;
@@ -35,7 +36,7 @@ class UserControllerIT {
     @Test
     void getUsername() throws Exception {
         mvc
-                .perform(get("/users/username"))
+                .perform(get(ENDPOINT + "/username"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("test_user")));
 
@@ -45,7 +46,7 @@ class UserControllerIT {
     @Test
     void isLoggedIn() throws Exception {
         mvc
-                .perform(get("/users/loggedIn"))
+                .perform(get(ENDPOINT + "/loggedIn"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(is("true")));
 
