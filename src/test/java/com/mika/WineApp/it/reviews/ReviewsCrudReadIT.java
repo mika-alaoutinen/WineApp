@@ -1,10 +1,8 @@
 package com.mika.WineApp.it.reviews;
 
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.test.context.support.WithUserDetails;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,11 +28,10 @@ class ReviewsCrudReadIT extends ReviewTest {
     }
 
     @Test
+    @WithUserDetails("test_user")
     void isReviewEditable() throws Exception {
-        UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
-
         mvc
-                .perform(get(ENDPOINT + "/1/editable").with(user(user)))
+                .perform(get(ENDPOINT + "/1/editable"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(true));
     }
