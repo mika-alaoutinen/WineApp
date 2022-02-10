@@ -1,6 +1,8 @@
 package com.mika.WineApp.it.reviews;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.security.test.context.support.WithUserDetails;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,17 +23,18 @@ class ReviewsCrudReadIT extends ReviewTest {
     @Test
     void getReviewById() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.author").value("Mika"))
                 .andExpect(jsonPath("$.rating").value(3.0));
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"2", "3"})
     @WithUserDetails("test_user")
-    void isReviewEditable() throws Exception {
+    void isReviewEditable(String reviewId) throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1/editable"))
+                .perform(get(String.format("%s/%s/editable", ENDPOINT, reviewId)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(true));
     }

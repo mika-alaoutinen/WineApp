@@ -13,19 +13,28 @@ import java.util.Set;
 public interface TestData {
 
     static List<Review> initReviews() {
-        var wines = initWines();
         User user = initTestUsers().get(0);
-
-        Wine wine = wines.get(0);
 
         var date1 = LocalDate.of(2019, 11, 14);
         var date2 = LocalDate.of(2019, 11, 15);
 
-        Review r1 = new Review("Mika", date1, "Mikan uusi arvostelu", 3.0, wine);
-        r1.setUser(user);
+        Review r1 = Review
+                .builder()
+                .author("Mika")
+                .date(date1)
+                .reviewText("Mikan uusi arvostelu")
+                .rating(3.0)
+                .user(user)
+                .build();
 
-        Review r2 = new Review("Salla", date2, "Sallan uusi arvostelu", 4.5, wine);
-        r2.setUser(user);
+        Review r2 = Review
+                .builder()
+                .author("Salla")
+                .date(date2)
+                .reviewText("Sallan uusi arvostelu")
+                .rating(4.5)
+                .user(user)
+                .build();
 
         return List.of(r1, r2);
     }
