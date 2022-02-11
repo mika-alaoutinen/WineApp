@@ -7,6 +7,7 @@ import com.mika.WineApp.it.IntegrationTestWrite;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
 import com.mika.model.NewReviewDTO;
 import com.mika.model.ReviewDTO;
@@ -38,12 +39,24 @@ public class ReviewsCrudWriteIT {
     private ReviewRepository reviewRepository;
 
     @Autowired
+    private WineRepository wineRepository;
+
+    @Autowired
     private MockMvc mvc;
 
     @BeforeEach
     void setupRepositories() {
         userRepository.saveAll(TestData.initTestUsers());
-        reviewRepository.saveAll(TestData.initReviews());
+
+        // Need to save wine to repository, because otherwise reviews would have an unsaved transient dependency
+        var wine = TestData
+                .initWines()
+                .get(0);
+        wineRepository.save(wine);
+
+        var reviews = TestData.initReviews();
+        reviews.forEach(r -> r.setWine(wine));
+        reviewRepository.saveAll(reviews);
     }
 
     @Test
@@ -55,7 +68,7 @@ public class ReviewsCrudWriteIT {
                 .rating(4.5);
 
         mvc
-                .perform(post(ENDPOINT + "/2")
+                .perform(post(ENDPOINT + "/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(newReview))
                         .with(user(USER)))
@@ -70,7 +83,7 @@ public class ReviewsCrudWriteIT {
     @Test
     void editReview() throws Exception {
         MvcResult result = mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/2"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -82,7 +95,7 @@ public class ReviewsCrudWriteIT {
                 .rating(existingReview.getRating());
 
         mvc
-                .perform(put(ENDPOINT + "/1")
+                .perform(put(ENDPOINT + "/2")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(editedReview))
                         .with(user(USER)))
@@ -97,9 +110,9 @@ public class ReviewsCrudWriteIT {
     @Test
     void deleteReview() throws Exception {
         mvc
-                .perform(delete(ENDPOINT + "/1").with(user(USER)))
+                .perform(delete(ENDPOINT + "/2").with(user(USER)))
                 .andExpect(status().isNoContent());
 
-        assertFalse(reviewRepository.existsById(1L));
+        assertFalse(reviewRepository.existsById(2L));
     }
 }
