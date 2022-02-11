@@ -7,6 +7,7 @@ import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.models.wine.WineType;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -48,10 +49,57 @@ public interface TestData {
         var foodPairings2 = List.of("kana", "kasvisruoka", "juustot");
         var foodPairings3 = List.of("nauta", "pataruuat", "pasta");
 
-        Wine white1 = new Wine("Valkoviini 1", WineType.WHITE, "Espanja", 8.75, 0.75, description1, foodPairings1, "invalid");
-        Wine white2 = new Wine("Valkoviini 2", WineType.WHITE, "Espanja", 8.75, 0.75, description2, foodPairings2, "invalid");
-        Wine red1 = new Wine("Punaviini 1", WineType.RED, "Ranska", 29.95, 3.0, description3, foodPairings3, "invalid");
-        Wine red2 = new Wine("Punaviini 2", WineType.RED, "Italia", 30.95, 3.0, description3, foodPairings3, "invalid");
+        Wine white1 = Wine
+                .builder()
+                .name("Valkoviini 1")
+                .type(WineType.WHITE)
+                .country("Espanja")
+                .price(8.75)
+                .volume(0.75)
+                .description(description1)
+                .foodPairings(foodPairings1)
+                .url("invalid")
+                .reviews(Collections.emptyList())
+                .build();
+
+        Wine white2 = Wine
+                .builder()
+                .name("Valkoviini 2")
+                .type(WineType.WHITE)
+                .country("Espanja")
+                .price(8.75)
+                .volume(0.75)
+                .description(description2)
+                .foodPairings(foodPairings2)
+                .url("invalid")
+                .reviews(Collections.emptyList())
+                .build();
+
+        Wine red1 = Wine
+                .builder()
+                .name("Punaviini 1")
+                .type(WineType.RED)
+                .country("Ranska")
+                .price(29.95)
+                .volume(3.0)
+                .description(description3)
+                .foodPairings(foodPairings3)
+                .url("invalid")
+                .reviews(Collections.emptyList())
+                .build();
+
+        Wine red2 = Wine
+                .builder()
+                .name("Punaviini 2")
+                .type(WineType.RED)
+                .country("Italia")
+                .price(30.95)
+                .volume(3.0)
+                .description(description3)
+                .foodPairings(foodPairings3)
+                .url("invalid")
+                .reviews(Collections.emptyList())
+                .build();
 
         User user = initTestUsers().get(0);
         white1.setUser(user);

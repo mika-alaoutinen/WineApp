@@ -49,12 +49,4 @@ public class Review implements EntityModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    public Review(String author, LocalDate date, String reviewText, double rating, Wine wine) {
-        this.author = author;
-        this.date = date;
-        this.reviewText = reviewText;
-        this.rating = rating;
-        this.wine = wine;
-    }
 }

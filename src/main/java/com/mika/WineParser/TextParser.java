@@ -12,10 +12,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TextParser {
@@ -75,7 +72,8 @@ public class TextParser {
     /**
      * The method for parsing text files. Receives the texts in
      * a Scanner and parses it's contents line by line.
-     * @param scanner containing text to be parsed.
+     *
+     * @param scanner  containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
      */
     public void parse(Scanner scanner, WineType wineType) throws IOException {
@@ -87,49 +85,51 @@ public class TextParser {
             if (line.contains("VIINI:")) {
                 name = parseStringContent(line);
 
-            // Parse review date:
+                // Parse review date:
             } else if (line.contains("Päivämäärä:")) {
                 date = parseDate(line);
 
-            // Parse wine's country:
+                // Parse wine's country:
             } else if (line.contains("Maa:")) {
                 country = parseStringContent(line);
 
-            // Parse wine's price and quantity
+                // Parse wine's price and quantity
             } else if (line.contains("Hinta:")) {
                 String[] content = removeIdentifierWord(line);
                 price = parseDouble(content[0]);
                 String quantityStr = content[2].substring(1);
                 quantity = parseDouble(quantityStr);
 
-            // Parse wine's description. Note that description can contain multiple lines!
+                // Parse wine's description. Note that description can contain multiple lines!
             } else if (line.contains("Kuvaus:")) {
                 description = parseKeywords(line);
 
                 // If next word is not "SopiiNautittavaksi:", keep parsing description:
                 while (!scanner.hasNext("SopiiNautittavaksi:")) {
                     line = scanner.nextLine();
-                    if (line.toLowerCase().contains("huom:")) {
+                    if (line
+                            .toLowerCase()
+                            .contains("huom:")) {
                         break;
                     }
 
                     description.addAll(parseKeywords(line));
                 }
 
-            // Parse recommended food pairings for the wine:
+                // Parse recommended food pairings for the wine:
             } else if (line.contains("SopiiNautittavaksi:")) {
                 foodPairings = parseKeywords(line);
 
-            // Parse URL for wine. If URL is blank, set URL to "null":
+                // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
                 String parsedUrl = parseStringContent(line);
                 url = validateUrl ? validateUrl(parsedUrl) : parsedUrl;
 
-            // Parse review texts from Mika or Salla:
+                // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
                 parseReview(line);
 
-            // Parse review ratings from Mika or Salla:
+                // Parse review ratings from Mika or Salla:
             } else if (line.contains("Arvosana:")) {
                 parseRating(line);
             }
@@ -145,16 +145,20 @@ public class TextParser {
     /**
      * Removes the first word on a line, which identifies what information that line contains.
      * For example 'Kuvaus: puolimakea, hapokas...'.
+     *
      * @param line parsed line.
      * @return parsed content as a String[].
      */
     private String[] removeIdentifierWord(String line) {
-        String[] words = line.strip().split(" ");
+        String[] words = line
+                .strip()
+                .split(" ");
         return Arrays.copyOfRange(words, 1, words.length);
     }
 
     /**
      * Parses line and returns it's content as a String.
+     *
      * @param line parsed line.
      * @return parsed content as a String.
      */
@@ -166,13 +170,15 @@ public class TextParser {
     /**
      * Parses a list of keywords. Keywords are scrubbed of extra white space and converted into lowercase.
      * If a keyword contains a full stop, it is removed.
+     *
      * @param line parsed line.
      * @return keywords as List<String>.
      */
     private List<String> parseKeywords(String line) {
         String[] keywords = parseStringContent(line).split(",");
 
-        return Arrays.stream(keywords)
+        return Arrays
+                .stream(keywords)
                 .map(String::strip)
                 .map(String::toLowerCase)
                 .map(word -> word.replace(".", ""))
@@ -182,6 +188,7 @@ public class TextParser {
 
     /**
      * Parses String into LocalDate.
+     *
      * @param line with date information
      * @return LocalDate
      */
@@ -203,6 +210,7 @@ public class TextParser {
 
     /**
      * Validates a given URL address.
+     *
      * @param url as a String.
      * @return URL as a String if URL is valid, else returns "null".
      * @throws IOException exception.
@@ -218,6 +226,7 @@ public class TextParser {
 
     /**
      * Checks if a website returns a 200 OK response.
+     *
      * @param urlStr URL address as a String.
      * @return true if response from site is 200, else return false.
      * @throws IOException exception.
@@ -234,6 +243,7 @@ public class TextParser {
 
     /**
      * Parses line and sets content as review text for Mika or Salla.
+     *
      * @param line parsed line.
      */
     private void parseReview(String line) {
@@ -248,6 +258,7 @@ public class TextParser {
 
     /**
      * Parses the rating on scale of 0-5 and assigns who gave the rating.
+     *
      * @param line parsed line.
      */
     private void parseRating(String line) {
@@ -255,18 +266,18 @@ public class TextParser {
 
         if (words.length < 2) {
             System.out.println("Error on line: " + line);
-        // Ratings from either Mika or Salla:
+            // Ratings from either Mika or Salla:
         } else if (words.length == 2) {
             if (words[1].equals("M")) {
                 ratingMika = parseDouble(words[0]);
             } else {
                 ratingSalla = parseDouble(words[0]);
             }
-        // Ratings from both Mika and Salla, both gave the same rating:
+            // Ratings from both Mika and Salla, both gave the same rating:
         } else if (words.length == 3) {
             ratingMika = parseDouble(words[0]);
-            ratingSalla= parseDouble(words[0]);
-        // Ratings from both Mika and Salla, different ratings:
+            ratingSalla = parseDouble(words[0]);
+            // Ratings from both Mika and Salla, different ratings:
         } else if (words.length == 4) {
             if (words[1].equals("M")) {
                 ratingMika = parseDouble(words[0]);
@@ -284,6 +295,7 @@ public class TextParser {
 
     /**
      * Parses String and checks that it's a valid number.
+     *
      * @param s String.
      * @return price as double or -1 if price is not a valid number.
      */
@@ -298,6 +310,7 @@ public class TextParser {
 
     /**
      * If all parameters have been parsed, creates a new Wine and a new Review.
+     *
      * @param wineType type of wine, e.g. red or white
      */
     private void createModels(WineType wineType) {
@@ -306,17 +319,40 @@ public class TextParser {
             return;
         }
 
-        // Create new Wine:
-        Wine newWine = new Wine(name, wineType, country, price, quantity, description, foodPairings, url);
+        Wine newWine = Wine
+                .builder()
+                .name(name)
+                .type(wineType)
+                .country(country)
+                .price(price)
+                .volume(quantity)
+                .description(description)
+                .foodPairings(foodPairings)
+                .url(url)
+                .reviews(Collections.emptyList())
+                .build();
         wines.add(newWine);
 
-        // Create new Reviews and add them to Wine model:
         if (!reviewTextMika.isEmpty()) {
-            reviews.add(new Review("Mika", date, reviewTextMika, ratingMika, newWine));
+            reviews.add(Review
+                    .builder()
+                    .author("Mika")
+                    .date(date)
+                    .reviewText(reviewTextMika)
+                    .rating(ratingMika)
+                    .wine(newWine)
+                    .build());
         }
 
         if (!reviewTextSalla.isEmpty()) {
-            reviews.add(new Review("Salla", date, reviewTextSalla, ratingSalla, newWine));
+            reviews.add(Review
+                    .builder()
+                    .author("Salla")
+                    .date(date)
+                    .reviewText(reviewTextSalla)
+                    .rating(ratingSalla)
+                    .wine(newWine)
+                    .build());
         }
 
         // Initiate attribute values again for next entry in file:
