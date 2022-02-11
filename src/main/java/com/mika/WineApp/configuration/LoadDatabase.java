@@ -37,9 +37,10 @@ class LoadDatabase {
     private final PasswordEncoder passwordEncoder;
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository,
-                                   WineRepository wineRepository,
-                                   ReviewRepository reviewRepository) {
+    CommandLineRunner initDatabase(
+            UserRepository userRepository,
+            WineRepository wineRepository,
+            ReviewRepository reviewRepository) {
 
         if (wineRepository.count() != 0 && reviewRepository.count() != 0) {
             log.info("Repositories are already initiated, skipping database preloading!");
@@ -49,7 +50,7 @@ class LoadDatabase {
         // Get admin to set as owner for parsed reviews and wines:
         User admin = userRepository
                 .findByUsername(adminUsername)
-                .orElse(initAdminUser(userRepository));
+                .orElseGet(() -> initAdminUser(userRepository));
 
         // Try to parse wines and reviews into database:
         Parser parser = new Parser();

@@ -4,12 +4,16 @@ import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestRead;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.repositories.WineRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 
 @IntegrationTestRead
 class ReviewTest {
+
+    @Autowired
+    private WineRepository wineRepository;
 
     @Autowired
     UserRepository userRepository;
@@ -23,6 +27,15 @@ class ReviewTest {
     @BeforeAll
     void setupRepositories() {
         userRepository.saveAll(TestData.initTestUsers());
-        reviewRepository.saveAll(TestData.initReviews());
+
+        // Need to save wine to repository, because otherwise reviews would have an unsaved transient dependency
+        var wine = TestData
+                .initWines()
+                .get(0);
+        wineRepository.save(wine);
+
+        var reviews = TestData.initReviews();
+        reviews.forEach(r -> r.setWine(wine));
+        reviewRepository.saveAll(reviews);
     }
 }

@@ -1,10 +1,10 @@
 package com.mika.WineApp.it.reviews;
 
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.springframework.security.test.context.support.WithUserDetails;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -23,18 +23,18 @@ class ReviewsCrudReadIT extends ReviewTest {
     @Test
     void getReviewById() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.author").value("Mika"))
                 .andExpect(jsonPath("$.rating").value(3.0));
     }
 
-    @Test
-    void isReviewEditable() throws Exception {
-        UserPrincipal user = new UserPrincipal(new User("test_user", "password"));
-
+    @ParameterizedTest
+    @ValueSource(strings = {"2", "3"})
+    @WithUserDetails("test_user")
+    void isReviewEditable(String reviewId) throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1/editable").with(user(user)))
+                .perform(get(String.format("%s/%s/editable", ENDPOINT, reviewId)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(true));
     }

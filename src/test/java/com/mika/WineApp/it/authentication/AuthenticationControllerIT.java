@@ -1,97 +1,75 @@
 package com.mika.WineApp.it.authentication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestUtilities;
-import com.mika.WineApp.it.IntegrationTest;
+import com.mika.WineApp.it.IntegrationTestWrite;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.UserRepository;
-import com.mika.WineApp.security.model.UserPrincipal;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.TestingAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Set;
 
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@IntegrationTest
+@IntegrationTestWrite
 class AuthenticationControllerIT {
 
-    private static final String USERNAME = "test_user";
-    private static final String PASSWORD = "password";
-    private static final String USER_JSON = String.format("""
-            {
-                "username": "%1$s",
-                "password": "%2$s"
-            }
-            """, USERNAME, PASSWORD);
-
-    @MockBean
-    private AuthenticationManager authManager;
-
-    @MockBean
-    private UserRepository userRepository;
-
     @Autowired
-    private ObjectMapper objectMapper;
+    private UserRepository repository;
 
     @Autowired
     private MockMvc mvc;
 
     @Test
     void loginShouldReturnToken() throws Exception {
-        UserPrincipal principal = new UserPrincipal(new User(USERNAME, PASSWORD));
-        Object credentials = new Object();
+        String username = "test_user";
+        String password = "test_user_password";
 
-        when(authManager.authenticate(any(Authentication.class)))
-                .thenReturn(new TestingAuthenticationToken(principal, credentials));
+        // Need to encode the password before saving the user to DB.
+        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
+        User user = new User(username, encryptedPassword);
+        user.setRoles(Set.of(Role.ROLE_USER));
+        repository.save(user);
+
+        String userJson = String.format("""
+                {
+                    "username": "%1$s",
+                    "password": "%2$s"
+                }
+                """, username, password);
 
         mvc
                 .perform(
                         post("/auth/login")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(USER_JSON))
+                                .content(userJson))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Bearer")));
-
-        verify(authManager).authenticate(any(Authentication.class));
     }
 
     @Test
     void registerShouldSaveNewUser() throws Exception {
-        User savedUser = new User(USERNAME, PASSWORD);
-        savedUser.setId(1L);
+        String newUserJson = """
+                {
+                    "username": "new_user",
+                    "password": "new_password"
+                }
+                """;
 
-        when(userRepository.save(any(User.class))).thenReturn(savedUser);
-
-        MvcResult result = mvc
+        mvc
                 .perform(
                         post("/auth/register")
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .content(USER_JSON))
+                                .content(newUserJson))
                 .andExpect(status().isOk())
-                .andReturn();
-
-        String response = TestUtilities.getResponseString(result);
-        User newUser = objectMapper.readValue(response, User.class);
-
-        assertEquals(1L, newUser.getId());
-        assertEquals(USERNAME, newUser.getUsername());
-        assertEquals(Set.of(Role.ROLE_USER), newUser.getRoles());
-        verify(userRepository).save(any(User.class));
+                .andExpect(jsonPath("$.id").exists())
+                .andExpect(jsonPath("$.username").value("new_user"))
+                .andExpect(jsonPath("$.roles", contains("ROLE_USER")));
     }
 }
