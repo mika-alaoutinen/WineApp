@@ -17,5 +17,5 @@ import java.lang.annotation.Target;
 @AutoConfigureMockMvc
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public @interface IntegrationTest {
+@interface IntegrationTest {
 }
