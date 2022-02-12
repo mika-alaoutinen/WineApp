@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;

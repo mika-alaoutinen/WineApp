@@ -1,6 +1,6 @@
 package com.mika.WineApp.reviews;
 
-import com.mika.WineApp.controllers.WebSecurityConfig;
+import com.mika.WineApp.WebSecurityConfig;
 import com.mika.WineApp.mappers.ReviewMapperImpl;
 import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.reviews.model.Review;

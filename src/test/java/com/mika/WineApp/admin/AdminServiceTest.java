@@ -1,9 +1,8 @@
-package com.mika.WineApp.services;
+package com.mika.WineApp.admin;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.services.impl.AdminServiceImpl;
 import com.mika.WineApp.users.UserRepository;
 import com.mika.WineApp.users.model.Role;
 import com.mika.WineApp.users.model.User;

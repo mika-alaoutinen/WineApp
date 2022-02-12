@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.admin;
 
 import com.mika.WineApp.mappers.RoleMapper;
 import com.mika.WineApp.mappers.UserMapper;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class AdminController implements AdminApi {
+class AdminController implements AdminApi {
     private final RoleMapper roleMapper;
     private final UserMapper userMapper;
     private final AdminService service;

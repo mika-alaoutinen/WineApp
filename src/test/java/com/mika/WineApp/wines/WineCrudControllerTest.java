@@ -2,7 +2,7 @@ package com.mika.WineApp.wines;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.controllers.WebSecurityConfig;
+import com.mika.WineApp.WebSecurityConfig;
 import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.wines.model.Wine;

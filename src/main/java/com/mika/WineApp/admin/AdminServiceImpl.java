@@ -1,4 +1,4 @@
-package com.mika.WineApp.services.impl;
+package com.mika.WineApp.admin;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class AdminServiceImpl implements AdminService {
+class AdminServiceImpl implements AdminService {
     private final UserRepository repository;
 
     @Override

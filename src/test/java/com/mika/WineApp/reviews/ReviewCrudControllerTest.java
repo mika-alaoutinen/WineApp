@@ -3,7 +3,7 @@ package com.mika.WineApp.reviews;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mika.WineApp.TestUtilities.TestUtilities;
-import com.mika.WineApp.controllers.WebSecurityConfig;
+import com.mika.WineApp.WebSecurityConfig;
 import com.mika.WineApp.mappers.ReviewMapperImpl;
 import com.mika.WineApp.mappers.WineMapperImpl;
 import com.mika.WineApp.reviews.model.Review;
