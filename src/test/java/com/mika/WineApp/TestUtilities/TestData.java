@@ -1,10 +1,6 @@
 package com.mika.WineApp.TestUtilities;
 
-import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.user.Role;
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.entities.*;
 
 import java.time.LocalDate;
 import java.util.Collections;

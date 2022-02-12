@@ -1,8 +1,8 @@
 package com.mika.WineParser;
 
-import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 

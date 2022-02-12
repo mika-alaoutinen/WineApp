@@ -1,8 +1,8 @@
 package com.mika.WineParser;
 
-import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
 import org.springframework.core.io.DefaultResourceLoader;
 
@@ -13,7 +13,9 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
-/** Driver class for TextParser. Gets Wines and Reviews as lists. */
+/**
+ * Driver class for TextParser. Gets Wines and Reviews as lists.
+ */
 public class Parser {
 
     @Getter
@@ -23,13 +25,17 @@ public class Parser {
     private List<Review> reviews;
 
     public Parser() {
-        try { parse(); }
-        catch (IOException e) { e.printStackTrace(); }
+        try {
+            parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * Reads text files from resources and sends their contents to TextParser to parse.
      * Wraps the text in a Scanner object.
+     *
      * @throws IOException ex
      */
     private void parse() throws IOException {

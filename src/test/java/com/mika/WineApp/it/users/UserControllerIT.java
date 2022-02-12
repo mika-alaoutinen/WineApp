@@ -1,7 +1,13 @@
 package com.mika.WineApp.it.users;
 
+import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.it.IntegrationTestRead;
+import com.mika.WineApp.users.UserRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithUserDetails;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -9,9 +15,21 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@IntegrationTestRead
 @WithUserDetails("test_user")
-class UserControllerIT extends UserTest {
+class UserControllerIT {
     private static final String ENDPOINT = "/users";
+
+    @Autowired
+    UserRepository repository;
+
+    @Autowired
+    MockMvc mvc;
+
+    @BeforeAll
+    void setupRepository() {
+        repository.saveAll(TestData.initTestUsers());
+    }
 
     @Test
     void getUsername() throws Exception {

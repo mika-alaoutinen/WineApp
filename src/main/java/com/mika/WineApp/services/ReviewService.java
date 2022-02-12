@@ -1,8 +1,8 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.review.Review;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;

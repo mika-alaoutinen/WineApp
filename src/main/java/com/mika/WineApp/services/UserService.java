@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.entities.EntityModel;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.EntityModel;
 
 public interface UserService {
 

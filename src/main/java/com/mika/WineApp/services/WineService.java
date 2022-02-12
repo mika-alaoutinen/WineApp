@@ -1,8 +1,8 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.wine.Wine;
 
 import java.util.List;
 

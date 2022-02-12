@@ -1,7 +1,7 @@
 package com.mika.WineApp.services;
 
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.user.User;
 
 import java.util.List;
 

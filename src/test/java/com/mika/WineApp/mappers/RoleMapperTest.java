@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.user.Role;
+import com.mika.WineApp.entities.Role;
 import com.mika.model.RoleDTO;
 import org.junit.jupiter.api.Test;
 
