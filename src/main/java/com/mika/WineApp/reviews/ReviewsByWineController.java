@@ -1,7 +1,7 @@
 package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.mappers.ReviewMapper;
-import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.models.Review;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.api.ReviewsByWineApi;
 import com.mika.model.ReviewDTO;

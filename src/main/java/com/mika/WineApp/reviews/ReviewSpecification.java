@@ -1,6 +1,6 @@
 package com.mika.WineApp.reviews;
 
-import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.models.Review;
 import com.mika.WineApp.specifications.SuperSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,4 +1,4 @@
-package com.mika.WineApp.wines.model;
+package com.mika.WineApp.models;
 
 /**
  * Describes the different types of wines.

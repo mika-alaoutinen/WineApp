@@ -1,12 +1,12 @@
 package com.mika.WineApp.authentication;
 
 import com.mika.WineApp.errors.BadRequestException;
+import com.mika.WineApp.models.User;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.security.model.UserCredentials;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.services.AuthenticationService;
-import com.mika.WineApp.users.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

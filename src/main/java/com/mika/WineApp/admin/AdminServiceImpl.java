@@ -2,10 +2,10 @@ package com.mika.WineApp.admin;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
+import com.mika.WineApp.models.Role;
+import com.mika.WineApp.models.User;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.users.UserRepository;
-import com.mika.WineApp.users.model.Role;
-import com.mika.WineApp.users.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

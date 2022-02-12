@@ -1,9 +1,9 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.models.EntityModel;
+import com.mika.WineApp.models.Role;
+import com.mika.WineApp.models.User;
 import com.mika.WineApp.security.model.UserPrincipal;
-import com.mika.WineApp.users.model.Role;
-import com.mika.WineApp.users.model.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 

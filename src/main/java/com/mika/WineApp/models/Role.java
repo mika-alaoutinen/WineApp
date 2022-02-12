@@ -1,4 +1,4 @@
-package com.mika.WineApp.users.model;
+package com.mika.WineApp.models;
 
 /**
  * The different roles a User may have.

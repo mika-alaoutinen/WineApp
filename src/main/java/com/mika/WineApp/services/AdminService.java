@@ -2,8 +2,8 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.users.model.Role;
-import com.mika.WineApp.users.model.User;
+import com.mika.WineApp.models.Role;
+import com.mika.WineApp.models.User;
 
 import java.util.Set;
 

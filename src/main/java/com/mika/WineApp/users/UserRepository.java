@@ -1,6 +1,6 @@
 package com.mika.WineApp.users;
 
-import com.mika.WineApp.users.model.User;
+import com.mika.WineApp.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

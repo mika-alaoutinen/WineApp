@@ -1,9 +1,7 @@
-package com.mika.WineApp.users.model;
+package com.mika.WineApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mika.WineApp.reviews.model.Review;
-import com.mika.WineApp.wines.model.Wine;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

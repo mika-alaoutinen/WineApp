@@ -1,7 +1,7 @@
 package com.mika.WineApp.security;
 
 import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.users.model.User;
+import com.mika.WineApp.models.User;
 
 public interface SecurityUtilities {
     /**

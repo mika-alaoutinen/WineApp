@@ -1,7 +1,7 @@
 package com.mika.WineApp.errors;
 
-import com.mika.WineApp.reviews.model.Review;
-import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.models.Review;
+import com.mika.WineApp.models.Wine;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

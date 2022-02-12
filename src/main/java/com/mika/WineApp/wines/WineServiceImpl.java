@@ -2,10 +2,10 @@ package com.mika.WineApp.wines;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
+import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
-import com.mika.WineApp.wines.model.Wine;
-import com.mika.WineApp.wines.model.WineType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
