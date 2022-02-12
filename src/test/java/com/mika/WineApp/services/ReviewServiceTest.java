@@ -20,8 +20,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class ReviewServiceTest extends ServiceTest {
     private static final String author = "Mika";
@@ -65,10 +64,7 @@ class ReviewServiceTest extends ServiceTest {
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
 
-        Mockito
-                .when(reviewRepository.findAllByOrderByDateDesc())
-                .thenReturn(sortedReviews);
-
+        when(reviewRepository.findAllByOrderByDateDesc()).thenReturn(sortedReviews);
         var foundReviews = service.findAll();
 
         verify(reviewRepository, times(1)).findAllByOrderByDateDesc();
@@ -94,10 +90,7 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void findByWineId() {
-        Mockito
-                .when(reviewRepository.findByWineId(review.getId()))
-                .thenReturn(reviews);
-
+        when(reviewRepository.findByWineId(review.getId())).thenReturn(reviews);
         var foundReviews = service.findByWineId(review.getId());
         assertEquals(2, foundReviews.size());
     }
@@ -105,10 +98,7 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void findByWineIdReturnsEmptyList() {
         long id = 1L;
-
-        Mockito
-                .when(reviewRepository.findByWineId(id))
-                .thenReturn(List.of());
+        when(reviewRepository.findByWineId(id)).thenReturn(List.of());
 
         var foundReviews = service.findByWineId(id);
         assertTrue(foundReviews.isEmpty());
@@ -117,9 +107,7 @@ class ReviewServiceTest extends ServiceTest {
     @Test
     void findByWineName() {
         String wineName = "Valkoviini 1";
-        Mockito
-                .when(reviewRepository.findByWineNameContainingIgnoreCase(wineName))
-                .thenReturn(reviews);
+        when(reviewRepository.findByWineNameContainingIgnoreCase(wineName)).thenReturn(reviews);
 
         var foundReviews = service.findByWineName(wineName);
         assertEquals(2, foundReviews.size());
@@ -127,17 +115,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void addReview() {
-        Mockito
-                .when(userService.setUser(any(Review.class)))
-                .thenReturn(review);
-
-        Mockito
-                .when(wineService.findById(wine.getId()))
-                .thenReturn(Optional.of(wine));
-
-        Mockito
-                .when(reviewRepository.save(any(Review.class)))
-                .thenReturn(review);
+        when(userService.setUser(any(Review.class))).thenReturn(review);
+        when(wineService.findById(wine.getId())).thenReturn(Optional.of(wine));
+        when(reviewRepository.save(any(Review.class))).thenReturn(review);
 
         Review savedReview = service
                 .add(wine.getId(), review)
@@ -151,9 +131,7 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void addReviewForNonExistingWine() {
-        Mockito
-                .when(wineService.findById(nonExistingWineId))
-                .thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
+        when(wineService.findById(nonExistingWineId)).thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
 
         NotFoundException e = assertThrows(NotFoundException.class, () ->
                 service.add(nonExistingWineId, review));
@@ -165,13 +143,12 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void editReview() {
-        Mockito
-                .when(userService.isUserAllowedToEdit(review))
-                .thenReturn(true);
+        when(userService.isUserAllowedToEdit(review)).thenReturn(true);
 
         Review editedReview = service
                 .edit(review.getId(), review)
                 .get();
+
         verify(reviewRepository, times(1)).findById(review.getId());
         verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(reviewRepository, times(1)).save(review);
@@ -200,11 +177,9 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void deleteReview() {
-        Mockito
-                .when(userService.isUserAllowedToEdit(review))
-                .thenReturn(true);
-
+        when(userService.isUserAllowedToEdit(review)).thenReturn(true);
         service.delete(review.getId());
+
         verify(userService, times(1)).isUserAllowedToEdit(review);
         verify(reviewRepository, times(1)).deleteById(review.getId());
     }
@@ -217,10 +192,7 @@ class ReviewServiceTest extends ServiceTest {
 
     @Test
     void count() {
-        Mockito
-                .when(reviewRepository.count())
-                .thenReturn((long) reviews.size());
-
+        when(reviewRepository.count()).thenReturn((long) reviews.size());
         long reviewCount = service.count();
 
         verify(reviewRepository, times(1)).count();
@@ -278,10 +250,8 @@ class ReviewServiceTest extends ServiceTest {
         verify(reviewRepository, times(0)).findAll(any(ReviewSpecification.class));
     }
 
-    // Private methods:
     private void isAllowedToEdit(boolean isAllowed) {
-        Mockito
-                .when(userService.isUserAllowedToEdit(review))
+        when(userService.isUserAllowedToEdit(review))
                 .thenReturn(isAllowed);
 
         assertEquals(service.isAllowedToEdit(review.getId()), isAllowed);

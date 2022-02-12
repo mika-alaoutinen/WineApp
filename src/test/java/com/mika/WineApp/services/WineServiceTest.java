@@ -17,8 +17,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class WineServiceTest extends ServiceTest {
 
@@ -55,10 +54,7 @@ class WineServiceTest extends ServiceTest {
                 .sorted(Comparator.comparing(Wine::getName))
                 .collect(Collectors.toList());
 
-        Mockito
-                .when(wineRepository.findAllByOrderByNameAsc())
-                .thenReturn(sortedWines);
-
+        when(wineRepository.findAllByOrderByNameAsc()).thenReturn(sortedWines);
         var foundWines = service.findAll();
 
         verify(wineRepository, times(1)).findAllByOrderByNameAsc();
@@ -84,13 +80,8 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void addWine() {
-        Mockito
-                .when(userService.setUser(wine))
-                .thenReturn(wine);
-
-        Mockito
-                .when(wineRepository.save(wine))
-                .thenReturn(wine);
+        when(userService.setUser(wine)).thenReturn(wine);
+        when(wineRepository.save(wine)).thenReturn(wine);
 
         Wine savedWine = service.add(wine);
 
@@ -103,13 +94,9 @@ class WineServiceTest extends ServiceTest {
     @Test
     void shouldNotAddSameWineTwice() {
         String name = wine.getName();
+        when(service.isValid(name)).thenReturn(true);
 
-        Mockito
-                .when(service.isValid(name))
-                .thenReturn(true);
-
-        BadRequestException e = assertThrows(BadRequestException.class, () ->
-                service.add(wine));
+        BadRequestException e = assertThrows(BadRequestException.class, () -> service.add(wine));
 
         assertEquals(e.getMessage(), "Wine with name " + name + " already exists!");
         verify(wineRepository, times(1)).existsByName(name);
@@ -117,13 +104,13 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void editWine() {
-        Mockito
-                .when(userService.isUserAllowedToEdit(wine))
+        when(userService.isUserAllowedToEdit(wine))
                 .thenReturn(true);
 
         Wine editedWine = service
                 .edit(wine.getId(), wine)
                 .get();
+
         verify(wineRepository, times(1)).findById(wine.getId());
         verify(userService, times(1)).isUserAllowedToEdit(wine);
         verify(wineRepository, times(1)).save(wine);
@@ -135,6 +122,7 @@ class WineServiceTest extends ServiceTest {
         assertTrue(service
                 .edit(nonExistingWineId, wine)
                 .isEmpty());
+
         verify(wineRepository, times(1)).findById(nonExistingWineId);
         verify(wineRepository, times(0)).save(wine);
     }
@@ -152,10 +140,7 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void deleteWine() {
-        Mockito
-                .when(userService.isUserAllowedToEdit(wine))
-                .thenReturn(true);
-
+        when(userService.isUserAllowedToEdit(wine)).thenReturn(true);
         service.delete(wine.getId());
         verify(userService, times(1)).isUserAllowedToEdit(wine);
         verify(wineRepository, times(1)).deleteById(wine.getId());
@@ -171,10 +156,7 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void count() {
-        Mockito
-                .when(wineRepository.count())
-                .thenReturn((long) wines.size());
-
+        when(wineRepository.count()).thenReturn((long) wines.size());
         long wineCount = service.count();
         verify(wineRepository, times(1)).count();
         assertEquals(wines.size(), wineCount);
@@ -197,10 +179,7 @@ class WineServiceTest extends ServiceTest {
                 .map(Wine::getCountry)
                 .collect(Collectors.toList());
 
-        Mockito
-                .when(wineRepository.findAllCountries())
-                .thenReturn(countries);
-
+        when(wineRepository.findAllCountries()).thenReturn(countries);
         var foundCountries = service.findCountries();
 
         verify(wineRepository, times(1)).findAllCountries();
@@ -216,10 +195,7 @@ class WineServiceTest extends ServiceTest {
                 .distinct()
                 .collect(Collectors.toList());
 
-        Mockito
-                .when(wineRepository.findAllDescriptions())
-                .thenReturn(descriptions);
-
+        when(wineRepository.findAllDescriptions()).thenReturn(descriptions);
         var foundDescriptions = service.findDescriptions();
 
         verify(wineRepository, times(1)).findAllDescriptions();
@@ -235,10 +211,7 @@ class WineServiceTest extends ServiceTest {
                 .distinct()
                 .collect(Collectors.toList());
 
-        Mockito
-                .when(wineRepository.findAllFoodPairings())
-                .thenReturn(foodPairings);
-
+        when(wineRepository.findAllFoodPairings()).thenReturn(foodPairings);
         var foundFoodPairings = service.findFoodPairings();
 
         verify(wineRepository, times(1)).findAllFoodPairings();
@@ -247,10 +220,7 @@ class WineServiceTest extends ServiceTest {
 
     @Test
     void search() {
-        Mockito
-                .when(wineRepository.findAll(any(WineSpecification.class)))
-                .thenReturn(wines);
-
+        when(wineRepository.findAll(any(WineSpecification.class))).thenReturn(wines);
         var result = service.search("Viini", null, null, null, null);
         assertFalse(result.isEmpty());
     }
@@ -271,10 +241,7 @@ class WineServiceTest extends ServiceTest {
     }
 
     private void isAllowedToEdit(boolean isAllowed) {
-        Mockito
-                .when(userService.isUserAllowedToEdit(wine))
-                .thenReturn(isAllowed);
-
+        when(userService.isUserAllowedToEdit(wine)).thenReturn(isAllowed);
         assertEquals(service.isAllowedToEdit(wine.getId()), isAllowed);
         verify(wineRepository, times(1)).findById(wine.getId());
         verify(userService, times(1)).isUserAllowedToEdit(wine);

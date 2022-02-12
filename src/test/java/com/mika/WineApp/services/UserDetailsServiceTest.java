@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,8 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserDetailsServiceTest {
@@ -35,13 +33,9 @@ class UserDetailsServiceTest {
     @Test
     void loadUserByUsername() {
         String username = user.getUsername();
-
-        Mockito
-                .when(repository.findByUsername(username))
-                .thenReturn(Optional.of(user));
+        when(repository.findByUsername(username)).thenReturn(Optional.of(user));
 
         UserDetails userDetails = service.loadUserByUsername(user.getUsername());
-
         verify(repository, times(1)).findByUsername(username);
         assertEquals(username, userDetails.getUsername());
     }
@@ -49,10 +43,7 @@ class UserDetailsServiceTest {
     @Test
     void throwExceptionOnNonexistentUsername() {
         String username = "nonexistent user";
-
-        Mockito
-                .when(repository.findByUsername(username))
-                .thenReturn(Optional.empty());
+        when(repository.findByUsername(username)).thenReturn(Optional.empty());
 
         Exception e = assertThrows(NotFoundException.class, () -> service.loadUserByUsername(username));
         verify(repository, times(1)).findByUsername(username);
