@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.WineRepository;
@@ -19,9 +18,7 @@ public abstract class ServiceTest {
     static final Long nonExistingWineId = 4L;
     static final List<Review> reviews = TestData.initReviews();
     static final List<Wine> wines = TestData.initWines();
-    static final User user = TestData
-            .initTestUsers()
-            .get(0);
+
     Review review;
     Wine wine;
 

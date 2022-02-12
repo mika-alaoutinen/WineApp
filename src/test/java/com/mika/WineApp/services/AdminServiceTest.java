@@ -21,8 +21,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AdminServiceTest {
@@ -63,12 +62,8 @@ class AdminServiceTest {
 
     @Test
     void findAll() {
-        Mockito
-                .when(repository.findAll())
-                .thenReturn(users);
-
+        when(repository.findAll()).thenReturn(users);
         var foundUsers = service.findAll();
-
         verify(repository, times(1)).findAll();
         assertEquals(users, foundUsers);
     }
@@ -108,12 +103,8 @@ class AdminServiceTest {
 
     @Test
     void save() {
-        Mockito
-                .when(repository.existsByUsername(username))
-                .thenReturn(false);
-
+        when(repository.existsByUsername(username)).thenReturn(false);
         User savedUser = service.save(user);
-
         verify(repository, times(1)).existsByUsername(username);
         verify(repository, times(1)).save(user);
         assertEquals(savedUser, user);
@@ -121,12 +112,8 @@ class AdminServiceTest {
 
     @Test
     void throwsExceptionIfUserNameIsTaken() {
-        Mockito
-                .when(repository.existsByUsername(username))
-                .thenReturn(true);
-
+        when(repository.existsByUsername(username)).thenReturn(true);
         BadRequestException e = assertThrows(BadRequestException.class, () -> service.save(user));
-
         assertEquals("Username " + username + " already exists!", e.getMessage());
         verify(repository, times(1)).existsByUsername(username);
         verify(repository, times(0)).save(any(User.class));
@@ -134,17 +121,13 @@ class AdminServiceTest {
 
     @Test
     void updateRoles() {
-        Mockito
-                .when(repository.findById(userId))
-                .thenReturn(Optional.of(user));
-
+        when(repository.findById(userId)).thenReturn(Optional.of(user));
         assertUserRoles(user, Role.ROLE_USER);
 
         User admin = service.updateRoles(userId, Set.of(Role.ROLE_ADMIN));
 
         verify(repository, times(1)).findById(userId);
         verify(repository, times(1)).save(user);
-
         assertUserRoles(admin, Role.ROLE_ADMIN);
         assertEquals(user.getId(), admin.getId());
     }
@@ -156,7 +139,6 @@ class AdminServiceTest {
 
         verify(repository, times(1)).findById(nonExistentUserId);
         verify(repository, times(0)).save(any(User.class));
-
         assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
     }
 
@@ -164,6 +146,7 @@ class AdminServiceTest {
         assertTrue(user
                 .getRoles()
                 .contains(role));
+
         assertEquals(1, user
                 .getRoles()
                 .size());

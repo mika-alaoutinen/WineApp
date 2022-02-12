@@ -18,15 +18,16 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
     private final static List<User> users = TestData.initTestUsers();
     private final static User user = users.get(0);
     private final static String username = user.getUsername();
-    private final static Wine wine = TestData.initWines().get(0);
+    private final static Wine wine = TestData
+            .initWines()
+            .get(0);
 
     @Mock
     private UserRepositoryReader userReader;
@@ -39,11 +40,13 @@ class UserServiceTest {
 
     @BeforeEach
     void setupMocks() {
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(securityUtils.getUsernameFromSecurityContext())
                 .thenReturn(user.getUsername());
 
-        Mockito.lenient()
+        Mockito
+                .lenient()
                 .when(userReader.findByUserName(username))
                 .thenReturn(user);
     }
@@ -63,20 +66,15 @@ class UserServiceTest {
 
     @Test
     void notLoggedIn() {
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-               .thenReturn(null);
-
+        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(null);
         assertFalse(service.isLoggedIn());
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
     }
 
     @Test
     void isUserAllowedToEdit() {
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-               .thenReturn(user.getUsername());
-
-        Mockito.when(securityUtils.isUserAllowedToEdit(wine, user))
-               .thenReturn(true);
+        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(user.getUsername());
+        when(securityUtils.isUserAllowedToEdit(wine, user)).thenReturn(true);
 
         assertTrue(service.isUserAllowedToEdit(wine));
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();
@@ -86,8 +84,7 @@ class UserServiceTest {
 
     @Test
     void userIsNotAllowedToEditWhenNotLoggedIn() {
-        Mockito.when(securityUtils.getUsernameFromSecurityContext())
-               .thenReturn(null);
+        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(null);
 
         assertFalse(service.isUserAllowedToEdit(wine));
         verify(securityUtils, times(1)).getUsernameFromSecurityContext();

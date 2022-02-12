@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -45,14 +44,8 @@ class AuthenticationServiceTest {
     @Test
     void loginReturnsJwtToken() {
         Authentication authToken = mock(Authentication.class);
-
-        Mockito
-                .when(authenticationManager.authenticate(any(Authentication.class)))
-                .thenReturn(authToken);
-
-        Mockito
-                .when(jwtProvider.generateJwtToken(authToken))
-                .thenReturn("Bearer jwt-token");
+        when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(authToken);
+        when(jwtProvider.generateJwtToken(authToken)).thenReturn("Bearer jwt-token");
 
         JwtToken token = service.login(CREDENTIALS);
 
@@ -66,10 +59,7 @@ class AuthenticationServiceTest {
     void invalidLoginThrowsException() {
         var authToken = new UsernamePasswordAuthenticationToken(CREDENTIALS.username(), CREDENTIALS.password());
         String errorMessage = "Bad credentials";
-
-        Mockito
-                .when(authenticationManager.authenticate(authToken))
-                .thenThrow(new BadCredentialsException(errorMessage));
+        when(authenticationManager.authenticate(authToken)).thenThrow(new BadCredentialsException(errorMessage));
 
         Exception e = assertThrows(BadCredentialsException.class, () -> service.login(CREDENTIALS));
         assertEquals(errorMessage, e.getMessage());
@@ -79,20 +69,13 @@ class AuthenticationServiceTest {
 
     @Test
     void register() {
-        User newUser = new User(CREDENTIALS.username(), encodedPassword);
-
-        Mockito
-                .when(adminService.save(any(User.class)))
-                .thenReturn(newUser);
-
-        Mockito
-                .when(passwordEncoder.encode(CREDENTIALS.password()))
-                .thenReturn(encodedPassword);
+        when(adminService.save(any(User.class))).thenReturn(new User(CREDENTIALS.username(), encodedPassword));
+        when(passwordEncoder.encode(CREDENTIALS.password())).thenReturn(encodedPassword);
 
         User registeredUser = service.register(CREDENTIALS);
 
         verify(passwordEncoder, times(1)).encode(CREDENTIALS.password());
-        verify(adminService, times(1)).save(newUser);
+        verify(adminService, times(1)).save(any(User.class));
         assertEquals(encodedPassword, registeredUser.getPassword());
     }
 }

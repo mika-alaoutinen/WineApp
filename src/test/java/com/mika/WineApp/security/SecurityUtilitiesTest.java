@@ -50,7 +50,6 @@ class SecurityUtilitiesTest {
     @Test
     void getUsernameFromSecurityContext() {
         when(userPrincipal.getUsername()).thenReturn(user.getUsername());
-
         String name = securityUtils.getUsernameFromSecurityContext();
         assertEquals(user.getUsername(), name);
     }
@@ -89,7 +88,6 @@ class SecurityUtilitiesTest {
 
     @Test
     void shouldHandleGetUserPrincipalWhenUserNotLoggedIn() {
-
         when(SecurityContextHolder
                 .getContext()
                 .getAuthentication()

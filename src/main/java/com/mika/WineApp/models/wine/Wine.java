@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -16,11 +14,14 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@Builder
-@Data
 @Entity
-@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Wine implements EntityModel {
 
@@ -63,9 +64,24 @@ public class Wine implements EntityModel {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wine")
+    @ToString.Exclude
     private List<@NotNull Review> reviews = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Wine wine = (Wine) o;
+        return id != null && Objects.equals(id, wine.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

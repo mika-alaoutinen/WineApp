@@ -3,18 +3,19 @@ package com.mika.WineApp.models.review;
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.wine.Wine;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Builder
-@Data
 @Entity
+@Builder
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Review implements EntityModel {
@@ -43,10 +44,25 @@ public class Review implements EntityModel {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wine_id")
+    @ToString.Exclude
     private Wine wine;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @ToString.Exclude
     private User user;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Review review = (Review) o;
+        return id != null && Objects.equals(id, review.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

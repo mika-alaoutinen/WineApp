@@ -40,9 +40,9 @@ class DateUtilsTest {
 
     private static Stream<Arguments> createInvalidDates() {
         return Stream.of(
-                Arguments.of((Object) Collections.emptyList()),
-                Arguments.of((Object) List.of("2020-01")),
-                Arguments.of((Object) List.of("2020-01", "2020-02", "2020-03"))
+                Arguments.of(Collections.emptyList()),
+                Arguments.of(List.of("2020-01")),
+                Arguments.of(List.of("2020-01", "2020-02", "2020-03"))
         );
     }
 
