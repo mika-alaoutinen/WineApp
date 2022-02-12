@@ -11,9 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ReviewRepository extends
-        PagingAndSortingRepository<Review, Long>,
-        JpaSpecificationExecutor<Review> {
+public interface ReviewRepository extends PagingAndSortingRepository<Review, Long>, JpaSpecificationExecutor<Review> {
 
     // Find reviews:
     @Override

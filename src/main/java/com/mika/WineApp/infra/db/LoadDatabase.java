@@ -1,10 +1,8 @@
-package com.mika.WineApp.infra;
+package com.mika.WineApp.infra.db;
 
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.reviews.ReviewRepository;
 import com.mika.WineApp.users.UserRepository;
-import com.mika.WineApp.wines.WineRepository;
 import com.mika.WineParser.Parser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +37,10 @@ class LoadDatabase {
     @Bean
     CommandLineRunner initDatabase(
             UserRepository userRepository,
-            WineRepository wineRepository,
-            ReviewRepository reviewRepository) {
+            WineSaver wineSaver,
+            ReviewSaver reviewSaver) {
 
-        if (wineRepository.count() != 0 && reviewRepository.count() != 0) {
+        if (!wineSaver.isEmpty() && !reviewSaver.isEmpty()) {
             log.info("Repositories are already initiated, skipping database preloading!");
             return args -> {};
         }
@@ -57,8 +55,8 @@ class LoadDatabase {
 
         return args -> {
             log.info("Preloading database.");
-            initWines(parser, wineRepository, admin);
-            initReviews(parser, reviewRepository, admin);
+            initWines(parser, wineSaver, admin);
+            initReviews(parser, reviewSaver, admin);
         };
     }
 
@@ -70,17 +68,17 @@ class LoadDatabase {
         return admin;
     }
 
-    private void initWines(Parser parser, WineRepository repository, User admin) {
+    private void initWines(Parser parser, WineSaver saver, User admin) {
         var wines = parser.getWines();
         wines.forEach(wine -> wine.setUser(admin));
-        repository.saveAll(wines);
+        saver.saveAll(wines);
         log.info("Wines loaded successfully!");
     }
 
-    private void initReviews(Parser parser, ReviewRepository repository, User admin) {
+    private void initReviews(Parser parser, ReviewSaver saver, User admin) {
         var reviews = parser.getReviews();
         reviews.forEach(review -> review.setUser(admin));
-        repository.saveAll(reviews);
+        saver.saveAll(reviews);
         log.info("Reviews loaded successfully!");
     }
 }

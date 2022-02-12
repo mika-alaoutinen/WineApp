@@ -10,10 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface WineRepository extends
-        PagingAndSortingRepository<Wine, Long>,
-        JpaSpecificationExecutor<Wine> {
-
+public interface WineRepository extends PagingAndSortingRepository<Wine, Long>, JpaSpecificationExecutor<Wine> {
     boolean existsByName(String name);
 
     @Override
