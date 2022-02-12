@@ -1,50 +1,38 @@
 package com.mika.WineApp.wines;
 
-import com.mika.WineApp.ServiceTest;
+import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import org.junit.jupiter.api.BeforeEach;
+import com.mika.WineApp.services.UserService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class WineServiceTest extends ServiceTest {
+@ExtendWith(MockitoExtension.class)
+class WineServiceTest {
+    private static final List<Wine> wines = TestData.initWines();
+
+    @Mock
+    private UserService userService;
+
+    @Mock
+    private WineRepository repository;
 
     @InjectMocks
     private WineServiceImpl service;
-
-    @BeforeEach
-    void setupMocks() {
-        this.wine = wines
-                .stream()
-                .findAny()
-                .orElse(null);
-
-        Mockito
-                .lenient()
-                .when(wineRepository.findById(wine.getId()))
-                .thenReturn(Optional.ofNullable(wine));
-
-        Mockito
-                .lenient()
-                .when(wineRepository.findById(nonExistingWineId))
-                .thenReturn(Optional.empty());
-
-        Mockito
-                .lenient()
-                .when(wineRepository.save(wine))
-                .thenReturn(wine);
-    }
 
     @Test
     void findAll() {
@@ -53,122 +41,134 @@ class WineServiceTest extends ServiceTest {
                 .sorted(Comparator.comparing(Wine::getName))
                 .collect(Collectors.toList());
 
-        when(wineRepository.findAllByOrderByNameAsc()).thenReturn(sortedWines);
+        when(repository.findAllByOrderByNameAsc()).thenReturn(sortedWines);
         var foundWines = service.findAll();
 
-        verify(wineRepository, times(1)).findAllByOrderByNameAsc();
+        verify(repository, times(1)).findAllByOrderByNameAsc();
         assertEquals(sortedWines, foundWines);
     }
 
     @Test
     void findById() {
-        Wine foundWine = service
-                .findById(wine.getId())
-                .get();
-        verify(wineRepository, times(1)).findById(wine.getId());
-        assertEquals(wine, foundWine);
+        service.findById(1L);
+        verify(repository, times(1)).findById(1L);
     }
 
     @Test
     void findByNonExistingId() {
+        long nonExistingWineId = 2L;
         assertTrue(service
                 .findById(nonExistingWineId)
                 .isEmpty());
-        verify(wineRepository, times(1)).findById(nonExistingWineId);
+        verify(repository, times(1)).findById(nonExistingWineId);
     }
 
     @Test
     void addWine() {
-        when(userService.setUser(wine)).thenReturn(wine);
-        when(wineRepository.save(wine)).thenReturn(wine);
+        Wine wine = Wine
+                .builder()
+                .name("name")
+                .build();
+        when(userService.setUser(any(Wine.class))).thenReturn(wine);
+        when(repository.save(any(Wine.class))).thenReturn(wine);
 
-        Wine savedWine = service.add(wine);
-
-        verify(wineRepository, times(1)).existsByName(wine.getName());
-        verify(userService, times(1)).setUser(wine);
-        verify(wineRepository, times(1)).save(wine);
-        assertEquals(wine, savedWine);
+        service.add(wine);
+        verify(repository, times(1)).existsByName(anyString());
+        verify(userService, times(1)).setUser(any(Wine.class));
+        verify(repository, times(1)).save(any(Wine.class));
     }
 
     @Test
     void shouldNotAddSameWineTwice() {
-        String name = wine.getName();
-        when(service.isValid(name)).thenReturn(true);
+        Wine wine = Wine
+                .builder()
+                .name("wine name")
+                .build();
+        when(service.isValid(anyString())).thenReturn(true);
 
         BadRequestException e = assertThrows(BadRequestException.class, () -> service.add(wine));
-
-        assertEquals(e.getMessage(), "Wine with name " + name + " already exists!");
-        verify(wineRepository, times(1)).existsByName(name);
+        assertEquals(e.getMessage(), "Wine with name wine name already exists!");
+        verify(repository, times(1)).existsByName(anyString());
     }
 
     @Test
     void editWine() {
-        when(userService.isUserAllowedToEdit(wine))
-                .thenReturn(true);
+        Wine wine = Wine
+                .builder()
+                .name("wine name")
+                .type(WineType.WHITE)
+                .country("country")
+                .price(10)
+                .volume(1)
+                .description(Collections.emptyList())
+                .foodPairings(Collections.emptyList())
+                .url("url")
+                .build();
 
-        Wine editedWine = service
-                .edit(wine.getId(), wine)
-                .get();
+        when(repository.findById(anyLong())).thenReturn(Optional.of(wine));
+        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
+        when(repository.save(any(Wine.class))).thenReturn(wine);
 
-        verify(wineRepository, times(1)).findById(wine.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(wine);
-        verify(wineRepository, times(1)).save(wine);
-        assertEquals(wine, editedWine);
+        service.edit(1L, wine);
+        verify(repository, times(1)).findById(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(repository, times(1)).save(any(Wine.class));
     }
 
     @Test
     void editNonExistingWine() {
         assertTrue(service
-                .edit(nonExistingWineId, wine)
+                .edit(13L, new Wine())
                 .isEmpty());
 
-        verify(wineRepository, times(1)).findById(nonExistingWineId);
-        verify(wineRepository, times(0)).save(wine);
+        verify(repository, times(1)).findById(anyLong());
+        verify(repository, never()).save(any(Wine.class));
     }
 
     @Test
     void editWineWithoutPermission() {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
         ForbiddenException e = assertThrows(ForbiddenException.class, () ->
-                service.edit(wine.getId(), wine));
+                service.edit(1L, new Wine()));
 
         assertEquals("Tried to modify a wine that you do not own!", e.getMessage());
-        verify(wineRepository, times(1)).findById(wine.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(wine);
-        verify(wineRepository, times(0)).save(any(Wine.class));
+        verify(repository, times(1)).findById(anyLong());
+        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(repository, never()).save(any(Wine.class));
     }
 
     @Test
     void deleteWine() {
-        when(userService.isUserAllowedToEdit(wine)).thenReturn(true);
-        service.delete(wine.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(wine);
-        verify(wineRepository, times(1)).deleteById(wine.getId());
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
+        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
+        service.delete(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(repository, times(1)).deleteById(1L);
     }
 
     @Test
     void shouldThrowErrorWhenWrongUserTriesToDelete() {
-        ForbiddenException e = assertThrows(ForbiddenException.class, () ->
-                service.delete(wine.getId()));
-
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
+        ForbiddenException e = assertThrows(ForbiddenException.class, () -> service.delete(1L));
         assertEquals("Tried to modify a wine that you do not own!", e.getMessage());
     }
 
     @Test
     void count() {
-        when(wineRepository.count()).thenReturn((long) wines.size());
+        when(repository.count()).thenReturn((long) wines.size());
         long wineCount = service.count();
-        verify(wineRepository, times(1)).count();
+        verify(repository, times(1)).count();
         assertEquals(wines.size(), wineCount);
     }
 
-    @Test
-    void isAllowedToEditTrue() {
-        isAllowedToEdit(true);
-    }
-
-    @Test
-    void isAllowedToEditFalse() {
-        isAllowedToEdit(false);
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void isAllowedToEditTrue(boolean isAllowed) {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
+        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(isAllowed);
+        assertEquals(service.isAllowedToEdit(1L), isAllowed);
+        verify(repository, times(1)).findById(anyLong());
+        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
     }
 
     @Test
@@ -178,10 +178,10 @@ class WineServiceTest extends ServiceTest {
                 .map(Wine::getCountry)
                 .collect(Collectors.toList());
 
-        when(wineRepository.findAllCountries()).thenReturn(countries);
+        when(repository.findAllCountries()).thenReturn(countries);
         var foundCountries = service.findCountries();
 
-        verify(wineRepository, times(1)).findAllCountries();
+        verify(repository, times(1)).findAllCountries();
         assertEquals(countries, foundCountries);
     }
 
@@ -194,10 +194,10 @@ class WineServiceTest extends ServiceTest {
                 .distinct()
                 .collect(Collectors.toList());
 
-        when(wineRepository.findAllDescriptions()).thenReturn(descriptions);
+        when(repository.findAllDescriptions()).thenReturn(descriptions);
         var foundDescriptions = service.findDescriptions();
 
-        verify(wineRepository, times(1)).findAllDescriptions();
+        verify(repository, times(1)).findAllDescriptions();
         assertEquals(descriptions, foundDescriptions);
     }
 
@@ -210,16 +210,16 @@ class WineServiceTest extends ServiceTest {
                 .distinct()
                 .collect(Collectors.toList());
 
-        when(wineRepository.findAllFoodPairings()).thenReturn(foodPairings);
+        when(repository.findAllFoodPairings()).thenReturn(foodPairings);
         var foundFoodPairings = service.findFoodPairings();
 
-        verify(wineRepository, times(1)).findAllFoodPairings();
+        verify(repository, times(1)).findAllFoodPairings();
         assertEquals(foodPairings, foundFoodPairings);
     }
 
     @Test
     void search() {
-        when(wineRepository.findAll(any(WineSpecification.class))).thenReturn(wines);
+        when(repository.findAll(any(WineSpecification.class))).thenReturn(wines);
         var result = service.search("Viini", null, null, null, null);
         assertFalse(result.isEmpty());
     }
@@ -237,12 +237,5 @@ class WineServiceTest extends ServiceTest {
                 service.search(null, wineType, null, null, null));
 
         assertEquals("Requested wine type " + wineType + " does not exist.", e.getMessage());
-    }
-
-    private void isAllowedToEdit(boolean isAllowed) {
-        when(userService.isUserAllowedToEdit(wine)).thenReturn(isAllowed);
-        assertEquals(service.isAllowedToEdit(wine.getId()), isAllowed);
-        verify(wineRepository, times(1)).findById(wine.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(wine);
     }
 }

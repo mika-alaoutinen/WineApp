@@ -29,8 +29,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest {
-    private static final List<Review> reviews = TestData.initReviews();
-
+    private static final List<Review> REVIEWS = TestData.initReviews();
     private static final String author = "Mika";
     private static final List<Double> ratingRange = List.of(1.0, 5.0);
 
@@ -48,7 +47,7 @@ class ReviewServiceTest {
 
     @Test
     void findAll() {
-        var sortedReviews = reviews
+        var sortedReviews = REVIEWS
                 .stream()
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
@@ -83,7 +82,7 @@ class ReviewServiceTest {
 
     @Test
     void findByWineId() {
-        when(repository.findByWineId(anyLong())).thenReturn(reviews);
+        when(repository.findByWineId(anyLong())).thenReturn(REVIEWS);
         var foundReviews = service.findByWineId(1L);
         assertEquals(2, foundReviews.size());
         verify(repository, times(1)).findByWineId(1L);
@@ -99,7 +98,7 @@ class ReviewServiceTest {
     @Test
     void findByWineName() {
         String wineName = "Valkoviini 1";
-        when(repository.findByWineNameContainingIgnoreCase(wineName)).thenReturn(reviews);
+        when(repository.findByWineNameContainingIgnoreCase(wineName)).thenReturn(REVIEWS);
         var foundReviews = service.findByWineName(wineName);
         assertEquals(2, foundReviews.size());
     }
@@ -192,11 +191,11 @@ class ReviewServiceTest {
 
     @Test
     void count() {
-        when(repository.count()).thenReturn((long) reviews.size());
+        when(repository.count()).thenReturn((long) REVIEWS.size());
         long reviewCount = service.count();
 
         verify(repository, times(1)).count();
-        assertEquals(reviews.size(), reviewCount);
+        assertEquals(REVIEWS.size(), reviewCount);
     }
 
     @ParameterizedTest
