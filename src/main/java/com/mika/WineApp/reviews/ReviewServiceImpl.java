@@ -1,13 +1,11 @@
-package com.mika.WineApp.services.impl;
+package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.models.review.Review;
-import com.mika.WineApp.repositories.ReviewRepository;
+import com.mika.WineApp.reviews.model.Review;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
-import com.mika.WineApp.specifications.ReviewSpecification;
 import com.mika.WineApp.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ReviewServiceImpl implements ReviewService {
+class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
     private final UserService userService;
     private final WineService wineService;

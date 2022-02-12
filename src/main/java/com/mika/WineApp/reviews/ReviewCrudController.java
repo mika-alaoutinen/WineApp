@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.mappers.ReviewMapper;
 import com.mika.WineApp.services.ReviewService;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewCrudController implements ReviewsCrudApi {
+class ReviewCrudController implements ReviewsCrudApi {
     private final ReviewMapper mapper;
     private final ReviewService service;
 

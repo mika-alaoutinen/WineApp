@@ -1,7 +1,7 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.mappers.ReviewMapper;
-import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.reviews.model.Review;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.api.ReviewsSearchApi;
 import com.mika.model.ReviewDTO;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewSearchController implements ReviewsSearchApi {
+class ReviewSearchController implements ReviewsSearchApi {
     private final ReviewMapper mapper;
     private final ReviewService service;
 

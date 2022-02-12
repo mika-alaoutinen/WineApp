@@ -2,8 +2,8 @@ package com.mika.WineApp.configuration;
 
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.reviews.ReviewRepository;
 import com.mika.WineApp.wines.WineRepository;
 import com.mika.WineParser.Parser;
 import lombok.RequiredArgsConstructor;

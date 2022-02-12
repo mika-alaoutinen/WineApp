@@ -1,6 +1,7 @@
-package com.mika.WineApp.specifications;
+package com.mika.WineApp.reviews;
 
-import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.specifications.SuperSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -9,11 +10,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ReviewSpecification extends SuperSpecification implements Specification<Review> {
+class ReviewSpecification extends SuperSpecification implements Specification<Review> {
     private final String author;
     private final List<LocalDate> dateRange;
     private final List<Double> ratingRange;
 
+    @Override
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         authorPredicate(root, builder);
         datePredicate(root, builder);

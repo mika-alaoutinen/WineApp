@@ -1,4 +1,4 @@
-package com.mika.WineApp.models.review;
+package com.mika.WineApp.reviews.model;
 
 import com.mika.WineApp.models.EntityModel;
 import com.mika.WineApp.models.user.User;

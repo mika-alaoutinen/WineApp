@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.services.ReviewService;
 import com.mika.api.ReviewsInfoApi;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewInfoController implements ReviewsInfoApi {
+class ReviewInfoController implements ReviewsInfoApi {
     private final ReviewService service;
 
     @Override

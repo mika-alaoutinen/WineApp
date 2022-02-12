@@ -1,6 +1,6 @@
 package com.mika.WineParser;
 
-import com.mika.WineApp.models.review.Review;
+import com.mika.WineApp.reviews.model.Review;
 import com.mika.WineApp.wines.model.Wine;
 import com.mika.WineApp.wines.model.WineType;
 import lombok.Getter;

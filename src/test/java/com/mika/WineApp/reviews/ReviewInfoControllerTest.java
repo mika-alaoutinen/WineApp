@@ -1,5 +1,6 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.reviews;
 
+import com.mika.WineApp.controllers.WebSecurityConfig;
 import com.mika.WineApp.services.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
