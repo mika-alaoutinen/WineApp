@@ -1,11 +1,12 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.wines;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mika.WineApp.controllers.WebSecurityConfig;
 import com.mika.WineApp.mappers.WineMapperImpl;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
 import com.mika.WineApp.services.WineService;
+import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.wines.model.WineType;
 import com.mika.model.NewWineDTO;
 import com.mika.model.WineDTO;
 import org.junit.jupiter.api.Test;

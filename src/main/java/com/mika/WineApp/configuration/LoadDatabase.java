@@ -4,7 +4,7 @@ import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.repositories.ReviewRepository;
 import com.mika.WineApp.repositories.UserRepository;
-import com.mika.WineApp.repositories.WineRepository;
+import com.mika.WineApp.wines.WineRepository;
 import com.mika.WineParser.Parser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

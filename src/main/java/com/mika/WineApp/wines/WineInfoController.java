@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.wines;
 
 import com.mika.WineApp.services.WineService;
 import com.mika.api.WinesInfoApi;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class WineInfoController implements WinesInfoApi {
+class WineInfoController implements WinesInfoApi {
     private final WineService service;
 
     @Override

@@ -1,7 +1,8 @@
-package com.mika.WineApp.specifications;
+package com.mika.WineApp.wines;
 
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.specifications.SuperSpecification;
+import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.wines.model.WineType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -11,13 +12,14 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class WineSpecification extends SuperSpecification implements Specification<Wine> {
+class WineSpecification extends SuperSpecification implements Specification<Wine> {
     private final String name;
     private final WineType type;
     private final List<String> countries;
     private final List<Double> volumes;
     private final List<Double> priceRange;
 
+    @Override
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         namePredicate(root, builder);
         typePredicate(root, builder);

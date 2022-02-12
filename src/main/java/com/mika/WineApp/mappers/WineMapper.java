@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.wines.model.Wine;
 import com.mika.model.NewWineDTO;
 import com.mika.model.WineDTO;
 import org.mapstruct.Mapper;

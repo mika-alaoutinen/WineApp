@@ -1,5 +1,6 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.wines;
 
+import com.mika.WineApp.controllers.WebSecurityConfig;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

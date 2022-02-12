@@ -1,8 +1,8 @@
 package com.mika.WineApp.errors;
 
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.wines.model.WineType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

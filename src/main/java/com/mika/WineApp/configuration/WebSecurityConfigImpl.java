@@ -31,7 +31,7 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
-public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
+class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
 
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtProvider jwtProvider;
@@ -45,7 +45,9 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        http
+                .csrf()
+                .disable();
 
         if (securityEnabled) {
             configureSecurity(http);
@@ -54,7 +56,9 @@ public class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implemen
 
     @Override
     public void configure(AuthenticationManagerBuilder authBuilder) throws Exception {
-        authBuilder.userDetailsService(service).passwordEncoder(passwordEncoder());
+        authBuilder
+                .userDetailsService(service)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean

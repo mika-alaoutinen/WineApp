@@ -1,13 +1,11 @@
-package com.mika.WineApp.services.impl;
+package com.mika.WineApp.wines;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
-import com.mika.WineApp.repositories.WineRepository;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
-import com.mika.WineApp.specifications.WineSpecification;
+import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.wines.model.WineType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class WineServiceImpl implements WineService {
+class WineServiceImpl implements WineService {
     private final WineRepository repository;
     private final UserService userService;
 

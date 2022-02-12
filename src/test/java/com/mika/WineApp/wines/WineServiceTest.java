@@ -1,10 +1,9 @@
-package com.mika.WineApp.services;
+package com.mika.WineApp.wines;
 
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.services.impl.WineServiceImpl;
-import com.mika.WineApp.specifications.WineSpecification;
+import com.mika.WineApp.services.ServiceTest;
+import com.mika.WineApp.wines.model.Wine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

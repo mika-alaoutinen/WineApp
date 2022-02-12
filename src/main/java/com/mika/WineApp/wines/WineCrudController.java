@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.wines;
 
 import com.mika.WineApp.mappers.WineMapper;
 import com.mika.WineApp.services.WineService;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-public class WineCrudController implements WinesCrudApi {
+class WineCrudController implements WinesCrudApi {
     private final WineMapper mapper;
     private final WineService service;
 

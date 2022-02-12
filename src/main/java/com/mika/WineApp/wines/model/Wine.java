@@ -1,4 +1,4 @@
-package com.mika.WineApp.models.wine;
+package com.mika.WineApp.wines.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.EntityModel;

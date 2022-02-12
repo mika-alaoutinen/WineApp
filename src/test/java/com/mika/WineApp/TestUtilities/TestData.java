@@ -3,8 +3,8 @@ package com.mika.WineApp.TestUtilities;
 import com.mika.WineApp.models.review.Review;
 import com.mika.WineApp.models.user.Role;
 import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.models.wine.Wine;
-import com.mika.WineApp.models.wine.WineType;
+import com.mika.WineApp.wines.model.Wine;
+import com.mika.WineApp.wines.model.WineType;
 
 import java.time.LocalDate;
 import java.util.Collections;

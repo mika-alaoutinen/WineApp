@@ -1,6 +1,6 @@
-package com.mika.WineApp.repositories;
+package com.mika.WineApp.wines;
 
-import com.mika.WineApp.models.wine.Wine;
+import com.mika.WineApp.wines.model.Wine;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -24,12 +24,12 @@ public interface WineRepository extends
     @Override
     Wine save(Wine wine);
 
-    @Query(value = "SELECT DISTINCT country FROM wine ORDER BY country ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT country FROM wine ORDER BY country", nativeQuery = true)
     List<String> findAllCountries();
 
-    @Query(value = "SELECT DISTINCT description FROM wine_descriptions ORDER BY description ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT description FROM wine_descriptions ORDER BY description", nativeQuery = true)
     List<String> findAllDescriptions();
 
-    @Query(value = "SELECT DISTINCT food_pairings FROM wine_food_pairings ORDER BY food_pairings ASC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT food_pairings FROM wine_food_pairings ORDER BY food_pairings", nativeQuery = true)
     List<String> findAllFoodPairings();
 }
