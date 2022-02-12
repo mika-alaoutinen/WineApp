@@ -1,7 +1,7 @@
 package com.mika.WineApp.reviews.model;
 
 import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.users.model.User;
 import com.mika.WineApp.wines.model.Wine;
 import lombok.*;
 import org.hibernate.Hibernate;

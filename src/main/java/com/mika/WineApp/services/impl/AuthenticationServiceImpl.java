@@ -1,12 +1,12 @@
 package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.BadRequestException;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.user.UserCredentials;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.services.AuthenticationService;
+import com.mika.WineApp.users.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtProvider jwtProvider;
     private final PasswordEncoder passwordEncoder;
 
+    @Override
     public JwtToken login(UserCredentials credentials) {
         Authentication authentication = getAuthentication(credentials);
         SecurityContextHolder
@@ -32,6 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return new JwtToken(jwt);
     }
 
+    @Override
     public User register(UserCredentials credentials) throws BadRequestException {
         String username = credentials.username();
         String password = passwordEncoder.encode(credentials.password());

@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.users.model.User;
 import com.mika.model.UserDTO;
 import org.mapstruct.Mapper;
 

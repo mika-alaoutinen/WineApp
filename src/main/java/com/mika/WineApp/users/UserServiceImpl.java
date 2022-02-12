@@ -1,16 +1,16 @@
-package com.mika.WineApp.services.impl;
+package com.mika.WineApp.users;
 
 import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.security.SecurityUtilities;
 import com.mika.WineApp.services.UserRepositoryReader;
 import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.users.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+class UserServiceImpl implements UserService {
     private final UserRepositoryReader service;
     private final SecurityUtilities securityUtils;
 

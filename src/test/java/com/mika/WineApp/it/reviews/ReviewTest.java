@@ -3,7 +3,7 @@ package com.mika.WineApp.it.reviews;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestRead;
 import com.mika.WineApp.reviews.ReviewRepository;
-import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.users.UserRepository;
 import com.mika.WineApp.wines.WineRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;

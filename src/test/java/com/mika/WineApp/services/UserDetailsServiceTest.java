@@ -2,9 +2,9 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.services.impl.UserDetailsServiceImpl;
+import com.mika.WineApp.users.UserRepository;
+import com.mika.WineApp.users.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

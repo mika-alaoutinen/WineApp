@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.users;
 
 import com.mika.WineApp.services.UserService;
 import com.mika.api.UserInfoApi;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController implements UserInfoApi {
+class UserController implements UserInfoApi {
     private final UserService service;
 
     @Override

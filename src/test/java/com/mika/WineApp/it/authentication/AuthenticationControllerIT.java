@@ -1,9 +1,9 @@
 package com.mika.WineApp.it.authentication;
 
 import com.mika.WineApp.it.IntegrationTestWrite;
-import com.mika.WineApp.models.user.Role;
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.users.UserRepository;
+import com.mika.WineApp.users.model.Role;
+import com.mika.WineApp.users.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

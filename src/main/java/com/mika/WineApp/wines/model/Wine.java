@@ -2,8 +2,8 @@ package com.mika.WineApp.wines.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.users.model.User;
 import lombok.*;
 import org.hibernate.Hibernate;
 

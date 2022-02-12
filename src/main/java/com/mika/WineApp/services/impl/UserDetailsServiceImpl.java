@@ -1,9 +1,9 @@
 package com.mika.WineApp.services.impl;
 
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.user.User;
-import com.mika.WineApp.repositories.UserRepository;
 import com.mika.WineApp.security.model.UserPrincipal;
+import com.mika.WineApp.users.UserRepository;
+import com.mika.WineApp.users.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

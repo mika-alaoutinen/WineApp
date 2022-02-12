@@ -1,8 +1,8 @@
-package com.mika.WineApp.it.users;
+package com.mika.WineApp.it.admin;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestWrite;
-import com.mika.WineApp.repositories.UserRepository;
+import com.mika.WineApp.users.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

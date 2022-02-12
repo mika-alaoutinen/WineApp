@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.user.Role;
+import com.mika.WineApp.users.model.Role;
 import com.mika.model.RoleDTO;
 import org.mapstruct.EnumMapping;
 import org.mapstruct.Mapper;

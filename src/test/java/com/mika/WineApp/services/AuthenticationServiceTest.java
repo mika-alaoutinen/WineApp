@@ -1,10 +1,10 @@
 package com.mika.WineApp.services;
 
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.models.user.UserCredentials;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.WineApp.services.impl.AuthenticationServiceImpl;
+import com.mika.WineApp.users.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

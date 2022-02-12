@@ -1,5 +1,9 @@
-package com.mika.WineApp.it.users;
+package com.mika.WineApp.it.admin;
 
+import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.it.IntegrationTestRead;
+import com.mika.WineApp.users.UserRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -13,12 +17,21 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@IntegrationTestRead
 @WithMockUser(roles = {"ADMIN"})
-class AdminControllerIT extends UserTest {
+class AdminControllerIT {
     private static final String ENDPOINT = "/admin/users";
 
     @Autowired
-    private MockMvc mvc;
+    UserRepository repository;
+
+    @Autowired
+    MockMvc mvc;
+
+    @BeforeAll
+    void setupRepository() {
+        repository.saveAll(TestData.initTestUsers());
+    }
 
     @Test
     void findAll() throws Exception {

@@ -1,8 +1,8 @@
 package com.mika.WineApp.TestUtilities;
 
-import com.mika.WineApp.models.user.Role;
-import com.mika.WineApp.models.user.User;
 import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.users.model.Role;
+import com.mika.WineApp.users.model.User;
 import com.mika.WineApp.wines.model.Wine;
 import com.mika.WineApp.wines.model.WineType;
 

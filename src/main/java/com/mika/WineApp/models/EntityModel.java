@@ -1,6 +1,6 @@
 package com.mika.WineApp.models;
 
-import com.mika.WineApp.models.user.User;
+import com.mika.WineApp.users.model.User;
 
 public interface EntityModel {
 
