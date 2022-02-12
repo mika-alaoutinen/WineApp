@@ -1,4 +1,4 @@
-package com.mika.WineApp.models.user;
+package com.mika.WineApp.authentication;
 
 public record UserCredentials(String username, String password) {
 }

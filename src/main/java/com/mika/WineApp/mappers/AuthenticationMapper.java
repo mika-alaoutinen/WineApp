@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.user.UserCredentials;
+import com.mika.WineApp.authentication.UserCredentials;
 import com.mika.WineApp.security.model.JwtToken;
 import com.mika.model.JwtTokenDTO;
 import com.mika.model.UserCredentialsDTO;

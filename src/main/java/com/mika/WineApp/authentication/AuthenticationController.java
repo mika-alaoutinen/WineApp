@@ -1,4 +1,4 @@
-package com.mika.WineApp.controllers;
+package com.mika.WineApp.authentication;
 
 import com.mika.WineApp.mappers.AuthenticationMapper;
 import com.mika.WineApp.mappers.UserMapper;
