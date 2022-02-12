@@ -1,16 +1,22 @@
 package com.mika.WineApp.reviews;
 
-import com.mika.WineApp.ServiceTest;
+import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
-import org.junit.jupiter.api.BeforeEach;
+import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -21,40 +27,24 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class ReviewServiceTest extends ServiceTest {
+@ExtendWith(MockitoExtension.class)
+class ReviewServiceTest {
+    private static final List<Review> reviews = TestData.initReviews();
+
     private static final String author = "Mika";
     private static final List<Double> ratingRange = List.of(1.0, 5.0);
 
+    @Mock
+    private ReviewRepository repository;
+
+    @Mock
+    private UserService userService;
+
+    @Mock
+    private WineService wineService;
+
     @InjectMocks
     private ReviewServiceImpl service;
-
-    @BeforeEach
-    void setupTests() {
-        this.review = reviews
-                .stream()
-                .findAny()
-                .orElse(null);
-
-        this.wine = wines
-                .stream()
-                .findAny()
-                .orElse(null);
-
-        Mockito
-                .lenient()
-                .when(reviewRepository.findById(review.getId()))
-                .thenReturn(Optional.ofNullable(review));
-
-        Mockito
-                .lenient()
-                .when(reviewRepository.findById(nonExistingReviewId))
-                .thenReturn(Optional.empty());
-
-        Mockito
-                .lenient()
-                .when(reviewRepository.save(review))
-                .thenReturn(review);
-    }
 
     @Test
     void findAll() {
@@ -63,149 +53,161 @@ class ReviewServiceTest extends ServiceTest {
                 .sorted(Collections.reverseOrder(Comparator.comparing(Review::getDate)))
                 .collect(Collectors.toList());
 
-        when(reviewRepository.findAllByOrderByDateDesc()).thenReturn(sortedReviews);
+        when(repository.findAllByOrderByDateDesc()).thenReturn(sortedReviews);
         var foundReviews = service.findAll();
 
-        verify(reviewRepository, times(1)).findAllByOrderByDateDesc();
+        verify(repository, times(1)).findAllByOrderByDateDesc();
         assertEquals(sortedReviews, foundReviews);
     }
 
     @Test
     void findById() {
-        Review foundReview = service
-                .findById(review.getId())
-                .get();
-        verify(reviewRepository, times(1)).findById(review.getId());
-        assertEquals(review, foundReview);
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
+        assertFalse(service
+                .findById(1L)
+                .isEmpty());
+        verify(repository, times(1)).findById(1L);
     }
 
     @Test
     void findByNonExistingId() {
+        long nonExistingReviewId = 3L;
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+
         assertTrue(service
                 .findById(nonExistingReviewId)
                 .isEmpty());
-        verify(reviewRepository, times(1)).findById(nonExistingReviewId);
+
+        verify(repository, times(1)).findById(nonExistingReviewId);
     }
 
     @Test
     void findByWineId() {
-        when(reviewRepository.findByWineId(review.getId())).thenReturn(reviews);
-        var foundReviews = service.findByWineId(review.getId());
+        when(repository.findByWineId(anyLong())).thenReturn(reviews);
+        var foundReviews = service.findByWineId(1L);
         assertEquals(2, foundReviews.size());
+        verify(repository, times(1)).findByWineId(1L);
     }
 
     @Test
     void findByWineIdReturnsEmptyList() {
-        long id = 1L;
-        when(reviewRepository.findByWineId(id)).thenReturn(List.of());
-
-        var foundReviews = service.findByWineId(id);
+        when(repository.findByWineId(anyLong())).thenReturn(List.of());
+        var foundReviews = service.findByWineId(1L);
         assertTrue(foundReviews.isEmpty());
     }
 
     @Test
     void findByWineName() {
         String wineName = "Valkoviini 1";
-        when(reviewRepository.findByWineNameContainingIgnoreCase(wineName)).thenReturn(reviews);
-
+        when(repository.findByWineNameContainingIgnoreCase(wineName)).thenReturn(reviews);
         var foundReviews = service.findByWineName(wineName);
         assertEquals(2, foundReviews.size());
     }
 
     @Test
     void addReview() {
-        when(userService.setUser(any(Review.class))).thenReturn(review);
-        when(wineService.findById(wine.getId())).thenReturn(Optional.of(wine));
-        when(reviewRepository.save(any(Review.class))).thenReturn(review);
+        when(userService.setUser(any(Review.class))).thenReturn(new Review());
+        when(wineService.findById(anyLong())).thenReturn(Optional.of(new Wine()));
+        when(repository.save(any(Review.class))).thenReturn(new Review());
 
-        Review savedReview = service
-                .add(wine.getId(), review)
-                .get();
-
-        verify(wineService, times(1)).findById(wine.getId());
-        verify(userService, times(1)).setUser(review);
-        verify(reviewRepository, times(1)).save(review);
-        assertEquals(review, savedReview);
+        service.add(1L, new Review());
+        verify(wineService, times(1)).findById(1L);
+        verify(userService, times(1)).setUser(any(Review.class));
+        verify(repository, times(1)).save(any(Review.class));
     }
 
     @Test
     void addReviewForNonExistingWine() {
-        when(wineService.findById(nonExistingWineId)).thenThrow(new NotFoundException(new Wine(), nonExistingWineId));
+        long wineId = 13L;
+        when(wineService.findById(anyLong())).thenThrow(new NotFoundException(new Wine(), wineId));
 
         NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.add(nonExistingWineId, review));
+                service.add(13L, new Review()));
 
-        assertEquals(e.getMessage(), "Could not find wine with id " + nonExistingWineId);
-        verify(wineService, times(1)).findById(nonExistingWineId);
-        verify(reviewRepository, times(0)).save(review);
+        assertEquals(e.getMessage(), "Could not find wine with id " + wineId);
+        verify(wineService, times(1)).findById(wineId);
+        verify(repository, never()).save(any(Review.class));
     }
 
     @Test
     void editReview() {
-        when(userService.isUserAllowedToEdit(review)).thenReturn(true);
+        Review review = Review
+                .builder()
+                .author("author")
+                .date(LocalDate.now())
+                .reviewText("text")
+                .rating(3.0)
+                .build();
 
-        Review editedReview = service
-                .edit(review.getId(), review)
-                .get();
+        when(repository.findById(anyLong())).thenReturn(Optional.of(review));
+        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
+        when(repository.save(any(Review.class))).thenReturn(review);
 
-        verify(reviewRepository, times(1)).findById(review.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(review);
-        verify(reviewRepository, times(1)).save(review);
-        assertEquals(review, editedReview);
+        service.edit(1L, new Review());
+        verify(repository, times(1)).findById(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(repository, times(1)).save(any(Review.class));
     }
 
     @Test
     void editNonExistingReview() {
+        long nonExistingReviewId = 3L;
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+
         assertTrue(service
-                .edit(nonExistingReviewId, review)
+                .edit(nonExistingReviewId, new Review())
                 .isEmpty());
-        verify(reviewRepository, times(1)).findById(nonExistingReviewId);
-        verify(reviewRepository, times(0)).save(review);
+
+        verify(repository, times(1)).findById(nonExistingReviewId);
+        verify(repository, never()).save(any(Review.class));
     }
 
     @Test
     void editReviewWithoutPermission() {
-        ForbiddenException e = assertThrows(ForbiddenException.class, () ->
-                service.edit(review.getId(), review));
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
+        ForbiddenException e = assertThrows(ForbiddenException.class, () -> service.edit(1L, new Review()));
 
         assertEquals("Tried to modify a review that you do not own!", e.getMessage());
-        verify(reviewRepository, times(1)).findById(review.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(review);
-        verify(reviewRepository, times(0)).save(any(Review.class));
+        verify(repository, times(1)).findById(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(repository, never()).save(any(Review.class));
     }
 
     @Test
     void deleteReview() {
-        when(userService.isUserAllowedToEdit(review)).thenReturn(true);
-        service.delete(review.getId());
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
+        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
 
-        verify(userService, times(1)).isUserAllowedToEdit(review);
-        verify(reviewRepository, times(1)).deleteById(review.getId());
+        service.delete(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(repository, times(1)).deleteById(1L);
     }
 
     @Test
     void shouldThrowErrorWhenWrongUserTriesToDelete() {
-        Exception e = assertThrows(ForbiddenException.class, () -> service.delete(review.getId()));
+        when(repository.findById(1L)).thenReturn(Optional.of(new Review()));
+        Exception e = assertThrows(ForbiddenException.class, () -> service.delete(1L));
         assertEquals("Tried to modify a review that you do not own!", e.getMessage());
     }
 
     @Test
     void count() {
-        when(reviewRepository.count()).thenReturn((long) reviews.size());
+        when(repository.count()).thenReturn((long) reviews.size());
         long reviewCount = service.count();
 
-        verify(reviewRepository, times(1)).count();
+        verify(repository, times(1)).count();
         assertEquals(reviews.size(), reviewCount);
     }
 
-    @Test
-    void isAllowedToEditTrue() {
-        isAllowedToEdit(true);
-    }
+    @ParameterizedTest
+    @ValueSource(booleans = {true, false})
+    void isAllowedToEdit(boolean isAllowed) {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
+        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(isAllowed);
 
-    @Test
-    void isAllowedToEditFalse() {
-        isAllowedToEdit(false);
+        assertEquals(service.isAllowedToEdit(1L), isAllowed);
+        verify(repository, times(1)).findById(1L);
+        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
     }
 
     @Test
@@ -218,13 +220,13 @@ class ReviewServiceTest extends ServiceTest {
     void validDateRangeIsParsed() {
         List<String> monthRange = List.of("2020-01", "2020-02");
         service.search(author, monthRange, ratingRange);
-        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
     @Test
     void dateRangeIsNull() {
         service.search(author, null, ratingRange);
-        verify(reviewRepository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
     }
 
     @Test
@@ -246,15 +248,6 @@ class ReviewServiceTest extends ServiceTest {
                 service.search(author, monthRange, ratingRange));
 
         assertEquals(expectedErrorMessage, e.getMessage());
-        verify(reviewRepository, times(0)).findAll(any(ReviewSpecification.class));
-    }
-
-    private void isAllowedToEdit(boolean isAllowed) {
-        when(userService.isUserAllowedToEdit(review))
-                .thenReturn(isAllowed);
-
-        assertEquals(service.isAllowedToEdit(review.getId()), isAllowed);
-        verify(reviewRepository, times(1)).findById(review.getId());
-        verify(userService, times(1)).isUserAllowedToEdit(review);
+        verify(repository, never()).findAll(any(ReviewSpecification.class));
     }
 }
