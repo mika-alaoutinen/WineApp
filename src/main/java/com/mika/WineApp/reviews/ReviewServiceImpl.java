@@ -1,8 +1,8 @@
 package com.mika.WineApp.reviews;
 
+import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.models.Review;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;

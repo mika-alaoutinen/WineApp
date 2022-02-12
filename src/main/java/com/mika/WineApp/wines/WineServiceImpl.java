@@ -1,9 +1,9 @@
 package com.mika.WineApp.wines;
 
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import lombok.RequiredArgsConstructor;

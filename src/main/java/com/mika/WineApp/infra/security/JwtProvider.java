@@ -1,4 +1,4 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import org.springframework.security.core.Authentication;
 
@@ -6,6 +6,7 @@ public interface JwtProvider {
 
     /**
      * Generates a new JWT token from Authentication.
+     *
      * @param authentication Authentication
      * @return JWT token as string
      */
@@ -13,6 +14,7 @@ public interface JwtProvider {
 
     /**
      * Parses JWT token for username.
+     *
      * @param token JWT token
      * @return username
      */
@@ -20,6 +22,7 @@ public interface JwtProvider {
 
     /**
      * Validates JWT token.
+     *
      * @param authToken as string
      * @return boolean indicating if token is valid
      */

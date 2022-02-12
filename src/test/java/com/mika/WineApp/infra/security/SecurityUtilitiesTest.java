@@ -1,10 +1,10 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.security.model.UserPrincipal;
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.models.UserPrincipal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.Authentication;

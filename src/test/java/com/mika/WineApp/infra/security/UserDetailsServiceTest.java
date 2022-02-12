@@ -1,8 +1,8 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.User;
 import com.mika.WineApp.users.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

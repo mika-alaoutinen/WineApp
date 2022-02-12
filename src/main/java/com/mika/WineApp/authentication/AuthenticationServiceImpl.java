@@ -1,10 +1,10 @@
 package com.mika.WineApp.authentication;
 
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.errors.BadRequestException;
-import com.mika.WineApp.models.User;
-import com.mika.WineApp.security.JwtProvider;
-import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.UserCredentials;
+import com.mika.WineApp.infra.security.JwtProvider;
+import com.mika.WineApp.models.JwtToken;
+import com.mika.WineApp.models.UserCredentials;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;

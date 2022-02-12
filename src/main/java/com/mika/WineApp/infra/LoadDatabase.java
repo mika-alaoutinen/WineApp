@@ -1,7 +1,7 @@
-package com.mika.WineApp.configuration;
+package com.mika.WineApp.infra;
 
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.reviews.ReviewRepository;
 import com.mika.WineApp.users.UserRepository;
 import com.mika.WineApp.wines.WineRepository;

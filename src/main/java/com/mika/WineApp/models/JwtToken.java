@@ -1,4 +1,4 @@
-package com.mika.WineApp.security.model;
+package com.mika.WineApp.models;
 
 import lombok.Getter;
 

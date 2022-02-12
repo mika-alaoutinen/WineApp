@@ -1,8 +1,7 @@
-package com.mika.WineApp.configuration;
+package com.mika.WineApp.infra.configuration;
 
-import com.mika.WineApp.security.JwtAuthEntryPoint;
-import com.mika.WineApp.security.JwtProvider;
-import com.mika.WineApp.security.JwtTokenFilter;
+import com.mika.WineApp.infra.security.JwtProvider;
+import com.mika.WineApp.infra.security.JwtTokenFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -20,6 +19,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -33,7 +33,7 @@ import java.util.List;
 @RequiredArgsConstructor
 class WebSecurityConfigImpl extends WebSecurityConfigurerAdapter implements WebSecurityConfig {
 
-    private final JwtAuthEntryPoint unauthorizedHandler;
+    private final AuthenticationEntryPoint unauthorizedHandler;
     private final JwtProvider jwtProvider;
     private final UserDetailsService service;
 

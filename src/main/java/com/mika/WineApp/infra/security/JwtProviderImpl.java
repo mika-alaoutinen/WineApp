@@ -1,7 +1,7 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import com.mika.WineApp.errors.JwtExpiredException;
-import com.mika.WineApp.security.model.UserPrincipal;
+import com.mika.WineApp.models.UserPrincipal;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Slf4j
 @Component
-public class JwtProviderImpl implements JwtProvider {
+class JwtProviderImpl implements JwtProvider {
 
     @Value("${jwt.expiration}")
     private int jwtExpiration;
@@ -20,6 +20,7 @@ public class JwtProviderImpl implements JwtProvider {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
+    @Override
     public String generateJwtToken(Authentication authentication) {
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
 
@@ -32,6 +33,7 @@ public class JwtProviderImpl implements JwtProvider {
                 .compact();
     }
 
+    @Override
     public String getUserNameFromToken(String token) {
         return Jwts
                 .parser()
@@ -41,6 +43,7 @@ public class JwtProviderImpl implements JwtProvider {
                 .getSubject();
     }
 
+    @Override
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts

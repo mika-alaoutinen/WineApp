@@ -1,11 +1,11 @@
 package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.ServiceTest;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,8 +1,8 @@
 package com.mika.WineApp;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.reviews.ReviewRepository;
 import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;

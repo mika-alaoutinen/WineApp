@@ -1,8 +1,8 @@
 package com.mika.WineApp.it.authentication;
 
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.it.IntegrationTestWrite;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
 import com.mika.WineApp.users.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

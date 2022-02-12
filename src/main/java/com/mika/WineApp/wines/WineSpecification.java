@@ -1,7 +1,7 @@
 package com.mika.WineApp.wines;
 
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.specifications.SuperSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,10 +1,10 @@
 package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.WebSecurityConfig;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.mappers.ReviewMapperImpl;
 import com.mika.WineApp.mappers.WineMapperImpl;
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
 import com.mika.WineApp.services.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

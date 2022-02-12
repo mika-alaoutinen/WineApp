@@ -1,4 +1,4 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Slf4j
 @Component
-public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
+class JwtAuthEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest req, HttpServletResponse res, AuthenticationException e)

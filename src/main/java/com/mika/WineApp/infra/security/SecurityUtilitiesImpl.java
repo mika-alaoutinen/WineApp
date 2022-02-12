@@ -1,14 +1,14 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
-import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
-import com.mika.WineApp.security.model.UserPrincipal;
+import com.mika.WineApp.entities.EntityModel;
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
+import com.mika.WineApp.models.UserPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SecurityUtilitiesImpl implements SecurityUtilities {
+class SecurityUtilitiesImpl implements SecurityUtilities {
 
     @Override
     public String getUsernameFromSecurityContext() {

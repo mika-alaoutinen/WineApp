@@ -1,9 +1,9 @@
 package com.mika.WineApp.admin;
 
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.users.UserRepository;
 import lombok.RequiredArgsConstructor;

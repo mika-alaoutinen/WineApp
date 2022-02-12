@@ -1,10 +1,10 @@
 package com.mika.WineApp.admin;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
 import com.mika.WineApp.users.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

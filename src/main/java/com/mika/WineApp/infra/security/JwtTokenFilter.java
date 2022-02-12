@@ -1,4 +1,4 @@
-package com.mika.WineApp.security;
+package com.mika.WineApp.infra.security;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,32 +22,32 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private final UserDetailsService service;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    public void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain)
             throws ServletException, IOException {
 
         try {
-            String jwt = getJwt(request);
+            String jwt = getJwt(req);
             if (jwt != null && tokenProvider.validateJwtToken(jwt)) {
                 String username = tokenProvider.getUserNameFromToken(jwt);
                 UserDetails userDetails = service.loadUserByUsername(username);
 
                 SecurityContextHolder
                         .getContext()
-                        .setAuthentication(getAuthToken(userDetails, request));
+                        .setAuthentication(getAuthToken(userDetails, req));
             }
         } catch (Exception e) {
             log.error("Unable to set user authentication: " + e.getMessage());
         }
 
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(req, res);
     }
 
     private String getJwt(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
 
         return authHeader != null && authHeader.startsWith("Bearer ")
-                ? authHeader.replace("Bearer ", "")
-                : null;
+               ? authHeader.replace("Bearer ", "")
+               : null;
     }
 
     private UsernamePasswordAuthenticationToken getAuthToken(UserDetails userDetails, HttpServletRequest request) {

@@ -1,10 +1,10 @@
 package com.mika.WineApp.users;
 
 import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.models.EntityModel;
-import com.mika.WineApp.models.User;
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.security.SecurityUtilities;
+import com.mika.WineApp.entities.EntityModel;
+import com.mika.WineApp.entities.User;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.infra.security.SecurityUtilities;
 import com.mika.WineApp.services.UserRepositoryReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

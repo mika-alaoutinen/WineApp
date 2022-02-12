@@ -1,6 +1,6 @@
-package com.mika.WineApp.configuration;
+package com.mika.WineApp.infra.configuration;
 
-import com.mika.WineApp.security.JwtTokenFilter;
+import com.mika.WineApp.infra.security.JwtTokenFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

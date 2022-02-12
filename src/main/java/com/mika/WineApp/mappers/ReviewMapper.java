@@ -1,6 +1,6 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.entities.Review;
 import com.mika.model.NewReviewDTO;
 import com.mika.model.ReviewDTO;
 import org.mapstruct.Mapper;

@@ -1,6 +1,6 @@
 package com.mika.WineApp.TestUtilities;
 
-import com.mika.WineApp.models.*;
+import com.mika.WineApp.entities.*;
 
 import java.time.LocalDate;
 import java.util.Collections;

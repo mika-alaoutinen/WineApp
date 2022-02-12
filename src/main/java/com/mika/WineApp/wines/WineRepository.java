@@ -1,6 +1,6 @@
 package com.mika.WineApp.wines;
 
-import com.mika.WineApp.models.Wine;
+import com.mika.WineApp.entities.Wine;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;

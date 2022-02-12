@@ -1,6 +1,6 @@
 package com.mika.WineApp.reviews;
 
-import com.mika.WineApp.models.Review;
+import com.mika.WineApp.entities.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

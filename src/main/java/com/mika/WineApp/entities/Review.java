@@ -1,4 +1,4 @@
-package com.mika.WineApp.models;
+package com.mika.WineApp.entities;
 
 import lombok.*;
 import org.hibernate.Hibernate;

@@ -1,8 +1,8 @@
 package com.mika.WineParser;
 
-import com.mika.WineApp.models.Review;
-import com.mika.WineApp.models.Wine;
-import com.mika.WineApp.models.WineType;
+import com.mika.WineApp.entities.Review;
+import com.mika.WineApp.entities.Wine;
+import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
 import org.springframework.core.io.DefaultResourceLoader;
 

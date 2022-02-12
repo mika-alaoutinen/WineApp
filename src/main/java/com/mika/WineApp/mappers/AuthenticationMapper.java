@@ -1,7 +1,7 @@
 package com.mika.WineApp.mappers;
 
-import com.mika.WineApp.security.model.JwtToken;
-import com.mika.WineApp.security.model.UserCredentials;
+import com.mika.WineApp.models.JwtToken;
+import com.mika.WineApp.models.UserCredentials;
 import com.mika.model.JwtTokenDTO;
 import com.mika.model.UserCredentialsDTO;
 import org.mapstruct.Mapper;

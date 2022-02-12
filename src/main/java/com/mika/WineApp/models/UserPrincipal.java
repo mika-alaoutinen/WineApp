@@ -1,8 +1,8 @@
-package com.mika.WineApp.security.model;
+package com.mika.WineApp.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mika.WineApp.models.Role;
-import com.mika.WineApp.models.User;
+import com.mika.WineApp.entities.Role;
+import com.mika.WineApp.entities.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
