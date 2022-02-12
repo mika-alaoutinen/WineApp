@@ -1,8 +1,10 @@
-package com.mika.WineApp.services;
+package com.mika.WineApp;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.reviews.ReviewRepository;
 import com.mika.WineApp.reviews.model.Review;
+import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.wines.WineRepository;
 import com.mika.WineApp.wines.model.Wine;
 import org.junit.jupiter.api.extension.ExtendWith;

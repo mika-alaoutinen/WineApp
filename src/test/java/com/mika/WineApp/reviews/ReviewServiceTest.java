@@ -1,10 +1,10 @@
 package com.mika.WineApp.reviews;
 
+import com.mika.WineApp.ServiceTest;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.reviews.model.Review;
-import com.mika.WineApp.services.ServiceTest;
 import com.mika.WineApp.wines.model.Wine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

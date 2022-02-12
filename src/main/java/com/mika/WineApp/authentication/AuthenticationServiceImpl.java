@@ -3,6 +3,7 @@ package com.mika.WineApp.authentication;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.security.JwtProvider;
 import com.mika.WineApp.security.model.JwtToken;
+import com.mika.WineApp.security.model.UserCredentials;
 import com.mika.WineApp.services.AdminService;
 import com.mika.WineApp.services.AuthenticationService;
 import com.mika.WineApp.users.model.User;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService {
+class AuthenticationServiceImpl implements AuthenticationService {
     private final AdminService service;
     private final AuthenticationManager authenticationManager;
     private final JwtProvider jwtProvider;

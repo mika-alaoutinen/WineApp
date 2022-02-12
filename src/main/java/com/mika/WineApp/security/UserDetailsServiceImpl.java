@@ -1,4 +1,4 @@
-package com.mika.WineApp.services.impl;
+package com.mika.WineApp.security;
 
 import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.security.model.UserPrincipal;
