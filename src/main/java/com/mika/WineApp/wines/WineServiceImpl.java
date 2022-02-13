@@ -1,10 +1,10 @@
 package com.mika.WineApp.wines;
 
+import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 class WineServiceImpl implements WineService {
     private final WineRepository repository;
-    private final UserService userService;
+    private final UserAuthentication userAuth;
 
     // --- CRUD methods ---
     @Override
@@ -36,7 +36,7 @@ class WineServiceImpl implements WineService {
             throw new BadRequestException(newWine, newWine.getName());
         }
 
-        Wine wine = (Wine) userService.setUser(newWine);
+        Wine wine = (Wine) userAuth.setUser(newWine);
         return repository.save(wine);
     }
 
@@ -77,7 +77,7 @@ class WineServiceImpl implements WineService {
     @Override
     public boolean isAllowedToEdit(Long id) {
         return findById(id)
-                .map(userService::isUserAllowedToEdit)
+                .map(userAuth::isUserAllowedToEdit)
                 .orElse(false);
     }
 
@@ -122,7 +122,7 @@ class WineServiceImpl implements WineService {
     }
 
     private void validateEditPermission(Wine wine) {
-        if (!userService.isUserAllowedToEdit(wine)) {
+        if (!userAuth.isUserAllowedToEdit(wine)) {
             throw new ForbiddenException(wine);
         }
     }
