@@ -28,7 +28,7 @@ class WinesCrudReadIT {
     @Test
     void findWineById() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/3"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Valkoviini 1"));
     }
@@ -37,7 +37,7 @@ class WinesCrudReadIT {
     @WithUserDetails("test_user")
     void isWineEditable() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/1/editable"))
+                .perform(get(ENDPOINT + "/3/editable"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(true));
     }
