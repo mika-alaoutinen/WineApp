@@ -1,7 +1,9 @@
 -- Add users
+-- Passwords are encrypted with Bcrypt. Unencrypted passwords are
+-- "test_admin_password" and "test_user_password"
 INSERT INTO users (id, username, password)
-VALUES (1, 'test_admin', 'test_admin_password'),
-       (2, 'test_user', 'test_user_password');
+VALUES (1, 'test_admin', '$2a$10$eRdUjwSdDTDYZJJ3y2a8BeNWooOz41ToaAgo7m0b.eZXa5000h7bO'),
+       (2, 'test_user', '$2a$10$ffHMw9WlT1ao8uKiC3lHvuDcEQAOo7BzYzQohXQzc1wZn6C4Xl6/S');
 
 INSERT INTO user_role (user_id, roles)
 VALUES (1, 'ROLE_ADMIN'),

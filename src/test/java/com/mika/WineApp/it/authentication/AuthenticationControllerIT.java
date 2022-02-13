@@ -1,16 +1,10 @@
 package com.mika.WineApp.it.authentication;
 
-import com.mika.WineApp.entities.Role;
-import com.mika.WineApp.entities.User;
 import com.mika.WineApp.it.IntegrationTestWrite;
-import com.mika.WineApp.users.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.Set;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
@@ -21,28 +15,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AuthenticationControllerIT {
 
     @Autowired
-    private UserRepository repository;
-
-    @Autowired
     private MockMvc mvc;
 
     @Test
     void loginShouldReturnToken() throws Exception {
-        String username = "test_user";
-        String password = "test_user_password";
-
-        // Need to encode the password before saving the user to DB.
-        String encryptedPassword = new BCryptPasswordEncoder().encode(password);
-        User user = new User(username, encryptedPassword);
-        user.setRoles(Set.of(Role.ROLE_USER));
-        repository.save(user);
-
-        String userJson = String.format("""
+        String userJson = """
                 {
-                    "username": "%1$s",
-                    "password": "%2$s"
+                    "username": "test_user",
+                    "password": "test_user_password"
                 }
-                """, username, password);
+                """;
 
         mvc
                 .perform(
