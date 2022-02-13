@@ -1,4 +1,4 @@
-package com.mika.WineApp.users.admin;
+package com.mika.WineApp.admin;
 
 import com.mika.WineApp.mappers.RoleMapper;
 import com.mika.WineApp.mappers.UserMapper;
@@ -23,14 +23,20 @@ class AdminController implements AdminApi {
 
     @Override
     public ResponseEntity<UserDTO> findUserById(Long id) {
-        var user = userMapper.toUserDTO(service.findById(id));
-        return ResponseEntity.ok(user);
+        var user = service
+                .findById(id)
+                .map(userMapper::toUserDTO);
+
+        return ResponseEntity.of(user);
     }
 
     @Override
     public ResponseEntity<UserDTO> findUserByUsername(String username) {
-        var user = userMapper.toUserDTO(service.findByUserName(username));
-        return ResponseEntity.ok(user);
+        var user = service
+                .findByUsername(username)
+                .map(userMapper::toUserDTO);
+
+        return ResponseEntity.of(user);
     }
 
     @Override
@@ -51,7 +57,10 @@ class AdminController implements AdminApi {
                 .map(roleMapper::toModel)
                 .collect(Collectors.toSet());
 
-        var updatedUser = service.updateRoles(id, roles);
-        return ResponseEntity.ok(userMapper.toUserDTO(updatedUser));
+        var user = service
+                .updateRoles(id, roles)
+                .map(userMapper::toUserDTO);
+
+        return ResponseEntity.of(user);
     }
 }

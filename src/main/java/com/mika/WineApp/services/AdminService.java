@@ -2,32 +2,43 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.NotFoundException;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
-/**
- * Allows read and write access to the user repository.
- */
-public interface AdminService extends UserRepositoryReader {
+public interface AdminService {
 
     /**
-     * Saves a new user. User's password must be encoded before saving it.
+     * Find all registered users.
      *
-     * @param user to save
-     * @return saved user
-     * @throws BadRequestException e
+     * @return list of all users.
      */
-    User save(User user) throws BadRequestException;
+    List<User> findAll();
+
+    /**
+     * Find user by ID.
+     *
+     * @param id user id.
+     * @return user or empty.
+     */
+    Optional<User> findById(Long id);
+
+    /**
+     * Find user by username.
+     *
+     * @param username string.
+     * @return user or empty.
+     */
+    Optional<User> findByUsername(String username);
 
     /**
      * Update user's roles. New roles override possible old roles.
      *
-     * @param id    for user to give role to
+     * @param id    for user to give role to.
      * @param roles new set of roles for the user.
-     * @return updated user
-     * @throws NotFoundException e
+     * @return updated user or empty.
      */
-    User updateRoles(Long id, Set<Role> roles) throws NotFoundException;
+    Optional<User> updateRoles(Long id, Set<Role> roles) throws NotFoundException;
 }
