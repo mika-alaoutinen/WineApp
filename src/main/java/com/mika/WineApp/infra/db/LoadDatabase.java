@@ -2,7 +2,6 @@ package com.mika.WineApp.infra.db;
 
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.users.UserRepository;
 import com.mika.WineParser.Parser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(
-            UserRepository userRepository,
+            UserSaver saver,
             WineSaver wineSaver,
             ReviewSaver reviewSaver) {
 
@@ -46,9 +45,9 @@ class LoadDatabase {
         }
 
         // Get admin to set as owner for parsed reviews and wines:
-        User admin = userRepository
+        User admin = saver
                 .findByUsername(adminUsername)
-                .orElseGet(() -> initAdminUser(userRepository));
+                .orElseGet(() -> initAdminUser(saver));
 
         // Try to parse wines and reviews into database:
         Parser parser = new Parser();
@@ -60,10 +59,10 @@ class LoadDatabase {
         };
     }
 
-    private User initAdminUser(UserRepository repository) {
+    private User initAdminUser(UserSaver saver) {
         User admin = new User(adminUsername, passwordEncoder.encode(adminPassword));
         admin.setRoles(Set.of(Role.ROLE_ADMIN));
-        repository.save(admin);
+        saver.save(admin);
         log.info("Admin user created successfully!");
         return admin;
     }
