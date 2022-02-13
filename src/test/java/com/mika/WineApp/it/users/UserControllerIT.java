@@ -1,9 +1,6 @@
 package com.mika.WineApp.it.users;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestRead;
-import com.mika.WineApp.users.UserRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.test.context.support.WithUserDetails;
@@ -21,15 +18,7 @@ class UserControllerIT {
     private static final String ENDPOINT = "/users";
 
     @Autowired
-    UserRepository repository;
-
-    @Autowired
-    MockMvc mvc;
-
-    @BeforeAll
-    void setupRepository() {
-        repository.saveAll(TestData.initTestUsers());
-    }
+    private MockMvc mvc;
 
     @Test
     void getUsername() throws Exception {
