@@ -1,4 +1,4 @@
-package com.mika.WineApp.admin;
+package com.mika.WineApp.users.admin;
 
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;

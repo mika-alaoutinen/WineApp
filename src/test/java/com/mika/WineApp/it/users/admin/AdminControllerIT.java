@@ -1,4 +1,4 @@
-package com.mika.WineApp.it.admin;
+package com.mika.WineApp.it.users.admin;
 
 import com.mika.WineApp.it.IntegrationTestRead;
 import org.junit.jupiter.api.Test;

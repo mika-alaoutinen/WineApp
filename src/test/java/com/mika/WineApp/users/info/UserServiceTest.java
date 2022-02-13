@@ -1,4 +1,4 @@
-package com.mika.WineApp.users;
+package com.mika.WineApp.users.info;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.entities.EntityModel;

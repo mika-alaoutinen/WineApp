@@ -1,4 +1,4 @@
-package com.mika.WineApp.it.users;
+package com.mika.WineApp.it.users.info;
 
 import com.mika.WineApp.it.IntegrationTestRead;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @IntegrationTestRead
 @WithUserDetails("test_user")
-class UserControllerIT {
+class UserInfoControllerIT {
     private static final String ENDPOINT = "/users";
 
     @Autowired

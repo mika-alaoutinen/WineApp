@@ -1,4 +1,4 @@
-package com.mika.WineApp.admin;
+package com.mika.WineApp.users.admin;
 
 import com.mika.WineApp.mappers.RoleMapper;
 import com.mika.WineApp.mappers.UserMapper;
