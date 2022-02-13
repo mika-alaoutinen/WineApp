@@ -39,5 +39,5 @@ VALUES (3, 'kala'),
 
 -- Add reviews
 INSERT INTO review (id, author, date, rating, review_text, user_id, wine_id)
-VALUES (7, 'Mika', '2019-11-14', 3.0, 'Mikan uusi arvostelu', 2, 1),
-       (8, 'Salla', '2019-11-15', 4.5, 'Sallan uusi arvostelu', 2, 1);
+VALUES (7, 'Mika', '2019-11-14', 3.0, 'Mikan uusi arvostelu', 2, 3),
+       (8, 'Salla', '2019-11-15', 4.5, 'Sallan uusi arvostelu', 2, 3);
