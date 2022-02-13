@@ -1,9 +1,6 @@
 package com.mika.WineApp.it.admin;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestWrite;
-import com.mika.WineApp.users.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,15 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class AdminWriteIT {
 
     @Autowired
-    private UserRepository repository;
-
-    @Autowired
     private MockMvc mvc;
-
-    @BeforeEach
-    void setupRepository() {
-        repository.saveAll(TestData.initTestUsers());
-    }
 
     @Test
     @WithMockUser(roles = {"ADMIN"})

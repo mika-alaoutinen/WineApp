@@ -14,11 +14,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@Entity
 @Table(name = "users")
 public class User {
 

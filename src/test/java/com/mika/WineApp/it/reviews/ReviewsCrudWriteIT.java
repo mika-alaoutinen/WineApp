@@ -1,17 +1,12 @@
 package com.mika.WineApp.it.reviews;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.entities.User;
 import com.mika.WineApp.it.IntegrationTestWrite;
 import com.mika.WineApp.models.UserPrincipal;
-import com.mika.WineApp.reviews.ReviewRepository;
-import com.mika.WineApp.users.UserRepository;
-import com.mika.WineApp.wines.WineRepository;
 import com.mika.model.NewReviewDTO;
 import com.mika.model.ReviewDTO;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,44 +15,19 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @IntegrationTestWrite
-public class ReviewsCrudWriteIT {
+class ReviewsCrudWriteIT {
     private static final String ENDPOINT = "/reviews";
     private static final ObjectMapper MAPPER = TestUtilities.getObjectMapper();
     private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
-
-    @Autowired
-    private WineRepository wineRepository;
-
-    @Autowired
     private MockMvc mvc;
-
-    @BeforeEach
-    void setupRepositories() {
-        userRepository.saveAll(TestData.initTestUsers());
-
-        // Need to save wine to repository, because otherwise reviews would have an unsaved transient dependency
-        var wine = TestData
-                .initWines()
-                .get(0);
-        wineRepository.save(wine);
-
-        var reviews = TestData.initReviews();
-        reviews.forEach(r -> r.setWine(wine));
-        reviewRepository.saveAll(reviews);
-    }
 
     @Test
     void addReview() throws Exception {
@@ -68,7 +38,7 @@ public class ReviewsCrudWriteIT {
                 .rating(4.5);
 
         mvc
-                .perform(post(ENDPOINT + "/1")
+                .perform(post(ENDPOINT + "/4")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(newReview))
                         .with(user(USER)))
@@ -82,8 +52,10 @@ public class ReviewsCrudWriteIT {
 
     @Test
     void editReview() throws Exception {
+        long id = 7L;
+
         MvcResult result = mvc
-                .perform(get(ENDPOINT + "/2"))
+                .perform(get(ENDPOINT + "/{id}", id))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -95,7 +67,7 @@ public class ReviewsCrudWriteIT {
                 .rating(existingReview.getRating());
 
         mvc
-                .perform(put(ENDPOINT + "/2")
+                .perform(put(ENDPOINT + "/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(editedReview))
                         .with(user(USER)))
@@ -109,10 +81,14 @@ public class ReviewsCrudWriteIT {
 
     @Test
     void deleteReview() throws Exception {
+        long id = 7L;
+
         mvc
-                .perform(delete(ENDPOINT + "/2").with(user(USER)))
+                .perform(delete(ENDPOINT + "/{id}", id).with(user(USER)))
                 .andExpect(status().isNoContent());
 
-        assertFalse(reviewRepository.existsById(2L));
+        mvc
+                .perform(get(ENDPOINT + "/{id}", id))
+                .andExpect(status().isNotFound());
     }
 }

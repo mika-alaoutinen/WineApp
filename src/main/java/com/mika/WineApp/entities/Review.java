@@ -8,13 +8,13 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity
 @Builder
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Review implements EntityModel {
 
     @Id

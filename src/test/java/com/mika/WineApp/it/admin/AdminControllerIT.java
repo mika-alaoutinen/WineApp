@@ -1,9 +1,6 @@
 package com.mika.WineApp.it.admin;
 
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.it.IntegrationTestRead;
-import com.mika.WineApp.users.UserRepository;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -23,15 +20,7 @@ class AdminControllerIT {
     private static final String ENDPOINT = "/admin/users";
 
     @Autowired
-    UserRepository repository;
-
-    @Autowired
-    MockMvc mvc;
-
-    @BeforeAll
-    void setupRepository() {
-        repository.saveAll(TestData.initTestUsers());
-    }
+    private MockMvc mvc;
 
     @Test
     void findAll() throws Exception {
@@ -44,7 +33,7 @@ class AdminControllerIT {
     @Test
     void findById() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/id/1"))
+                .perform(get(ENDPOINT + "/id/2"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("test_user"));
     }

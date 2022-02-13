@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
 @Builder
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@Entity
 public class Wine implements EntityModel {
 
     @Id

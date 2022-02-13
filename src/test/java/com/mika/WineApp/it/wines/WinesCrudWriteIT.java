@@ -1,15 +1,11 @@
 package com.mika.WineApp.it.wines;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.entities.User;
 import com.mika.WineApp.it.IntegrationTestWrite;
 import com.mika.WineApp.models.UserPrincipal;
-import com.mika.WineApp.users.UserRepository;
-import com.mika.WineApp.wines.WineRepository;
 import com.mika.model.WineDTO;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,7 +14,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,19 +30,7 @@ class WinesCrudWriteIT {
     private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private WineRepository wineRepository;
-
-    @Autowired
     private MockMvc mvc;
-
-    @BeforeEach
-    void setupRepositories() {
-        userRepository.saveAll(TestData.initTestUsers());
-        wineRepository.saveAll(TestData.initWines());
-    }
 
     @Test
     void addWine() throws Exception {
@@ -67,14 +50,16 @@ class WinesCrudWriteIT {
                                 .content(MAPPER.writeValueAsString(newWine))
                                 .with(user(USER)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(5))
+                .andExpect(jsonPath("$.id").value(9))
                 .andExpect(jsonPath("$.name").value("New Wine"));
     }
 
     @Test
     void editWine() throws Exception {
+        long id = 3L;
+
         MvcResult result = mvc
-                .perform(get(ENDPOINT + "/1"))
+                .perform(get(ENDPOINT + "/{id}", id))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -83,7 +68,7 @@ class WinesCrudWriteIT {
         existingWine.setCountry("Edited");
 
         mvc
-                .perform(put(ENDPOINT + "/1")
+                .perform(put(ENDPOINT + "/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(existingWine))
                         .with(user(USER)))
@@ -95,10 +80,14 @@ class WinesCrudWriteIT {
 
     @Test
     void deleteWine() throws Exception {
+        long id = 3L;
+
         mvc
-                .perform(delete(ENDPOINT + "/1").with(user(USER)))
+                .perform(delete(ENDPOINT + "/{id}", id).with(user(USER)))
                 .andExpect(status().isNoContent());
 
-        assertFalse(wineRepository.existsById(1L));
+        mvc
+                .perform(get(ENDPOINT + "/{id}", id))
+                .andExpect(status().isNotFound());
     }
 }
