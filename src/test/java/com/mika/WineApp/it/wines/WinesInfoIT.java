@@ -1,6 +1,9 @@
 package com.mika.WineApp.it.wines;
 
+import com.mika.WineApp.it.IntegrationTestRead;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
@@ -8,8 +11,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class WinesInfoIT extends WineTest {
+@IntegrationTestRead
+class WinesInfoIT {
     private static final String ENDPOINT = "/wines";
+    
+    @Autowired
+    private MockMvc mvc;
 
     @Test
     void getWineCount() throws Exception {
