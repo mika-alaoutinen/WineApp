@@ -50,7 +50,9 @@ class SecurityUtilitiesTest {
     @Test
     void getUsernameFromSecurityContext() {
         when(userPrincipal.getUsername()).thenReturn(user.getUsername());
-        String name = securityUtils.getUsernameFromSecurityContext();
+        String name = securityUtils
+                .getUsernameFromSecurityContext()
+                .get();
         assertEquals(user.getUsername(), name);
     }
 
@@ -94,7 +96,8 @@ class SecurityUtilitiesTest {
                 .getPrincipal())
                 .thenReturn("anonymousUser");
 
-        String usernameOfLoggedInUser = securityUtils.getUsernameFromSecurityContext();
-        assertNull(usernameOfLoggedInUser);
+        assertTrue(securityUtils
+                .getUsernameFromSecurityContext()
+                .isEmpty());
     }
 }
