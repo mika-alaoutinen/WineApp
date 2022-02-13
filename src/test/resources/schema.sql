@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS user_role
 );
 
 -- Wines
-CREATE TABLE IF NOT EXISTS wines
+CREATE TABLE IF NOT EXISTS wine
 (
     id      serial primary key,
     country varchar          not null,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS wine_food_pairings
 );
 
 -- Reviews
-CREATE TABLE IF NOT EXISTS reviews
+CREATE TABLE IF NOT EXISTS review
 (
     id          serial primary key,
     author      varchar          not null,

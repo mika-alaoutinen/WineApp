@@ -5,7 +5,6 @@ import com.mika.WineApp.TestUtilities.TestUtilities;
 import com.mika.WineApp.entities.User;
 import com.mika.WineApp.it.IntegrationTestWrite;
 import com.mika.WineApp.models.UserPrincipal;
-import com.mika.WineApp.wines.WineRepository;
 import com.mika.model.WineDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -30,9 +28,6 @@ class WinesCrudWriteIT {
     private static final String ENDPOINT = "/wines";
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final UserPrincipal USER = new UserPrincipal(new User("test_user", "password"));
-
-    @Autowired
-    private WineRepository repository;
 
     @Autowired
     private MockMvc mvc;
@@ -61,8 +56,10 @@ class WinesCrudWriteIT {
 
     @Test
     void editWine() throws Exception {
+        long id = 3L;
+
         MvcResult result = mvc
-                .perform(get(ENDPOINT + "/3"))
+                .perform(get(ENDPOINT + "/{id}", id))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -71,7 +68,7 @@ class WinesCrudWriteIT {
         existingWine.setCountry("Edited");
 
         mvc
-                .perform(put(ENDPOINT + "/3")
+                .perform(put(ENDPOINT + "/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(MAPPER.writeValueAsString(existingWine))
                         .with(user(USER)))
@@ -83,10 +80,14 @@ class WinesCrudWriteIT {
 
     @Test
     void deleteWine() throws Exception {
+        long id = 3L;
+
         mvc
-                .perform(delete(ENDPOINT + "/3").with(user(USER)))
+                .perform(delete(ENDPOINT + "/{id}", id).with(user(USER)))
                 .andExpect(status().isNoContent());
 
-        assertFalse(repository.existsById(1L));
+        mvc
+                .perform(get(ENDPOINT + "/{id}", id))
+                .andExpect(status().isNotFound());
     }
 }

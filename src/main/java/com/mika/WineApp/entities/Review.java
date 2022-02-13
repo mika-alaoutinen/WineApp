@@ -15,7 +15,6 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "reviews")
 public class Review implements EntityModel {
 
     @Id

@@ -20,7 +20,6 @@ import java.util.Objects;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @Entity
-@Table(name = "wines")
 public class Wine implements EntityModel {
 
     @Id

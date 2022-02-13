@@ -8,7 +8,7 @@ VALUES (1, 'ROLE_ADMIN'),
        (2, 'ROLE_USER');
 
 -- Add wines
-INSERT INTO wines (id, country, name, price, type, url, volume, user_id)
+INSERT INTO wine (id, country, name, price, type, url, volume, user_id)
 VALUES (3, 'Espanja', 'Valkoviini 1', 8.75, 'WHITE', 'invalid', 0.75, 2),
        (4, 'Espanja', 'Valkoviini 2', 8.75, 'WHITE', 'invalid', 0.75, 2),
        (5, 'Ranska', 'Punaviini 1', 29.95, 'RED', 'invalid', 3.0, 2),
@@ -38,6 +38,6 @@ VALUES (3, 'kala'),
        (5, 'pasta');
 
 -- Add reviews
-INSERT INTO reviews (id, author, date, rating, review_text, user_id, wine_id)
+INSERT INTO review (id, author, date, rating, review_text, user_id, wine_id)
 VALUES (7, 'Mika', '2019-11-14', 3.0, 'Mikan uusi arvostelu', 2, 1),
        (8, 'Salla', '2019-11-15', 4.5, 'Sallan uusi arvostelu', 2, 1);
