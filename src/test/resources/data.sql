@@ -1,11 +1,11 @@
 -- Add users
 INSERT INTO users (id, username, password)
-VALUES (1, 'test_admin', 'test_admin_password'),
-       (2, 'test_user', 'test_user_password');
+VALUES (1, 'test_user', 'test_user_password'),
+       (2, 'test_admin', 'test_admin_password');
 
 INSERT INTO user_role (user_id, roles)
-VALUES (1, 'ADMIN'),
-       (2, 'USER');
+VALUES (1, 'ROLE_ADMIN'),
+       (2, 'ROLE_USER');
 
 -- Add wines
 INSERT INTO wines (id, country, name, price, type, url, volume, user_id)
