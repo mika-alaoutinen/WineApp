@@ -2,7 +2,6 @@ package com.mika.WineApp.infra.security;
 
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.users.UserReader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
 
@@ -43,9 +43,7 @@ class UserDetailsServiceTest {
     void throwExceptionOnNonexistentUsername() {
         String username = "nonexistent user";
         when(reader.findByUsername(username)).thenReturn(Optional.empty());
-
-        Exception e = assertThrows(NotFoundException.class, () -> service.loadUserByUsername(username));
+        assertThrows(UsernameNotFoundException.class, () -> service.loadUserByUsername(username));
         verify(reader, times(1)).findByUsername(username);
-        assertEquals("Could not find user with username " + username, e.getMessage());
     }
 }

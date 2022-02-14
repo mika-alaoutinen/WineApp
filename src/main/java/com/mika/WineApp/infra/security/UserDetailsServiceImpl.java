@@ -1,7 +1,6 @@
 package com.mika.WineApp.infra.security;
 
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.models.UserPrincipal;
 import com.mika.WineApp.users.UserReader;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = reader
                 .findByUsername(username)
-                .orElseThrow(() -> new NotFoundException(new User(), username));
+                .orElseThrow(() -> new UsernameNotFoundException(username));
 
         return new UserPrincipal(user);
     }

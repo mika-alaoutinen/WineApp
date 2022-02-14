@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.BadRequestException;
-import com.mika.WineApp.errors.NotFoundException;
 
 import java.util.List;
 
@@ -44,7 +43,6 @@ public interface WineService extends CrudService<Wine> {
      *
      * @param id of wine
      * @return boolean
-     * @throws NotFoundException e
      */
     boolean isAllowedToEdit(Long id);
 
