@@ -57,7 +57,7 @@ class JwtProviderTest {
     }
 
     @Test
-    void expired() throws ParseException {
+    void notValidWhenExpired() throws ParseException {
         Date expired = new SimpleDateFormat("yyyy-MM-dd").parse("2020-01-01");
         String token = createToken(expired);
         assertFalse(JWT_PROVIDER.validateJwtToken(token));
