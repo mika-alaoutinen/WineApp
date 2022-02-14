@@ -1,6 +1,5 @@
 package com.mika.WineApp.infra.security;
 
-import com.mika.WineApp.errors.JwtExpiredException;
 import com.mika.WineApp.models.UserPrincipal;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -13,12 +12,13 @@ import java.util.Date;
 @Slf4j
 @Component
 class JwtProviderImpl implements JwtProvider {
+    private final int jwtExpiration;
+    private final String jwtSecret;
 
-    @Value("${jwt.expiration}")
-    private int jwtExpiration;
-
-    @Value("${jwt.secret}")
-    private String jwtSecret;
+    JwtProviderImpl(@Value("${jwt.expiration}") int jwtExpiration, @Value("${jwt.secret}") String jwtSecret) {
+        this.jwtExpiration = jwtExpiration;
+        this.jwtSecret = jwtSecret;
+    }
 
     @Override
     public String generateJwtToken(Authentication authentication) {
@@ -57,7 +57,6 @@ class JwtProviderImpl implements JwtProvider {
             log.error("Invalid JWT token: " + e.getMessage());
         } catch (ExpiredJwtException e) {
             log.error("Expired JWT token: " + e.getMessage());
-            throw new JwtExpiredException(authToken);
         } catch (UnsupportedJwtException e) {
             log.error("Unsupported JWT token: " + e.getMessage());
         } catch (IllegalArgumentException e) {

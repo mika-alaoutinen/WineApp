@@ -130,7 +130,7 @@ class ReviewServiceImpl implements ReviewService {
 
     private void validateEditPermission(Review review) {
         if (!userAuth.isUserAllowedToEdit(review)) {
-            throw new ForbiddenException(review);
+            throw new ForbiddenException("review");
         }
     }
 }

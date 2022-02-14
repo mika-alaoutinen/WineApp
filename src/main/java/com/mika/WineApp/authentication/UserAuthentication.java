@@ -1,7 +1,6 @@
 package com.mika.WineApp.authentication;
 
 import com.mika.WineApp.entities.EntityModel;
-import com.mika.WineApp.errors.NotFoundException;
 
 public interface UserAuthentication {
 
@@ -18,7 +17,6 @@ public interface UserAuthentication {
      *
      * @param model review or wine
      * @return review or wine
-     * @throws NotFoundException e
      */
-    EntityModel setUser(EntityModel model) throws NotFoundException;
+    EntityModel setUser(EntityModel model);
 }

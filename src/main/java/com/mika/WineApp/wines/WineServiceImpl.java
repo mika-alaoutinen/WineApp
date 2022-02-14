@@ -123,7 +123,7 @@ class WineServiceImpl implements WineService {
 
     private void validateEditPermission(Wine wine) {
         if (!userAuth.isUserAllowedToEdit(wine)) {
-            throw new ForbiddenException(wine);
+            throw new ForbiddenException("wine");
         }
     }
 

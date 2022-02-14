@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.errors.NotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
@@ -15,9 +14,8 @@ public interface ReviewService extends CrudService<Review> {
      *
      * @param wineId to find
      * @return reviews for wine with given id
-     * @throws NotFoundException e
      */
-    List<Review> findByWineId(Long wineId) throws NotFoundException;
+    List<Review> findByWineId(Long wineId);
 
     /**
      * Find all reviews for wines that match given name.
@@ -41,7 +39,7 @@ public interface ReviewService extends CrudService<Review> {
      *
      * @param id of review
      * @return boolean
-     * @throws NotFoundException e
+     * @throws UsernameNotFoundException e
      */
     boolean isAllowedToEdit(Long id) throws UsernameNotFoundException;
 
@@ -52,7 +50,6 @@ public interface ReviewService extends CrudService<Review> {
      * @param dateRange   to find
      * @param ratingRange to find
      * @return list of reviews matching given criteria
-     * @throws InvalidDateException e
      */
     List<Review> search(String author, List<String> dateRange, List<Double> ratingRange) throws InvalidDateException;
 

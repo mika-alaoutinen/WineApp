@@ -6,7 +6,6 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
-import com.mika.WineApp.errors.NotFoundException;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -118,12 +117,12 @@ class ReviewServiceTest {
     @Test
     void addReviewForNonExistingWine() {
         long wineId = 13L;
-        when(wineService.findById(anyLong())).thenThrow(new NotFoundException(new Wine(), wineId));
+        when(wineService.findById(anyLong())).thenReturn(Optional.empty());
 
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.add(13L, new Review()));
+        assertTrue(service
+                .add(13L, new Review())
+                .isEmpty());
 
-        assertEquals(e.getMessage(), "Could not find wine with id " + wineId);
         verify(wineService, times(1)).findById(wineId);
         verify(repository, never()).save(any(Review.class));
     }

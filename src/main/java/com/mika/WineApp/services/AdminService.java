@@ -2,7 +2,6 @@ package com.mika.WineApp.services;
 
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.errors.NotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +39,5 @@ public interface AdminService {
      * @param roles new set of roles for the user.
      * @return updated user or empty.
      */
-    Optional<User> updateRoles(Long id, Set<Role> roles) throws NotFoundException;
+    Optional<User> updateRoles(Long id, Set<Role> roles);
 }
