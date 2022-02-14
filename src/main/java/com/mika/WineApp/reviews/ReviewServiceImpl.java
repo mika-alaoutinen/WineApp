@@ -1,10 +1,10 @@
 package com.mika.WineApp.reviews;
 
+import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.services.ReviewService;
-import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository repository;
-    private final UserService userService;
+    private final UserAuthentication userAuth;
     private final WineService wineService;
 
     // --- Find reviews ---
@@ -47,7 +47,7 @@ class ReviewServiceImpl implements ReviewService {
     // --- Add, edit and delete ---
     @Override
     public Optional<Review> add(Long wineId, Review newReview) {
-        Review review = (Review) userService.setUser(newReview);
+        Review review = (Review) userAuth.setUser(newReview);
         return wineService
                 .findById(wineId)
                 .map(wine -> {
@@ -90,7 +90,7 @@ class ReviewServiceImpl implements ReviewService {
     @Override
     public boolean isAllowedToEdit(Long id) {
         return findById(id)
-                .map(userService::isUserAllowedToEdit)
+                .map(userAuth::isUserAllowedToEdit)
                 .orElse(false);
     }
 
@@ -129,7 +129,7 @@ class ReviewServiceImpl implements ReviewService {
     }
 
     private void validateEditPermission(Review review) {
-        if (!userService.isUserAllowedToEdit(review)) {
+        if (!userAuth.isUserAllowedToEdit(review)) {
             throw new ForbiddenException(review);
         }
     }

@@ -3,13 +3,15 @@ package com.mika.WineApp.infra.security;
 import com.mika.WineApp.entities.EntityModel;
 import com.mika.WineApp.entities.User;
 
+import java.util.Optional;
+
 public interface SecurityUtilities {
     /**
      * Retrieves the username from the SecurityContext.
      *
      * @return username as string
      */
-    String getUsernameFromSecurityContext();
+    Optional<String> getUsernameFromSecurityContext();
 
     /**
      * Check if a given user has admin role.

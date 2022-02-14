@@ -4,7 +4,7 @@ import com.mika.WineApp.entities.User;
 import com.mika.WineApp.infra.security.JwtProvider;
 import com.mika.WineApp.models.JwtToken;
 import com.mika.WineApp.models.UserCredentials;
-import com.mika.WineApp.services.AdminService;
+import com.mika.WineApp.users.UserWriter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,7 +36,7 @@ class AuthenticationServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Mock
-    private AdminService adminService;
+    private UserWriter writer;
 
     @InjectMocks
     private AuthenticationServiceImpl service;
@@ -69,13 +69,13 @@ class AuthenticationServiceTest {
 
     @Test
     void register() {
-        when(adminService.save(any(User.class))).thenReturn(new User(CREDENTIALS.username(), encodedPassword));
+        when(writer.save(any(User.class))).thenReturn(new User(CREDENTIALS.username(), encodedPassword));
         when(passwordEncoder.encode(CREDENTIALS.password())).thenReturn(encodedPassword);
 
         User registeredUser = service.register(CREDENTIALS);
 
         verify(passwordEncoder, times(1)).encode(CREDENTIALS.password());
-        verify(adminService, times(1)).save(any(User.class));
+        verify(writer, times(1)).save(any(User.class));
         assertEquals(encodedPassword, registeredUser.getPassword());
     }
 }

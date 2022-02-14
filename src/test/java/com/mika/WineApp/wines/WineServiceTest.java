@@ -1,11 +1,11 @@
 package com.mika.WineApp.wines;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
-import com.mika.WineApp.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,7 +26,7 @@ class WineServiceTest {
     private static final List<Wine> wines = TestData.initWines();
 
     @Mock
-    private UserService userService;
+    private UserAuthentication userAuth;
 
     @Mock
     private WineRepository repository;
@@ -69,12 +69,12 @@ class WineServiceTest {
                 .builder()
                 .name("name")
                 .build();
-        when(userService.setUser(any(Wine.class))).thenReturn(wine);
+        when(userAuth.setUser(any(Wine.class))).thenReturn(wine);
         when(repository.save(any(Wine.class))).thenReturn(wine);
 
         service.add(wine);
         verify(repository, times(1)).existsByName(anyString());
-        verify(userService, times(1)).setUser(any(Wine.class));
+        verify(userAuth, times(1)).setUser(any(Wine.class));
         verify(repository, times(1)).save(any(Wine.class));
     }
 
@@ -106,12 +106,12 @@ class WineServiceTest {
                 .build();
 
         when(repository.findById(anyLong())).thenReturn(Optional.of(wine));
-        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
+        when(userAuth.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
         when(repository.save(any(Wine.class))).thenReturn(wine);
 
         service.edit(1L, wine);
         verify(repository, times(1)).findById(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Wine.class));
         verify(repository, times(1)).save(any(Wine.class));
     }
 
@@ -133,16 +133,16 @@ class WineServiceTest {
 
         assertEquals("Tried to modify a wine that you do not own!", e.getMessage());
         verify(repository, times(1)).findById(anyLong());
-        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Wine.class));
         verify(repository, never()).save(any(Wine.class));
     }
 
     @Test
     void deleteWine() {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
-        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
+        when(userAuth.isUserAllowedToEdit(any(Wine.class))).thenReturn(true);
         service.delete(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Wine.class));
         verify(repository, times(1)).deleteById(1L);
     }
 
@@ -165,10 +165,10 @@ class WineServiceTest {
     @ValueSource(booleans = {true, false})
     void isAllowedToEditTrue(boolean isAllowed) {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Wine()));
-        when(userService.isUserAllowedToEdit(any(Wine.class))).thenReturn(isAllowed);
+        when(userAuth.isUserAllowedToEdit(any(Wine.class))).thenReturn(isAllowed);
         assertEquals(service.isAllowedToEdit(1L), isAllowed);
         verify(repository, times(1)).findById(anyLong());
-        verify(userService, times(1)).isUserAllowedToEdit(any(Wine.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Wine.class));
     }
 
     @Test

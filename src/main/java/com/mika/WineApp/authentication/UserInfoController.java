@@ -1,6 +1,6 @@
-package com.mika.WineApp.users;
+package com.mika.WineApp.authentication;
 
-import com.mika.WineApp.services.UserService;
+import com.mika.WineApp.services.UserInfoService;
 import com.mika.api.UserInfoApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-class UserController implements UserInfoApi {
-    private final UserService service;
+class UserInfoController implements UserInfoApi {
+    private final UserInfoService service;
 
     @Override
     public ResponseEntity<String> getUsername() {

@@ -1,12 +1,12 @@
 package com.mika.WineApp.reviews;
 
 import com.mika.WineApp.TestUtilities.TestData;
+import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
 import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.services.UserService;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,7 +37,7 @@ class ReviewServiceTest {
     private ReviewRepository repository;
 
     @Mock
-    private UserService userService;
+    private UserAuthentication userAuth;
 
     @Mock
     private WineService wineService;
@@ -105,13 +105,13 @@ class ReviewServiceTest {
 
     @Test
     void addReview() {
-        when(userService.setUser(any(Review.class))).thenReturn(new Review());
+        when(userAuth.setUser(any(Review.class))).thenReturn(new Review());
         when(wineService.findById(anyLong())).thenReturn(Optional.of(new Wine()));
         when(repository.save(any(Review.class))).thenReturn(new Review());
 
         service.add(1L, new Review());
         verify(wineService, times(1)).findById(1L);
-        verify(userService, times(1)).setUser(any(Review.class));
+        verify(userAuth, times(1)).setUser(any(Review.class));
         verify(repository, times(1)).save(any(Review.class));
     }
 
@@ -139,12 +139,12 @@ class ReviewServiceTest {
                 .build();
 
         when(repository.findById(anyLong())).thenReturn(Optional.of(review));
-        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
+        when(userAuth.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
         when(repository.save(any(Review.class))).thenReturn(review);
 
         service.edit(1L, new Review());
         verify(repository, times(1)).findById(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Review.class));
         verify(repository, times(1)).save(any(Review.class));
     }
 
@@ -168,17 +168,17 @@ class ReviewServiceTest {
 
         assertEquals("Tried to modify a review that you do not own!", e.getMessage());
         verify(repository, times(1)).findById(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Review.class));
         verify(repository, never()).save(any(Review.class));
     }
 
     @Test
     void deleteReview() {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
-        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
+        when(userAuth.isUserAllowedToEdit(any(Review.class))).thenReturn(true);
 
         service.delete(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Review.class));
         verify(repository, times(1)).deleteById(1L);
     }
 
@@ -202,11 +202,11 @@ class ReviewServiceTest {
     @ValueSource(booleans = {true, false})
     void isAllowedToEdit(boolean isAllowed) {
         when(repository.findById(anyLong())).thenReturn(Optional.of(new Review()));
-        when(userService.isUserAllowedToEdit(any(Review.class))).thenReturn(isAllowed);
+        when(userAuth.isUserAllowedToEdit(any(Review.class))).thenReturn(isAllowed);
 
         assertEquals(service.isAllowedToEdit(1L), isAllowed);
         verify(repository, times(1)).findById(1L);
-        verify(userService, times(1)).isUserAllowedToEdit(any(Review.class));
+        verify(userAuth, times(1)).isUserAllowedToEdit(any(Review.class));
     }
 
     @Test

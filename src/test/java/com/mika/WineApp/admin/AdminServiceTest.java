@@ -3,151 +3,78 @@ package com.mika.WineApp.admin;
 import com.mika.WineApp.TestUtilities.TestData;
 import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.errors.BadRequestException;
-import com.mika.WineApp.errors.NotFoundException;
-import com.mika.WineApp.users.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
+import com.mika.WineApp.users.UserReader;
+import com.mika.WineApp.users.UserWriter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class AdminServiceTest {
-    private final static List<User> users = TestData.initTestUsers();
-    private final static User user = users.get(0);
-    private final static Long userId = user.getId();
-    private final static Long nonExistentUserId = 123L;
-    private final static String username = user.getUsername();
 
     @Mock
-    private UserRepository repository;
+    private UserReader reader;
+
+    @Mock
+    private UserWriter writer;
 
     @InjectMocks
     private AdminServiceImpl service;
 
-    @BeforeEach
-    void setupMocks() {
-        Mockito
-                .lenient()
-                .when(repository.findById(userId))
-                .thenReturn(Optional.of(user));
-
-        Mockito
-                .lenient()
-                .when(repository.findById(nonExistentUserId))
-                .thenReturn(Optional.empty());
-
-        Mockito
-                .lenient()
-                .when(repository.findByUsername(username))
-                .thenReturn(Optional.of(user));
-
-        Mockito
-                .lenient()
-                .when(repository.save(user))
-                .thenReturn(user);
-    }
-
     @Test
     void findAll() {
-        when(repository.findAll()).thenReturn(users);
-        var foundUsers = service.findAll();
-        verify(repository, times(1)).findAll();
-        assertEquals(users, foundUsers);
+        when(reader.findAll()).thenReturn(TestData.initTestUsers());
+        assertEquals(2, service
+                .findAll()
+                .size());
+        verify(reader, times(1)).findAll();
     }
 
     @Test
     void findById() {
-        User foundUser = service.findById(userId);
-        verify(repository, times(1)).findById(userId);
-        assertEquals(foundUser, user);
+        when(reader.findById(anyLong())).thenReturn(Optional.of(new User()));
+        assertTrue(service
+                .findById(1L)
+                .isPresent());
+        verify(reader, times(1)).findById(1L);
     }
 
     @Test
-    void findByIdThrowsException() {
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.findById(nonExistentUserId));
-
-        verify(repository, times(1)).findById(nonExistentUserId);
-        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
+    void findByIdReturnEmpty() {
+        assertTrue(service
+                .findById(1L)
+                .isEmpty());
     }
 
     @Test
     void findByUsername() {
-        assertEquals(user, service.findByUserName(username));
-        verify(repository, times(1)).findByUsername(username);
+        when(reader.findByUsername(anyString())).thenReturn(Optional.of(new User()));
+        assertTrue(service
+                .findByUsername("test_user")
+                .isPresent());
+        verify(reader, times(1)).findByUsername("test_user");
     }
 
     @Test
-    void findByUsernameThrowsException() {
-        String nonExistentName = "nonexistent";
-
-        NotFoundException e = assertThrows(NotFoundException.class, () ->
-                service.findByUserName(nonExistentName));
-
-        verify(repository, times(1)).findByUsername(nonExistentName);
-        assertEquals("Could not find user with username " + nonExistentName, e.getMessage());
+    void findByUsernameReturnsEmpty() {
+        assertTrue(service
+                .findByUsername("not a user")
+                .isEmpty());
+        verify(reader, times(1)).findByUsername("not a user");
     }
 
     @Test
-    void save() {
-        when(repository.existsByUsername(username)).thenReturn(false);
-        User savedUser = service.save(user);
-        verify(repository, times(1)).existsByUsername(username);
-        verify(repository, times(1)).save(user);
-        assertEquals(savedUser, user);
-    }
-
-    @Test
-    void throwsExceptionIfUserNameIsTaken() {
-        when(repository.existsByUsername(username)).thenReturn(true);
-        BadRequestException e = assertThrows(BadRequestException.class, () -> service.save(user));
-        assertEquals("Username " + username + " already exists!", e.getMessage());
-        verify(repository, times(1)).existsByUsername(username);
-        verify(repository, times(0)).save(any(User.class));
-    }
-
-    @Test
-    void updateRoles() {
-        when(repository.findById(userId)).thenReturn(Optional.of(user));
-        assertUserRoles(user, Role.ROLE_USER);
-
-        User admin = service.updateRoles(userId, Set.of(Role.ROLE_ADMIN));
-
-        verify(repository, times(1)).findById(userId);
-        verify(repository, times(1)).save(user);
-        assertUserRoles(admin, Role.ROLE_ADMIN);
-        assertEquals(user.getId(), admin.getId());
-    }
-
-    @Test
-    void updateRolesThrowsException() {
-        Exception e = assertThrows(NotFoundException.class, () ->
-                service.updateRoles(nonExistentUserId, Set.of(Role.ROLE_ADMIN)));
-
-        verify(repository, times(1)).findById(nonExistentUserId);
-        verify(repository, times(0)).save(any(User.class));
-        assertEquals("Could not find user with id " + nonExistentUserId, e.getMessage());
-    }
-
-    private void assertUserRoles(User user, Role role) {
-        assertTrue(user
-                .getRoles()
-                .contains(role));
-
-        assertEquals(1, user
-                .getRoles()
-                .size());
+    void updateRolesCallsWriter() {
+        service.updateRoles(1L, Set.of(Role.ROLE_ADMIN));
+        verify(writer, times(1)).updateRoles(1L, Set.of(Role.ROLE_ADMIN));
     }
 }

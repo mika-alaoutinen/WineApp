@@ -7,12 +7,16 @@ import com.mika.WineApp.models.UserPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 class SecurityUtilitiesImpl implements SecurityUtilities {
 
     @Override
-    public String getUsernameFromSecurityContext() {
-        return getUserPrincipal().getUsername();
+    public Optional<String> getUsernameFromSecurityContext() {
+        return Optional
+                .ofNullable(getUserPrincipal())
+                .map(UserPrincipal::getUsername);
     }
 
     @Override

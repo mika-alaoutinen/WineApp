@@ -1,20 +1,16 @@
 package com.mika.WineApp.users;
 
-import com.mika.WineApp.TestUtilities.TestData;
-import com.mika.WineApp.entities.EntityModel;
+import com.mika.WineApp.entities.Role;
 import com.mika.WineApp.entities.User;
-import com.mika.WineApp.entities.Wine;
-import com.mika.WineApp.infra.security.SecurityUtilities;
-import com.mika.WineApp.services.UserRepositoryReader;
-import org.junit.jupiter.api.BeforeEach;
+import com.mika.WineApp.errors.BadRequestException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,80 +18,63 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-    private final static List<User> users = TestData.initTestUsers();
-    private final static User user = users.get(0);
-    private final static String username = user.getUsername();
-    private final static Wine wine = TestData
-            .initWines()
-            .get(0);
 
     @Mock
-    private UserRepositoryReader userReader;
-
-    @Mock
-    private SecurityUtilities securityUtils;
+    private UserRepository repository;
 
     @InjectMocks
-    UserServiceImpl service;
+    UserService service;
 
-    @BeforeEach
-    void setupMocks() {
-        Mockito
-                .lenient()
-                .when(securityUtils.getUsernameFromSecurityContext())
-                .thenReturn(user.getUsername());
-
-        Mockito
-                .lenient()
-                .when(userReader.findByUserName(username))
-                .thenReturn(user);
+    @Test
+    void shouldFindAll() {
+        service.findAll();
+        verify(repository, atLeastOnce()).findAll();
     }
 
     @Test
-    void getUsername() {
-        String username = service.getUsername();
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        assertEquals(user.getUsername(), username);
+    void shouldFindById() {
+        service.findById(1L);
+        verify(repository, atLeastOnce()).findById(1L);
     }
 
     @Test
-    void isLoggedIn() {
-        assertTrue(service.isLoggedIn());
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+    void shouldFindByUserName() {
+        service.findByUsername("username");
+        verify(repository, atLeastOnce()).findByUsername("username");
     }
 
     @Test
-    void notLoggedIn() {
-        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(null);
-        assertFalse(service.isLoggedIn());
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+    void shouldSaveUserIfNotExists() {
+        when(repository.existsByUsername(anyString())).thenReturn(false);
+        service.save(new User("username", "password"));
+        verify(repository, atLeastOnce()).save(any(User.class));
     }
 
     @Test
-    void isUserAllowedToEdit() {
-        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(user.getUsername());
-        when(securityUtils.isUserAllowedToEdit(wine, user)).thenReturn(true);
-
-        assertTrue(service.isUserAllowedToEdit(wine));
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        verify(userReader, times(1)).findByUserName(username);
-        verify(securityUtils, times(1)).isUserAllowedToEdit(wine, user);
+    void shouldThrowExceptionWhenUserAlreadyExists() {
+        when(repository.existsByUsername(anyString())).thenReturn(true);
+        assertThrows(BadRequestException.class, () -> service.save(new User("username", "password")));
+        verify(repository, never()).save(any(User.class));
     }
 
     @Test
-    void userIsNotAllowedToEditWhenNotLoggedIn() {
-        when(securityUtils.getUsernameFromSecurityContext()).thenReturn(null);
-
-        assertFalse(service.isUserAllowedToEdit(wine));
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
-        verify(userReader, times(0)).findByUserName(username);
-        verify(securityUtils, times(0)).isUserAllowedToEdit(any(EntityModel.class), any(User.class));
+    void shouldUpdateRolesIfUserExists() {
+        when(repository.findById(anyLong())).thenReturn(Optional.of(new User()));
+        when(repository.save(any(User.class))).thenReturn(new User());
+        assertFalse(service
+                .updateRoles(1L, Set.of(Role.ROLE_ADMIN))
+                .isEmpty());
+        verify(repository, atLeastOnce()).findById(1L);
+        verify(repository, atLeastOnce()).save(any(User.class));
     }
 
     @Test
-    void setUser() {
-        EntityModel wineWithUser = service.setUser(wine);
-        assertEquals(user, wineWithUser.getUser());
-        verify(securityUtils, times(1)).getUsernameFromSecurityContext();
+    void shouldNotUpdateUserWhenWrongUserId() {
+        when(repository.findById(anyLong())).thenReturn(Optional.empty());
+        assertTrue(service
+                .updateRoles(1L, Set.of())
+                .isEmpty());
+        verify(repository, atLeastOnce()).findById(1L);
+        verify(repository, never()).save(any((User.class)));
     }
 }
