@@ -57,7 +57,7 @@ class JwtProviderImpl implements JwtProvider {
             log.error("Invalid JWT token: " + e.getMessage());
         } catch (ExpiredJwtException e) {
             log.error("Expired JWT token: " + e.getMessage());
-            throw new JwtExpiredException(authToken);
+            throw new JwtExpiredException();
         } catch (UnsupportedJwtException e) {
             log.error("Unsupported JWT token: " + e.getMessage());
         } catch (IllegalArgumentException e) {
