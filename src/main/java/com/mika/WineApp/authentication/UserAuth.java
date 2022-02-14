@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-class AuthenticationUtils implements UserAuthentication {
+class UserAuth implements UserAuthentication {
     private final UserReader reader;
     private final SecurityUtilities security;
 
