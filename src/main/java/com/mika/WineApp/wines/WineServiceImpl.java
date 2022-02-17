@@ -123,7 +123,7 @@ class WineServiceImpl implements WineService {
                 .priceRange(priceRange)
                 .build();
 
-        return repository.findAll(new WineSpecification(searchParams));
+        return repository.findAll(WineSpecification.of(searchParams));
     }
 
     private void validateEditPermission(Wine wine) {
