@@ -2,9 +2,10 @@ package com.mika.WineApp.wines;
 
 import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Wine;
-import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
+import com.mika.WineApp.search.WineSearchParams;
+import com.mika.WineApp.search.WineSpecification;
 import com.mika.WineApp.services.WineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -113,25 +114,21 @@ class WineServiceImpl implements WineService {
             return Collections.emptyList();
         }
 
-        WineType wineType = null;
-        if (type != null) {
-            wineType = parseWineType(type);
-        }
+        WineSearchParams searchParams = WineSearchParams
+                .builder()
+                .name(name)
+                .type(type)
+                .countries(countries)
+                .volumes(volumes)
+                .priceRange(priceRange)
+                .build();
 
-        return repository.findAll(new WineSpecification(name, wineType, countries, volumes, priceRange));
+        return repository.findAll(new WineSpecification(searchParams));
     }
 
     private void validateEditPermission(Wine wine) {
         if (!userAuth.isUserAllowedToEdit(wine)) {
             throw new ForbiddenException("wine");
-        }
-    }
-
-    private WineType parseWineType(String type) {
-        try {
-            return WineType.valueOf(type.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new BadRequestException(WineType.OTHER, type);
         }
     }
 }
