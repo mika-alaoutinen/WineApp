@@ -8,6 +8,7 @@ import org.springframework.data.util.Pair;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
 @Builder
@@ -17,6 +18,18 @@ public class WineSearchParams {
     private final List<String> countries;
     private final List<Double> volumes;
     private final List<Double> priceRange;
+
+    public boolean isEmpty() {
+        boolean optionalsAreEmpty = Stream
+                .of(getName(), getType(), getPriceRange())
+                .allMatch(Optional::isEmpty);
+
+        boolean listsAreEmpty = Stream
+                .of(getCountries(), getVolumes())
+                .allMatch(List::isEmpty);
+
+        return optionalsAreEmpty && listsAreEmpty;
+    }
 
     public Optional<String> getName() {
         return Optional

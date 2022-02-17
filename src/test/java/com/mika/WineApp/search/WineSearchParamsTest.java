@@ -6,13 +6,37 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WineSearchParamsTest {
+
+    @Test
+    void isEmptyWhenAllFieldsAreEmpty() {
+        var emptyParams = WineSearchParams
+                .builder()
+                .name("")
+                .type("")
+                .countries(Collections.emptyList())
+                .volumes(Collections.emptyList())
+                .priceRange(Collections.emptyList())
+                .build();
+
+        assertTrue(emptyParams.isEmpty());
+    }
+
+    @Test
+    void notEmptyWhenAtLeastOneFieldExists() {
+        var searchParams = WineSearchParams
+                .builder()
+                .name("name")
+                .build();
+
+        assertFalse(searchParams.isEmpty());
+    }
 
     @Test
     void shouldWrapNameInOptional() {
