@@ -230,13 +230,4 @@ class WineServiceTest {
         var result = service.search(null, null, null, null, null);
         assertTrue(result.isEmpty());
     }
-
-    @Test
-    void searchWithInvalidWineTypeThrowsException() {
-        String wineType = "whit";
-        BadRequestException e = assertThrows(BadRequestException.class, () ->
-                service.search(null, wineType, null, null, null));
-
-        assertEquals("Requested wine type " + wineType + " does not exist.", e.getMessage());
-    }
 }

@@ -5,26 +5,29 @@ import com.mika.WineApp.utils.Predicates;
 import lombok.AllArgsConstructor;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
 class WineSpecificationImpl implements WineSpecification {
-    private static final List<Predicate> PREDICATES = new ArrayList<>();
-
     private final WineSearchParams searchParams;
 
     @Override
     public Predicate toPredicate(Root<Wine> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        namePredicate(root, builder);
-        typePredicate(root, builder);
-        priceRangePredicate(root, builder);
-        countryPredicate(root, builder);
-        volumePredicate(root, builder);
+        var name = namePredicate(root, builder);
+        var type = typePredicate(root, builder);
+        var priceRange = priceRangePredicate(root, builder);
+        var country = countryPredicate(root, builder);
+        var volume = volumePredicate(root, builder);
+
+        var predicates = Stream
+                .of(name, type, priceRange, country, volume)
+                .flatMap(Optional::stream)
+                .toList();
 
         query.orderBy(createQueryOrder(root, builder));
-        return Predicates.createConjunction(builder, PREDICATES);
+        return Predicates.createConjunction(builder, predicates);
     }
 
     private Optional<Predicate> namePredicate(Root<Wine> root, CriteriaBuilder builder) {
