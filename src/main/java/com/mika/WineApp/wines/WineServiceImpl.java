@@ -110,11 +110,7 @@ class WineServiceImpl implements WineService {
             List<Double> volumes,
             List<Double> priceRange) {
 
-        if (name == null && type == null && countries == null && volumes == null && priceRange == null) {
-            return Collections.emptyList();
-        }
-
-        WineSearchParams searchParams = WineSearchParams
+        var searchParams = WineSearchParams
                 .builder()
                 .name(name)
                 .type(type)
@@ -123,7 +119,9 @@ class WineServiceImpl implements WineService {
                 .priceRange(priceRange)
                 .build();
 
-        return repository.findAll(WineSpecification.of(searchParams));
+        return searchParams.isEmpty()
+               ? Collections.emptyList()
+               : repository.findAll(WineSpecification.of(searchParams));
     }
 
     private void validateEditPermission(Wine wine) {

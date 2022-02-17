@@ -226,7 +226,7 @@ class WineServiceTest {
     }
 
     @Test
-    void searchWithNullParameters() {
+    void emptySearch() {
         var result = service.search(null, null, null, null, null);
         assertTrue(result.isEmpty());
     }
