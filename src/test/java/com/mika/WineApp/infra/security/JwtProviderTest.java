@@ -15,6 +15,7 @@ import org.springframework.security.authentication.TestingAuthenticationToken;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,7 +46,7 @@ class JwtProviderTest {
 
     @Test
     void shouldValidateToken() {
-        String validToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0X3VzZXIiLCJpYXQiOjE2NDQ4NTk4OTMsImV4cCI6MTY0NDg3Nzg5M30.gDg6qbka9_AoVJfcFBh4QJV8DirvKSvR5wJNUaZlHLk";
+        String validToken = createToken(tomorrow());
         assertTrue(JWT_PROVIDER.validateJwtToken(validToken));
     }
 
@@ -71,5 +72,13 @@ class JwtProviderTest {
                 .setExpiration(expiration)
                 .signWith(SignatureAlgorithm.HS256, "secret")
                 .compact();
+    }
+
+    private static Date tomorrow() {
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, 1);
+        return c.getTime();
     }
 }
