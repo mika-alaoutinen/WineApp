@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.springframework.data.util.Pair;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -19,7 +19,9 @@ public class WineSearchParams {
     private final List<Double> priceRange;
 
     public Optional<String> getName() {
-        return Optional.ofNullable(name);
+        return Optional
+                .ofNullable(name)
+                .filter(WineSearchParams::notBlank);
     }
 
     public Optional<WineType> getType() {
@@ -27,22 +29,25 @@ public class WineSearchParams {
     }
 
     public List<String> getCountries() {
-        return countries
-                .stream()
-                .filter(country -> !country.isBlank())
-                .toList();
+        return countries == null
+               ? Collections.emptyList()
+               : countries
+                       .stream()
+                       .filter(WineSearchParams::notBlank)
+                       .toList();
     }
 
     public List<Double> getVolumes() {
-        return volumes
-                .stream()
-                .filter(Objects::nonNull)
-                .toList();
+        return volumes == null ? Collections.emptyList() : volumes;
     }
 
     public Optional<Pair<Double, Double>> getPriceRange() {
-        return priceRange.size() == 2
+        return priceRange != null && priceRange.size() == 2
                ? Optional.of(Pair.of(priceRange.get(0), priceRange.get(1)))
                : Optional.empty();
+    }
+
+    private static boolean notBlank(String s) {
+        return !s.isBlank();
     }
 }
