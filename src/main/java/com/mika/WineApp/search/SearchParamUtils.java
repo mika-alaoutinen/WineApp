@@ -8,7 +8,7 @@ import java.util.Optional;
 interface SearchParamUtils {
 
     static boolean notBlank(String s) {
-        return !s.isBlank();
+        return s != null && !s.isBlank();
     }
 
     static <T> Optional<Pair<T, T>> createPair(List<T> list) {
