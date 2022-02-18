@@ -3,50 +3,49 @@ package com.mika.WineApp.search;
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.utils.Predicates;
 import lombok.AllArgsConstructor;
-import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
-public class ReviewSpecificationImpl implements Specification<Review> {
+public class ReviewSpecificationImpl implements ReviewSpecification {
     private final ReviewSearchParams searchParams;
-
-    private final List<Predicate> predicates = new ArrayList<>();
-    private final String author = "";
-    private final List<LocalDate> dateRange = List.of();
-    private final List<Double> ratingRange = List.of();
 
     @Override
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        authorPredicate(root, builder);
-        datePredicate(root, builder);
-        ratingPredicate(root, builder);
+        var author = authorPredicate(root, builder);
+        var dates = datePredicate(root, builder);
+        var ratings = ratingPredicate(root, builder);
+
+        var predicates = Stream
+                .of(author, dates, ratings)
+                .flatMap(Optional::stream)
+                .toList();
 
         query.orderBy(createQueryOrder(root, builder));
         return Predicates.createConjunction(builder, predicates);
     }
 
-    private void authorPredicate(Root<Review> root, CriteriaBuilder builder) {
+    private Optional<Predicate> authorPredicate(Root<Review> root, CriteriaBuilder builder) {
         var rootAuthor = builder.lower(root.get("author"));
-        Predicate predicate = builder.like(rootAuthor, Predicates.formatString(author));
-        predicates.add(predicate);
+        return searchParams
+                .getAuthor()
+                .map(Predicates::formatString)
+                .map(author -> builder.like(rootAuthor, author));
     }
 
-    private void datePredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (dateRange != null && dateRange.size() == 2) {
-            Predicate predicate = builder.between(root.get("date"), dateRange.get(0), dateRange.get(1));
-            predicates.add(predicate);
-        }
+    private Optional<Predicate> datePredicate(Root<Review> root, CriteriaBuilder builder) {
+        return searchParams
+                .getDateRange()
+                .map(dates -> builder.between(root.get("date"), dates.getFirst(), dates.getSecond()));
     }
 
-    private void ratingPredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (ratingRange != null && ratingRange.size() == 2) {
-            Predicate predicate = builder.between(root.get("rating"), ratingRange.get(0), ratingRange.get(1));
-            predicates.add(predicate);
-        }
+    private Optional<Predicate> ratingPredicate(Root<Review> root, CriteriaBuilder builder) {
+        return searchParams
+                .getRatingRange()
+                .map(ratings -> builder.between(root.get("rating"), ratings.getFirst(), ratings.getSecond()));
     }
 
     private List<Order> createQueryOrder(Root<Review> root, CriteriaBuilder builder) {

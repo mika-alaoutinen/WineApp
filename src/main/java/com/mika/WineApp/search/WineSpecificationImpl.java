@@ -32,7 +32,6 @@ class WineSpecificationImpl implements WineSpecification {
 
     private Optional<Predicate> namePredicate(Root<Wine> root, CriteriaBuilder builder) {
         var rootName = builder.lower(root.get("name"));
-
         return searchParams
                 .getName()
                 .map(Predicates::formatString)
