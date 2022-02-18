@@ -34,7 +34,7 @@ public class WineSearchParams {
     public Optional<String> getName() {
         return Optional
                 .ofNullable(name)
-                .filter(WineSearchParams::notBlank);
+                .filter(SearchParamUtils::notBlank);
     }
 
     public Optional<WineType> getType() {
@@ -46,7 +46,7 @@ public class WineSearchParams {
                ? Collections.emptyList()
                : countries
                        .stream()
-                       .filter(WineSearchParams::notBlank)
+                       .filter(SearchParamUtils::notBlank)
                        .toList();
     }
 
@@ -55,12 +55,6 @@ public class WineSearchParams {
     }
 
     public Optional<Pair<Double, Double>> getPriceRange() {
-        return priceRange != null && priceRange.size() == 2
-               ? Optional.of(Pair.of(priceRange.get(0), priceRange.get(1)))
-               : Optional.empty();
-    }
-
-    private static boolean notBlank(String s) {
-        return !s.isBlank();
+        return SearchParamUtils.createPair(priceRange);
     }
 }
