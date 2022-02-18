@@ -6,6 +6,7 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
+import com.mika.WineApp.search.ReviewSpecificationImpl;
 import com.mika.WineApp.services.WineService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -218,13 +219,13 @@ class ReviewServiceTest {
     void validDateRangeIsParsed() {
         List<String> monthRange = List.of("2020-01", "2020-02");
         service.search(author, monthRange, ratingRange);
-        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecificationImpl.class));
     }
 
     @Test
     void dateRangeIsNull() {
         service.search(author, null, ratingRange);
-        verify(repository, times(1)).findAll(any(ReviewSpecification.class));
+        verify(repository, times(1)).findAll(any(ReviewSpecificationImpl.class));
     }
 
     @Test
@@ -246,6 +247,6 @@ class ReviewServiceTest {
                 service.search(author, monthRange, ratingRange));
 
         assertEquals(expectedErrorMessage, e.getMessage());
-        verify(repository, never()).findAll(any(ReviewSpecification.class));
+        verify(repository, never()).findAll(any(ReviewSpecificationImpl.class));
     }
 }

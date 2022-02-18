@@ -1,8 +1,8 @@
-package com.mika.WineApp.reviews;
+package com.mika.WineApp.search;
 
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.utils.Predicates;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
@@ -10,12 +10,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
-class ReviewSpecification implements Specification<Review> {
+@AllArgsConstructor
+public class ReviewSpecificationImpl implements Specification<Review> {
+    private final ReviewSearchParams searchParams;
+
     private final List<Predicate> predicates = new ArrayList<>();
-    private final String author;
-    private final List<LocalDate> dateRange;
-    private final List<Double> ratingRange;
+    private final String author = "";
+    private final List<LocalDate> dateRange = List.of();
+    private final List<Double> ratingRange = List.of();
 
     @Override
     public Predicate toPredicate(Root<Review> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
@@ -28,11 +30,9 @@ class ReviewSpecification implements Specification<Review> {
     }
 
     private void authorPredicate(Root<Review> root, CriteriaBuilder builder) {
-        if (author != null && !author.isBlank()) {
-            Expression<String> rootAuthor = builder.lower(root.get("author"));
-            Predicate predicate = builder.like(rootAuthor, Predicates.formatString(author));
-            predicates.add(predicate);
-        }
+        var rootAuthor = builder.lower(root.get("author"));
+        Predicate predicate = builder.like(rootAuthor, Predicates.formatString(author));
+        predicates.add(predicate);
     }
 
     private void datePredicate(Root<Review> root, CriteriaBuilder builder) {
