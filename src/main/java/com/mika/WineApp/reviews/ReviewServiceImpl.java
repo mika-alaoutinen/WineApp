@@ -4,6 +4,8 @@ import com.mika.WineApp.authentication.UserAuthentication;
 import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.errors.ForbiddenException;
 import com.mika.WineApp.errors.InvalidDateException;
+import com.mika.WineApp.search.ReviewSearchParams;
+import com.mika.WineApp.search.ReviewSpecification;
 import com.mika.WineApp.services.ReviewService;
 import com.mika.WineApp.services.WineService;
 import com.mika.WineApp.utils.DateUtils;
@@ -11,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -98,12 +99,16 @@ class ReviewServiceImpl implements ReviewService {
     public List<Review> search(String author, List<String> dateRange, List<Double> ratingRange)
             throws InvalidDateException {
 
-        if (author == null && dateRange == null && ratingRange == null) {
-            return Collections.emptyList();
-        }
+        var searchParams = ReviewSearchParams
+                .builder()
+                .author(author)
+                .dateRange(DateUtils.parseMonthRange(dateRange))
+                .ratingRange(ratingRange)
+                .build();
 
-        List<LocalDate> dates = DateUtils.parseMonthRange(dateRange);
-        return repository.findAll(new ReviewSpecification(author, dates, ratingRange));
+        return searchParams.isEmpty()
+               ? Collections.emptyList()
+               : repository.findAll(ReviewSpecification.of(searchParams));
     }
 
     // --- Quick searches ---

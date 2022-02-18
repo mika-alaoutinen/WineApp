@@ -6,6 +6,7 @@ import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import com.mika.WineApp.errors.BadRequestException;
 import com.mika.WineApp.errors.ForbiddenException;
+import com.mika.WineApp.search.WineSpecification;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -225,17 +226,8 @@ class WineServiceTest {
     }
 
     @Test
-    void searchWithNullParameters() {
+    void emptySearch() {
         var result = service.search(null, null, null, null, null);
         assertTrue(result.isEmpty());
-    }
-
-    @Test
-    void searchWithInvalidWineTypeThrowsException() {
-        String wineType = "whit";
-        BadRequestException e = assertThrows(BadRequestException.class, () ->
-                service.search(null, wineType, null, null, null));
-
-        assertEquals("Requested wine type " + wineType + " does not exist.", e.getMessage());
     }
 }
