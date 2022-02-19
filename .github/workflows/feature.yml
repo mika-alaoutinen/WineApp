@@ -1,7 +1,7 @@
-# Workflow for development branches.
+# Workflow for feature branches.
 # Compiles the code and runs tests on push.
 
-name: Development branch
+name: Feature branch
 
 on:
   push:
