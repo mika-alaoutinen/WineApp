@@ -23,7 +23,7 @@ import java.util.Objects;
 public class Wine implements EntityModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

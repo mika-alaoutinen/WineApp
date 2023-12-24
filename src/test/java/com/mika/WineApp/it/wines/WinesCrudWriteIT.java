@@ -50,7 +50,7 @@ class WinesCrudWriteIT {
                                 .content(MAPPER.writeValueAsString(newWine))
                                 .with(user(USER)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(9))
+                .andExpect(jsonPath("$.id").value(5))
                 .andExpect(jsonPath("$.name").value("New Wine"));
     }
 
