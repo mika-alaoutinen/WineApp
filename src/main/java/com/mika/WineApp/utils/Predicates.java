@@ -1,7 +1,8 @@
 package com.mika.WineApp.utils;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Predicate;
+
 import java.util.List;
 
 public interface Predicates {
