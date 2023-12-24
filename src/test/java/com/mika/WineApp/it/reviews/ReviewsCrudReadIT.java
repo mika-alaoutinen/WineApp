@@ -30,14 +30,14 @@ class ReviewsCrudReadIT {
     @Test
     void getReviewById() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/7"))
+                .perform(get(ENDPOINT + "/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.author").value("Mika"))
                 .andExpect(jsonPath("$.rating").value(3.0));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"7", "8"})
+    @ValueSource(strings = {"1", "2"})
     @WithUserDetails("test_user")
     void isReviewEditable(String reviewId) throws Exception {
         mvc
