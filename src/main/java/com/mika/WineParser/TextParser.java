@@ -4,11 +4,8 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -16,10 +13,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TextParser {
-
-    // Flag that controls if wine's urls are validated
-    @Value("${parser.validate-url}")
-    private boolean validateUrl;
 
     // Wine attributes:
     private String name;
@@ -71,7 +64,7 @@ public class TextParser {
 
     /**
      * The method for parsing text files. Receives the texts in
-     * a Scanner and parses it's contents line by line.
+     * a Scanner and parses its contents line by line.
      *
      * @param scanner  containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
@@ -122,8 +115,7 @@ public class TextParser {
 
                 // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                String parsedUrl = parseStringContent(line);
-                url = validateUrl ? validateUrl(parsedUrl) : parsedUrl;
+                url = parseStringContent(line);
 
                 // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -157,7 +149,7 @@ public class TextParser {
     }
 
     /**
-     * Parses line and returns it's content as a String.
+     * Parses line and returns its content as a String.
      *
      * @param line parsed line.
      * @return parsed content as a String.
@@ -206,39 +198,6 @@ public class TextParser {
             localDate = LocalDate.parse(date, formatter2);
         }
         return localDate;
-    }
-
-    /**
-     * Validates a given URL address.
-     *
-     * @param url as a String.
-     * @return URL as a String if URL is valid, else returns "null".
-     * @throws IOException exception.
-     */
-    private String validateUrl(String url) throws IOException {
-        if (url.isBlank()) {
-            return "";
-        } else if (!isUrlValid(url)) {
-            return "vanhentunut";
-        }
-        return url;
-    }
-
-    /**
-     * Checks if a website returns a 200 OK response.
-     *
-     * @param urlStr URL address as a String.
-     * @return true if response from site is 200, else return false.
-     * @throws IOException exception.
-     */
-    private boolean isUrlValid(String urlStr) throws IOException {
-        URL url = new URL(urlStr);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("GET");
-        connection.connect();
-
-        return connection.getResponseCode() == 200;
     }
 
     /**
