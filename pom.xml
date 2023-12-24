@@ -8,7 +8,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.3</version>
+    <version>3.2.1</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -28,11 +28,11 @@
   <properties>
     <java.version>17</java.version>
     <jjwt.version>0.9.1</jjwt.version>
-    <lombok.version>1.18.20</lombok.version>
+    <lombok.version>1.18.24</lombok.version>
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
-    <mapstruct.version>1.4.2.Final</mapstruct.version>
-    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-    <openapi-generator-version>5.2.1</openapi-generator-version>
+    <mapstruct.version>1.5.5.Final</mapstruct.version>
+    <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+    <openapi-generator-version>7.2.0</openapi-generator-version>
   </properties>
 
   <dependencies>
@@ -82,17 +82,11 @@
       <artifactId>jjwt</artifactId>
       <version>${jjwt.version}</version>
     </dependency>
-
-    <!-- These are needed because OpenAPI generator's Spring profile has them as dependencies -->
+    <!-- https://medium.com/@jiri.caga/java-lang-classnotfoundexception-javax-xml-bind-datatypeconverter-in-java-17-solved-499d0ea776d0 -->
     <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>1.6.4</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>3.0.0</version>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.1</version>
     </dependency>
 
     <!-- DTOs and POJOs -->
@@ -106,6 +100,14 @@
       <artifactId>lombok</artifactId>
       <optional>true</optional>
       <scope>provided</scope>
+    </dependency>
+
+    <!-- Misc -->
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-release-plugin</artifactId>
+      <version>${maven-release-plugin.version}</version>
+      <type>maven-plugin</type>
     </dependency>
   </dependencies>
 
@@ -150,7 +152,6 @@
         </configuration>
       </plugin>
 
-      <!-- OpenAPI code generation -->
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -161,12 +162,15 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <configurationFile>${project.basedir}/src/main/resources/generatorConfig.yaml</configurationFile>
+              <configurationFile>
+                ${project.basedir}/src/main/resources/generatorConfig.yaml
+              </configurationFile>
               <inputSpec>
                 https://raw.githubusercontent.com/mika-alaoutinen/maistissa-openapi/master/openapi.json
               </inputSpec>
               <generatorName>spring</generatorName>
               <library>spring-boot</library>
+              <generateSupportingFiles>false</generateSupportingFiles>
             </configuration>
           </execution>
         </executions>

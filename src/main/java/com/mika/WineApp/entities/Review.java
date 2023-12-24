@@ -1,10 +1,10 @@
 package com.mika.WineApp.entities;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Review implements EntityModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -35,7 +35,7 @@ public class Review implements EntityModel {
     @Min(value = 0)
     @Max(value = 5)
     @NotNull
-    @Column(precision = 3, scale = 2)
+    @Column
     private double rating;
 
     @NotNull

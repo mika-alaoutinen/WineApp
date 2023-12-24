@@ -52,7 +52,7 @@ class ReviewsCrudWriteIT {
 
     @Test
     void editReview() throws Exception {
-        long id = 7L;
+        long id = 1L;
 
         MvcResult result = mvc
                 .perform(get(ENDPOINT + "/{id}", id))

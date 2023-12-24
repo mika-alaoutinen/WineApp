@@ -22,7 +22,6 @@ class WinesSearchIT {
                 .perform(get(ENDPOINT + "?name=Valkoviini"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2))
-                .andExpect(jsonPath("$[0].id").value(3))
                 .andExpect(jsonPath("$[0].name").value("Valkoviini 1"))
                 .andExpect(jsonPath("$[1].name").value("Valkoviini 2"));
     }

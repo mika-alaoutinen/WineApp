@@ -11,12 +11,11 @@ dateLibrary: java8
 performBeanValidation: true
 
 # code generation settings
+documentationProvider: none
 implicitHeaders: true
 interfaceOnly: true
 modelNameSuffix: DTO
 openApiNullable: false
 skipDefaultInterface: true
+useSpringBoot3: true
 useTags: true
-
-# Needed to make MapStruct work with OpenAPI generator
-additionalModelTypeAnnotations: "@lombok.NoArgsConstructor @lombok.AllArgsConstructor"

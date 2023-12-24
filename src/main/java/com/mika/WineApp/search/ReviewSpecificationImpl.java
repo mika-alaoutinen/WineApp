@@ -4,7 +4,8 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.utils.Predicates;
 import lombok.AllArgsConstructor;
 
-import javax.persistence.criteria.*;
+import jakarta.persistence.criteria.*;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;

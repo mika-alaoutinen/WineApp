@@ -1,14 +1,14 @@
 package com.mika.WineApp.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -17,13 +17,13 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Wine implements EntityModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -39,11 +39,11 @@ public class Wine implements EntityModel {
     private String country;
 
     @PositiveOrZero
-    @Column(precision = 10, scale = 2)
+    @Column
     private double price;
 
     @Positive
-    @Column(precision = 10, scale = 2)
+    @Column
     private double volume;
 
     @ElementCollection

@@ -1,28 +1,27 @@
 package com.mika.WineApp.utils;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.Predicate;
+
+import java.util.Collection;
 import java.util.List;
 
 public interface Predicates {
 
     static Predicate createConjunction(CriteriaBuilder builder, List<Predicate> predicates) {
-        Predicate predicate = builder.conjunction();
-        predicate
-                .getExpressions()
-                .addAll(predicates);
-        return predicate;
+        return builder.and(toArray(predicates));
     }
 
     static Predicate createDisjunction(CriteriaBuilder builder, List<Predicate> predicates) {
-        Predicate predicate = builder.disjunction();
-        predicate
-                .getExpressions()
-                .addAll(predicates);
-        return predicate;
+        return builder.or(toArray(predicates));
     }
 
     static String formatString(String attribute) {
         return "%" + attribute.toLowerCase() + "%";
+    }
+
+    // https://stackoverflow.com/questions/74946324/spring-boot-3-jpa-specification-not-filtering-with-jakarta
+    private static Predicate[] toArray(Collection<Predicate> predicates) {
+        return predicates.toArray(new Predicate[0]);
     }
 }

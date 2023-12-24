@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @IntegrationTestRead
 class WinesInfoIT {
     private static final String ENDPOINT = "/wines";
-    
+
     @Autowired
     private MockMvc mvc;
 

@@ -7,7 +7,7 @@ services:
       POSTGRES_DATABASE: wine_app
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-    image: postgres:11.6
+    image: postgres
     ports:
       - "5432:5432"
     restart: unless-stopped
