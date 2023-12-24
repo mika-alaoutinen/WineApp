@@ -12,7 +12,7 @@ VALUES (1, 'ROLE_ADMIN'),
 -- Add wines
 INSERT INTO wine (country, name, price, type, url, volume, user_id)
 VALUES ('Espanja', 'Valkoviini 1', 8.75, 'WHITE', 'invalid', 0.75, 2),
-       ('Chile', 'Valkoviini 2', 7.50, 'WHITE', 'invalid', 0.75, 2),
+       ('Espanja', 'Valkoviini 2', 7.50, 'WHITE', 'invalid', 0.75, 2),
        ('Ranska', 'Punaviini 1', 29.95, 'RED', 'invalid', 3.0, 2),
        ('Italia', 'Punaviini 2', 30.95, 'RED', 'invalid', 3.0, 2);
 

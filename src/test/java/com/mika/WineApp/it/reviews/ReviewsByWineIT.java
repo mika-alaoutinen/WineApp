@@ -19,7 +19,7 @@ class ReviewsByWineIT {
     @Test
     void getReviewByWineId() throws Exception {
         mvc
-                .perform(get(ENDPOINT + "/id/3"))
+                .perform(get(ENDPOINT + "/id/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2))
                 .andExpect(jsonPath("$[0].author").value("Mika"));
