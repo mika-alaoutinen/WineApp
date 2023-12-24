@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TextParser {
+class TextParser {
 
     // Wine attributes:
     private String name;
@@ -36,7 +36,7 @@ public class TextParser {
     @Getter
     private final List<Review> reviews = new ArrayList<>();
 
-    public TextParser() {
+    TextParser() {
         initAttributes();
     }
 
@@ -69,7 +69,7 @@ public class TextParser {
      * @param scanner  containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
      */
-    public void parse(Scanner scanner, WineType wineType) throws IOException {
+    void parse(Scanner scanner, WineType wineType) throws IOException {
         String line = scanner.nextLine();
 
         // Parse each line:

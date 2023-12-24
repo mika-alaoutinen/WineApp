@@ -4,11 +4,11 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
@@ -16,19 +16,19 @@ import java.util.Scanner;
 /**
  * Driver class for TextParser. Gets Wines and Reviews as lists.
  */
+@Getter
+@Slf4j
 public class Parser {
 
-    @Getter
     private List<Wine> wines;
-
-    @Getter
     private List<Review> reviews;
 
     public Parser() {
         try {
             parse();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Failed to parse wine review text files.");
+            log.error(e.getMessage());
         }
     }
 
@@ -39,9 +39,9 @@ public class Parser {
      * @throws IOException ex
      */
     private void parse() throws IOException {
-        TextParser textParser = new TextParser();
+        var textParser = new TextParser();
 
-        var types = List.of(
+        var wineTypes = List.of(
                 WineType.SPARKLING,
                 WineType.OTHER,
                 WineType.RED,
@@ -57,17 +57,17 @@ public class Parser {
                 "valkoviinit.txt"
         );
 
-        System.out.println("\nAttempting to parse the following files:");
-        System.out.println(files + "\n");
+        log.info("Attempting to parse the following files:");
+        log.info(files + "\n");
 
         for (int i = 0; i < files.size(); i++) {
-            InputStream text = new DefaultResourceLoader()
+            var text = new DefaultResourceLoader()
                     .getResource("classpath:texts/" + files.get(i))
                     .getInputStream();
 
-            System.out.println("Parsing wines: " + types.get(i));
+            log.info("Parsing wines: " + wineTypes.get(i));
             var reader = new BufferedReader(new InputStreamReader(text));
-            textParser.parse(new Scanner(reader), types.get(i));
+            textParser.parse(new Scanner(reader), wineTypes.get(i));
         }
 
         // Parsed wines and reviews:
