@@ -83,18 +83,6 @@
       <version>${jjwt.version}</version>
     </dependency>
 
-    <!-- These are needed because OpenAPI generator's Spring profile has them as dependencies -->
-    <dependency>
-      <groupId>io.swagger</groupId>
-      <artifactId>swagger-annotations</artifactId>
-      <version>1.6.4</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>3.0.0</version>
-    </dependency>
-
     <!-- DTOs and POJOs -->
     <dependency>
       <groupId>org.mapstruct</groupId>
@@ -158,7 +146,6 @@
         </configuration>
       </plugin>
 
-      <!-- OpenAPI code generation -->
       <plugin>
         <groupId>org.openapitools</groupId>
         <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -169,13 +156,15 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <configurationFile>${project.basedir}/src/main/resources/generatorConfig.yaml
+              <configurationFile>
+                ${project.basedir}/src/main/resources/generatorConfig.yaml
               </configurationFile>
               <inputSpec>
                 https://raw.githubusercontent.com/mika-alaoutinen/maistissa-openapi/master/openapi.json
               </inputSpec>
               <generatorName>spring</generatorName>
               <library>spring-boot</library>
+              <generateSupportingFiles>false</generateSupportingFiles>
             </configuration>
           </execution>
         </executions>
