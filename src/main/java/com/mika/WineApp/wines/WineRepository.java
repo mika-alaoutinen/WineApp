@@ -1,25 +1,26 @@
 package com.mika.WineApp.wines;
 
 import com.mika.WineApp.entities.Wine;
+import jakarta.annotation.Nonnull;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-interface WineRepository extends PagingAndSortingRepository<Wine, Long>, JpaSpecificationExecutor<Wine> {
+interface WineRepository extends JpaRepository<Wine, Long>, JpaSpecificationExecutor<Wine> {
     boolean existsByName(String name);
 
     @Override
-    Optional<Wine> findById(Long id);
+    Optional<Wine> findById(@Nonnull Long id);
 
     List<Wine> findAllByOrderByNameAsc();
 
     @Override
-    Wine save(Wine wine);
+    Wine save(@Nonnull Wine wine);
 
     @Query(value = "SELECT DISTINCT country FROM wine ORDER BY country", nativeQuery = true)
     List<String> findAllCountries();
