@@ -12,34 +12,34 @@ VALUES (1, 'ROLE_ADMIN'),
 -- Add wines
 INSERT INTO wine (country, name, price, type, url, volume, user_id)
 VALUES ('Espanja', 'Valkoviini 1', 8.75, 'WHITE', 'invalid', 0.75, 2),
-       ('Espanja', 'Valkoviini 2', 8.75, 'WHITE', 'invalid', 0.75, 2),
+       ('Chile', 'Valkoviini 2', 7.50, 'WHITE', 'invalid', 0.75, 2),
        ('Ranska', 'Punaviini 1', 29.95, 'RED', 'invalid', 3.0, 2),
        ('Italia', 'Punaviini 2', 30.95, 'RED', 'invalid', 3.0, 2);
 
 INSERT INTO wine_descriptions (id, description)
-VALUES (3, 'puolikuiva'),
-       (3, 'sitruunainen'),
-       (3, 'yrttinen'),
-       (4, 'kuiva'),
-       (4, 'sitruunainen'),
-       (4, 'pirskahteleva'),
-       (5, 'tanniininen'),
-       (5, 'mokkainen'),
-       (5, 'täyteläinen'),
-       (5, 'tamminen');
+VALUES (1, 'puolikuiva'),
+       (1, 'sitruunainen'),
+       (1, 'yrttinen'),
+       (2, 'kuiva'),
+       (2, 'sitruunainen'),
+       (2, 'pirskahteleva'),
+       (3, 'tanniininen'),
+       (3, 'mokkainen'),
+       (3, 'täyteläinen'),
+       (4, 'tamminen');
 
 INSERT INTO wine_food_pairings (id, food_pairings)
-VALUES (3, 'kala'),
-       (3, 'kasvisruoka'),
-       (3, 'seurustelujuoma'),
-       (4, 'kana'),
-       (4, 'kasvisruoka'),
-       (4, 'juustot'),
-       (5, 'nauta'),
-       (5, 'pataruuat'),
-       (5, 'pasta');
+VALUES (1, 'kala'),
+       (1, 'kasvisruoka'),
+       (1, 'seurustelujuoma'),
+       (2, 'kana'),
+       (2, 'kasvisruoka'),
+       (2, 'juustot'),
+       (3, 'nauta'),
+       (3, 'pataruuat'),
+       (3, 'pasta');
 
 -- Add reviews
 INSERT INTO review (author, date, rating, review_text, user_id, wine_id)
-VALUES ('Mika', '2019-11-14', 3.0, 'Mikan uusi arvostelu', 2, 3),
-       ('Salla', '2019-11-15', 4.5, 'Sallan uusi arvostelu', 2, 3);
+VALUES ('Mika', '2019-11-14', 3.0, 'Mikan uusi arvostelu', 2, 1),
+       ('Salla', '2019-11-15', 4.5, 'Sallan uusi arvostelu', 2, 1);
