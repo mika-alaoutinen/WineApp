@@ -1,10 +1,9 @@
 package com.mika.WineApp.entities;
 
-import lombok.*;
-import org.hibernate.Hibernate;
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -36,7 +35,7 @@ public class Review implements EntityModel {
     @Min(value = 0)
     @Max(value = 5)
     @NotNull
-    @Column(precision = 3, scale = 2)
+    @Column
     private double rating;
 
     @NotNull
