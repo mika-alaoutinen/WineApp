@@ -6,9 +6,10 @@ import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 class TextParser {
@@ -75,26 +76,26 @@ class TextParser {
         while (scanner.hasNextLine()) {
             // Parse wine name:
             if (line.contains("VIINI:")) {
-                name = parseStringContent(line);
+                name = LineParser.stringContent(line);
 
                 // Parse review date:
             } else if (line.contains("Päivämäärä:")) {
-                date = parseDate(line);
+                date = LineParser.date(line);
 
                 // Parse wine's country:
             } else if (line.contains("Maa:")) {
-                country = parseStringContent(line);
+                country = LineParser.stringContent(line);
 
                 // Parse wine's price and quantity
             } else if (line.contains("Hinta:")) {
-                String[] content = removeIdentifierWord(line);
+                String[] content = LineParser.removeIdentifierWord(line);
                 price = parseDouble(content[0]);
                 String quantityStr = content[2].substring(1);
                 quantity = parseDouble(quantityStr);
 
                 // Parse wine's description. Note that description can contain multiple lines!
             } else if (line.contains("Kuvaus:")) {
-                description = parseKeywords(line);
+                description = LineParser.keywords(line);
 
                 // If next word is not "SopiiNautittavaksi:", keep parsing description:
                 while (!scanner.hasNext("SopiiNautittavaksi:")) {
@@ -102,16 +103,16 @@ class TextParser {
                     if (line.toLowerCase().contains("huom:")) {
                         break;
                     }
-                    description = Stream.concat(description.stream(), parseKeywords(line).stream()).toList();
+                    description = Stream.concat(description.stream(), LineParser.keywords(line).stream()).toList();
                 }
 
                 // Parse recommended food pairings for the wine:
             } else if (line.contains("SopiiNautittavaksi:")) {
-                foodPairings = parseKeywords(line);
+                foodPairings = LineParser.keywords(line);
 
                 // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                url = parseStringContent(line);
+                url = LineParser.stringContent(line);
 
                 // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
@@ -131,80 +132,15 @@ class TextParser {
 // Utility methods for parsing text:
 
     /**
-     * Removes the first word on a line, which identifies what information that line contains.
-     * For example 'Kuvaus: puolimakea, hapokas...'.
-     *
-     * @param line parsed line.
-     * @return parsed content as a String[].
-     */
-    private String[] removeIdentifierWord(String line) {
-        String[] words = line.strip().split(" ");
-        return Arrays.copyOfRange(words, 1, words.length);
-    }
-
-    /**
-     * Parses line and returns its content as a String.
-     *
-     * @param line parsed line.
-     * @return parsed content as a String.
-     */
-    private String parseStringContent(String line) {
-        String[] name = removeIdentifierWord(line);
-        return String.join(" ", name);
-    }
-
-    /**
-     * Parses a list of keywords. Keywords are scrubbed of extra white space and converted into lowercase.
-     * If a keyword contains a full stop, it is removed.
-     *
-     * @param line parsed line.
-     * @return keywords as List<String>.
-     */
-    private List<String> parseKeywords(String line) {
-        String[] keywords = parseStringContent(line).split(",");
-
-        return Arrays
-                .stream(keywords)
-                .map(String::strip)
-                .map(String::toLowerCase)
-                .map(word -> word.replace(".", ""))
-                .filter(word -> !word.isBlank() && word.length() > 2)
-                .toList();
-    }
-
-    /**
-     * Parses String into LocalDate.
-     *
-     * @param line with date information
-     * @return LocalDate
-     */
-    private LocalDate parseDate(String line) {
-        String[] words = line.split(" ");
-        String date = words[1];
-
-        var formatter1 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        var formatter2 = DateTimeFormatter.ofPattern("d.M.yyyy");
-        LocalDate localDate;
-
-        try {
-            localDate = LocalDate.parse(date, formatter1);
-        } catch (DateTimeParseException e) {
-            localDate = LocalDate.parse(date, formatter2);
-        }
-
-        return localDate;
-    }
-
-    /**
      * Parses line and sets content as review text for Mika or Salla.
      *
      * @param line parsed line.
      */
     private void parseReview(String line) {
         if (line.contains("ArvosteluMika:")) {
-            reviewTextMika = parseStringContent(line);
+            reviewTextMika = LineParser.stringContent(line);
         } else if (line.contains("ArvosteluSalla:")) {
-            reviewTextSalla = parseStringContent(line);
+            reviewTextSalla = LineParser.stringContent(line);
         } else {
             System.out.println("line: " + line);
         }
@@ -216,7 +152,7 @@ class TextParser {
      * @param line parsed line.
      */
     private void parseRating(String line) {
-        String[] words = removeIdentifierWord(line);
+        String[] words = LineParser.removeIdentifierWord(line);
 
         if (words.length < 2) {
             System.out.println("Error on line: " + line);
@@ -250,7 +186,7 @@ class TextParser {
      * @param s String.
      * @return price as double or -1 if price is not a valid number.
      */
-    private double parseDouble(String s) {
+    private static double parseDouble(String s) {
         try {
             return Double.parseDouble(s);
         } catch (NumberFormatException e) {
