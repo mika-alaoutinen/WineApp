@@ -116,7 +116,7 @@ class TextParser {
 
                 // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
-                parseReview(line);
+                parseReviewText(line);
 
                 // Parse review ratings from Mika or Salla:
             } else if (line.contains("Arvosana:")) {
@@ -131,14 +131,12 @@ class TextParser {
         }
     }
 
-// Utility methods for parsing text:
-
     /**
      * Parses line and sets content as review text for Mika or Salla.
      *
      * @param line parsed line.
      */
-    private void parseReview(String line) {
+    private void parseReviewText(String line) {
         if (line.contains("ArvosteluMika:")) {
             reviewTextMika = LineParser.stringContent(line);
         } else if (line.contains("ArvosteluSalla:")) {
