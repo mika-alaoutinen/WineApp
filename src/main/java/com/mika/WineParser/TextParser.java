@@ -89,9 +89,9 @@ class TextParser {
                 // Parse wine's price and quantity
             } else if (line.contains("Hinta:")) {
                 String[] content = LineParser.removeIdentifierWord(line);
-                price = parseDouble(content[0]);
+                price = NumberParser.doubleOrDefault(content[0]);
                 String quantityStr = content[2].substring(1);
-                quantity = parseDouble(quantityStr);
+                quantity = NumberParser.doubleOrDefault(quantityStr);
 
                 // Parse wine's description. Note that description can contain multiple lines!
             } else if (line.contains("Kuvaus:")) {
@@ -120,7 +120,9 @@ class TextParser {
 
                 // Parse review ratings from Mika or Salla:
             } else if (line.contains("Arvosana:")) {
-                parseRating(line);
+                var ratings = RatingParser.ratings(line);
+                ratingMika = ratings[0];
+                ratingSalla = ratings[1];
             }
 
             // Try to create new Wine and Review models and get the next line:
@@ -143,54 +145,6 @@ class TextParser {
             reviewTextSalla = LineParser.stringContent(line);
         } else {
             System.out.println("line: " + line);
-        }
-    }
-
-    /**
-     * Parses the rating on scale of 0-5 and assigns who gave the rating.
-     *
-     * @param line parsed line.
-     */
-    private void parseRating(String line) {
-        String[] words = LineParser.removeIdentifierWord(line);
-
-        if (words.length < 2) {
-            System.out.println("Error on line: " + line);
-        } else if (words.length == 2) { // Ratings from either Mika or Salla:
-            if (words[1].equals("M")) {
-                ratingMika = parseDouble(words[0]);
-            } else {
-                ratingSalla = parseDouble(words[0]);
-            }
-        } else if (words.length == 3) { // Ratings from both Mika and Salla, both gave the same rating:
-            ratingMika = parseDouble(words[0]);
-            ratingSalla = parseDouble(words[0]);
-        } else if (words.length == 4) { // Ratings from both Mika and Salla, different ratings:
-            if (words[1].equals("M")) {
-                ratingMika = parseDouble(words[0]);
-                ratingSalla = parseDouble(words[2]);
-            } else if (words[1].equals("S")) {
-                ratingMika = parseDouble(words[2]);
-                ratingSalla = parseDouble(words[0]);
-            } else {
-                System.out.println("line: " + line);
-            }
-        } else {
-            System.out.println("line: " + line);
-        }
-    }
-
-    /**
-     * Parses String and checks that it's a valid number.
-     *
-     * @param s String.
-     * @return price as double or -1 if price is not a valid number.
-     */
-    private static double parseDouble(String s) {
-        try {
-            return Double.parseDouble(s);
-        } catch (NumberFormatException e) {
-            return -1;
         }
     }
 
