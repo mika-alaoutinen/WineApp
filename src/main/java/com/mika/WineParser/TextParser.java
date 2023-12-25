@@ -4,22 +4,15 @@ import com.mika.WineApp.entities.Review;
 import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Value;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Stream;
 
-public class TextParser {
-
-    // Flag that controls if wine's urls are validated
-    @Value("${parser.validate-url}")
-    private boolean validateUrl;
+class TextParser {
 
     // Wine attributes:
     private String name;
@@ -43,7 +36,7 @@ public class TextParser {
     @Getter
     private final List<Review> reviews = new ArrayList<>();
 
-    public TextParser() {
+    TextParser() {
         initAttributes();
     }
 
@@ -71,67 +64,65 @@ public class TextParser {
 
     /**
      * The method for parsing text files. Receives the texts in
-     * a Scanner and parses it's contents line by line.
+     * a Scanner and parses its contents line by line.
      *
      * @param scanner  containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
      */
-    public void parse(Scanner scanner, WineType wineType) throws IOException {
+    void parse(Scanner scanner, WineType wineType) {
         String line = scanner.nextLine();
 
         // Parse each line:
         while (scanner.hasNextLine()) {
             // Parse wine name:
             if (line.contains("VIINI:")) {
-                name = parseStringContent(line);
+                name = LineParser.stringContent(line);
 
                 // Parse review date:
             } else if (line.contains("Päivämäärä:")) {
-                date = parseDate(line);
+                date = LineParser.date(line);
 
                 // Parse wine's country:
             } else if (line.contains("Maa:")) {
-                country = parseStringContent(line);
+                country = LineParser.stringContent(line);
 
                 // Parse wine's price and quantity
             } else if (line.contains("Hinta:")) {
-                String[] content = removeIdentifierWord(line);
-                price = parseDouble(content[0]);
+                String[] content = LineParser.removeIdentifierWord(line);
+                price = NumberParser.doubleOrDefault(content[0]);
                 String quantityStr = content[2].substring(1);
-                quantity = parseDouble(quantityStr);
+                quantity = NumberParser.doubleOrDefault(quantityStr);
 
                 // Parse wine's description. Note that description can contain multiple lines!
             } else if (line.contains("Kuvaus:")) {
-                description = parseKeywords(line);
+                description = LineParser.keywords(line);
 
                 // If next word is not "SopiiNautittavaksi:", keep parsing description:
                 while (!scanner.hasNext("SopiiNautittavaksi:")) {
                     line = scanner.nextLine();
-                    if (line
-                            .toLowerCase()
-                            .contains("huom:")) {
+                    if (line.toLowerCase().contains("huom:")) {
                         break;
                     }
-
-                    description.addAll(parseKeywords(line));
+                    description = Stream.concat(description.stream(), LineParser.keywords(line).stream()).toList();
                 }
 
                 // Parse recommended food pairings for the wine:
             } else if (line.contains("SopiiNautittavaksi:")) {
-                foodPairings = parseKeywords(line);
+                foodPairings = LineParser.keywords(line);
 
                 // Parse URL for wine. If URL is blank, set URL to "null":
             } else if (line.contains("url")) {
-                String parsedUrl = parseStringContent(line);
-                url = validateUrl ? validateUrl(parsedUrl) : parsedUrl;
+                url = LineParser.stringContent(line);
 
                 // Parse review texts from Mika or Salla:
             } else if (line.contains("Arvostelu")) {
-                parseReview(line);
+                parseReviewText(line);
 
                 // Parse review ratings from Mika or Salla:
             } else if (line.contains("Arvosana:")) {
-                parseRating(line);
+                var ratings = RatingParser.ratings(line);
+                ratingMika = ratings[0];
+                ratingSalla = ratings[1];
             }
 
             // Try to create new Wine and Review models and get the next line:
@@ -140,172 +131,19 @@ public class TextParser {
         }
     }
 
-// Utility methods for parsing text:
-
-    /**
-     * Removes the first word on a line, which identifies what information that line contains.
-     * For example 'Kuvaus: puolimakea, hapokas...'.
-     *
-     * @param line parsed line.
-     * @return parsed content as a String[].
-     */
-    private String[] removeIdentifierWord(String line) {
-        String[] words = line
-                .strip()
-                .split(" ");
-        return Arrays.copyOfRange(words, 1, words.length);
-    }
-
-    /**
-     * Parses line and returns it's content as a String.
-     *
-     * @param line parsed line.
-     * @return parsed content as a String.
-     */
-    private String parseStringContent(String line) {
-        String[] name = removeIdentifierWord(line);
-        return String.join(" ", name);
-    }
-
-    /**
-     * Parses a list of keywords. Keywords are scrubbed of extra white space and converted into lowercase.
-     * If a keyword contains a full stop, it is removed.
-     *
-     * @param line parsed line.
-     * @return keywords as List<String>.
-     */
-    private List<String> parseKeywords(String line) {
-        String[] keywords = parseStringContent(line).split(",");
-
-        return Arrays
-                .stream(keywords)
-                .map(String::strip)
-                .map(String::toLowerCase)
-                .map(word -> word.replace(".", ""))
-                .filter(word -> !word.isBlank() && word.length() > 2)
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Parses String into LocalDate.
-     *
-     * @param line with date information
-     * @return LocalDate
-     */
-    private LocalDate parseDate(String line) {
-        String[] words = line.split(" ");
-        String date = words[1];
-
-        var formatter1 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        var formatter2 = DateTimeFormatter.ofPattern("d.M.yyyy");
-        LocalDate localDate;
-
-        try {
-            localDate = LocalDate.parse(date, formatter1);
-        } catch (DateTimeParseException e) {
-            localDate = LocalDate.parse(date, formatter2);
-        }
-        return localDate;
-    }
-
-    /**
-     * Validates a given URL address.
-     *
-     * @param url as a String.
-     * @return URL as a String if URL is valid, else returns "null".
-     * @throws IOException exception.
-     */
-    private String validateUrl(String url) throws IOException {
-        if (url.isBlank()) {
-            return "";
-        } else if (!isUrlValid(url)) {
-            return "vanhentunut";
-        }
-        return url;
-    }
-
-    /**
-     * Checks if a website returns a 200 OK response.
-     *
-     * @param urlStr URL address as a String.
-     * @return true if response from site is 200, else return false.
-     * @throws IOException exception.
-     */
-    private boolean isUrlValid(String urlStr) throws IOException {
-        URL url = new URL(urlStr);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("GET");
-        connection.connect();
-
-        return connection.getResponseCode() == 200;
-    }
-
     /**
      * Parses line and sets content as review text for Mika or Salla.
      *
      * @param line parsed line.
      */
-    private void parseReview(String line) {
+    private void parseReviewText(String line) {
         if (line.contains("ArvosteluMika:")) {
-            reviewTextMika = parseStringContent(line);
+            reviewTextMika = LineParser.stringContent(line);
         } else if (line.contains("ArvosteluSalla:")) {
-            reviewTextSalla = parseStringContent(line);
+            reviewTextSalla = LineParser.stringContent(line);
         } else {
             System.out.println("line: " + line);
         }
-    }
-
-    /**
-     * Parses the rating on scale of 0-5 and assigns who gave the rating.
-     *
-     * @param line parsed line.
-     */
-    private void parseRating(String line) {
-        String[] words = removeIdentifierWord(line);
-
-        if (words.length < 2) {
-            System.out.println("Error on line: " + line);
-            // Ratings from either Mika or Salla:
-        } else if (words.length == 2) {
-            if (words[1].equals("M")) {
-                ratingMika = parseDouble(words[0]);
-            } else {
-                ratingSalla = parseDouble(words[0]);
-            }
-            // Ratings from both Mika and Salla, both gave the same rating:
-        } else if (words.length == 3) {
-            ratingMika = parseDouble(words[0]);
-            ratingSalla = parseDouble(words[0]);
-            // Ratings from both Mika and Salla, different ratings:
-        } else if (words.length == 4) {
-            if (words[1].equals("M")) {
-                ratingMika = parseDouble(words[0]);
-                ratingSalla = parseDouble(words[2]);
-            } else if (words[1].equals("S")) {
-                ratingMika = parseDouble(words[2]);
-                ratingSalla = parseDouble(words[0]);
-            } else {
-                System.out.println("line: " + line);
-            }
-        } else {
-            System.out.println("line: " + line);
-        }
-    }
-
-    /**
-     * Parses String and checks that it's a valid number.
-     *
-     * @param s String.
-     * @return price as double or -1 if price is not a valid number.
-     */
-    private double parseDouble(String s) {
-        try {
-            return Double.parseDouble(s);
-        } catch (NumberFormatException e) {
-            // return -1
-        }
-        return -1;
     }
 
     /**
