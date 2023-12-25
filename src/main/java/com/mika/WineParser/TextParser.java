@@ -5,12 +5,11 @@ import com.mika.WineApp.entities.Wine;
 import com.mika.WineApp.entities.WineType;
 import lombok.Getter;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class TextParser {
 
@@ -69,7 +68,7 @@ class TextParser {
      * @param scanner  containing text to be parsed.
      * @param wineType type, f. ex. RED or WHITE.
      */
-    void parse(Scanner scanner, WineType wineType) throws IOException {
+    void parse(Scanner scanner, WineType wineType) {
         String line = scanner.nextLine();
 
         // Parse each line:
@@ -100,13 +99,10 @@ class TextParser {
                 // If next word is not "SopiiNautittavaksi:", keep parsing description:
                 while (!scanner.hasNext("SopiiNautittavaksi:")) {
                     line = scanner.nextLine();
-                    if (line
-                            .toLowerCase()
-                            .contains("huom:")) {
+                    if (line.toLowerCase().contains("huom:")) {
                         break;
                     }
-
-                    description.addAll(parseKeywords(line));
+                    description = Stream.concat(description.stream(), parseKeywords(line).stream()).toList();
                 }
 
                 // Parse recommended food pairings for the wine:
@@ -142,9 +138,7 @@ class TextParser {
      * @return parsed content as a String[].
      */
     private String[] removeIdentifierWord(String line) {
-        String[] words = line
-                .strip()
-                .split(" ");
+        String[] words = line.strip().split(" ");
         return Arrays.copyOfRange(words, 1, words.length);
     }
 
@@ -175,7 +169,7 @@ class TextParser {
                 .map(String::toLowerCase)
                 .map(word -> word.replace(".", ""))
                 .filter(word -> !word.isBlank() && word.length() > 2)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     /**
@@ -197,6 +191,7 @@ class TextParser {
         } catch (DateTimeParseException e) {
             localDate = LocalDate.parse(date, formatter2);
         }
+
         return localDate;
     }
 
@@ -259,9 +254,8 @@ class TextParser {
         try {
             return Double.parseDouble(s);
         } catch (NumberFormatException e) {
-            // return -1
+            return -1;
         }
-        return -1;
     }
 
     /**
