@@ -225,19 +225,16 @@ class TextParser {
 
         if (words.length < 2) {
             System.out.println("Error on line: " + line);
-            // Ratings from either Mika or Salla:
-        } else if (words.length == 2) {
+        } else if (words.length == 2) { // Ratings from either Mika or Salla:
             if (words[1].equals("M")) {
                 ratingMika = parseDouble(words[0]);
             } else {
                 ratingSalla = parseDouble(words[0]);
             }
-            // Ratings from both Mika and Salla, both gave the same rating:
-        } else if (words.length == 3) {
+        } else if (words.length == 3) { // Ratings from both Mika and Salla, both gave the same rating:
             ratingMika = parseDouble(words[0]);
             ratingSalla = parseDouble(words[0]);
-            // Ratings from both Mika and Salla, different ratings:
-        } else if (words.length == 4) {
+        } else if (words.length == 4) { // Ratings from both Mika and Salla, different ratings:
             if (words[1].equals("M")) {
                 ratingMika = parseDouble(words[0]);
                 ratingSalla = parseDouble(words[2]);
