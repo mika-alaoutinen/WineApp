@@ -12,7 +12,7 @@ RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 FROM eclipse-temurin:21
 
 # Run application as user "spring"
-RUN addgroup -S spring && adduser -S spring -G spring
+RUN addgroup --system spring && useradd -g spring spring
 USER spring:spring
 
 # Copy dependencies from build stage
