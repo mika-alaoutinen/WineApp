@@ -31,7 +31,7 @@
     <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <mapstruct.version>1.5.5.Final</mapstruct.version>
     <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
-    <openapi-generator-version>7.6.0</openapi-generator-version>
+    <openapi-generator-version>7.7.0</openapi-generator-version>
   </properties>
 
   <dependencies>
